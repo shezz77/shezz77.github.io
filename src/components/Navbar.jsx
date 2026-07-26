@@ -5,9 +5,8 @@ export default function Navbar() {
 
   return (
     <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
-      <a href="#top" className="nav__brand" aria-label="Shehzad Aslam — home">
-        <span className="nav__mono">SA</span>
-        <span className="nav__word">Shehzad Aslam</span>
+      <a href="#top" className="nav__brand">
+        Shehzad Aslam
       </a>
       <div className="nav__links">
         <a href="#services" className="nav__link nav__link--page">
@@ -19,7 +18,7 @@ export default function Navbar() {
         <a href="#process" className="nav__link nav__link--page">
           Process
         </a>
-        <a href="#contact" className="nav__link nav__cta">
+        <a href="#contact" className="nav__cta">
           Book a call
         </a>
       </div>

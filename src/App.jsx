@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import TrustMarquee from './components/TrustMarquee'
+import Marquee from './components/Marquee'
 import Services from './components/Services'
 import Process from './components/Process'
 import Work from './components/Work'
@@ -13,7 +13,7 @@ export default function App() {
     <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
       <Navbar />
       <Hero />
-      <TrustMarquee />
+      <Marquee />
       <Services />
       <Process />
       <Work />

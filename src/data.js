@@ -168,7 +168,7 @@ export const competencies = [
 ]
 
 export const stats = [
-  { value: '11+', label: 'Years building & scaling products' },
+  { value: '8+', label: 'Years building & scaling products' },
   { value: '2', label: 'Engineering teams led as Principal' },
   { value: '6+', label: 'Production products architected' },
   { value: 'Gold', label: 'Medalist — MSc Information Technology' },
@@ -179,7 +179,7 @@ export const links = [
   { label: 'shezz77.github.io', href: 'https://shezz77.github.io' },
   {
     label: 'Google Play Portfolio',
-    href: 'https://play.google.com/store/apps/developer?id=shezz77',
+    href: 'https://play.google.com/store/apps/dev?id=7778733797981722910',
   },
   { label: 'shezz77.se@gmail.com', href: 'mailto:shezz77.se@gmail.com' },
 ]

@@ -40,7 +40,7 @@ export default function Contact() {
         </div>
 
         <div className="contact__footer">
-          <span>+92 300 9878282 · Lahore, Pakistan · Remote — global</span>
+          <span>+92 300 9878282 · Lahore, Pakistan · remote — global</span>
           <span>Shehzad Aslam — Software Architect &amp; Engineering Manager</span>
         </div>
       </div>

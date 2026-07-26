@@ -11,14 +11,14 @@ export default function Work() {
       <div className="work-grid">
         {engagements.map((eng) => (
           <Reveal key={eng.client} className="eng-card">
-            <span className="eng__ring" aria-hidden="true" />
-            <div className="eng__top">
-              <span className="eng__client">{eng.client}</span>
-              <span className="eng__role">{eng.role}</span>
+            <span className="eng-card__ring" aria-hidden="true" />
+            <div className="eng-card__top">
+              <span className="eng-card__client">{eng.client}</span>
+              <span className="eng-card__role">{eng.role}</span>
             </div>
-            <h3 className="eng__title">{eng.title}</h3>
-            <p className="eng__desc">{eng.desc}</p>
-            <div className="eng__tags">
+            <h3 className="eng-card__title">{eng.title}</h3>
+            <p className="eng-card__desc">{eng.desc}</p>
+            <div className="eng-card__tags">
               {eng.tags.map((tag) => (
                 <span key={tag} className="tag">
                   {tag}

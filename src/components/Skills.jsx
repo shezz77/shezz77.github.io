@@ -6,7 +6,11 @@ function CompetencyCard({ cat }) {
   const [ref, inView] = useInView({ threshold: 0.2 })
 
   return (
-    <div ref={ref} className="reveal card comp" style={inView ? { opacity: 1, transform: 'none' } : undefined}>
+    <div
+      ref={ref}
+      className="reveal comp"
+      style={inView ? { opacity: 1, transform: 'none' } : undefined}
+    >
       <div className="comp__head">
         <span className="comp__no">{cat.no}</span>
         <h3 className="comp__name">{cat.name}</h3>

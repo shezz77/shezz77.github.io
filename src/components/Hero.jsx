@@ -1,9 +1,9 @@
-import { usePerspectiveGrid } from '../hooks/usePerspectiveGrid'
+import { useWeaveMesh } from '../hooks/useWeaveMesh'
 import Terminal from './Terminal'
 import { heroTokens } from '../data'
 
 export default function Hero() {
-  const canvasRef = usePerspectiveGrid()
+  const canvasRef = useWeaveMesh()
 
   return (
     <header id="top" className="hero">
@@ -28,7 +28,7 @@ export default function Hero() {
       <div className="hero__inner">
         <div className="hero__meta">
           <span>[ Software Architect / Engineering Manager ]</span>
-          <span>Est. 2013 — 11+ yrs</span>
+          <span>Est. 2017 — 8+ yrs</span>
         </div>
 
         <div className="hero__grid">
@@ -40,7 +40,7 @@ export default function Hero() {
             </h1>
             <p className="hero__lead">
               Event-driven microservices, hardened pipelines, and the engineering leadership to
-              ship them. Fractional, principal-level, remote-first — 11+ years turning ambiguous
+              ship them. Fractional, principal-level, remote-first — 8+ years turning ambiguous
               requirements into resilient product.
             </p>
             <div className="hero__actions">
