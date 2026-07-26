@@ -1,4 +1,5 @@
 import Reveal from './Reveal'
+import CountUp from './CountUp'
 import { stats } from '../data'
 
 export default function Why() {
@@ -24,7 +25,9 @@ export default function Why() {
         <div className="why__stats">
           {stats.map((stat) => (
             <div className="stat" key={stat.label}>
-              <div className="stat__value">{stat.value}</div>
+              <div className="stat__value">
+                <CountUp value={stat.value} />
+              </div>
               <div className="stat__label">{stat.label}</div>
             </div>
           ))}

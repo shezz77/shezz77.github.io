@@ -1,3 +1,4 @@
+import ScrollProgress from './components/ScrollProgress'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Marquee from './components/Marquee'
@@ -11,6 +12,7 @@ import Contact from './components/Contact'
 export default function App() {
   return (
     <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <Marquee />
