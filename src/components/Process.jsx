@@ -17,7 +17,7 @@ export default function Process() {
             <span
               className="process__node"
               key={step.no}
-              style={{ left: `${i * 25}%`, transitionDelay: `${0.35 + i * 0.16}s` }}
+              style={{ left: `${i * 25}%`, transitionDelay: `${0.15 + i * 0.48}s` }}
             />
           ))}
         </div>

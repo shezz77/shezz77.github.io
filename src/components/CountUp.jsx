@@ -4,7 +4,7 @@ import { useInView } from '../hooks/useInView'
 // Counts a numeric prefix up from 0 to its target when scrolled into view,
 // preserving any suffix (e.g. "8+"). Non-numeric values (e.g. "Gold") render
 // unchanged. Honors prefers-reduced-motion.
-export default function CountUp({ value, duration = 1200 }) {
+export default function CountUp({ value, duration = 2200 }) {
   const [ref, inView] = useInView({ threshold: 0.4 })
   const match = String(value).match(/^(\d+)(.*)$/)
   const target = match ? parseInt(match[1], 10) : null
@@ -28,7 +28,7 @@ export default function CountUp({ value, duration = 1200 }) {
     const tick = (t) => {
       if (start === undefined) start = t
       const p = Math.min((t - start) / duration, 1)
-      const eased = 1 - Math.pow(1 - p, 3) // easeOutCubic
+      const eased = 1 - Math.pow(1 - p, 1.5) // gentle ease-out — keeps the counting visible throughout
       setN(Math.round(eased * target))
       if (p < 1) raf = requestAnimationFrame(tick)
     }
