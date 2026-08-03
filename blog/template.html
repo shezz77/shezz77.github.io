@@ -29,23 +29,29 @@
     nav[style] { flex-wrap: wrap !important; row-gap: 12px !important; }
     [style*="position:sticky"][style*="280px"] { position: static !important; }
   }
+  /* Index rows: two compact lines on narrow screens (meta + read, then the
+     title) rather than the four stacked cells the generic collapse gives.
+     Hooked on a data attribute — the runtime re-serialises inline styles, so
+     [style*="..."] value matching is not reliable. */
+  @media (max-width: 900px) {
+    a[data-note-row] {
+      grid-template-columns: minmax(0, 1fr) auto !important;
+      column-gap: 12px !important;
+      row-gap: 5px !important;
+      align-items: baseline !important;
+    }
+    a[data-note-row] > div:nth-child(1) > span { display: inline !important; }
+    a[data-note-row] > div:nth-child(1) > span + span::before { content: " · "; color: #A79E8C; }
+    a[data-note-row] > div:nth-child(2) { grid-column: 1 / -1; }
+    a[data-note-row] > div:nth-child(2) > p { display: none; }
+    a[data-note-row] > div:nth-child(3) { grid-column: 2; grid-row: 1; }
+  }
+
   @media (max-width: 640px) {
     nav[style], section[style], header[style], footer[style] {
       padding-left: 20px !important;
       padding-right: 20px !important;
     }
-    [style*="padding:40px 42px"],
-    [style*="padding:44px 44px"],
-    [style*="padding:32px 30px"],
-    [style*="padding:30px 32px"],
-    [style*="padding:26px 30px"],
-    [style*="padding:26px 28px"],
-    [style*="padding:60px 40px"] {
-      padding-left: 22px !important;
-      padding-right: 22px !important;
-    }
-    [style*="white-space:pre-wrap"] { overflow-wrap: anywhere; }
-    [style*="IBM Plex Mono"][style*="background:#17130E"] { overflow-x: auto; }
   }
 </style>
 
@@ -78,15 +84,15 @@
 
   <sc-if value="{{ isIndex }}" hint-placeholder-val="{{ true }}">
     <div>
-      <section style="max-width:1240px; margin:0 auto; padding:88px 40px 0;">
-        <div style="display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:end; border-bottom:2px solid #1B1712; padding-bottom:40px;">
+      <section style="max-width:1240px; margin:0 auto; padding:48px 40px 0;">
+        <div style="display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:end; border-bottom:2px solid #1B1712; padding-bottom:22px;">
           <div>
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:#BF3B24; margin-bottom:18px;">Field notes — the blog</div>
-            <h1 style="font-family:'Archivo',sans-serif; font-weight:900; font-size:clamp(38px,6vw,76px); line-height:.92; letter-spacing:-0.035em; text-transform:uppercase; margin:0; color:#1B1712;">Notes from<br>inside the system.</h1>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.22em; text-transform:uppercase; color:#BF3B24; margin-bottom:12px;">Field notes — the blog</div>
+            <h1 style="font-family:'Archivo',sans-serif; font-weight:900; font-size:clamp(30px,4.2vw,52px); line-height:.94; letter-spacing:-0.032em; text-transform:uppercase; margin:0; color:#1B1712;">Notes from inside the system.</h1>
           </div>
           <div>
-            <p style="font-size:17.5px; line-height:1.7; color:#5A5449; margin:0 0 22px;">Specific write-ups on decisions that moved the needle: architecture trade-offs, delivery pipelines, and leading engineers who are better than you at their part of it.</p>
-            <div style="display:flex; gap:28px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#8A8578;">
+            <p style="font-size:15.5px; line-height:1.62; color:#5A5449; margin:0 0 14px;">Specific write-ups on decisions that moved the needle: architecture trade-offs, delivery pipelines, and leading engineers who are better than you at their part of it.</p>
+            <div style="display:flex; gap:24px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:#8A8578;">
               <span>{{ totalPosts }} notes</span>
               <span>{{ totalMinutes }} min total</span>
               <span>Monthly</span>
@@ -95,38 +101,38 @@
         </div>
       </section>
 
-      <section style="max-width:1240px; margin:0 auto; padding:28px 40px 0;">
-        <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; border-bottom:1px solid #DED4C2; padding-bottom:22px;">
+      <section style="max-width:1240px; margin:0 auto; padding:20px 40px 0;">
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; border-bottom:1px solid #DED4C2; padding-bottom:16px;">
           <div style="display:flex; flex-wrap:wrap; gap:9px;">
             <sc-for list="{{ cats }}" as="cat" hint-placeholder-count="5">
-              <button type="button" sc-camel-on-click="{{ cat.select }}" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:9px 15px; cursor:pointer; border:1px solid {{ cat.bd }}; background:{{ cat.bg }}; color:{{ cat.fg }}; transition:background .2s ease, color .2s ease, border-color .2s ease;">{{ cat.label }}</button>
+              <button type="button" sc-camel-on-click="{{ cat.select }}" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:7px 13px; cursor:pointer; border:1px solid {{ cat.bd }}; background:{{ cat.bg }}; color:{{ cat.fg }}; transition:background .2s ease, color .2s ease, border-color .2s ease;">{{ cat.label }}</button>
             </sc-for>
           </div>
           <div style="display:flex; gap:10px; align-items:center;">
             <div style="display:flex; align-items:center; gap:9px; border:1px solid #D6CBB6; background:#FCFAF4; padding:0 13px;">
               <span style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#A79E8C;">/</span>
-              <input type="search" sc-camel-on-input="{{ onSearch }}" placeholder="Search notes" style="border:none; outline:none; background:transparent; font-size:14px; color:#1B1712; padding:11px 0; width:180px;">
+              <input type="search" sc-camel-on-input="{{ onSearch }}" placeholder="Search notes" style="border:none; outline:none; background:transparent; font-size:14px; color:#1B1712; padding:9px 0; width:160px;">
             </div>
-            <button type="button" sc-camel-on-click="{{ toggleSort }}" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:11px 15px; cursor:pointer; border:1px solid #D6CBB6; background:#FCFAF4; color:#5A5449;">{{ sortLabel }}</button>
+            <button type="button" sc-camel-on-click="{{ toggleSort }}" style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; padding:9px 13px; cursor:pointer; border:1px solid #D6CBB6; background:#FCFAF4; color:#5A5449;">{{ sortLabel }}</button>
           </div>
         </div>
       </section>
 
       <sc-if value="{{ featured }}" hint-placeholder-val="{{ true }}">
-        <section style="max-width:1240px; margin:0 auto; padding:44px 40px 0;">
+        <section style="max-width:1240px; margin:0 auto; padding:28px 40px 0;">
           <a href="{{ featured.href }}" sc-camel-on-click="{{ featured.open }}" style="display:grid; grid-template-columns:1.12fr .88fr; border:1px solid #E4DBCB; border-top:2px solid #1B1712; background:#FCFAF4; cursor:pointer;">
-            <div style="padding:40px 42px 42px;">
-              <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:24px;">
-                <span style="background:#BF3B24; color:#FCEFE6; padding:5px 11px;">Latest</span>
+            <div style="padding:26px 30px 28px;">
+              <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:16px;">
+                <span style="background:#BF3B24; color:#FCEFE6; padding:4px 9px;">Latest</span>
                 <span style="color:#8A8578;">{{ featured.date }}</span>
                 <span style="color:#8A8578;">{{ featured.cat }}</span>
                 <span style="color:#8A8578;">{{ featured.read }}</span>
               </div>
-              <h2 style="font-family:'Archivo',sans-serif; font-weight:800; font-size:clamp(26px,3.2vw,40px); line-height:1.04; letter-spacing:-0.025em; margin:0 0 18px; color:#1B1712; text-wrap:pretty;">{{ featured.title }}</h2>
-              <p style="font-size:16.5px; line-height:1.7; color:#5A5449; margin:0 0 28px; max-width:56ch; text-wrap:pretty;">{{ featured.excerpt }}</p>
+              <h2 style="font-family:'Archivo',sans-serif; font-weight:800; font-size:clamp(21px,2.4vw,30px); line-height:1.08; letter-spacing:-0.022em; margin:0 0 12px; color:#1B1712; text-wrap:pretty;">{{ featured.title }}</h2>
+              <p style="font-size:15.5px; line-height:1.62; color:#5A5449; margin:0 0 18px; max-width:58ch; text-wrap:pretty;">{{ featured.excerpt }}</p>
               <span style="display:inline-flex; align-items:center; gap:9px; font-family:'Archivo',sans-serif; font-weight:700; font-size:13.5px; letter-spacing:.06em; text-transform:uppercase; color:#BF3B24;">Read the note →</span>
             </div>
-            <div style="background:#17130E; border-left:1px solid #E4DBCB; padding:32px 30px; font-family:'IBM Plex Mono',monospace; font-size:13px; line-height:1.95; color:#8A7B63;">
+            <div style="background:#17130E; border-left:1px solid #E4DBCB; padding:22px 24px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; line-height:1.72; color:#8A7B63; overflow:hidden;">
               <div style="color:#5E5344; margin-bottom:12px;">// before → after</div>
               <sc-for list="{{ featured.snippet }}" as="row" hint-placeholder-count="9">
                 <div style="white-space:pre-wrap; color:{{ row.color }};">{{ row.text }}</div>
@@ -136,24 +142,23 @@
         </section>
       </sc-if>
 
-      <section style="max-width:1240px; margin:0 auto; padding:52px 40px 0;">
-        <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:22px;">
+      <section style="max-width:1240px; margin:0 auto; padding:34px 40px 0;">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px; border-bottom:2px solid #1B1712; padding-bottom:10px;">
           <h2 style="font-family:'Archivo',sans-serif; font-weight:800; font-size:18px; letter-spacing:.02em; text-transform:uppercase; margin:0; color:#1B1712;">{{ listHeading }}</h2>
           <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:#8A8578;">{{ resultCount }}</span>
         </div>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+        <div>
           <sc-for list="{{ posts }}" as="post" hint-placeholder-count="6">
-            <a href="{{ post.href }}" sc-camel-on-click="{{ post.open }}" style="background:#FCFAF4; border:1px solid #E4DBCB; padding:28px 26px 30px; cursor:pointer; display:flex; flex-direction:column; min-height:300px; transition:transform .25s ease, box-shadow .25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(27,23,18,.4);">
-              <div style="display:flex; justify-content:space-between; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:#8A8578; padding-bottom:16px; border-bottom:1px solid #EAE1CF; margin-bottom:20px;">
-                <span style="color:#BF3B24;">{{ post.cat }}</span>
-                <span>{{ post.date }}</span>
+            <a href="{{ post.href }}" sc-camel-on-click="{{ post.open }}" data-note-row="" style="display:grid; grid-template-columns:118px minmax(0,1fr) 104px; gap:20px; align-items:baseline; padding:14px 10px 14px 0; border-bottom:1px solid #E4DBCB; cursor:pointer; transition:background .16s ease, padding .16s ease;" style-hover="background:#FCFAF4; padding-left:10px;">
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.13em; text-transform:uppercase; line-height:1.5;">
+                <span style="display:block; color:#BF3B24;">{{ post.cat }}</span>
+                <span style="display:block; color:#A79E8C;">{{ post.date }}</span>
               </div>
-              <h3 style="font-family:'Archivo',sans-serif; font-weight:700; font-size:20px; line-height:1.18; letter-spacing:-0.014em; margin:0 0 12px; color:#1B1712; text-wrap:pretty;">{{ post.title }}</h3>
-              <p style="font-size:15px; line-height:1.62; color:#5A5449; margin:0 0 22px; text-wrap:pretty;">{{ post.excerpt }}</p>
-              <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:#8A8578;">
-                <span>{{ post.read }}</span>
-                <span style="color:#BF3B24;">Read →</span>
+              <div style="min-width:0;">
+                <h3 style="font-family:'Archivo',sans-serif; font-weight:700; font-size:17px; line-height:1.24; letter-spacing:-0.012em; margin:0 0 3px; color:#1B1712; text-wrap:pretty;">{{ post.title }}</h3>
+                <p style="font-size:14px; line-height:1.5; color:#7A7364; margin:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ post.excerpt }}</p>
               </div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:#8A8578; text-align:right; line-height:1.5; white-space:nowrap;">{{ post.read }}</div>
             </a>
           </sc-for>
         </div>
@@ -166,8 +171,8 @@
         </sc-if>
       </section>
 
-      <section style="max-width:1240px; margin:0 auto; padding:64px 40px 0;">
-        <div style="background:#1B1712; color:#F5F1E8; padding:44px 44px 46px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center;">
+      <section style="max-width:1240px; margin:0 auto; padding:42px 40px 0;">
+        <div style="background:#1B1712; color:#F5F1E8; padding:30px 32px 32px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center;">
           <div>
             <div style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.2em; text-transform:uppercase; color:#E0A458; margin-bottom:12px;">The architect's dispatch</div>
             <h2 style="font-family:'Archivo',sans-serif; font-weight:800; font-size:clamp(22px,2.6vw,32px); line-height:1.08; letter-spacing:-0.02em; text-transform:uppercase; margin:0 0 10px; color:#F7F3EA;">One note a month. Nothing else.</h2>
@@ -526,9 +531,11 @@ class Component extends DCLogic {
   // Not every note has a code block, and the featured panel needs something to
   // show; fall back to the takeaways rendered as comments.
   _snippet(p) {
+    // Capped: the featured card's height is driven by this panel, and the
+    // index is meant to stay dense.
     const code = p.blocks.find((b) => b.t === "code");
-    if (code) return code.lines;
-    return p.takeaways.map((t, i) => ({ text: (i === 0 ? "// takeaways" : "") + (i === 0 ? "\n" : "") + "- " + t, color: i === 0 ? "#E0A458" : "#9A8B70" }));
+    if (code) return code.lines.slice(0, 9);
+    return p.takeaways.slice(0, 9).map((t, i) => ({ text: (i === 0 ? "// takeaways" : "") + (i === 0 ? "\n" : "") + "- " + t, color: i === 0 ? "#E0A458" : "#9A8B70" }));
   }
 
   _card(p) {
