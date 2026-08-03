@@ -343,6 +343,156 @@
 <script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
 const POSTS = [
   {
+    slug: "context-is-the-job", cat: "AI", date: "Aug 2026", minutes: 7,
+    tags: ["AI-assisted", "Context", "Workflow"],
+    title: "Context is the job now",
+    excerpt: "The useful work happens before the question. Three minutes of assembling context is the difference between a suggestion I merge and a suggestion I argue with.",
+    blocks: [
+      { t: "p", text: "The most valuable thing I do with an AI assistant happens before I ask it anything. I spend two or three minutes assembling context, and that is reliably the difference between an answer I merge and an answer I spend twenty minutes arguing with." },
+      { t: "p", text: "This is not a prompting trick. It is the same discipline that makes a design document useful, applied under time pressure to a smaller decision. The tool just made the cost of skipping it immediate and visible." },
+      { t: "h", text: "The four things I supply before the question" },
+      { t: "list", items: [
+        "The constraint I am actually under: the deadline, the team size, the thing I am not permitted to change.",
+        "The shape of the code around it — one representative file, not the whole module.",
+        "What I have already ruled out, and why. This alone kills most of the generic answers.",
+        "The failure I am trying to prevent, stated as a scenario rather than as a quality."
+      ] },
+      { t: "p", text: "That last one does more work than the other three combined. Asking for code that is resilient produces a lecture about resilience. Telling it that this consumer will see the same message twice when the broker redelivers after a partition produces an idempotency key and a unique constraint." },
+      { t: "quote", text: "A vague question gets a confident, average answer. The averageness is the tell." },
+      { t: "h", text: "Context belongs in the repo, not in your chat history" },
+      { t: "p", text: "For a while I was retyping the same six facts into every session. Now they live in a file next to the code, and every session — mine or anyone else's — starts from the same footing. It reads like the onboarding note we should have written for humans years ago, which is not a coincidence." },
+      { t: "code", label: "context/engineering.md", lines: [
+        { text: "# what this codebase assumes", color: "#5E5344" },
+        { text: "stack:      Laravel 11, MySQL 8, RabbitMQ", color: "#B9A98C" },
+        { text: "we do:      repositories, form requests, feature tests over unit", color: "#9A8B70" },
+        { text: "we do not:  facades in domain code, raw SQL outside repositories", color: "#9A8B70" },
+        { text: "deploys:    immutable SHA tags, migrations gated before rollout", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "open risk:  legacy billing module has no test coverage", color: "#E0A458" },
+        { text: "            treat every change there as unverified", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "The file has a second effect I did not plan for. Writing down what we do not do forced three conventions out of tribal memory and into an argument, and two of them did not survive the argument. That was worth the afternoon on its own." },
+      { t: "h", text: "What actually changed in my day" },
+      { t: "p", text: "The headline number is unglamorous: on non-trivial changes, roughly one in four first attempts used to be usable without rework. With the context assembled up front it is comfortably better than one in two. The rest of the gain is that the failures fail obviously instead of plausibly." },
+      { t: "p", text: "The skill this rewards is not prompt engineering. It is the ability to state a problem precisely, including the parts you were hoping to leave implicit — which is the same skill that separates an architecture document people can act on from one they nod at. The tool did not create that skill. It just started paying it out weekly instead of quarterly." }
+    ],
+    takeaways: [
+      "State the failure you are preventing as a scenario, not as an adjective.",
+      "Put your conventions in a file beside the code so every session starts from the same footing.",
+      "The scarce skill is precise problem statement — the same one good design docs have always required."
+    ]
+  },
+  {
+    slug: "argue-back-rubber-duck", cat: "AI", date: "Aug 2026", minutes: 6,
+    tags: ["AI-assisted", "System design", "Review"],
+    title: "Rubber-ducking with something that argues back",
+    excerpt: "I run design decisions past a model before I run them past a person. Not because it is smart — because it is available at 11pm and has no stake in the outcome.",
+    blocks: [
+      { t: "p", text: "I have started putting design decisions through a model before they reach a colleague, for reasons that have very little to do with the model being clever. It is available at 11pm, it has no stake in the outcome, and it will not soften its third objection because I looked irritated by the second." },
+      { t: "h", text: "The framing is the whole thing" },
+      { t: "p", text: "Asking what it thinks of a design gets agreement, because agreement is the safe answer to a vague question. The version that works is adversarial: state the design as a decision already made, then ask for the strongest available case that it is wrong." },
+      { t: "code", label: "the framing that works", lines: [
+        { text: "// gets you a mirror", color: "#5E5344" },
+        { text: "\"what do you think of splitting billing into its own service?\"", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "// gets you a review", color: "#5E5344" },
+        { text: "\"we are splitting billing into its own service. give me the", color: "#E0A458" },
+        { text: "  three strongest arguments that this is a mistake, ranked by", color: "#E0A458" },
+        { text: "  how likely they are to bite us in the first six months.\"", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "-> \"invoice creation and ledger write become a distributed", color: "#BF6B4E" },
+        { text: "    transaction. you have not said how you settle a partial.\"", color: "#BF6B4E" }
+      ] },
+      { t: "quote", text: "Ask for an opinion and you get a mirror. Ask for a rebuttal and you get a review." },
+      { t: "p", text: "That specific objection cost me a fortnight of pleasant assumption. I knew both writes existed. I had not put them in the same sentence, and putting them in the same sentence is the entire job." },
+      { t: "h", text: "Where it helps, and where it cannot" },
+      { t: "list", items: [
+        "Good: enumerating failure modes you have not thought of, and naming the pattern you are quietly reinventing.",
+        "Good: surfacing the assumption you left unstated, because it has to be stated before it can be attacked.",
+        "Not good: judging whether the trade-off is right for your team. It does not know your on-call rotation is one person.",
+        "Not good: knowing which objection matters. It ranks by plausibility; you rank by what you can survive."
+      ] },
+      { t: "p", text: "So the output is not the value. The value is that writing a design down in enough detail to be attacked is most of the thinking, and having something that will reliably attack it removes the excuse not to. This is the same mechanism that made architecture decision records work, with the latency dropped from a week to a minute." },
+      { t: "p", text: "One caution learned the slow way: it will argue against a good decision just as fluently as a bad one. The rebuttal is an input, not a verdict. If you cannot articulate why an objection does not apply to you, that is a signal — but it is a signal to go and find out, not to reverse course." }
+    ],
+    takeaways: [
+      "Ask for the strongest case against your decision, ranked by likelihood — never for an opinion.",
+      "The forcing function is writing the design down precisely enough to be attacked.",
+      "It ranks objections by plausibility; only you can rank them by what your team can survive."
+    ]
+  },
+  {
+    slug: "strange-codebase-in-a-day", cat: "AI", date: "Aug 2026", minutes: 7,
+    tags: ["AI-assisted", "Onboarding", "Legacy"],
+    title: "Reading a strange codebase in a day",
+    excerpt: "Inheriting 200k lines used to be a week of grep and optimism. The goal was never to have the code explained — it was to get a map you can be wrong about quickly.",
+    blocks: [
+      { t: "p", text: "Most of my consulting work starts the same way: a codebase I have never seen, a team that is tired of explaining it, and a question I am expected to answer by Friday. The first day used to be grep and optimism. It is now a fairly mechanical hour, and the change is larger than any productivity claim I would normally believe." },
+      { t: "h", text: "The order the questions go in" },
+      { t: "p", text: "The mistake is asking what the code does. That gets you a summary, and a summary is exactly the thing you cannot verify. Ask for structure instead, in an order that builds a map rather than a narrative." },
+      { t: "code", label: "the first four questions", lines: [
+        { text: "1. list every entry point: http routes, consumers, cron, cli", color: "#B9A98C" },
+        { text: "2. the data model as tables and relations, nothing else", color: "#B9A98C" },
+        { text: "3. trace the one flow that makes the money, end to end", color: "#E0A458" },
+        { text: "4. where does this codebase disagree with its own conventions?", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# 4 is the one that pays. the disagreements are where the", color: "#5E5344" },
+        { text: "# history is, and the history is what nobody will tell you.", color: "#5E5344" }
+      ] },
+      { t: "p", text: "Question four consistently returns the most valuable thing in the room. Every codebase has three or four places where it stops following its own rules, and each one is a decision somebody made under pressure that is still load-bearing. Those are the places that will bite a newcomer, and they are precisely what an experienced engineer would have taken a month to notice." },
+      { t: "quote", text: "The goal is not to have the code explained. It is to get a map you can be wrong about quickly." },
+      { t: "h", text: "Verify against the thing, never the summary" },
+      { t: "p", text: "A confidently wrong call graph is worse than no call graph, because you will build on it. So every structural claim gets checked against the code itself before it enters my model: run the test, follow the import, add a log line. I treat the output as a set of leads, and leads are cheap to disprove — which is the entire reason this works." },
+      { t: "p", text: "The two failures I now expect: a caller that no longer exists because a refactor left the function orphaned, and a relationship inferred from naming rather than from a foreign key. Both look completely reasonable. Both take about ninety seconds to check." },
+      { t: "list", items: [
+        "First useful question to the team went from day three to hour two — and it was a better question.",
+        "The map is wrong in two or three places, which I now expect and go looking for.",
+        "What I stopped spending: the two days of reading required before I could ask anything without embarrassing myself."
+      ] },
+      { t: "p", text: "The part I did not anticipate is what this does to the incumbent team. Turning up on the second morning with a diagram they have never had and asking whether the odd bit in the billing module was deliberate is a very different conversation from asking them to walk you through the app. They correct the diagram, and the corrections are the good stuff." }
+    ],
+    takeaways: [
+      "Ask for structure — entry points, data model, the flow that earns — not for an explanation.",
+      "Ask where the codebase disagrees with itself; that is where the undocumented history lives.",
+      "Treat every structural claim as a lead to disprove against the code, not as a fact."
+    ]
+  },
+  {
+    slug: "the-review-bottleneck", cat: "Leadership", date: "Aug 2026", minutes: 6,
+    tags: ["AI-assisted", "Code review", "Team"],
+    title: "The bottleneck moved to review and nobody staffed for it",
+    excerpt: "My team writes considerably more code than it did a year ago and ships about the same amount. The constraint moved, and our process did not move with it.",
+    blocks: [
+      { t: "p", text: "Here is the uncomfortable measurement from last quarter. My team produced substantially more code than in the same quarter a year earlier, and shipped roughly the same amount of working software. Nothing was being wasted on the wrong things. The constraint had simply moved from writing to reading, and our process was still optimised for the old one." },
+      { t: "h", text: "Attention is now the scarce resource" },
+      { t: "p", text: "Generating a 600-line change is close to free. Holding 600 lines in your head well enough to say whether they are correct costs exactly what it always did. When production goes up and comprehension does not, the queue forms at the reviewer, and the failure mode is not a slow queue — it is an approving one." },
+      { t: "quote", text: "A pull request nobody has the energy to read is a liability with a green checkmark on it." },
+      { t: "h", text: "The three changes that helped" },
+      { t: "list", items: [
+        "A hard size cap. Over ~400 lines a change gets split, no discussion. Beyond that our review quality falls off a cliff we can see in the defect data.",
+        "The description explains intent and rejected alternatives. The diff already says what changed; only the author knows what was considered and dropped.",
+        "Authors mark which parts they have verified themselves and how. Generated code that has not been executed is called out as such."
+      ] },
+      { t: "code", label: "pull request template", lines: [
+        { text: "## what this is for", color: "#B9A98C" },
+        { text: "## what I considered and rejected", color: "#B9A98C" },
+        { text: "## how I verified it", color: "#E0A458" },
+        { text: "   [ ] ran it against real data", color: "#9A8B70" },
+        { text: "   [ ] test added that fails without this change", color: "#9A8B70" },
+        { text: "   [ ] read every line I am asking you to read", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "That last checkbox started as a joke in a retro and turned out to be the most effective line in the file. Nobody wants to tick it dishonestly, and a few people stopped opening pull requests they had not fully read, which was the entire point." },
+      { t: "h", text: "The part I am still working on" },
+      { t: "p", text: "Juniors used to build their mental model by writing the boring 70%. That work is largely gone, and the model it produced was not decorative — it is what lets someone look at a diff and feel that something is off. I have not solved this. What we do now is have them review more than they write, and defend the review out loud, which is slower and demonstrably better than the alternative." },
+      { t: "p", text: "The wider lesson is one every team hits eventually. Removing a constraint does not make the system faster; it relocates the constraint somewhere you were not measuring. If you have adopted these tools and your throughput has not moved, the queue has formed somewhere. It is almost always in front of a person who is reading." }
+    ],
+    takeaways: [
+      "When generation gets cheap, review becomes the constraint — measure it before you celebrate velocity.",
+      "Cap change size and require intent plus rejected alternatives in the description.",
+      "Make authors state how they verified the code, including whether they actually read it."
+    ]
+  },
+  {
     slug: "event-bus-over-cron", cat: "Architecture", date: "Jul 2026", minutes: 8,
     tags: ["RabbitMQ", "Laravel", "Event-driven"],
     title: "Why we replaced 14 cron jobs with a single event bus",
