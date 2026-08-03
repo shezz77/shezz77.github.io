@@ -2,15 +2,17 @@
   "name": "shezz77-portfolio",
   "private": true,
   "version": "1.0.0",
-  "description": "Personal portfolio site for Shehzad Aslam — Software Architect & Engineering Manager",
+  "description": "Personal portfolio site for Shehzad Aslam \u2014 Software Architect & Engineering Manager",
   "type": "module",
   "engines": {
     "node": ">=20.19"
   },
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/build-blog.mjs",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:blog": "node scripts/build-blog.mjs"
   },
   "dependencies": {
     "react": "^19.1.0",
