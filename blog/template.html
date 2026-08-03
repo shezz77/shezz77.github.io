@@ -202,7 +202,61 @@
           <sc-for list="{{ article.blocks }}" as="b" hint-placeholder-count="8">
             <div>
               <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
-                <p style="font-size:17.5px; line-height:1.78; color:#443E35; margin:0 0 24px; text-wrap:pretty;">{{ b.text }}</p>
+                <p style="font-size:17.5px; line-height:1.78; color:#443E35; margin:0 0 24px; text-wrap:pretty;"><sc-for list="{{ b.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></p>
+              </sc-if>
+              <sc-if value="{{ b.isImg }}" hint-placeholder-val="{{ false }}">
+                <figure style="margin:36px 0; padding:0;">
+                  <img src="{{ b.src }}" alt="{{ b.alt }}" width="{{ b.w }}" height="{{ b.h }}" loading="lazy" decoding="async" style="display:block; width:100%; height:auto; background:#FCFAF4; border:1px solid #E4DBCB;">
+                  <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.6; letter-spacing:.04em; color:#8A8578; margin-top:12px;">{{ b.caption }}</figcaption>
+                </figure>
+              </sc-if>
+              <sc-if value="{{ b.isNote }}" hint-placeholder-val="{{ false }}">
+                <aside style="margin:32px 0; padding:22px 26px; background:{{ b.bg }}; border:1px solid {{ b.bd }}; border-left:3px solid {{ b.accent }};">
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:{{ b.accent }}; margin-bottom:10px;">{{ b.label }}</div>
+                  <div style="font-size:16.5px; line-height:1.68; color:#443E35; text-wrap:pretty;"><sc-for list="{{ b.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></div>
+                </aside>
+              </sc-if>
+              <sc-if value="{{ b.isTable }}" hint-placeholder-val="{{ false }}">
+                <div style="margin:32px 0; overflow-x:auto;" role="table">
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#8A8578; margin-bottom:12px;">{{ b.label }}</div>
+                  <div style="min-width:520px;">
+                    <div role="row" style="display:grid; grid-template-columns:{{ b.cols }}; gap:18px; border-bottom:2px solid #1B1712; padding-bottom:10px;">
+                      <sc-for list="{{ b.head }}" as="h" hint-placeholder-count="3">
+                        <div role="columnheader" style="font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:#5A5449;">{{ h.text }}</div>
+                      </sc-for>
+                    </div>
+                    <sc-for list="{{ b.rows }}" as="row" hint-placeholder-count="3">
+                      <div role="row" style="display:grid; grid-template-columns:{{ b.cols }}; gap:18px; border-bottom:1px solid #E4DBCB; padding:12px 0;">
+                        <sc-for list="{{ row.cells }}" as="cell" hint-placeholder-count="3">
+                          <div role="cell" style="font-size:15px; line-height:1.5; color:{{ cell.color }}; font-family:{{ cell.font }};">{{ cell.text }}</div>
+                        </sc-for>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ b.isLinks }}" hint-placeholder-val="{{ false }}">
+                <div style="margin:32px 0; background:#FCFAF4; border:1px solid #E4DBCB; border-top:2px solid #1B1712; padding:24px 26px 10px;">
+                  <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#BF3B24; margin-bottom:14px;">{{ b.label }}</div>
+                  <sc-for list="{{ b.items }}" as="link" hint-placeholder-count="3">
+                    <a href="{{ link.href }}" target="_blank" rel="noopener noreferrer" style="display:flex; gap:14px; align-items:baseline; padding:12px 0; border-bottom:1px solid #EAE1CF; color:inherit;">
+                      <span aria-hidden="true" style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#E0A458;">↗</span>
+                      <span>
+                        <span style="font-size:16px; line-height:1.5; color:#BF3B24;">{{ link.label }}</span>
+                        <span style="display:block; font-size:14.5px; line-height:1.55; color:#5A5449; margin-top:3px;">{{ link.note }}</span>
+                        <span style="display:block; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:#A79E8C; margin-top:4px;">{{ link.host }}</span>
+                      </span>
+                    </a>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ b.isEmbed }}" hint-placeholder-val="{{ false }}">
+                <figure style="margin:36px 0; padding:0;">
+                  <div style="position:relative; width:100%; padding-top:56.25%; background:#17130E; border:1px solid #E4DBCB;">
+                    <iframe src="{{ b.src }}" title="{{ b.title }}" loading="lazy" allowfullscreen allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute; inset:0; width:100%; height:100%; border:0;"></iframe>
+                  </div>
+                  <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.6; letter-spacing:.04em; color:#8A8578; margin-top:12px;">{{ b.caption }}</figcaption>
+                </figure>
               </sc-if>
               <sc-if value="{{ b.isH }}" hint-placeholder-val="{{ false }}">
                 <h2 id="{{ b.anchor }}" style="font-family:'Archivo',sans-serif; font-weight:800; font-size:26px; line-height:1.16; letter-spacing:-0.02em; margin:44px 0 18px; color:#1B1712; scroll-margin-top:90px;">{{ b.text }}</h2>
@@ -342,6 +396,34 @@ const BLOG_BASE = "/blog/";
 const pathOf = (slug) => (slug ? BLOG_BASE + slug + "/" : BLOG_BASE);
 const absOf = (slug) => SITE + pathOf(slug);
 
+const NOTE_TONES = {
+  info: { label: "Note", bg: "#EFE9DB", bd: "#DED4C2", accent: "#5A5449" },
+  tip: { label: "Tip", bg: "#F1EEE1", bd: "#DCD3BC", accent: "#7A6A3F" },
+  warn: { label: "Watch out", bg: "#F6E9E4", bd: "#E8CFC5", accent: "#BF3B24" }
+};
+
+const hostOf = (url) => { try { return new URL(url).host.replace(/^www\./, ""); } catch (e) { return ""; } };
+
+// Prose is plain text apart from markdown-style [label](url), which we split
+// into segments so the template can render real anchors inline.
+function inlineParts(text) {
+  const parts = [];
+  const re = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g;
+  let last = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push({ isText: true, isLink: false, text: text.slice(last, m.index) });
+    const external = /^https?:/.test(m[2]);
+    parts.push({
+      isText: false, isLink: true, text: m[1], href: m[2],
+      target: external ? "_blank" : "_self",
+      rel: external ? "noopener noreferrer" : ""
+    });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push({ isText: true, isLink: false, text: text.slice(last) });
+  return parts;
+}
+
 class Component extends DCLogic {
   state = { cat: "All", q: "", sort: "new", slug: window.__BOOT_SLUG || null, subscribed: false, copied: false };
 
@@ -475,11 +557,30 @@ class Component extends DCLogic {
       article.blocks.forEach((b, n) => {
         const anchor = "h-" + n;
         if (b.t === "h") toc.push({ text: b.text, href: "#" + anchor, jump: this._jump(anchor) });
+        const note = NOTE_TONES[b.tone] || NOTE_TONES.info;
         blocks.push({
           isP: b.t === "p", isH: b.t === "h", isQuote: b.t === "quote",
-          isCode: b.t === "code", isList: b.t === "list",
-          text: b.text || "", anchor: anchor, label: b.label || "", lines: b.lines || [],
-          items: (b.items || []).map((t, k) => ({ no: String(k + 1).padStart(2, "0"), text: t }))
+          isCode: b.t === "code", isList: b.t === "list", isImg: b.t === "img",
+          isNote: b.t === "note", isTable: b.t === "table", isLinks: b.t === "links",
+          isEmbed: b.t === "embed",
+          text: b.text || "", anchor: anchor, lines: b.lines || [],
+          parts: (b.t === "p" || b.t === "note") ? inlineParts(b.text || "") : [],
+          cols: b.head ? "1.1fr " + b.head.slice(1).map(() => "1fr").join(" ") : "1fr",
+          label: b.label || (b.t === "note" ? note.label : ""),
+          bg: note.bg, bd: note.bd, accent: note.accent,
+          src: b.src || "", alt: b.alt || "", caption: b.caption || "",
+          w: b.w || "", h: b.h || "", title: b.title || "",
+          head: (b.head || []).map((t) => ({ text: t })),
+          rows: (b.rows || []).map((cells) => ({
+            cells: cells.map((c, ci) => ({
+              text: typeof c === "string" ? c : c.text,
+              color: (typeof c === "object" && c.color) || (ci === 0 ? "#1B1712" : "#443E35"),
+              font: (typeof c === "object" && c.mono) || ci > 0 ? "'IBM Plex Mono',monospace" : "'IBM Plex Sans',sans-serif"
+            }))
+          })),
+          items: b.t === "links"
+            ? (b.items || []).map((l) => ({ label: l.label, href: l.href, note: l.note || "", host: hostOf(l.href) }))
+            : (b.items || []).map((t, k) => ({ no: String(k + 1).padStart(2, "0"), text: t }))
         });
       });
       const pool = POSTS.filter((p) => p !== article && (p.cat === article.cat || p.tags.some((t) => article.tags.includes(t)))).slice(0, 3);

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="RabbitMQ retry topology: work queue dead-letters to a retry exchange, a TTL delay queue returns the message, and a capped attempt count routes to a poison queue.">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8A8578"/>
+    </marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#BF3B24"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#E0A458"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="560" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="15">
+
+    <!-- happy path -->
+    <rect x="30" y="46" width="150" height="60" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="105" y="82" text-anchor="middle" fill="#1B1712">publisher</text>
+
+    <rect x="250" y="46" width="200" height="60" fill="#1B1712"/>
+    <text x="350" y="72" text-anchor="middle" fill="#F5F1E8" font-size="14">app.events</text>
+    <text x="350" y="92" text-anchor="middle" fill="#8A7B63" font-size="12">topic exchange</text>
+
+    <rect x="520" y="46" width="210" height="60" fill="#F5F1E8" stroke="#1B1712" stroke-width="2"/>
+    <text x="625" y="72" text-anchor="middle" fill="#1B1712" font-size="14">search-indexer</text>
+    <text x="625" y="92" text-anchor="middle" fill="#8A8578" font-size="12">work queue</text>
+
+    <rect x="800" y="46" width="170" height="60" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="885" y="82" text-anchor="middle" fill="#1B1712">consumer</text>
+
+    <line x1="180" y1="76" x2="243" y2="76" stroke="#8A8578" stroke-width="2" marker-end="url(#a)"/>
+    <line x1="450" y1="76" x2="513" y2="76" stroke="#8A8578" stroke-width="2" marker-end="url(#a)"/>
+    <line x1="730" y1="76" x2="793" y2="76" stroke="#8A8578" stroke-width="2" marker-end="url(#a)"/>
+    <text x="480" y="36" text-anchor="middle" fill="#8A8578" font-size="12">catalogue.#</text>
+
+    <!-- ack -->
+    <text x="885" y="132" text-anchor="middle" fill="#5A5449" font-size="13">ack → done</text>
+
+    <!-- retry path -->
+    <path d="M885 150 L885 200 L350 200 L350 215" fill="none" stroke="#BF3B24" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="640" y="190" text-anchor="middle" fill="#BF3B24" font-size="13">reject(requeue: false) — transient failure</text>
+
+    <rect x="250" y="222" width="200" height="60" fill="#1B1712"/>
+    <text x="350" y="248" text-anchor="middle" fill="#F5F1E8" font-size="14">app.retry</text>
+    <text x="350" y="268" text-anchor="middle" fill="#8A7B63" font-size="12">dead-letter target</text>
+
+    <line x1="450" y1="252" x2="513" y2="252" stroke="#8A8578" stroke-width="2" marker-end="url(#a)"/>
+
+    <rect x="520" y="222" width="210" height="60" fill="#F1EEE1" stroke="#E0A458" stroke-width="2"/>
+    <text x="625" y="248" text-anchor="middle" fill="#1B1712" font-size="14">search-indexer.delay</text>
+    <text x="625" y="268" text-anchor="middle" fill="#7A6A3F" font-size="12">per-message TTL 1s → 60s</text>
+
+    <path d="M625 222 L625 150 L350 150 L350 112" fill="none" stroke="#E0A458" stroke-width="2" marker-end="url(#ag)"/>
+    <text x="470" y="142" text-anchor="middle" fill="#7A6A3F" font-size="13">TTL expires → dead-letters back</text>
+
+    <!-- poison path -->
+    <path d="M885 150 L950 150 L950 400 L450 400" fill="none" stroke="#BF3B24" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+    <text x="700" y="390" text-anchor="middle" fill="#BF3B24" font-size="13">attempt ≥ 8, or permanent failure</text>
+
+    <rect x="250" y="372" width="200" height="60" fill="#1B1712"/>
+    <text x="350" y="398" text-anchor="middle" fill="#F5F1E8" font-size="14">app.dead</text>
+    <text x="350" y="418" text-anchor="middle" fill="#8A7B63" font-size="12">nothing bound onwards</text>
+
+    <line x1="350" y1="432" x2="350" y2="470" stroke="#8A8578" stroke-width="2" marker-end="url(#a)"/>
+
+    <rect x="230" y="480" width="240" height="56" fill="#F6E9E4" stroke="#BF3B24" stroke-width="2"/>
+    <text x="350" y="504" text-anchor="middle" fill="#1B1712" font-size="14">search-indexer.poison</text>
+    <text x="350" y="524" text-anchor="middle" fill="#BF3B24" font-size="12">alert on depth &gt; 0</text>
+
+    <text x="520" y="500" fill="#5A5449" font-size="13">x-failure, x-attempts, x-failed-at</text>
+    <text x="520" y="522" fill="#5A5449" font-size="13">replayable once the fix ships</text>
+  </g>
+</svg>

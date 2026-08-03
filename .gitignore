@@ -24,3 +24,4 @@ public/blog/*/index.html
 public/blog/rss.xml
 public/sitemap.xml
 public/robots.txt
+public/blog/og/

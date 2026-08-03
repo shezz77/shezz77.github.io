@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="420" viewBox="0 0 1000 420" role="img" aria-label="ECS deploy pipeline: build, push, migrate as a gate, rolling update behind a health check, with circuit-breaker rollback.">
+  <defs>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8A8578"/>
+    </marker>
+    <marker id="br" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#BF3B24"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="420" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="40" fill="#BF3B24" font-size="13" letter-spacing="3">DEPLOY PIPELINE</text>
+
+    <rect x="30" y="70" width="200" height="86" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="130" y="102" text-anchor="middle" fill="#1B1712" font-size="15">1 · build</text>
+    <text x="130" y="124" text-anchor="middle" fill="#5A5449" font-size="12">multi-stage image</text>
+    <text x="130" y="142" text-anchor="middle" fill="#5A5449" font-size="12">no compilers at runtime</text>
+
+    <rect x="266" y="70" width="200" height="86" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="366" y="102" text-anchor="middle" fill="#1B1712" font-size="15">2 · push</text>
+    <text x="366" y="124" text-anchor="middle" fill="#5A5449" font-size="12">tag = commit SHA</text>
+    <text x="366" y="142" text-anchor="middle" fill="#BF3B24" font-size="12">never :latest</text>
+
+    <rect x="502" y="70" width="200" height="86" fill="#F1EEE1" stroke="#E0A458" stroke-width="3"/>
+    <text x="602" y="102" text-anchor="middle" fill="#1B1712" font-size="15">3 · migrate</text>
+    <text x="602" y="124" text-anchor="middle" fill="#7A6A3F" font-size="12">one-off ECS task</text>
+    <text x="602" y="142" text-anchor="middle" fill="#7A6A3F" font-size="12">must exit 0 — a gate</text>
+
+    <rect x="738" y="70" width="230" height="86" fill="#F5F1E8" stroke="#1B1712" stroke-width="2"/>
+    <text x="853" y="102" text-anchor="middle" fill="#1B1712" font-size="15">4 · rolling update</text>
+    <text x="853" y="124" text-anchor="middle" fill="#5A5449" font-size="12">behind /healthz</text>
+    <text x="853" y="142" text-anchor="middle" fill="#5A5449" font-size="12">wait services-stable</text>
+
+    <line x1="230" y1="113" x2="259" y2="113" stroke="#8A8578" stroke-width="2" marker-end="url(#b)"/>
+    <line x1="466" y1="113" x2="495" y2="113" stroke="#8A8578" stroke-width="2" marker-end="url(#b)"/>
+    <line x1="702" y1="113" x2="731" y2="113" stroke="#8A8578" stroke-width="2" marker-end="url(#b)"/>
+
+    <path d="M602 156 L602 210 L360 210" fill="none" stroke="#BF3B24" stroke-width="2" marker-end="url(#br)"/>
+    <text x="480" y="232" text-anchor="middle" fill="#BF3B24" font-size="13">non-zero exit → stop. old tasks keep serving.</text>
+
+    <path d="M853 156 L853 280 L400 280" fill="none" stroke="#BF3B24" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#br)"/>
+    <text x="620" y="302" text-anchor="middle" fill="#BF3B24" font-size="13">circuit breaker → automatic rollback</text>
+
+    <rect x="30" y="330" width="938" height="62" fill="#17130E"/>
+    <text x="52" y="358" fill="#8A7B63" font-size="13"># rollback is a redeploy of an artifact that already ran:</text>
+    <text x="52" y="380" fill="#E0A458" font-size="13">aws ecs update-service --task-definition app:$PREVIOUS_REVISION</text>
+  </g>
+</svg>

@@ -10,6 +10,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { execFileSync } from 'node:child_process'
 import { POSTS, CATS } from '../blog/posts.js'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -47,7 +48,7 @@ function articleLd(post) {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.excerpt,
+    description: plain(post.excerpt),
     datePublished: isoDate(post.date),
     dateModified: isoDate(post.date),
     author: { '@type': 'Person', name: AUTHOR, url: SITE },
@@ -95,9 +96,33 @@ function breadcrumbLd(post) {
 
 function wordCount(post) {
   const text = post.blocks
-    .map((b) => b.text || (b.items || []).join(' ') || (b.lines || []).map((l) => l.text).join(' '))
+    .map((b) => {
+      if (b.text) return plain(b.text)
+      if (b.items) return b.items.map((i) => (typeof i === 'string' ? i : i.label + ' ' + (i.note || ''))).join(' ')
+      if (b.lines) return b.lines.map((l) => l.text).join(' ')
+      if (b.rows) return b.rows.flat().map((c) => (typeof c === 'string' ? c : c.text)).join(' ')
+      return b.caption || ''
+    })
     .join(' ')
   return text.split(/\s+/).filter(Boolean).length
+}
+
+const LINK_RE = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g
+
+/** Strip markdown links down to their label, for meta descriptions. */
+const plain = (s) => String(s).replace(LINK_RE, '$1')
+
+/** Markdown links -> anchors, everything else escaped. */
+function richText(text) {
+  let out = '', last = 0, m
+  LINK_RE.lastIndex = 0
+  while ((m = LINK_RE.exec(text)) !== null) {
+    out += esc(text.slice(last, m.index))
+    const ext = /^https?:/.test(m[2])
+    out += `<a href="${esc(m[2])}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(m[1])}</a>`
+    last = m.index + m[0].length
+  }
+  return out + esc(text.slice(last))
 }
 
 /** Plain-HTML rendering of a note, for crawlers and no-JS readers. */
@@ -105,10 +130,25 @@ function noscriptArticle(post) {
   const body = post.blocks
     .map((b) => {
       if (b.t === 'h') return `<h2>${esc(b.text)}</h2>`
-      if (b.t === 'p') return `<p>${esc(b.text)}</p>`
+      if (b.t === 'p') return `<p>${richText(b.text)}</p>`
       if (b.t === 'quote') return `<blockquote><p>${esc(b.text)}</p></blockquote>`
       if (b.t === 'list') return `<ul>${b.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`
       if (b.t === 'code') return `<pre><code>${b.lines.map((l) => esc(l.text)).join('\n')}</code></pre>`
+      if (b.t === 'note') return `<aside><p><strong>${esc(b.label || b.tone || 'Note')}:</strong> ${richText(b.text)}</p></aside>`
+      if (b.t === 'img')
+        return `<figure><img src="${esc(b.src)}" alt="${esc(b.alt)}" width="${esc(b.w)}" height="${esc(b.h)}"><figcaption>${esc(b.caption || '')}</figcaption></figure>`
+      if (b.t === 'embed')
+        return `<figure><p><a href="${esc(b.src)}" target="_blank" rel="noopener noreferrer">${esc(b.title || 'Watch the video')}</a></p><figcaption>${esc(b.caption || '')}</figcaption></figure>`
+      if (b.t === 'links')
+        return `<nav><h3>${esc(b.label || 'Further reading')}</h3><ul>${b.items
+          .map((l) => `<li><a href="${esc(l.href)}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>${l.note ? ' — ' + esc(l.note) : ''}</li>`)
+          .join('')}</ul></nav>`
+      if (b.t === 'table')
+        return `<table><caption>${esc(b.label || '')}</caption><thead><tr>${b.head
+          .map((h) => `<th>${esc(h)}</th>`)
+          .join('')}</tr></thead><tbody>${b.rows
+          .map((r) => `<tr>${r.map((c) => `<td>${esc(typeof c === 'string' ? c : c.text)}</td>`).join('')}</tr>`)
+          .join('')}</tbody></table>`
       return ''
     })
     .join('\n')
@@ -116,7 +156,7 @@ function noscriptArticle(post) {
 <article>
 <h1>${esc(post.title)}</h1>
 <p><strong>${esc(post.cat)}</strong> · ${esc(post.date)} · ${post.minutes} min read</p>
-<p>${esc(post.excerpt)}</p>
+<p>${esc(plain(post.excerpt))}</p>
 ${body}
 <h2>Takeaways</h2>
 <ul>${post.takeaways.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
@@ -138,7 +178,15 @@ ${POSTS.map(
 </noscript>`
 }
 
-function head({ title, description, url, extra = '' }) {
+function head({ title, description, url, image, extra = '' }) {
+  const img = image
+    ? `
+    <meta property="og:image" content="${SITE}${image}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="${esc(title)}" />
+    <meta name="twitter:image" content="${SITE}${image}" />`
+    : ''
   return `    <title>${esc(title)}</title>
     <meta name="description" content="${esc(description)}" />
     <meta name="author" content="${esc(AUTHOR)}" />
@@ -150,14 +198,14 @@ function head({ title, description, url, extra = '' }) {
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="${esc(title)}" />
     <meta property="og:description" content="${esc(description)}" />
-    <meta property="og:url" content="${esc(url)}" />
+    <meta property="og:url" content="${esc(url)}" />${img}
 ${extra}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${esc(title)}" />
     <meta name="twitter:description" content="${esc(description)}" />`
 }
 
-function articleHead(post) {
+function articleHead(post, image) {
   const extra = [
     `    <meta property="og:type" content="article" />`,
     `    <meta property="article:published_time" content="${isoDate(post.date)}" />`,
@@ -169,8 +217,9 @@ function articleHead(post) {
   return (
     head({
       title: `${post.title} — ${BLOG_TITLE} | ${AUTHOR}`,
-      description: post.excerpt,
+      description: plain(post.excerpt),
       url: urlFor(post.slug),
+      image,
       extra,
     }) +
     '\n    ' +
@@ -180,17 +229,98 @@ function articleHead(post) {
   )
 }
 
-function indexHead() {
+function indexHead(image) {
   return (
     head({
       title: `${BLOG_TITLE} — ${AUTHOR}`,
       description: BLOG_DESC,
       url: urlFor(null),
+      image,
       extra: `    <meta property="og:type" content="website" />`,
     }) +
     '\n    ' +
     blogLd()
   )
+}
+
+
+// ---------------------------------------------------------------------------
+// Open Graph cards. Social scrapers will not render SVG, so each card is drawn
+// as SVG and rasterised with rsvg-convert. If that binary is absent the build
+// still succeeds; the pages simply ship without an og:image.
+// ---------------------------------------------------------------------------
+
+let rasteriserChecked = false
+let rasteriser = null
+function haveRasteriser() {
+  if (rasteriserChecked) return rasteriser
+  rasteriserChecked = true
+  try {
+    execFileSync('rsvg-convert', ['--version'], { stdio: 'ignore' })
+    rasteriser = 'rsvg-convert'
+  } catch {
+    console.warn('  ! rsvg-convert not found — building without og:image')
+  }
+  return rasteriser
+}
+
+/** Greedy wrap so long headlines fit the card. */
+function wrapTitle(title, perLine = 26, maxLines = 4) {
+  const words = title.split(/\s+/)
+  const lines = ['']
+  for (const w of words) {
+    const line = lines[lines.length - 1]
+    if (!line) lines[lines.length - 1] = w
+    else if ((line + ' ' + w).length <= perLine) lines[lines.length - 1] = line + ' ' + w
+    else lines.push(w)
+  }
+  if (lines.length > maxLines) {
+    lines.length = maxLines
+    lines[maxLines - 1] = lines[maxLines - 1].replace(/.{0,3}$/, '…')
+  }
+  return lines
+}
+
+function ogSvg(post) {
+  const lines = wrapTitle(post.title)
+  const size = lines.length > 3 ? 60 : lines.length > 2 ? 68 : 76
+  const startY = 300 - ((lines.length - 1) * size * 1.06) / 2
+  const meta = `${post.cat.toUpperCase()}  ·  ${post.date.toUpperCase()}  ·  ${post.minutes} MIN READ`
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F5F1E8"/>
+  <rect x="0" y="0" width="1200" height="14" fill="#BF3B24"/>
+  <g font-family="Archivo, Helvetica, Arial, sans-serif">
+    <text x="80" y="120" font-size="24" font-weight="700" letter-spacing="6" fill="#BF3B24">FIELD NOTES</text>
+    <text x="80" y="168" font-family="IBM Plex Mono, Menlo, monospace" font-size="21" letter-spacing="3" fill="#8A8578">${esc(meta)}</text>
+${lines
+  .map(
+    (l, i) =>
+      `    <text x="80" y="${Math.round(startY + i * size * 1.06)}" font-size="${size}" font-weight="900" fill="#1B1712">${esc(l)}</text>`,
+  )
+  .join('\n')}
+    <rect x="80" y="516" width="1040" height="2" fill="#D6CBB6"/>
+    <text x="80" y="568" font-size="27" font-weight="800" letter-spacing="1" fill="#1B1712">${esc(AUTHOR).toUpperCase()}</text>
+    <text x="1120" y="568" font-family="IBM Plex Mono, Menlo, monospace" font-size="21" fill="#8A8578" text-anchor="end">shezz77.com</text>
+  </g>
+</svg>`
+}
+
+/** Returns the public path of the card, or null when it could not be made. */
+function writeOgCard(post, outDir) {
+  if (!haveRasteriser()) return null
+  const svgPath = path.join(outDir, `${post.slug}.svg`)
+  const pngPath = path.join(outDir, `${post.slug}.png`)
+  fs.writeFileSync(svgPath, ogSvg(post))
+  try {
+    execFileSync('rsvg-convert', ['-w', '1200', '-h', '630', '-o', pngPath, svgPath])
+  } catch (e) {
+    console.warn(`  ! og card failed for ${post.slug}: ${e.message}`)
+    return null
+  } finally {
+    fs.unlinkSync(svgPath)
+  }
+  return `/blog/og/${post.slug}.png`
 }
 
 function renderPage(template, postsSource, { headHtml, bootSlug, noscript }) {
@@ -281,11 +411,14 @@ function main() {
 
   const outDir = path.join(ROOT, 'public/blog')
   fs.mkdirSync(outDir, { recursive: true })
+  const ogDir = path.join(outDir, 'og')
+  fs.mkdirSync(ogDir, { recursive: true })
+  const cards = new Map(POSTS.map((p) => [p.slug, writeOgCard(p, ogDir)]))
 
   fs.writeFileSync(
     path.join(outDir, 'index.html'),
     renderPage(template, postsSource, {
-      headHtml: indexHead(),
+      headHtml: indexHead(cards.get(POSTS[0].slug)),
       bootSlug: null,
       noscript: noscriptIndex(),
     }),
@@ -297,7 +430,7 @@ function main() {
     fs.writeFileSync(
       path.join(dir, 'index.html'),
       renderPage(template, postsSource, {
-        headHtml: articleHead(post),
+        headHtml: articleHead(post, cards.get(post.slug)),
         bootSlug: post.slug,
         noscript: noscriptArticle(post),
       }),
@@ -308,7 +441,8 @@ function main() {
   fs.writeFileSync(path.join(ROOT, 'public/sitemap.xml'), sitemap())
   fs.writeFileSync(path.join(ROOT, 'public/robots.txt'), robots())
 
-  console.log(`blog: ${POSTS.length} notes + index, rss.xml, sitemap.xml, robots.txt`)
+  const made = [...cards.values()].filter(Boolean).length
+  console.log(`blog: ${POSTS.length} notes + index, ${made} og cards, rss.xml, sitemap.xml, robots.txt`)
 }
 
 main()
