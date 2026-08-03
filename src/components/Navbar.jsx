@@ -24,6 +24,9 @@ export default function Navbar() {
         <a href="#process" className={linkClass('process')}>
           Process
         </a>
+        <a href="/blog/" className="nav__link nav__link--page">
+          Blog
+        </a>
         <a href="#contact" className="nav__cta">
           Book a call
         </a>
