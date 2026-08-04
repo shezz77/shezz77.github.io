@@ -40,10 +40,12 @@ export const POSTS = [
         { text: "    return order.as_summary()", color: "#9A8B70" },
         { text: "", color: "#5E5344" },
         { text: "if __name__ == '__main__':", color: "#B9A98C" },
-        { text: "    mcp.run(transport='stdio')", color: "#E0A458" }
+        { text: "    mcp.run(transport='stdio')   # or 'sse' | 'streamable-http'", color: "#E0A458" }
       ] },
       { t: "note", tone: "tip", label: "The docstring is the trigger",
         text: "\"Look up an order by id\" tells the model what the tool does. The second paragraph tells it *when to reach for it*, and that is what actually moves the call rate. Write the situations, not the job description." },
+      { t: "note", tone: "tip", label: "What the schema actually gets",
+        text: "The generated schema carries the parameter's name and type, but not the `Args:` lines — those stay part of the tool description rather than becoming per-field descriptions. So put anything the model must not misread about a parameter, such as its format or unit, in the parameter *name* or the main description." },
       { t: "p", text: "Return errors as strings rather than raising. An exception crossing the transport is an infrastructure failure the client reports as a broken tool; a returned sentence is something the model reads and routes around." },
       { t: "h", text: "Step 2: the two capabilities everyone skips" },
       { t: "p", text: "MCP servers expose three things, and most only ever ship the first. Tools are functions the model calls. Resources are data the client can read. Prompts are templates the user invokes." },
@@ -99,6 +101,8 @@ export const POSTS = [
           ["user", "~/.claude.json", "You, in every project"]
         ] },
       { t: "p", text: "For anything the team should share, use `project` and commit the file. That turns the integration into part of the repository rather than something each engineer rediscovers from a wiki page." },
+      { t: "note", tone: "warn", label: "Project scope needs approving first",
+        text: "A `project`-scoped server does not connect the moment you add it. `claude mcp list` shows it as `⏸ Pending approval (run \`claude\` to approve)` until you start a session and accept it — a local-scoped server, by contrast, shows `✔ Connected` straight away. This is a deliberate guard against a checked-in config launching a process you did not read, and it is the single most confusing part of the flow the first time." },
       { t: "code", label: ".mcp.json", lines: [
         { text: "{", color: "#B9A98C" },
         { text: "  \"mcpServers\": {", color: "#B9A98C" },
@@ -183,6 +187,8 @@ export const POSTS = [
         "Returning structured data as a JSON string is usually better than prose the model has to parse — but keep it small, per the output cap above."
       ] },
       { t: "p", text: "Start with one tool, wired into one client, doing one thing you currently copy and paste. That is enough to shake out the transport, the config scope, and the credential path — all the parts that are annoying to debug later — while the surface is still small enough to reason about." },
+      { t: "note", tone: "tip", label: "Versions this was run against",
+        text: "Every snippet here was executed end to end: `mcp` 1.29.0 on Python 3.12, driven over real stdio by an MCP client, and wired up with Claude Code 2.1.220. The tool call, the error-as-result path, the static resource, and the templated resource were each verified against a live server." },
       { t: "links", label: "References", items: [
         { href: "https://modelcontextprotocol.io/docs/develop/build-server", label: "Build an MCP server", note: "The official walkthrough this follows." },
         { href: "https://github.com/modelcontextprotocol/python-sdk", label: "MCP Python SDK", note: "Transports, resources, prompts, and the CLI extra." },
@@ -270,12 +276,15 @@ export const POSTS = [
         { text: "    elif isinstance(message, ResultMessage):", color: "#E0A458" },
         { text: "        print(f'subtype   {message.subtype}')        # success|error|interrupted", color: "#E0A458" },
         { text: "        print(f'cost      ${message.total_cost_usd}')", color: "#E0A458" },
-        { text: "        print(f'tokens    {message.input_tokens} in / {message.output_tokens} out')", color: "#E0A458" },
-        { text: "        print(f'cache     {message.cache_read_input_tokens} read')", color: "#E0A458" },
+        { text: "        u = message.usage or {}          # tokens live in here", color: "#E0A458" },
+        { text: "        print(f\'tokens    {u.get(\"input_tokens\")} in / {u.get(\"output_tokens\")} out\')", color: "#E0A458" },
+        { text: "        print(f\'cache     {u.get(\"cache_read_input_tokens\")} read\')", color: "#E0A458" },
         { text: "        print(f'duration  {message.duration_ms} ms')", color: "#E0A458" },
         { text: "        print(f'session   {message.session_id}')", color: "#E0A458" }
       ] },
       { t: "p", text: "`ResultMessage` arrives exactly once, at the end, and it is where the accounting lives. Log `total_cost_usd` and `session_id` from day one. The first is how you find out an agent is expensive before the invoice does; the second is the only handle you have for resuming or inspecting the run afterwards." },
+      { t: "note", tone: "warn", label: "Tokens are nested, cost is not",
+        text: "`total_cost_usd`, `duration_ms`, and `session_id` are attributes on `ResultMessage`, but the token counts are keys inside the `usage` dict — reaching for `message.input_tokens` raises `AttributeError`. Verified against claude-agent-sdk 0.2.129." },
       { t: "note", tone: "tip", label: "Check subtype, not just result",
         text: "`subtype` is `success`, `error`, or `interrupted`. A run that hit an error still yields a `ResultMessage` and still ends the loop cleanly — if you only read `.result` you will treat a failed run as a finished one." },
       { t: "h", text: "Step 4: the three limits you set before letting it run" },
