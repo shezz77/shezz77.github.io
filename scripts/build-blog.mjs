@@ -107,19 +107,25 @@ function wordCount(post) {
   return text.split(/\s+/).filter(Boolean).length
 }
 
-const LINK_RE = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g
+// Keep in sync with inlineParts() in blog/template.html — the client renderer
+// and this server-side one must agree on what counts as inline markup.
+const INLINE_RE = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)|`([^`]+)`/g
 
-/** Strip markdown links down to their label, for meta descriptions. */
-const plain = (s) => String(s).replace(LINK_RE, '$1')
+/** Strip inline markup down to its text, for meta descriptions and titles. */
+const plain = (s) => String(s).replace(INLINE_RE, (_m, label, _href, code) => label ?? code)
 
-/** Markdown links -> anchors, everything else escaped. */
+/** Markdown links -> anchors, `code` -> <code>, everything else escaped. */
 function richText(text) {
   let out = '', last = 0, m
-  LINK_RE.lastIndex = 0
-  while ((m = LINK_RE.exec(text)) !== null) {
+  INLINE_RE.lastIndex = 0
+  while ((m = INLINE_RE.exec(text)) !== null) {
     out += esc(text.slice(last, m.index))
-    const ext = /^https?:/.test(m[2])
-    out += `<a href="${esc(m[2])}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(m[1])}</a>`
+    if (m[3] !== undefined) {
+      out += `<code>${esc(m[3])}</code>`
+    } else {
+      const ext = /^https?:/.test(m[2])
+      out += `<a href="${esc(m[2])}"${ext ? ' target="_blank" rel="noopener noreferrer"' : ''}>${esc(m[1])}</a>`
+    }
     last = m.index + m[0].length
   }
   return out + esc(text.slice(last))
@@ -132,7 +138,7 @@ function noscriptArticle(post) {
       if (b.t === 'h') return `<h2>${esc(b.text)}</h2>`
       if (b.t === 'p') return `<p>${richText(b.text)}</p>`
       if (b.t === 'quote') return `<blockquote><p>${esc(b.text)}</p></blockquote>`
-      if (b.t === 'list') return `<ul>${b.items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`
+      if (b.t === 'list') return `<ul>${b.items.map((i) => `<li>${richText(i)}</li>`).join('')}</ul>`
       if (b.t === 'code') return `<pre><code>${b.lines.map((l) => esc(l.text)).join('\n')}</code></pre>`
       if (b.t === 'note') return `<aside><p><strong>${esc(b.label || b.tone || 'Note')}:</strong> ${richText(b.text)}</p></aside>`
       if (b.t === 'img')

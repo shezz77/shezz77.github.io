@@ -207,7 +207,7 @@
           <sc-for list="{{ article.blocks }}" as="b" hint-placeholder-count="8">
             <div>
               <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}">
-                <p style="font-size:17.5px; line-height:1.78; color:#443E35; margin:0 0 24px; text-wrap:pretty;"><sc-for list="{{ b.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></p>
+                <p style="font-size:17.5px; line-height:1.78; color:#443E35; margin:0 0 24px; text-wrap:pretty;"><sc-for list="{{ b.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isCode }}" hint-placeholder-val="{{ false }}"><code style="font-family:'IBM Plex Mono',monospace; font-size:.88em; background:#EAE3D4; border:1px solid #DED4C2; padding:1px 5px; color:#3A342B;">{{ part.text }}</code></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></p>
               </sc-if>
               <sc-if value="{{ b.isImg }}" hint-placeholder-val="{{ false }}">
                 <figure style="margin:36px 0; padding:0;">
@@ -218,7 +218,7 @@
               <sc-if value="{{ b.isNote }}" hint-placeholder-val="{{ false }}">
                 <aside style="margin:32px 0; padding:22px 26px; background:{{ b.bg }}; border:1px solid {{ b.bd }}; border-left:3px solid {{ b.accent }};">
                   <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:{{ b.accent }}; margin-bottom:10px;">{{ b.label }}</div>
-                  <div style="font-size:16.5px; line-height:1.68; color:#443E35; text-wrap:pretty;"><sc-for list="{{ b.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></div>
+                  <div style="font-size:16.5px; line-height:1.68; color:#443E35; text-wrap:pretty;"><sc-for list="{{ b.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isCode }}" hint-placeholder-val="{{ false }}"><code style="font-family:'IBM Plex Mono',monospace; font-size:.88em; background:#EAE3D4; border:1px solid #DED4C2; padding:1px 5px; color:#3A342B;">{{ part.text }}</code></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></div>
                 </aside>
               </sc-if>
               <sc-if value="{{ b.isTable }}" hint-placeholder-val="{{ false }}">
@@ -282,7 +282,7 @@
                   <sc-for list="{{ b.items }}" as="item" hint-placeholder-count="3">
                     <div style="display:flex; gap:14px; padding:12px 0; border-bottom:1px solid #E4DBCB;">
                       <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BF3B24; padding-top:4px;">{{ item.no }}</span>
-                      <span style="font-size:16.5px; line-height:1.62; color:#443E35;">{{ item.text }}</span>
+                      <span style="font-size:16.5px; line-height:1.62; color:#443E35;"><sc-for list="{{ item.parts }}" as="part" hint-placeholder-count="1"><sc-if value="{{ part.isLink }}" hint-placeholder-val="{{ false }}"><a href="{{ part.href }}" target="{{ part.target }}" rel="{{ part.rel }}" style="color:#BF3B24; border-bottom:1px solid rgba(191,59,36,.35);">{{ part.text }}</a></sc-if><sc-if value="{{ part.isCode }}" hint-placeholder-val="{{ false }}"><code style="font-family:'IBM Plex Mono',monospace; font-size:.88em; background:#EAE3D4; border:1px solid #DED4C2; padding:1px 5px; color:#3A342B;">{{ part.text }}</code></sc-if><sc-if value="{{ part.isText }}" hint-placeholder-val="{{ true }}"><span>{{ part.text }}</span></sc-if></sc-for></span>
                     </div>
                   </sc-for>
                 </div>
@@ -409,23 +409,29 @@ const NOTE_TONES = {
 
 const hostOf = (url) => { try { return new URL(url).host.replace(/^www\./, ""); } catch (e) { return ""; } };
 
-// Prose is plain text apart from markdown-style [label](url), which we split
-// into segments so the template can render real anchors inline.
+// Prose is plain text apart from markdown-style [label](url) and `code`,
+// which we split into segments so the template can render real anchors and
+// <code> inline. Keep this regex in sync with INLINE_RE in scripts/build-blog.mjs.
 function inlineParts(text) {
   const parts = [];
-  const re = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)/g;
+  const re = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/[^\s)]*)\)|`([^`]+)`/g;
+  const plain = (t) => parts.push({ isText: true, isLink: false, isCode: false, text: t });
   let last = 0, m;
   while ((m = re.exec(text)) !== null) {
-    if (m.index > last) parts.push({ isText: true, isLink: false, text: text.slice(last, m.index) });
-    const external = /^https?:/.test(m[2]);
-    parts.push({
-      isText: false, isLink: true, text: m[1], href: m[2],
-      target: external ? "_blank" : "_self",
-      rel: external ? "noopener noreferrer" : ""
-    });
+    if (m.index > last) plain(text.slice(last, m.index));
+    if (m[3] !== undefined) {
+      parts.push({ isText: false, isLink: false, isCode: true, text: m[3] });
+    } else {
+      const external = /^https?:/.test(m[2]);
+      parts.push({
+        isText: false, isLink: true, isCode: false, text: m[1], href: m[2],
+        target: external ? "_blank" : "_self",
+        rel: external ? "noopener noreferrer" : ""
+      });
+    }
     last = m.index + m[0].length;
   }
-  if (last < text.length) parts.push({ isText: true, isLink: false, text: text.slice(last) });
+  if (last < text.length) plain(text.slice(last));
   return parts;
 }
 
@@ -587,7 +593,7 @@ class Component extends DCLogic {
           })),
           items: b.t === "links"
             ? (b.items || []).map((l) => ({ label: l.label, href: l.href, note: l.note || "", host: hostOf(l.href) }))
-            : (b.items || []).map((t, k) => ({ no: String(k + 1).padStart(2, "0"), text: t }))
+            : (b.items || []).map((t, k) => ({ no: String(k + 1).padStart(2, "0"), text: t, parts: inlineParts(t) }))
         });
       });
       const pool = POSTS.filter((p) => p !== article && (p.cat === article.cat || p.tags.some((t) => article.tags.includes(t)))).slice(0, 3);
