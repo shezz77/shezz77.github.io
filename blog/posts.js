@@ -1,5 +1,202 @@
 export const POSTS = [
   {
+    slug: "llm-tests-scored-by-mutation-testing", cat: "AI", date: "Aug 2026", minutes: 16,
+    tags: ["Tutorial", "Testing", "CI", "Mutation Testing", "PHP"],
+    title: "Let a model write the tests, let mutation testing grade them",
+    excerpt: "An LLM will happily take you from 44% coverage to 91% in an afternoon, and catch nothing. The fix is not a better prompt — it is a scoring function the model cannot argue with.",
+    blocks: [
+      { t: "p", text: "Point a model at an untested service class and ask for tests. You will get them: forty of them, well named, green on the first run, and coverage moves from 44% to 91% before lunch. Then a regression ships anyway, and when you go back and read what was generated you find the reason — the tests call the code and assert that calling it did not throw." },
+      { t: "p", text: "This is not a prompting problem, and you cannot fix it by asking more nicely. Coverage is the only signal in the loop, coverage rewards the execution of a line, and the model is optimising exactly what you measured. The fix is to change what you measure. Mutation testing is the scoring function that works here, because it asks the one question coverage cannot: if I break this line, does anything turn red?" },
+      { t: "p", text: "What follows is the loop I run on legacy PHP services — Infection as the judge, a model as the generator, and CI as the ratchet. The language is incidental; the shape transfers to [Stryker](https://stryker-mutator.io) for JS or TS and [mutmut](https://github.com/boxed/mutmut) for Python." },
+
+      { t: "h", text: "Why coverage is the wrong scoring function" },
+      { t: "p", text: "Coverage measures which lines the test suite executed. It says nothing about whether the suite would notice if those lines changed. That gap is not academic — it is the entire failure mode of machine-generated tests, because a generator that wants a green bar and a high percentage discovers very quickly that assertions are the risky part." },
+      { t: "code", label: "a test that covers everything and catches nothing", lines: [
+        { text: "public function test_discount_is_applied(): void", color: "#B9A98C" },
+        { text: "{", color: "#B9A98C" },
+        { text: "    $cart = new Cart([new Item('SKU-1', 1000)]);", color: "#9A8B70" },
+        { text: "    $result = $this->pricer->apply($cart, new Coupon('SAVE10', 10));", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "    $this->assertNotNull($result);          // true for every return value", color: "#BF6B4E" },
+        { text: "    $this->assertInstanceOf(Cart::class, $result);   // true by signature", color: "#BF6B4E" },
+        { text: "    $this->assertIsInt($result->total());   // true for 900, 1000, and -50", color: "#BF6B4E" },
+        { text: "}", color: "#B9A98C" }
+      ] },
+      { t: "p", text: "Every line of `apply()` is covered. Change `$total * (1 - $rate)` to `$total * (1 + $rate)` and the test still passes. It is a coverage instrument wearing a test's clothes, and a suite full of them is worse than no suite: it produces a number that makes people stop looking." },
+      { t: "note", tone: "warn", label: "The number is the hazard",
+        text: "A team with 40% coverage knows it is exposed. A team with 91% coverage made of assertions like the above believes it is safe. The second team ships the regression, because coverage became a reason not to review the diff." },
+
+      { t: "h", text: "What mutation testing measures instead" },
+      { t: "p", text: "A mutation testing tool makes small, deliberate edits to your source — flips a `>` to `>=`, turns `+` into `-`, replaces a return value with `null`, deletes a method call — and reruns the tests that cover the mutated line. Each edit is a mutant. If a test fails, the mutant is killed. If everything stays green, it escaped." },
+      { t: "table", label: "the two numbers, and which one to gate on",
+        head: ["", "What it counts", "Use it for"],
+        rows: [
+          ["Coverage", "Lines the suite executed", "Finding code nobody tests at all"],
+          ["MSI", "Mutants killed ÷ mutants generated", "Whether the tests assert anything"],
+          ["Covered MSI", "Mutants killed ÷ mutants on covered lines", "Test quality, with the untested code excluded"]
+        ] },
+      { t: "p", text: "Covered MSI is the honest quality metric — it asks how good the tests that already exist are, without dragging in code nobody has touched yet. MSI is the one to ratchet over time. Gate on both, at different thresholds, and the difference between them tells you whether your problem is missing tests or weak ones." },
+      { t: "p", text: "An escaped mutant is also the most useful artefact in this whole pipeline, because it is not a complaint — it is a concrete counterexample. \"Line 42 changed from `>=` to `>` and your suite was fine with it\" is a failing test waiting to be written, and it is specific enough to hand to a model without any further explanation." },
+
+      { t: "h", text: "Step 1: get a baseline on one class" },
+      { t: "p", text: "Do not run this repo-wide on the first day. Mutation testing is expensive — every mutant is a test run — and a full-codebase first run tells you only that the codebase is large. Pick the class that scares you most." },
+      { t: "code", label: "install and first run", lines: [
+        { text: "composer require --dev infection/infection", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# a single file is a positional argument (--filter is deprecated since 0.34)", color: "#5E5344" },
+        { text: "vendor/bin/infection src/Pricing/Pricer.php \\", color: "#9A8B70" },
+        { text: "  --threads=max \\", color: "#E0A458" },
+        { text: "  --show-mutations=max \\", color: "#E0A458" },
+        { text: "  --log-verbosity=all", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "# Metrics:", color: "#5E5344" },
+        { text: "#   Mutation Score Indicator (MSI): 31%", color: "#BF6B4E" },
+        { text: "#   Mutation Code Coverage:         88%", color: "#BF6B4E" },
+        { text: "#   Covered Code MSI:               35%", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "That shape — coverage in the high eighties, MSI in the low thirties — is the signature of a suite written for the coverage number. It is also the most common starting point on any codebase where someone has previously run a \"raise coverage\" initiative." },
+      { t: "note", tone: "tip", label: "Reuse the coverage you already have",
+        text: "Infection runs the whole suite once to build coverage before it starts mutating, and on a big project that initial run dominates the wall clock. Point `--coverage` at the reports your normal test job already produced and it skips straight to mutants. `--map-source-class-to-test` narrows it further by matching `Pricer.php` to `PricerTest.php` instead of running everything per mutant." },
+
+      { t: "h", text: "Step 2: feed the escaped mutants back, not the source file" },
+      { t: "p", text: "This is the step everyone gets wrong, and it is the whole trick. The instinct is to hand the model the source file and ask for better tests. Do not. You did that already and got the assertion-free suite. Hand it the escaped mutants." },
+      { t: "p", text: "The difference is that \"write tests for this class\" is an open-ended request with no failure condition, while \"here are eleven specific edits that your suite did not notice, write a test that fails for each\" is a closed task with a checkable answer. The model stops inventing scenarios and starts closing gaps." },
+      { t: "code", label: "infection.json5 — turn on the JSON logger", lines: [
+        { text: "{", color: "#B9A98C" },
+        { text: "  \"source\": { \"directories\": [\"src\"] },", color: "#9A8B70" },
+        { text: "  \"logs\": {", color: "#B9A98C" },
+        { text: "    \"json\": \"build/infection.json\",       // every mutant, with diffs", color: "#E0A458" },
+        { text: "    \"github\": true                        // PR annotations on escapes", color: "#E0A458" },
+        { text: "  },", color: "#B9A98C" },
+        { text: "  \"mutators\": {", color: "#B9A98C" },
+        { text: "    \"@default\": true,", color: "#9A8B70" },
+        { text: "    \"global-ignoreSourceCodeByRegex\": [", color: "#9A8B70" },
+        { text: "      \"Log::.*\"                           // logging is not behaviour", color: "#5E5344" },
+        { text: "    ]", color: "#9A8B70" },
+        { text: "  }", color: "#B9A98C" },
+        { text: "}", color: "#B9A98C" }
+      ] },
+      { t: "p", text: "The JSON log carries each escaped mutant with its file, line, mutator name, and a unified diff of the edit. That diff is the payload. Extract just the escapes and pipe them in:" },
+      { t: "code", label: "close-the-gaps.sh", lines: [
+        { text: "#!/usr/bin/env bash", color: "#5E5344" },
+        { text: "set -euo pipefail", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "TARGET=\"${1:?usage: close-the-gaps.sh <source-file>}\"", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "vendor/bin/infection \"$TARGET\" --threads=max --log-verbosity=all", color: "#B9A98C" },
+        { text: "", color: "#5E5344" },
+        { text: "ESCAPED=$(jq -r '.escaped[] | \"\\(.mutator.mutatorName) at \\(.mutator.originalFilePath):\\(.mutator.originalStartLine)\\n\\(.diff)\\n\"' \\", color: "#E0A458" },
+        { text: "  build/infection.json)", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "[ -z \"$ESCAPED\" ] && { echo \"nothing escaped\"; exit 0; }", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "claude --bare -p \"$(cat <<PROMPT", color: "#B9A98C" },
+        { text: "Each block below is a mutation applied to ${TARGET} that the existing test", color: "#9A8B70" },
+        { text: "suite did not detect. For each one, add a test that FAILS when that mutation", color: "#9A8B70" },
+        { text: "is applied and PASSES against the current source.", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "Rules:", color: "#9A8B70" },
+        { text: "- Assert on values, never on not-null, not-empty, or instance-of alone.", color: "#E0A458" },
+        { text: "- Do not modify ${TARGET}. Tests only.", color: "#E0A458" },
+        { text: "- Follow the conventions in the neighbouring test file.", color: "#E0A458" },
+        { text: "- If a mutation is equivalent (no observable behaviour change), skip it", color: "#E0A458" },
+        { text: "  and say so rather than writing a test that asserts nothing.", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "${ESCAPED}", color: "#9A8B70" },
+        { text: "PROMPT", color: "#B9A98C" },
+        { text: ")\" --allowedTools \"Read,Edit,Write,Bash(vendor/bin/phpunit *)\"", color: "#B9A98C" },
+        { text: "", color: "#5E5344" },
+        { text: "vendor/bin/infection \"$TARGET\" --threads=max   # did the score move?", color: "#B9A98C" }
+      ] },
+      { t: "note", tone: "tip", label: "Let it run the tests, not the mutation tool",
+        text: "`Bash(vendor/bin/phpunit *)` is in the allowlist so the model can check its own work; `infection` deliberately is not. A generator that can see the score it is being graded on will find ways to move the score. Keep the judge out of the generator's reach and rerun it yourself." },
+
+      { t: "h", text: "Step 3: the equivalent-mutant escape hatch" },
+      { t: "p", text: "Some mutants cannot be killed, because the edit does not change observable behaviour. Swapping `<` for `<=` on a loop bound that is never hit at the boundary is the classic case. These are equivalent mutants, they are undecidable in general, and they are the reason 100% MSI is not a goal." },
+      { t: "p", text: "Without an explicit way out, a model asked to kill every mutant will write a test for the untestable one anyway — usually by reaching into a private via reflection, or asserting on a log line. Both are worse than the escape. Giving it permission to say \"this one is equivalent\" is what keeps the generated suite honest, and the ones it flags are worth reading: an equivalent mutant is often dead code with better manners." },
+      { t: "code", label: "annotate the ones you have adjudicated", lines: [
+        { text: "/**", color: "#9A8B70" },
+        { text: " * @infection-ignore-all", color: "#E0A458" },
+        { text: " */", color: "#9A8B70" },
+        { text: "private function clampToNonNegative(int $n): int", color: "#B9A98C" },
+        { text: "{", color: "#B9A98C" },
+        { text: "    return $n < 0 ? 0 : $n;   // callers already guarantee $n >= -1", color: "#5E5344" },
+        { text: "}", color: "#B9A98C" }
+      ] },
+
+      { t: "h", text: "Step 4: gate CI on the diff, not the codebase" },
+      { t: "p", text: "A repo-wide MSI gate on an existing codebase fails on day one and gets disabled on day two. Gate the lines the pull request touched. `--git-diff-lines` mutates only changed lines, which makes the run fast enough for every PR and turns the metric into a ratchet: the code you write today has to clear the bar, and the rest of the codebase improves whenever someone happens to touch it." },
+      { t: "code", label: ".github/workflows/mutation.yml", lines: [
+        { text: "- name: Mutation test the diff", color: "#B9A98C" },
+        { text: "  run: |", color: "#B9A98C" },
+        { text: "    vendor/bin/infection \\", color: "#9A8B70" },
+        { text: "      --git-diff-lines \\", color: "#E0A458" },
+        { text: "      --git-diff-base=origin/main \\", color: "#E0A458" },
+        { text: "      --min-covered-msi=80 \\", color: "#E0A458" },
+        { text: "      --min-msi=65 \\", color: "#E0A458" },
+        { text: "      --ignore-msi-with-no-mutations \\", color: "#9A8B70" },
+        { text: "      --logger-github \\", color: "#9A8B70" },
+        { text: "      --threads=max", color: "#9A8B70" },
+        { text: "  env:", color: "#B9A98C" },
+        { text: "    XDEBUG_MODE: coverage", color: "#9A8B70" }
+      ] },
+      { t: "note", tone: "warn", label: "Two flags that will bite you",
+        text: "`--git-diff-lines` needs real history — a default `actions/checkout` does a shallow clone and the diff against `origin/main` comes back empty, so the gate passes on everything. Set `fetch-depth: 0`. And without `--ignore-msi-with-no-mutations`, a documentation-only PR generates zero mutants, scores 0% MSI, and fails the build." },
+      { t: "p", text: "Start the thresholds below where you already are, not where you want to be. Ratchet by five points a month in a one-line PR that everybody sees. A gate people raise deliberately survives; a gate that blocks an unrelated hotfix at 2am gets `continue-on-error: true` and is never removed." },
+
+      { t: "h", text: "What actually changed" },
+      { t: "p", text: "Three services, one quarter, same team. The first column is what the model produced from \"write tests for this class\"; the second is the same model in the escaped-mutant loop." },
+      { t: "table", label: "before and after the scoring function",
+        head: ["", "Prompt-only", "Mutant-driven loop"],
+        rows: [
+          ["Line coverage", "91%", "88%"],
+          ["Covered MSI", "34%", "81%"],
+          ["Tests written", "127", "63"],
+          ["Assertions per test", "1.4", "3.1"],
+          ["Regressions caught pre-merge, Q3", "2", "11"]
+        ] },
+      { t: "p", text: "Coverage went down by three points and the suite got dramatically better, which is the entire argument in one row. Half as many tests, each of them load-bearing. The generated tests also became reviewable — a test that exists to kill a named mutant has an obvious reason to exist, and reviewers stopped rubber-stamping the test file." },
+
+      { t: "h", text: "What this is bad at" },
+      { t: "list", items: [
+        "Cost. Every mutant is a test run. On a suite with slow integration tests this is hours, not minutes. `--git-diff-lines` and reusing existing coverage reports are not optimisations here, they are the difference between viable and not.",
+        "Integration and end-to-end tests. Mutation testing rewards fast, isolated, deterministic tests. Point it at a suite that hits a database and it will time out mutants and report them as escapes, which is noise dressed as signal.",
+        "Design. A killed mutant says the test noticed a change. It does not say the behaviour is correct, that the API is sensible, or that the abstraction earns its keep. MSI is a floor, not a ceiling, and a suite can score 90% while testing the wrong thing thoroughly.",
+        "Anything with a mocked boundary. Mutants inside code you have mocked out are unkillable by construction. Exclude those paths explicitly rather than letting them drag the score down and train everyone to ignore it."
+      ] },
+
+      { t: "h", text: "Pitfalls" },
+      { t: "list", items: [
+        "Running mutation testing before the suite is green. Infection needs a passing baseline; a pre-existing failure makes every mutant in that file look killed.",
+        "Letting the model edit source. Give it `Write` on the test directory only. Otherwise the fastest route to a killed mutant is deleting the branch that produced it.",
+        "Chasing 100% MSI. Equivalent mutants make it unreachable, and the last twenty points are bought with reflection and brittleness. Somewhere in the eighties is where the curve flattens.",
+        "Trusting the first loop. Rerun Infection yourself after the model finishes — a suite that passes `phpunit` has not been graded, and the model claiming it closed eleven gaps is not evidence that it did.",
+        "Forgetting `XDEBUG_MODE: coverage` in CI. Without a coverage driver the run produces nothing and, depending on flags, can exit zero."
+      ] },
+
+      { t: "p", text: "The general lesson is bigger than testing. A model given a metric will move the metric, and it will find the cheapest path there — so the leverage is almost never in the prompt, it is in choosing a metric whose cheapest path is the thing you actually wanted. Coverage has a cheap path that is worthless. Mutation score does not." },
+
+      { t: "note", tone: "tip", label: "Versions this was run against",
+        text: "`infection/infection` 0.35.2 on PHP 8.3 with PHPUnit 12, driven by Claude Code 2.1.220 in `--bare -p` mode. Note that `--only-covered` was removed in 0.31.0 in favour of `--with-uncovered`, and `--filter` has been deprecated since 0.34.0 in favour of positional file arguments — older blog posts and CI templates still carry both." },
+
+      { t: "links", label: "References", items: [
+        { href: "https://infection.github.io/guide/command-line-options.html", label: "Infection command-line options", note: "Every flag used above, with current deprecations." },
+        { href: "https://infection.github.io/guide/mutators.html", label: "Infection mutators", note: "What edits it makes, and how to switch profiles off." },
+        { href: "https://stryker-mutator.io", label: "Stryker Mutator", note: "The same loop for JavaScript, TypeScript, C#, and Scala." },
+        { href: "https://code.claude.com/docs/en/headless", label: "Claude Code headless mode", note: "`-p`, `--bare`, `--allowedTools`, and structured output." },
+        { href: "/blog/ai-reviewer-in-ci-without-noise/", label: "Wire an AI reviewer into CI without it becoming noise", note: "The same constrain-and-measure idea, applied to review." },
+        { href: "/blog/laravel-ci-pipeline-that-catches-things/", label: "A Laravel CI pipeline that actually catches things", note: "Where this stage fits in the wider pipeline budget." }
+      ] }
+    ],
+    takeaways: [
+      "Coverage rewards executing a line; a model optimising coverage writes tests that execute lines and assert nothing. Change the metric, not the prompt.",
+      "Feed the model escaped mutants, not the source file — a specific counterexample is a closed task, \"write better tests\" is not.",
+      "Gate CI on --git-diff-lines against the merge base, so the metric ratchets on new code instead of failing the whole repo on day one.",
+      "Give the model an explicit way to declare a mutant equivalent, or it will kill the unkillable ones with reflection and log assertions.",
+      "Rerun the judge yourself. A suite that passes phpunit has not been graded, and the generator is not a reliable witness to its own score."
+    ]
+  },
+  {
     slug: "set-up-an-mcp-server", cat: "AI", date: "Aug 2026", minutes: 19,
     tags: ["Tutorial", "MCP", "Python", "Claude Agent SDK"],
     title: "Set up an MCP server for your application",
