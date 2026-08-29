@@ -184,13 +184,17 @@ ${POSTS.map(
 </noscript>`
 }
 
-function head({ title, description, url, image, extra = '' }) {
+function head({ title, social, description, url, image, extra = '' }) {
+  // LinkedIn renders og:title as the bold line under the card and truncates
+  // it hard. The " — Field Notes | Shehzad Aslam" suffix belongs in <title>
+  // for search, not in the social hook where it eats the headline.
+  social = social ?? title
   const img = image
     ? `
     <meta property="og:image" content="${SITE}${image}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="${esc(title)}" />
+    <meta property="og:image:alt" content="${esc(social)}" />
     <meta name="twitter:image" content="${SITE}${image}" />`
     : ''
   return `    <title>${esc(title)}</title>
@@ -202,12 +206,12 @@ function head({ title, description, url, image, extra = '' }) {
 
     <meta property="og:site_name" content="${esc(AUTHOR)}" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="${esc(title)}" />
+    <meta property="og:title" content="${esc(social)}" />
     <meta property="og:description" content="${esc(description)}" />
     <meta property="og:url" content="${esc(url)}" />${img}
 ${extra}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${esc(title)}" />
+    <meta name="twitter:title" content="${esc(social)}" />
     <meta name="twitter:description" content="${esc(description)}" />`
 }
 
@@ -223,6 +227,7 @@ function articleHead(post, image) {
   return (
     head({
       title: `${post.title} — ${BLOG_TITLE} | ${AUTHOR}`,
+      social: post.title,
       description: plain(post.excerpt),
       url: urlFor(post.slug),
       image,
@@ -270,8 +275,8 @@ function haveRasteriser() {
   return rasteriser
 }
 
-/** Greedy wrap so long headlines fit the card. */
-function wrapTitle(title, perLine = 26, maxLines = 4) {
+/** Greedy wrap at a given character budget. Returns null if it would truncate. */
+function wrapAt(title, perLine, maxLines) {
   const words = title.split(/\s+/)
   const lines = ['']
   for (const w of words) {
@@ -280,34 +285,74 @@ function wrapTitle(title, perLine = 26, maxLines = 4) {
     else if ((line + ' ' + w).length <= perLine) lines[lines.length - 1] = line + ' ' + w
     else lines.push(w)
   }
-  if (lines.length > maxLines) {
-    lines.length = maxLines
-    lines[maxLines - 1] = lines[maxLines - 1].replace(/.{0,3}$/, '…')
-  }
-  return lines
+  return lines.length > maxLines ? null : lines
 }
 
+// Archivo 900 averages ~0.52em per character across mixed-case text. Close
+// enough to size a headline without measuring glyphs.
+const EM = 0.52
+const OG_BOX = { w: 1040, top: 214, bottom: 496 }
+
+/**
+ * Pick the wrap that makes the headline as large as the frame allows.
+ *
+ * The old card used a fixed 26-character wrap and a fixed size, which left the
+ * bottom 40% of every card empty. In a LinkedIn feed the card is downscaled to
+ * roughly 0.46x, so that dead space was the difference between a headline that
+ * reads at a glance and one that does not.
+ */
+function fitHeadline(title) {
+  const boxH = OG_BOX.bottom - OG_BOX.top
+  let best = null
+  for (let perLine = 14; perLine <= 34; perLine += 1) {
+    const lines = wrapAt(title, perLine, 4)
+    if (!lines) continue
+    const longest = Math.max(...lines.map((l) => l.length))
+    const size = Math.min(
+      104,                                   // never cartoonish on a short title
+      OG_BOX.w / (longest * EM),              // fits the width
+      boxH / (lines.length * 1.06),           // fits the height
+    )
+    if (!best || size > best.size) best = { lines, size }
+  }
+  // Every title in the set wraps inside four lines; keep a floor regardless.
+  return best ?? { lines: wrapAt(title, 26, 99).slice(0, 4), size: 60 }
+}
+
+const OG_THEMES = {
+  light: { bg: '#F5F1E8', rule: '#BF3B24', kicker: '#BF3B24', meta: '#8A8578',
+           head: '#1B1712', hair: '#D6CBB6', name: '#1B1712', host: '#8A8578' },
+  dark:  { bg: '#17130E', rule: '#BF3B24', kicker: '#E8663C', meta: '#9A8B70',
+           head: '#F7F3EA', hair: '#3A332A', name: '#F7F3EA', host: '#9A8B70' },
+}
+// Dark by default: social feeds are a wall of white cards, so the near-black
+// card is the one that stops a scroll. Override with OG_THEME=light.
+const OG_THEME = OG_THEMES[process.env.OG_THEME ?? 'dark'] ?? OG_THEMES.dark
+
 function ogSvg(post) {
-  const lines = wrapTitle(post.title)
-  const size = lines.length > 3 ? 60 : lines.length > 2 ? 68 : 76
-  const startY = 300 - ((lines.length - 1) * size * 1.06) / 2
+  const t = OG_THEME
+  const { lines, size } = fitHeadline(post.title)
+  const lead = size * 1.06
+  // Bottom-anchor the block so the headline always meets the footer rule,
+  // whatever the line count.
+  const startY = OG_BOX.bottom - (lines.length - 1) * lead
   const meta = `${post.cat.toUpperCase()}  ·  ${post.date.toUpperCase()}  ·  ${post.minutes} MIN READ`
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#F5F1E8"/>
-  <rect x="0" y="0" width="1200" height="14" fill="#BF3B24"/>
+  <rect width="1200" height="630" fill="${t.bg}"/>
+  <rect x="0" y="0" width="1200" height="14" fill="${t.rule}"/>
   <g font-family="Archivo, Helvetica, Arial, sans-serif">
-    <text x="80" y="120" font-size="24" font-weight="700" letter-spacing="6" fill="#BF3B24">FIELD NOTES</text>
-    <text x="80" y="168" font-family="IBM Plex Mono, Menlo, monospace" font-size="21" letter-spacing="3" fill="#8A8578">${esc(meta)}</text>
+    <text x="80" y="112" font-size="26" font-weight="700" letter-spacing="6" fill="${t.kicker}">FIELD NOTES</text>
+    <text x="80" y="160" font-family="IBM Plex Mono, Menlo, monospace" font-size="22" letter-spacing="3" fill="${t.meta}">${esc(meta)}</text>
 ${lines
   .map(
     (l, i) =>
-      `    <text x="80" y="${Math.round(startY + i * size * 1.06)}" font-size="${size}" font-weight="900" fill="#1B1712">${esc(l)}</text>`,
+      `    <text x="80" y="${Math.round(startY + i * lead)}" font-size="${Math.round(size)}" font-weight="900" letter-spacing="-0.02em" fill="${t.head}">${esc(l)}</text>`,
   )
   .join('\n')}
-    <rect x="80" y="516" width="1040" height="2" fill="#D6CBB6"/>
-    <text x="80" y="568" font-size="27" font-weight="800" letter-spacing="1" fill="#1B1712">${esc(AUTHOR).toUpperCase()}</text>
-    <text x="1120" y="568" font-family="IBM Plex Mono, Menlo, monospace" font-size="21" fill="#8A8578" text-anchor="end">shezz77.com</text>
+    <rect x="80" y="540" width="1040" height="2" fill="${t.hair}"/>
+    <text x="80" y="588" font-size="27" font-weight="800" letter-spacing="1" fill="${t.name}">${esc(AUTHOR).toUpperCase()}</text>
+    <text x="1120" y="588" font-family="IBM Plex Mono, Menlo, monospace" font-size="21" fill="${t.host}" text-anchor="end">shezz77.com</text>
   </g>
 </svg>`
 }
