@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="A member and one tenant enter the gate. First the tenant kill switch: if the connector is off, nobody passes. Then two independent checks in parallel: the account type is on the allowed list, or the member is assigned individually. Either one is enough, and the results are combined with OR, so the member is allowed for that tenant.">
+  <defs>
+    <marker id="g1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8A8578"/>
+    </marker>
+  </defs>
+  <style>
+    /* Outline-only pulses: a filled overlay would sit on top of the labels. */
+    .ring { animation: ring 4s ease-in-out infinite; opacity: 0; }
+    .r2 { animation-delay: .7s; }
+    .r3 { animation-delay: 1.4s; }
+    .r4 { animation-delay: 2.1s; }
+    .yes { animation: yes 4s ease-out infinite; opacity: 0; }
+    .y2 { animation-delay: .7s; }
+    .y3 { animation-delay: 1.4s; }
+    .y4 { animation-delay: 2.1s; }
+    @keyframes ring {
+      0%, 4%    { opacity: 0; }
+      9%, 17%   { opacity: 1; }
+      24%, 100% { opacity: 0; }
+    }
+    @keyframes yes {
+      0%, 12%   { opacity: 0; }
+      20%, 88%  { opacity: 1; }
+      97%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ring { animation: none; opacity: 0; }
+      .yes  { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="430" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="40" fill="#BF3B24" font-size="13" letter-spacing="3">WHO MAY CONNECT</text>
+
+    <rect x="30" y="100" width="170" height="110" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="115" y="140" text-anchor="middle" fill="#1B1712" font-size="14">one member</text>
+    <text x="115" y="163" text-anchor="middle" fill="#5A5449" font-size="11.5">one tenant</text>
+    <text x="115" y="182" text-anchor="middle" fill="#5A5449" font-size="11.5">one MCP call</text>
+    <rect class="ring" x="26" y="96" width="178" height="118" fill="none" stroke="#BF3B24" stroke-width="3"/>
+
+    <line x1="200" y1="155" x2="243" y2="155" stroke="#8A8578" stroke-width="2" marker-end="url(#g1a)"/>
+
+    <rect x="250" y="100" width="160" height="110" fill="#F1EEE1" stroke="#E0A458" stroke-width="3"/>
+    <text x="330" y="134" text-anchor="middle" fill="#1B1712" font-size="14">0 · enabled?</text>
+    <text x="330" y="157" text-anchor="middle" fill="#7A6A3F" font-size="11.5">the kill switch</text>
+    <text x="330" y="177" text-anchor="middle" fill="#BF3B24" font-size="11.5">off ⇒ nobody,</text>
+    <text x="330" y="194" text-anchor="middle" fill="#BF3B24" font-size="11.5">assigned included</text>
+    <rect class="ring r2" x="246" y="96" width="168" height="118" fill="none" stroke="#BF3B24" stroke-width="3"/>
+
+    <path d="M410 155 L440 155 L440 105 L463 105" fill="none" stroke="#8A8578" stroke-width="2" marker-end="url(#g1a)"/>
+    <path d="M410 155 L440 155 L440 225 L463 225" fill="none" stroke="#8A8578" stroke-width="2" marker-end="url(#g1a)"/>
+
+    <rect x="470" y="60" width="250" height="90" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="486" y="90" fill="#1B1712" font-size="14">1 · account type</text>
+    <text x="486" y="112" fill="#5A5449" font-size="11.5">on the tenant&#39;s allowed list</text>
+    <text x="486" y="132" fill="#8A8578" font-size="11">connectorAccessSettings</text>
+    <rect class="ring r3" x="466" y="56" width="258" height="98" fill="none" stroke="#BF3B24" stroke-width="3"/>
+    <text class="yes y3" x="700" y="132" text-anchor="end" fill="#5A7A3F" font-size="15">✓</text>
+
+    <rect x="470" y="180" width="250" height="90" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="486" y="210" fill="#1B1712" font-size="14">2 · assigned individually</text>
+    <text x="486" y="232" fill="#5A5449" font-size="11.5">one row, granted by an owner</text>
+    <text x="486" y="252" fill="#8A8578" font-size="11">connectorAccessMembers</text>
+    <rect class="ring r4" x="466" y="176" width="258" height="98" fill="none" stroke="#BF3B24" stroke-width="3"/>
+    <text class="yes y4" x="700" y="252" text-anchor="end" fill="#5A7A3F" font-size="15">✓</text>
+
+    <path d="M720 105 L755 105 L755 155 L783 155" fill="none" stroke="#8A8578" stroke-width="2" marker-end="url(#g1a)"/>
+    <path d="M720 225 L755 225 L755 155 L783 155" fill="none" stroke="#8A8578" stroke-width="2"/>
+    <text x="759" y="150" fill="#BF3B24" font-size="12">OR</text>
+
+    <rect x="790" y="100" width="180" height="110" fill="#F5F1E8" stroke="#1B1712" stroke-width="2"/>
+    <text x="880" y="140" text-anchor="middle" fill="#1B1712" font-size="14">allowed here</text>
+    <text x="880" y="163" text-anchor="middle" fill="#5A5449" font-size="11.5">this tenant only</text>
+    <text x="880" y="182" text-anchor="middle" fill="#5A5449" font-size="11.5">read-only tools</text>
+    <g class="yes y4">
+      <rect x="786" y="96" width="188" height="118" fill="none" stroke="#5A7A3F" stroke-width="3"/>
+    </g>
+
+    <line x1="30" y1="310" x2="970" y2="310" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="342" fill="#1B1712" font-size="13.5">Either check is enough on its own. They are combined with OR, never intersected —</text>
+    <text x="30" y="364" fill="#1B1712" font-size="13.5">so assigning one person takes nothing away from the owners already allowed by role.</text>
+    <text x="30" y="394" fill="#8A8578" font-size="12">The only way to remove access is to untick the account type, or flip the kill switch.</text>
+  </g>
+</svg>

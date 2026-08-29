@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="Two strips compared. On the top strip, raw intervals sit under a day boundary that slides left and right; the shaded region behind it grows and shrinks, and the intervals are re-cut wherever the boundary lands, so a new boundary yields a new correct total. On the bottom strip the same day has already been summed into a single row holding 25,200 seconds; the boundary slides across it and nothing changes, because the number has no interior to cut.">
+  <defs>
+    <clipPath id="strip"><rect x="40" y="96" width="580" height="46"/></clipPath>
+  </defs>
+  <style>
+    .slide { animation: slide 6.5s ease-in-out infinite; }
+    @keyframes slide {
+      0%   { transform: translateX(-66px); }
+      50%  { transform: translateX(50px); }
+      100% { transform: translateX(-66px); }
+    }
+    .blip { animation: blip 6.5s ease-in-out infinite; }
+    @keyframes blip {
+      0%, 100% { opacity: .35; }
+      50%      { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide { animation: none; }
+      .blip  { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="430" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHY A ROLLUP CANNOT BE RE-BUCKETED</text>
+
+    <!-- Raw intervals -->
+    <text x="30" y="82" fill="#5A5449" font-size="12">activityInterval &#183; every start and end preserved</text>
+    <rect x="40" y="96" width="580" height="46" fill="#F5F1E8" stroke="#E4DBCB" stroke-width="1"/>
+    <g clip-path="url(#strip)">
+      <rect x="60" y="96" width="120" height="46" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <rect x="220" y="96" width="180" height="46" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <rect x="440" y="96" width="160" height="46" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <g class="slide"><rect x="-660" y="96" width="970" height="46" fill="#BF3B24" opacity=".13"/></g>
+    </g>
+    <g class="slide">
+      <line x1="310" y1="86" x2="310" y2="154" stroke="#BF3B24" stroke-width="2.5"/>
+      <rect x="304" y="96" width="12" height="46" fill="#FCFAF4"/>
+      <line x1="310" y1="86" x2="310" y2="154" stroke="#BF3B24" stroke-width="2.5" stroke-dasharray="5 4"/>
+    </g>
+    <rect x="40" y="166" width="14" height="10" fill="#BF3B24" opacity=".13" stroke="#E0A458"/>
+    <text x="62" y="176" fill="#8A8578" font-size="11.5">whatever the boundary encloses &#8212; move it, and the pieces re-cut</text>
+
+    <g fill="none" stroke="#5A7A3F" stroke-width="2">
+      <rect x="660" y="88" width="310" height="92" fill="#F1F3EA"/>
+    </g>
+    <text x="680" y="116" fill="#5A7A3F" font-size="13">&#10003; a different day, a right answer</text>
+    <text x="680" y="140" fill="#443E35" font-size="11.5">The seconds are still individually</text>
+    <text x="680" y="160" fill="#443E35" font-size="11.5">addressable, so any calendar works.</text>
+
+    <!-- The rollup -->
+    <text x="30" y="246" fill="#5A5449" font-size="12">dailyActivity &#183; the same day, already summed</text>
+    <rect x="40" y="260" width="580" height="46" fill="#EFE9DB" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="58" y="289" fill="#3A342B" font-size="13">member 8814 &#183; 2026-07-14</text>
+    <text x="602" y="289" text-anchor="end" fill="#3A342B" font-size="13">trackedSeconds 25200</text>
+    <g class="slide">
+      <line x1="310" y1="250" x2="310" y2="318" stroke="#BF3B24" stroke-width="2.5" stroke-dasharray="5 4"/>
+      <g class="blip">
+        <circle cx="310" cy="283" r="12" fill="#BF3B24"/>
+        <path d="M304.5 277.5 L315.5 288.5 M315.5 277.5 L304.5 288.5" stroke="#FCEFE6" stroke-width="2.4"/>
+      </g>
+    </g>
+    <text x="40" y="336" fill="#8A8578" font-size="11.5">the boundary passes straight through &#8212; there is nothing inside to cut</text>
+
+    <g fill="none" stroke="#BF3B24" stroke-width="2">
+      <rect x="660" y="252" width="310" height="92" fill="#F6E9E4"/>
+    </g>
+    <text x="680" y="280" fill="#BF3B24" font-size="13">&#10007; nothing left to re-slice</text>
+    <text x="680" y="304" fill="#443E35" font-size="11.5">25200 is not made of parts. No</text>
+    <text x="680" y="324" fill="#443E35" font-size="11.5">offset recovers which seconds moved.</text>
+
+    <line x1="30" y1="368" x2="970" y2="368" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="398" fill="#1B1712" font-size="13.5">A sum destroys precisely the information a different bucketing needs. That is why converting at read time cannot work,</text>
+    <text x="30" y="418" fill="#1B1712" font-size="13.5">however clever the query is: shifting the label does not move the seconds.</text>
+  </g>
+</svg>

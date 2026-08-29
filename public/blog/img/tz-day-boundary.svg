@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="A ten-hour working day in Los Angeles, shown twice. On the local timeline three work blocks run from 9am to noon, 1pm to 6pm, and 8:30pm to 10:30pm. A dashed red line marks 17:00 local, which is midnight UTC. On the UTC timeline the same blocks are split by that line: seven hours fall on the Tuesday row and three hours fall on the Wednesday row, so a ten-hour Tuesday is stored as seven and three.">
+  <style>
+    /* Staggered fades on one shared keyframe, matching the other diagrams. */
+    .fx { animation: fx 10s ease-out infinite; opacity: 0; }
+    .d1 { animation-delay: .3s; }
+    .d2 { animation-delay: .6s; }
+    .d3 { animation-delay: 1.6s; }
+    .d4 { animation-delay: 2.0s; }
+    .d5 { animation-delay: 2.7s; }
+    .d6 { animation-delay: 3.2s; }
+    @keyframes fx {
+      0%, 1.5%  { opacity: 0; }
+      6%, 95%   { opacity: 1; }
+      99%, 100% { opacity: 0; }
+    }
+    /* The boundary draws downward, so it reads as a cut rather than a label. */
+    .cut { stroke-dasharray: 200; stroke-dashoffset: 200; animation: cut 10s ease-out infinite; }
+    @keyframes cut {
+      0%, 9%    { stroke-dashoffset: 200; }
+      16%, 95%  { stroke-dashoffset: 0; }
+      99%, 100% { stroke-dashoffset: 200; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fx  { animation: none; opacity: 1; }
+      .cut { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">ONE SHIFT, TWO ROWS</text>
+
+    <!-- Local lane -->
+    <text x="30" y="80" fill="#5A5449" font-size="12">LOCAL &#183; America/Los_Angeles &#183; Tue 14 Jul</text>
+    <rect x="70" y="94" width="890" height="40" fill="#F5F1E8" stroke="#E4DBCB" stroke-width="1"/>
+    <g class="fx">
+      <rect x="129" y="94" width="178" height="40" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <text x="218" y="119" text-anchor="middle" fill="#5A5449" font-size="11.5">09:00&#8211;12:00</text>
+    </g>
+    <g class="fx d1">
+      <rect x="367" y="94" width="296" height="40" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <text x="515" y="119" text-anchor="middle" fill="#5A5449" font-size="11.5">13:00&#8211;18:00</text>
+    </g>
+    <g class="fx d2">
+      <rect x="812" y="94" width="118" height="40" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <text x="871" y="119" text-anchor="middle" fill="#5A5449" font-size="11">20:30&#8211;22:30</text>
+    </g>
+    <g fill="#A79E8C" font-size="10.5" text-anchor="middle">
+      <text x="70" y="152">08</text><text x="189" y="152">10</text><text x="307" y="152">12</text>
+      <text x="426" y="152">14</text><text x="544" y="152">16</text><text x="663" y="152">18</text>
+      <text x="782" y="152">20</text><text x="900" y="152">22</text>
+    </g>
+
+    <!-- UTC lane -->
+    <text x="30" y="204" fill="#5A5449" font-size="12">UTC &#183; the calendar the rollup was keyed by</text>
+    <rect x="70" y="218" width="890" height="40" fill="#F5F1E8" stroke="#E4DBCB" stroke-width="1"/>
+    <g class="fx d3">
+      <rect x="129" y="218" width="178" height="40" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <rect x="367" y="218" width="235" height="40" fill="#F0D9AE" stroke="#E0A458" stroke-width="2"/>
+      <text x="218" y="243" text-anchor="middle" fill="#7A6A3F" font-size="11">Tue row</text>
+      <text x="484" y="243" text-anchor="middle" fill="#7A6A3F" font-size="11">Tue row</text>
+    </g>
+    <g class="fx d4">
+      <rect x="606" y="218" width="57" height="40" fill="#F0CFC2" stroke="#BF6B4E" stroke-width="2"/>
+      <rect x="812" y="218" width="118" height="40" fill="#F0CFC2" stroke="#BF6B4E" stroke-width="2"/>
+      <text x="871" y="243" text-anchor="middle" fill="#9B4B2E" font-size="11">Wed row</text>
+    </g>
+
+    <!-- The boundary -->
+    <line class="cut" x1="604" y1="72" x2="604" y2="272" stroke="#BF3B24" stroke-width="2.5" stroke-dasharray="200"/>
+    <g class="fx d3">
+      <rect x="524" y="52" width="160" height="20" fill="#BF3B24"/>
+      <text x="604" y="66" text-anchor="middle" fill="#FCEFE6" font-size="11" letter-spacing="1">17:00 = 00:00 UTC</text>
+    </g>
+
+    <line x1="30" y1="310" x2="970" y2="310" stroke="#E4DBCB" stroke-width="1"/>
+
+    <!-- Summary -->
+    <g class="fx d5">
+      <text x="30" y="342" fill="#8A8578" font-size="11.5">dailyActivity &#183; Tue 14</text>
+      <text x="30" y="378" fill="#BF3B24" font-size="27">7h 00m</text>
+      <text x="30" y="402" fill="#5A5449" font-size="11.5">three hours short</text>
+    </g>
+    <g class="fx d5">
+      <text x="350" y="342" fill="#8A8578" font-size="11.5">dailyActivity &#183; Wed 15</text>
+      <text x="350" y="378" fill="#BF3B24" font-size="27">3h 00m</text>
+      <text x="350" y="402" fill="#5A5449" font-size="11.5">before the shift began</text>
+    </g>
+    <g class="fx d6">
+      <text x="670" y="342" fill="#8A8578" font-size="11.5">actually worked, Tue</text>
+      <text x="670" y="378" fill="#1B1712" font-size="27">10h 00m</text>
+      <text x="670" y="402" fill="#5A7A3F" font-size="11.5">what the employee would say</text>
+    </g>
+    <text x="30" y="443" fill="#1B1712" font-size="13.5">Neither stored number is a lie about the seconds. Both are lies about the day.</text>
+  </g>
+</svg>

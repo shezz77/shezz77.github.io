@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="410" viewBox="0 0 1000 410" role="img" aria-label="A ladder of the five account types. Before, the bar was hardcoded at Manager, level 3 and above, identical in every tenant, with nothing to configure. After, the default is the top two tiers only, level 4 and above, chosen per tenant, and the Manager tier is no longer admitted by default. The threshold line animates upward from level 3 to level 4 and the Manager row dims.">
+  <style>
+    .bar   { animation: rise 5s cubic-bezier(.5,0,.4,1) infinite; }
+    .admin { animation: drop 5s cubic-bezier(.5,0,.4,1) infinite; }
+    @keyframes rise {
+      0%, 22%   { transform: translateY(0); }
+      48%, 78%  { transform: translateY(-56px); }
+      96%, 100% { transform: translateY(0); }
+    }
+    @keyframes drop {
+      0%, 26%   { opacity: 1; }
+      52%, 76%  { opacity: .28; }
+      96%, 100% { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bar   { animation: none; transform: translateY(-56px); }
+      .admin { animation: none; opacity: .28; }
+    }
+  </style>
+  <rect width="1000" height="410" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="40" fill="#BF3B24" font-size="13" letter-spacing="3">THE DEFAULT MOVED UP</text>
+
+    <rect x="30" y="70" width="390" height="32" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="46" y="91" fill="#1B1712" font-size="13">Owner</text>
+    <text x="404" y="91" text-anchor="end" fill="#8A8578" font-size="12">5</text>
+
+    <rect x="30" y="126" width="390" height="32" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="46" y="147" fill="#1B1712" font-size="13">Admin</text>
+    <text x="404" y="147" text-anchor="end" fill="#8A8578" font-size="12">4</text>
+
+    <g class="admin">
+      <rect x="30" y="182" width="390" height="32" fill="#F1EEE1" stroke="#E0A458" stroke-width="2"/>
+      <text x="46" y="203" fill="#1B1712" font-size="13">Manager</text>
+      <text x="404" y="203" text-anchor="end" fill="#7A6A3F" font-size="12">3</text>
+    </g>
+
+    <rect x="30" y="238" width="390" height="32" fill="#FCFAF4" stroke="#E4DBCB" stroke-width="2"/>
+    <text x="46" y="259" fill="#8A8578" font-size="13">Lead</text>
+    <text x="404" y="259" text-anchor="end" fill="#8A8578" font-size="12">2</text>
+
+    <rect x="30" y="294" width="390" height="32" fill="#FCFAF4" stroke="#E4DBCB" stroke-width="2"/>
+    <text x="46" y="315" fill="#8A8578" font-size="13">Member</text>
+    <text x="404" y="315" text-anchor="end" fill="#8A8578" font-size="12">1</text>
+
+    <g class="bar">
+      <line x1="22" y1="174" x2="440" y2="174" stroke="#BF3B24" stroke-width="3"/>
+      <circle cx="22" cy="174" r="5" fill="#BF3B24"/>
+    </g>
+
+    <line x1="500" y1="70" x2="500" y2="326" stroke="#E4DBCB" stroke-width="1"/>
+    <line x1="745" y1="70" x2="745" y2="326" stroke="#E4DBCB" stroke-width="1"/>
+
+    <text x="522" y="84" fill="#8A8578" font-size="11" letter-spacing="1.5">BEFORE</text>
+    <text x="522" y="114" fill="#1B1712" font-size="13.5">Manager</text>
+    <text x="522" y="134" fill="#1B1712" font-size="13.5">and above</text>
+    <text x="522" y="166" fill="#5A5449" font-size="12">one hardcoded</text>
+    <text x="522" y="184" fill="#5A5449" font-size="12">constant</text>
+    <text x="522" y="212" fill="#5A5449" font-size="12">identical in every</text>
+    <text x="522" y="230" fill="#5A5449" font-size="12">tenant</text>
+    <text x="522" y="258" fill="#BF3B24" font-size="12">nothing to</text>
+    <text x="522" y="276" fill="#BF3B24" font-size="12">configure</text>
+
+    <text x="767" y="84" fill="#8A8578" font-size="11" letter-spacing="1.5">AFTER</text>
+    <text x="767" y="114" fill="#1B1712" font-size="13.5">Owner + Admin</text>
+    <text x="767" y="134" fill="#1B1712" font-size="13.5">only, by default</text>
+    <text x="767" y="166" fill="#5A5449" font-size="12">chosen per</text>
+    <text x="767" y="184" fill="#5A5449" font-size="12">tenant</text>
+    <text x="767" y="212" fill="#7A6A3F" font-size="12">widen it on purpose,</text>
+    <text x="767" y="230" fill="#7A6A3F" font-size="12">or assign one person</text>
+    <text x="767" y="258" fill="#7A6A3F" font-size="12">without promoting</text>
+    <text x="767" y="276" fill="#7A6A3F" font-size="12">them</text>
+
+    <line x1="30" y1="360" x2="970" y2="360" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="388" fill="#5A5449" font-size="12.5">A connector answers for the whole tenant in one call, so the narrow default is the safe starting position.</text>
+  </g>
+</svg>

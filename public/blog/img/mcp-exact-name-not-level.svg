@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="The allowed list has Owner and Manager ticked, leaving Admin unticked between them. A legacy member whose tier is Admin is matched by exact name, is not on the list, and is refused. A member on a custom role at the same level 4 is matched by level against the lowest ticked tier, level 3, and is allowed. Same level, different answer.">
+  <style>
+    .stamp { animation: stamp 4s ease-out infinite; transform-origin: 762px 150px; }
+    .tick  { animation: fade 4s ease-out infinite; animation-delay: .5s; }
+    .chip  { animation: slide 4s cubic-bezier(.4,0,.3,1) infinite; animation-delay: .3s; }
+    .gapline { animation: pulse 4s ease-in-out infinite; }
+    @keyframes stamp {
+      0%, 8%   { opacity: 0; transform: scale(1.5) rotate(-9deg); }
+      18%, 78% { opacity: 1; transform: scale(1) rotate(-9deg); }
+      92%,100% { opacity: 0; transform: scale(1) rotate(-9deg); }
+    }
+    @keyframes fade {
+      0%, 10%  { opacity: 0; }
+      22%, 78% { opacity: 1; }
+      92%,100% { opacity: 0; }
+    }
+    @keyframes slide {
+      0%       { opacity: 0; transform: translateX(-26px); }
+      14%, 76% { opacity: 1; transform: translateX(0); }
+      90%,100% { opacity: 0; transform: translateX(0); }
+    }
+    @keyframes pulse {
+      0%, 100%   { opacity: .35; }
+      40%, 60%   { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .stamp, .tick, .chip, .gapline { animation: none; opacity: 1; transform: none; }
+      .stamp { transform: rotate(-9deg); }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="40" fill="#BF3B24" font-size="13" letter-spacing="3">EXACT NAME, NOT LEVEL</text>
+
+    <text x="30" y="76" fill="#8A8578" font-size="11.5">THE TICKED LIST</text>
+    <rect x="30" y="88" width="280" height="240" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+
+    <rect x="46" y="102" width="15" height="15" fill="#1B1712"/>
+    <text x="53" y="114" text-anchor="middle" fill="#FCFAF4" font-size="11">✓</text>
+    <text x="72" y="114" fill="#1B1712" font-size="13">Owner</text>
+    <text x="288" y="114" text-anchor="end" fill="#8A8578" font-size="12">5</text>
+
+    <rect class="gapline" x="38" y="132" width="264" height="30" fill="#F6E9E4"/>
+    <rect x="46" y="140" width="15" height="15" fill="none" stroke="#BF3B24" stroke-width="2"/>
+    <text x="72" y="152" fill="#BF3B24" font-size="13">Admin</text>
+    <text x="288" y="152" text-anchor="end" fill="#BF3B24" font-size="12">4</text>
+
+    <rect x="46" y="178" width="15" height="15" fill="#1B1712"/>
+    <text x="53" y="190" text-anchor="middle" fill="#FCFAF4" font-size="11">✓</text>
+    <text x="72" y="190" fill="#1B1712" font-size="13">Manager</text>
+    <text x="288" y="190" text-anchor="end" fill="#7A6A3F" font-size="12">3 ← lowest</text>
+
+    <rect x="46" y="216" width="15" height="15" fill="none" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="72" y="228" fill="#8A8578" font-size="13">Lead</text>
+    <text x="288" y="228" text-anchor="end" fill="#8A8578" font-size="12">2</text>
+
+    <rect x="46" y="254" width="15" height="15" fill="none" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="72" y="266" fill="#8A8578" font-size="13">Member</text>
+    <text x="288" y="266" text-anchor="end" fill="#8A8578" font-size="12">1</text>
+
+    <text x="46" y="300" fill="#BF3B24" font-size="11">an unticked tier, between two</text>
+    <text x="46" y="316" fill="#BF3B24" font-size="11">that are ticked</text>
+
+    <rect x="360" y="88" width="290" height="106" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="376" y="116" fill="#1B1712" font-size="13.5">roleId = null · legacy</text>
+    <text x="376" y="140" fill="#5A5449" font-size="12">tier: &quot;Admin&quot;</text>
+    <text x="376" y="164" fill="#8A8578" font-size="12">matched by NAME against the list</text>
+    <text x="376" y="183" fill="#BF3B24" font-size="12">&quot;Admin&quot; is not in it</text>
+
+    <rect x="360" y="222" width="290" height="106" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+    <text x="376" y="250" fill="#1B1712" font-size="13.5">roleId = 42 · custom role</text>
+    <text x="376" y="274" fill="#5A5449" font-size="12">role.level: 4</text>
+    <text x="376" y="298" fill="#8A8578" font-size="12">matched by LEVEL, no name to match</text>
+    <g class="chip">
+      <rect x="376" y="308" width="120" height="20" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+      <text x="436" y="322" text-anchor="middle" fill="#7A6A3F" font-size="11.5">4 ≥ 3 · passes</text>
+    </g>
+
+    <line x1="650" y1="141" x2="700" y2="141" stroke="#8A8578" stroke-width="2"/>
+    <line x1="650" y1="275" x2="700" y2="275" stroke="#8A8578" stroke-width="2"/>
+
+    <g class="stamp">
+      <rect x="700" y="118" width="124" height="46" fill="none" stroke="#BF3B24" stroke-width="3"/>
+      <text x="762" y="148" text-anchor="middle" fill="#BF3B24" font-size="19" letter-spacing="2">REFUSED</text>
+    </g>
+    <g class="tick">
+      <rect x="700" y="252" width="124" height="46" fill="none" stroke="#5A7A3F" stroke-width="3"/>
+      <text x="762" y="282" text-anchor="middle" fill="#5A7A3F" font-size="19" letter-spacing="2">ALLOWED</text>
+    </g>
+
+    <line x1="30" y1="368" x2="970" y2="368" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="400" fill="#1B1712" font-size="14">Both members sit at level 4. They get opposite answers, and that is the point.</text>
+    <text x="30" y="424" fill="#5A5449" font-size="13">Matching built-in tiers purely by level would quietly readmit the unticked one —</text>
+    <text x="30" y="446" fill="#5A5449" font-size="13">the checkbox list would stop meaning what it says.</text>
+  </g>
+</svg>
