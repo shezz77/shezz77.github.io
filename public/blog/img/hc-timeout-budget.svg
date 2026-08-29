@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400" role="img" aria-label="Four nested horizontal bars on a shared time axis showing the timeout budget. The per-dependency timeout is 800 milliseconds, the endpoint handler deadline is 2 seconds, the load balancer health check timeout is 5 seconds, and its check interval is 15 seconds. Each bar starts at zero and ends well inside the next, so every layer completes before the layer above it gives up.">
+  <style>
+    .grow { transform: scaleX(0); transform-origin: 250px center; transform-box: view-box; animation: grow 7s ease-out infinite; }
+    .g2{animation-delay:.35s} .g3{animation-delay:.7s} .g4{animation-delay:1.05s}
+    @keyframes grow { 0%,3%{transform:scaleX(0)} 22%,92%{transform:scaleX(1)} 99%,100%{transform:scaleX(0)} }
+    @media (prefers-reduced-motion: reduce) { .grow { animation: none; transform: scaleX(1); } }
+  </style>
+  <rect width="1000" height="400" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="34" fill="#BF3B24" font-size="13" letter-spacing="3">EVERY TIMEOUT INSIDE THE ONE ABOVE IT</text>
+    <text x="30" y="56" fill="#8A8578" font-size="11.5">if the inner one is not strictly shorter, a slow dependency is indistinguishable from a wedged instance</text>
+    <line x1="250.0" y1="92" x2="250.0" y2="316" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="250.0" y="336" text-anchor="middle" fill="#A79E8C" font-size="11">0s</text>
+    <line x1="422.5" y1="92" x2="422.5" y2="316" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="422.5" y="336" text-anchor="middle" fill="#A79E8C" font-size="11">4s</text>
+    <line x1="595.0" y1="92" x2="595.0" y2="316" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="595.0" y="336" text-anchor="middle" fill="#A79E8C" font-size="11">8s</text>
+    <line x1="767.5" y1="92" x2="767.5" y2="316" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="767.5" y="336" text-anchor="middle" fill="#A79E8C" font-size="11">12s</text>
+    <line x1="940.0" y1="92" x2="940.0" y2="316" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="940.0" y="336" text-anchor="middle" fill="#A79E8C" font-size="11">16s</text>
+    <g class="grow">    <rect x="250" y="104" width="34.5" height="26" rx="4" fill="#8F2A18"/></g>
+    <text x="236" y="122" text-anchor="end" fill="#443E35" font-size="12">per-dependency timeout</text>
+    <text x="294.5" y="122" fill="#443E35" font-size="12">800ms</text>
+    <g class="grow g2">    <rect x="250" y="158" width="86.2" height="26" rx="4" fill="#BF3B24"/></g>
+    <text x="236" y="176" text-anchor="end" fill="#443E35" font-size="12">endpoint handler deadline</text>
+    <text x="346.2" y="176" fill="#443E35" font-size="12">2s</text>
+    <g class="grow g3">    <rect x="250" y="212" width="215.6" height="26" rx="4" fill="#D2694A"/></g>
+    <text x="236" y="230" text-anchor="end" fill="#443E35" font-size="12">ALB HealthCheckTimeout</text>
+    <text x="475.6" y="230" fill="#443E35" font-size="12">5s</text>
+    <g class="grow g4">    <rect x="250" y="266" width="646.9" height="26" rx="4" fill="#E0A458"/></g>
+    <text x="236" y="284" text-anchor="end" fill="#443E35" font-size="12">ALB HealthCheckInterval</text>
+    <text x="906.9" y="284" fill="#443E35" font-size="12">15s</text>
+    <line x1="30" y1="356" x2="970" y2="356" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="384" fill="#1B1712" font-size="13.5">Also set an unhealthy threshold above one, so a single blip cannot withdraw an instance on its own.</text>
+  </g>
+</svg>

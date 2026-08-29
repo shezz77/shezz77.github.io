@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="Three columns comparing the three checks. Startup asks whether the process has finished booting, may touch nothing outside itself, and on failure simply waits longer. Liveness asks whether the process is wedged, may touch only in-process state, and on failure kills and restarts the container. Readiness asks whether this instance can serve a request, may touch hard dependencies only, and on failure removes the instance from the load balancer while leaving it running.">
+  <style>
+    .col { animation: col 7.5s ease-in-out infinite; }
+    .c2 { animation-delay: 2.5s; } .c3 { animation-delay: 5s; }
+    @keyframes col {
+      0%, 2%    { stroke: #D6CBB6; stroke-width: 2; }
+      8%, 30%   { stroke: #BF3B24; stroke-width: 3.5; }
+      36%, 100% { stroke: #D6CBB6; stroke-width: 2; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .col { animation: none; stroke: #D6CBB6; stroke-width: 2; }
+    }
+  </style>
+  <rect width="1000" height="430" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THREE QUESTIONS, THREE CHECKS</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">One endpoint cannot answer all three, because the three disagree about what failure means</text>
+
+    <rect class="col" x="30" y="84" width="300" height="266" fill="#F5F1E8"/>
+    <text x="50" y="118" fill="#1B1712" font-size="15">startup</text>
+    <text x="50" y="150" fill="#5A5449" font-size="11.5">&#8220;has it finished booting?&#8221;</text>
+    <text x="50" y="188" fill="#8A8578" font-size="11">MAY TOUCH</text>
+    <text x="50" y="210" fill="#443E35" font-size="12">nothing outside itself</text>
+    <text x="50" y="248" fill="#8A8578" font-size="11">ON FAILURE</text>
+    <text x="50" y="270" fill="#443E35" font-size="12">wait longer, do not judge</text>
+    <text x="50" y="308" fill="#7A6A3F" font-size="11.5">healthCheckGracePeriod</text>
+    <text x="50" y="328" fill="#8A8578" font-size="11">migrations, warm caches, JIT</text>
+
+    <rect class="col c2" x="350" y="84" width="300" height="266" fill="#F5F1E8"/>
+    <text x="370" y="118" fill="#1B1712" font-size="15">liveness</text>
+    <text x="370" y="150" fill="#5A5449" font-size="11.5">&#8220;is this process wedged?&#8221;</text>
+    <text x="370" y="188" fill="#8A8578" font-size="11">MAY TOUCH</text>
+    <text x="370" y="210" fill="#443E35" font-size="12">in-process state only</text>
+    <text x="370" y="248" fill="#8A8578" font-size="11">ON FAILURE</text>
+    <text x="370" y="270" fill="#BF3B24" font-size="12">kill the container, restart</text>
+    <text x="370" y="308" fill="#BF3B24" font-size="11.5">never a network dependency</text>
+    <text x="370" y="328" fill="#8A8578" font-size="11">restarting cannot fix someone else</text>
+
+    <rect class="col c3" x="670" y="84" width="300" height="266" fill="#F5F1E8"/>
+    <text x="690" y="118" fill="#1B1712" font-size="15">readiness</text>
+    <text x="690" y="150" fill="#5A5449" font-size="11.5">&#8220;can this one serve now?&#8221;</text>
+    <text x="690" y="188" fill="#8A8578" font-size="11">MAY TOUCH</text>
+    <text x="690" y="210" fill="#443E35" font-size="12">hard dependencies only</text>
+    <text x="690" y="248" fill="#8A8578" font-size="11">ON FAILURE</text>
+    <text x="690" y="270" fill="#E0803A" font-size="12">drop from the LB, keep running</text>
+    <text x="690" y="308" fill="#7A6A3F" font-size="11.5">reversible, and per-instance</text>
+    <text x="690" y="328" fill="#8A8578" font-size="11">the db you cannot serve without</text>
+
+    <text x="30" y="386" fill="#1B1712" font-size="13.5">ECS and a plain ALB give you one probe, so it has to be the readiness one &#8212; and you rebuild liveness out of the</text>
+    <text x="30" y="408" fill="#1B1712" font-size="13.5">container health check and startup out of the grace period. Conflating them is what makes a restart loop.</text>
+  </g>
+</svg>

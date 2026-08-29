@@ -1,5 +1,145 @@
 export const POSTS = [
   {
+    slug: "health-check-that-returns-200", cat: "Cloud & DevOps", date: "Aug 2026", minutes: 18,
+    tags: ["Tutorial", "AWS ECS", "Observability", "Reliability", "Nginx"],
+    title: "A health check that returns 200 while the app is broken",
+    excerpt: "Every target green, every dashboard green, and a third of requests failing. The endpoint was answering honestly — it had simply never been asked anything about the application.",
+    blocks: [
+      { t: "p", text: "The incident lasted nineteen minutes and the monitoring never noticed. Four ECS tasks behind an ALB, all four reporting healthy for the entire window, while the ingest endpoint returned 502 to about a third of the agents posting to it. We found out because a customer's operations lead told us, which is the worst way to find out anything." },
+      { t: "p", text: "The health check was not broken. It answered every probe correctly and quickly. It just answered a question nobody had wanted asked." },
+
+      { t: "img", src: "/blog/img/hc-nineteen-minutes.svg", w: 1000, h: 470,
+        alt: "A line chart over twenty-five minutes with one percentage axis. The load balancer's healthy-target percentage stays flat at one hundred percent throughout. Request success rate holds at one hundred until minute three, falls to about sixty-two percent by minute six, stays there for sixteen minutes, and recovers at minute twenty-two.",
+        caption: "Both series in percent on one axis. The amber line is every dashboard we had; the red line is what the agents were getting." },
+
+      { t: "h", text: "What the probe was actually testing" },
+      { t: "p", text: "Some months earlier — reasonably, and with a straight face — somebody had moved the health route into nginx to stop the load balancer's probe from occupying a PHP worker every fifteen seconds." },
+      { t: "code", label: "the optimisation that became the bug", lines: [
+        { text: "# Answer the probe at the edge. Costs nothing,", color: "#5E5344" },
+        { text: "# keeps the app logs clean.", color: "#5E5344" },
+        { text: "location = /healthz {", color: "#B9A98C" },
+        { text: "    access_log off;", color: "#9A8B70" },
+        { text: "    return 200 'ok';", color: "#BF6B4E" },
+        { text: "}", color: "#B9A98C" },
+        { text: "", color: "#5E5344" },
+        { text: "location / {", color: "#B9A98C" },
+        { text: "    fastcgi_pass php:9000;", color: "#9A8B70" },
+        { text: "}", color: "#B9A98C" }
+      ] },
+      { t: "p", text: "A slow third-party call had saturated the FPM pool. All forty children were busy waiting on a socket, the listen backlog filled, and nginx started returning 502 the moment `fastcgi_read_timeout` elapsed. Meanwhile `/healthz` never touched FPM at all, so it kept returning 200 in under a millisecond — accurately reporting that nginx was fine, which it was." },
+      { t: "img", src: "/blog/img/hc-green-lie.svg", w: 1000, h: 440,
+        alt: "Two request lanes separated by a dashed boundary marking where the application begins. The load balancer probe reaches nginx, which answers the health path with a static 200 and returns without crossing the boundary. A real user request crosses into php-fpm, where all forty children are busy, and times out with a 502.",
+        caption: "The probe and the traffic took different paths, so the probe could only ever report on the path it took." },
+      { t: "quote", text: "A health check that does not travel the request path proves nothing about the request path." },
+      { t: "p", text: "That is the first rule, and it rules out more than the nginx trick. A check served by a different process, a different thread pool, a different connection pool, or a cached response is measuring something adjacent to your application rather than your application." },
+      { t: "note", tone: "warn", label: "Reachability is not capacity",
+        text: "`SELECT 1` is the other version of this mistake. It proves the database will accept a connection and answer a trivial question. It says nothing about whether your actual queries return before the client gives up — and \"the database is slow\" is a far more common outage than \"the database is gone\". If the check borrows a connection from outside the pool your requests use, it will pass while every real query queues." },
+
+      { t: "h", text: "So check everything, then" },
+      { t: "p", text: "That was my conclusion too, and I have [written it down before](/blog/laravel-on-ecs-fargate-tutorial/): health-check the dependencies, not the process. It is good advice that is half of the answer, and the missing half caused a worse incident than the one it fixed." },
+      { t: "p", text: "The check grew a Redis ping. Redis was our cache — not our session store, not our queue broker, just a cache in front of some expensive reads. One afternoon it went away for about ninety seconds during a failover." },
+      { t: "img", src: "/blog/img/hc-cascade.svg", w: 1000, h: 480,
+        alt: "Two rows of six tasks depending on a Redis cache that has gone down. In the top row the readiness check queries Redis, so all six tasks report unhealthy at once and every one is replaced, turning a degraded cache into a total outage. In the bottom row the check ignores the cache, so all six stay in service and serve slower responses from the database until Redis returns.",
+        caption: "Every instance shares the same dependency, so a dependency check fails every instance simultaneously. There is no partial outcome." },
+      { t: "img", src: "/blog/img/hc-cascade-recovery.svg", w: 1000, h: 430,
+        alt: "A step chart of healthy task count over fourteen minutes. A narrow band marks the ninety seconds Redis was unavailable. All six tasks fail readiness inside that band and the count steps to zero, then climbs back one task at a time, reaching six only at minute thirteen.",
+        caption: "The band is the dependency outage. Everything to the right of it is the health check's own contribution." },
+
+      { t: "p", text: "Every task failed its check in the same second. The service dropped to zero healthy targets, ECS began replacing all of them, and the replacements came up cold into a stampede with no warm cache and no spare capacity. A ninety-second cache blip became an eleven-minute outage, and the health check did all of it." },
+      { t: "p", text: "The mistake is easy to state once you have made it. I had been treating the check as a *description* of the system's health. It is not. It is an *instruction* to the orchestrator." },
+      { t: "quote", text: "A readiness check is a request to be taken out of service. Only name the dependencies you would rather go dark than serve without." },
+
+      { t: "h", text: "Three questions, three checks" },
+      { t: "p", text: "The tension resolves once you stop trying to make one endpoint answer three different questions. Kubernetes names them; ECS with a plain ALB does not, which is why the conflation is so common there." },
+      { t: "img", src: "/blog/img/hc-three-checks.svg", w: 1000, h: 430,
+        alt: "Three columns. Startup asks whether the process has finished booting, touches nothing, and on failure waits longer. Liveness asks whether the process is wedged, touches only in-process state, and on failure restarts the container. Readiness asks whether this instance can serve, touches hard dependencies only, and on failure removes it from the load balancer while leaving it running.",
+        caption: "The distinction that matters is the consequence, not the content: wait, restart, or withdraw." },
+      { t: "table", label: "what each one may touch, and why",
+        head: ["Check", "May touch", "Failure means"],
+        rows: [
+          ["Startup", "Nothing outside the process", "Not finished booting — keep waiting"],
+          ["Liveness", "In-process state only", "Restart this container"],
+          ["Readiness", "Hard dependencies only", "Stop sending this instance traffic"]
+        ] },
+      { t: "p", text: "The rule that does the most work is the liveness one: a liveness check must never touch a network dependency. Restarting your container cannot fix somebody else's database, and if it tries, a dependency outage becomes a fleet-wide restart loop — the same cascade as before, with the added charm that the crash-loop backoff keeps your instances down after the dependency recovers." },
+      { t: "note", tone: "tip", label: "On ECS you have to build all three",
+        text: "The ALB target-group probe is a readiness check: failing it withdraws traffic and nothing else. Liveness is the container-level `HEALTHCHECK` in the task definition, which ECS acts on by replacing the task. Startup is `healthCheckGracePeriodSeconds`, which suppresses judgement while the app boots. Three different settings, three different files, one concept — and if you only configure the ALB one, you have readiness and nothing else." },
+
+      { t: "h", text: "Hard and soft is a property of your app, not of the technology" },
+      { t: "p", text: "\"Is Redis a hard dependency?\" has no general answer. As a cache it is soft — you serve slower. As a session store it is hard — you cannot authenticate anyone. Same server, same client library, opposite answers, and the only thing that decides is what your code does when it is missing." },
+      { t: "code", label: "the check, with the classification made explicit", lines: [
+        { text: "// Hard: we would rather serve nothing than serve this", color: "#5E5344" },
+        { text: "// wrong. Soft: we degrade and stay in the rotation.", color: "#5E5344" },
+        { text: "const HARD = [", color: "#B9A98C" },
+        { text: "  { name: 'db', check: () => db.query('SELECT 1') },", color: "#E0A458" },
+        { text: "];", color: "#B9A98C" },
+        { text: "const SOFT = [", color: "#B9A98C" },
+        { text: "  { name: 'cache',  check: () => redis.ping() },", color: "#9A8B70" },
+        { text: "  { name: 'search', check: () => os.ping() },", color: "#9A8B70" },
+        { text: "];", color: "#B9A98C" },
+        { text: "", color: "#5E5344" },
+        { text: "app.get('/readyz', async (req, res) => {", color: "#B9A98C" },
+        { text: "  const hard = await settleAll(HARD, 800);", color: "#9A8B70" },
+        { text: "  const soft = await settleAll(SOFT, 800);", color: "#9A8B70" },
+        { text: "  // Soft results are reported, never gated on.", color: "#5E5344" },
+        { text: "  const ok = hard.every((r) => r.ok);", color: "#E0A458" },
+        { text: "  res.status(ok ? 200 : 503).json({ hard, soft });", color: "#E0A458" },
+        { text: "});", color: "#B9A98C" }
+      ] },
+      { t: "p", text: "Reporting the soft results in the body rather than the status code turns out to be the most useful line in the file. The orchestrator reads only the status; a human reading the body during an incident gets the whole dependency picture from one curl, without needing the check to have an opinion about it." },
+
+      { t: "h", text: "Never let a check be transitive" },
+      { t: "p", text: "If service A's readiness calls B, and B's readiness calls C, then C having a bad minute withdraws A from its load balancer. You have coupled the availability of unrelated services through their health endpoints, which is the exact opposite of what a service boundary is for." },
+      { t: "p", text: "A health check answers for the instance serving it. It never answers for anything downstream of that instance. If A genuinely cannot function without B, that belongs in A's own hard-dependency list as a direct connectivity check with a timeout — not as a call to B's health endpoint, which additionally pulls in everything B depends on." },
+      { t: "note", tone: "warn", label: "Probes multiply",
+        text: "The probe interval is per target, not per service. Twenty tasks at fifteen seconds is eighty checks a minute; if each fans out to three dependencies you have added two hundred and forty extra queries a minute to systems that were not consulted about it. Deep checks that are individually cheap are collectively a load test you run against yourself forever." },
+
+      { t: "h", text: "The timeout that has to be shorter than the other timeout" },
+      { t: "p", text: "A check with no timeout is worse than no check. When the dependency it queries hangs, the check hangs with it, the probe times out at the load balancer instead, and you get the correct answer for the wrong reason — slowly, and identically for every instance." },
+      { t: "img", src: "/blog/img/hc-timeout-budget.svg", w: 1000, h: 400,
+        alt: "Four nested horizontal bars on a shared time axis: a per-dependency timeout of 800 milliseconds, an endpoint handler deadline of 2 seconds, a load balancer health check timeout of 5 seconds, and a check interval of 15 seconds. Each bar ends well inside the next.",
+        caption: "800ms per dependency, 2s for the handler, 5s probe timeout, 15s interval. Each one ends inside the next." },
+      { t: "p", text: "Each layer must finish comfortably inside the one above it. If the per-dependency timeout is not strictly less than the probe timeout, the probe cannot distinguish \"the dependency is slow\" from \"this instance is wedged\", and those two have opposite correct responses." },
+      { t: "p", text: "Two more numbers worth setting deliberately: an unhealthy threshold above one, so a single blip does not withdraw an instance, and a deregistration delay long enough to finish in-flight requests but short enough that a rolling deploy does not crawl. We use three and thirty." },
+
+      { t: "h", text: "The tier with no health check at all" },
+      { t: "p", text: "Everything above is about things that answer HTTP. Our queue consumers do not, and for a long time nothing watched them, which meant the web tier could be flawlessly green while no interval had been processed in forty minutes." },
+      { t: "p", text: "A worker cannot be probed, so it has to report. The pattern that has held up is a heartbeat the worker writes after each successful batch, and a check that reads it." },
+      { t: "code", label: "the consumer, and the thing that watches it", lines: [
+        { text: "// In the consumer, after a batch is acknowledged:", color: "#5E5344" },
+        { text: "await redis.set(`hb:worker:${id}`, Date.now(),", color: "#9A8B70" },
+        { text: "                'EX', 300);", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "// Alert on the heartbeat AND on queue depth. Either", color: "#5E5344" },
+        { text: "// alone lies: a wedged consumer can hold a stale", color: "#5E5344" },
+        { text: "// heartbeat, and an empty queue can mean nothing is", color: "#5E5344" },
+        { text: "// being produced.", color: "#5E5344" },
+        { text: "stale  = now - heartbeat > 120_000;", color: "#E0A458" },
+        { text: "piling = queueDepth > 5_000 && depthRising;", color: "#E0A458" }
+      ] },
+      { t: "p", text: "Here the check is inverted: the alert is the product, not the endpoint. Nothing restarts the worker automatically, because a consumer that is merely behind should be left alone to catch up, and one that is genuinely wedged needs a person to look at why before it is cycled." },
+
+      { t: "h", text: "What I would do again" },
+      { t: "p", text: "Make the check share the request path. Everything else in this post is a refinement of that one property, and it is the one that was violated in the incident that cost us the most." },
+      { t: "p", text: "The correction I would make to my own earlier advice is smaller than it sounds but changes the outcome completely. \"Check your dependencies\" is right; \"check every dependency you have\" is how you build a system that takes itself down. Write the hard list deliberately, keep it short, and treat every name on it as a statement that you would rather serve nothing than serve without it. Most of the time that list has exactly one entry." },
+      { t: "links", label: "References", items: [
+        { label: "Kubernetes: liveness, readiness and startup probes", href: "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes", note: "The clearest statement of the three-question split, useful even on ECS." },
+        { label: "ELB health checks for target groups", href: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html", note: "Interval, timeout and threshold, and how they interact." },
+        { label: "ECS task definition healthCheck", href: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html", note: "The container-level check — the closest thing ECS has to liveness." }
+      ] }
+    ],
+    takeaways: [
+      "A check that does not travel the request path proves nothing about it — no edge-served static 200, no separate connection pool, no cached result.",
+      "SELECT 1 proves reachability, not capacity. \"Slow\" is a more common outage than \"gone\".",
+      "A readiness check is an instruction to withdraw, not a description of health. Every instance shares its dependencies, so a dependency check fails the whole fleet at once.",
+      "Liveness must never touch a network dependency — restarting your container cannot fix someone else's database.",
+      "Hard versus soft is a property of your code's behaviour without the dependency, not of the technology. Gate on hard only; report soft in the body.",
+      "Never call another service's health endpoint from your own; check your direct connectivity to it instead.",
+      "Every timeout must be strictly shorter than the one above it, or you cannot tell a slow dependency from a wedged instance.",
+      "Workers cannot be probed, so have them write a heartbeat, and alert on heartbeat age together with queue depth."
+    ]
+  },
+  {
     slug: "two-tables-for-the-same-number", cat: "Architecture", date: "Aug 2026", minutes: 19,
     tags: ["Tutorial", "Timezones", "Data modeling", "MySQL", "Aggregation"],
     title: "Two tables for the same number: what a timezone did to our rollups",
