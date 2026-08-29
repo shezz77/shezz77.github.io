@@ -660,5 +660,12 @@ class Component extends DCLogic {
   }
 }
 </script>
+
+    <!-- Cloudflare Web Analytics. Cookieless, so no consent banner is needed.
+         The token is public by design — it identifies the site, not the visitor.
+         Verified to re-fire on the blog's pushState navigation, so client-side
+         route changes are counted and not just full page loads. -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "377b11f74ca04ea09bf79fb30e538200", "spa": true}'></script>
   </body>
 </html>
