@@ -1,5 +1,130 @@
 export const POSTS = [
   {
+    slug: "ten-prompts-that-replace-a-course", cat: "AI", date: "Aug 2026", minutes: 16,
+    tags: ["AI-assisted", "Learning", "Prompting", "Study"],
+    title: "The ten prompts that replace a course, and the two jobs they leave open",
+    excerpt: "A post told me to delete Coursera and handed me ten prompts to do it with. The prompts are better than the headline deserves — but run them in the order given and the thing that grades you is the thing that set the questions.",
+    blocks: [
+      { t: "p", text: "A post came past me this week with the subtlety of a car alarm. DELETE COURSERA. DELETE UDEMY. Underneath it, ten prompts for building your own course with a model: a diagnostic, a syllabus, a schedule, a daily lesson, a tutor, practice problems, an exam, flashcards and a capstone." },
+      { t: "p", text: "The headline is nonsense and the prompts are good, which is an irritating combination, because the headline is the part that travels and the prompts are the part you would actually use. The comment section had already found the seam. The first three replies asked about certificates. Nobody was arguing with the teaching." },
+
+      { t: "h", text: "Six things arrive in one purchase" },
+      { t: "p", text: "A course is a bundle, and the bundle has never been unpriced because it has never been unsold. Take it apart and the ten prompts stop being a provocation and start being an inventory." },
+      { t: "img", src: "/blog/img/course-six-parts.svg", w: 1000, h: 470,
+        alt: "Six parts of a course. Four are marked as delivered by the prompts: syllabus, instruction, practice and feedback, each annotated with the prompt numbers that cover it. Two are marked as not delivered: accountability, because nothing notices when you stop, and the credential, whose value comes from not having been issued by you.",
+        caption: "Four of six, and they are the four you spend your evenings on. The argument is only ever about the other two." },
+      { t: "p", text: "Two of those four the prompts deliver better than almost any course you have paid for, and they are not the two people talk about. A recorded course has a fixed, finite problem set and a forum where your question gets answered on Thursday by somebody who has misread it. Prompts 7 and 3 give you unlimited problems calibrated to where you actually are, and a response in four seconds. That is not a marginal improvement on a MOOC. That is the thing a MOOC was always a poor substitute for." },
+      { t: "p", text: "Which is also why the headline claim is older than it looks. Bloom's tutoring result is from 1984: a student taught one-to-one with mastery learning outperformed the classroom average by about two standard deviations. Nobody has ever disputed that one-to-one is better. The obstacle was that one-to-one costs a salary per student." },
+      { t: "quote", text: "The pedagogy in that post is forty years old. What changed is that the tutor now costs less than the textbook." },
+
+      { t: "h", text: "Ten prompts, four jobs" },
+      { t: "p", text: "Read them as a list of ten and you will try to use ten. They are four jobs, and the grouping tells you something the list hides." },
+      { t: "img", src: "/blog/img/ten-prompts-four-jobs.svg", w: 1000, h: 516,
+        alt: "The ten prompts grouped into four jobs. Diagnose is prompt 2. Plan is prompts 1, 4 and 6. Teach is prompts 3 and 5. Test is prompts 7, 8, 9 and 10.",
+        caption: "Four of the ten are planning — three of them the same artefact viewed as a syllabus, a project ladder and a calendar." },
+      { t: "p", text: "Four of the ten build the plan. Planning is the one thing nobody was short of. It is also the only part of learning that produces a finished-looking document on day one, which is precisely why it is the part that will eat your first evening and possibly your second." },
+      { t: "note", tone: "warn", label: "Course-building is procrastination with a syllabus",
+        text: "Prompts 1, 4 and 6 are three views of one artefact, and the model will happily generate all three, beautifully, in eleven minutes. You will feel like you have started. You will not have started. Generate the plan once, in the shortest of the three forms, and do not regenerate it because it looks untidy in week three." },
+      { t: "p", text: "The four test prompts are the strongest in the set and the ones you will quietly skip. That is not a character flaw, it is a well-documented one: retrieval feels worse than rereading while you are doing it and works better than rereading a week later, so the accurate feeling and the accurate outcome point in opposite directions. Roediger and Karpicke measured exactly this — rereading wins at five minutes and loses at a week. Every instinct you have about which study session went well is calibrated on the five-minute number." },
+
+      { t: "h", text: "The numbering is not the running order" },
+      { t: "p", text: "Run the list as printed and prompt 1 goes first: build me an eight-week course on X. Prompt 2, the diagnostic that finds out what you already know, arrives second, by which point the syllabus already exists and you will not throw it away." },
+      { t: "img", src: "/blog/img/learning-loop-order.svg", w: 1000, h: 470,
+        alt: "Two orderings of the same ten prompts. As listed, one through ten, which plans before it measures. As it should run: prompt 2 to diagnose, then 1 and 6 to plan, 3 and 5 to teach, 7 to practise, 9 to space the recall, 8 to examine, 10 to prove — with a return arc from the end back to the diagnostic rather than back to the plan.",
+        caption: "One reordering, no new prompts. It is the difference between a syllabus about the topic and a syllabus about you." },
+      { t: "p", text: "The reorder costs nothing and changes what you get. A syllabus written before the diagnostic is a syllabus for the average stranger interested in the topic, which is what a course platform sells and the only thing it can sell. The whole argument for doing this yourself is that the plan can be about you — and it cannot be about you until something has asked." },
+      { t: "p", text: "The return arc matters as much as the ordering. When the capstone is done, the instinct is to go back to the plan and add a module. Go back to the diagnostic instead, and take the same fifteen questions you took in week one." },
+      { t: "note", tone: "tip", label: "Keep the diagnostic",
+        text: "Save the fifteen questions and your original answers in a file before you start. Nothing else in the ten prompts gives you a measurement with two points on it, and a second sitting of the identical paper is the only honest evidence you will get that eight weeks did anything. It also takes ten minutes." },
+
+      { t: "h", text: "The grader wrote the exam" },
+      { t: "p", text: "Prompt 7 says score it. Prompt 8 says grade me 0 to 100. Prompt 10 says grade it using the rubric. Three of the ten end in a verdict issued by the thing that set the question, in a conversation where it has watched you try." },
+      { t: "img", src: "/blog/img/grading-loop.svg", w: 1000, h: 500,
+        alt: "Two grading loops. In the closed loop the model writes the questions, you answer, it marks its own questions and returns a high score; nothing in the loop knows the answer independently. In the open loop the model sets a task with a rubric, you build it, a compiler or test suite or real traffic judges it, and the model explains the failure you were handed.",
+        caption: "The model is excellent at explaining a verdict and unreliable at issuing one. Let something else issue it." },
+      { t: "p", text: "It is not that it lies. It is that “how did I do” has no external referent inside the conversation, so partial credit gets awarded generously and a near-miss gets read charitably. The explanation it then gives for why you were nearly right is genuinely excellent, which is what makes this hard to catch. You come away having learned something and having been told you scored 86." },
+      { t: "quote", text: "A tutor who cannot fail you cannot teach you. Move the verdict outside the conversation." },
+      { t: "p", text: "Three fixes, in increasing order of how much they cost you." },
+      { t: "list", items: [
+        "Mark in a fresh conversation. A model that has not watched you struggle is a noticeably stricter examiner than one that has.",
+        "Ask for the rubric before you submit, mark yourself against it first, then compare. Two graders disagreeing is information; one grader agreeing with itself is not.",
+        "Make the deliverable something else can judge — code that has to build, a query whose plan you read yourself, a number that has to reproduce. This is the only one of the three that does not depend on the model's goodwill."
+      ] },
+      { t: "code", label: "prompt 2, with the column it is missing", lines: [
+        { text: "// The original asks fifteen questions and scores you.", color: "#5E5344" },
+        { text: "// One extra instruction finds the far more useful set:", color: "#5E5344" },
+        { text: "// the things you are sure about and wrong about.", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "Ask one question at a time. After each answer, ask", color: "#9A8B70" },
+        { text: "how confident I was: guess / fairly sure / certain.", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "At the end, report accuracy per confidence band, and", color: "#E0A458" },
+        { text: "list every item I marked certain and got wrong.", color: "#E0A458" },
+        { text: "Begin the roadmap with that list.", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "Items you were certain about and got wrong are worth more study time than everything you guessed at, because a gap you know about is already half managed and a gap you do not know about is the one that ships." },
+      { t: "code", label: "prompt 8, marked by someone who has not met you", lines: [
+        { text: "// Paste into a NEW conversation, with the rubric and", color: "#5E5344" },
+        { text: "// your answers, and nothing else.", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "You are marking a submission from a candidate you", color: "#9A8B70" },
+        { text: "have never met. The historic pass rate on this paper", color: "#9A8B70" },
+        { text: "is 40%. Mark strictly against the rubric below.", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "Award nothing for intent or for being close.", color: "#E0A458" },
+        { text: "Quote the exact line that loses each mark.", color: "#E0A458" }
+      ] },
+      { t: "p", text: "The stated pass rate is doing most of the work there. Without it you are asking for a judgement in a vacuum and getting the average of every encouraging rubric on the internet. This is the same move as [asking for the strongest case against a design](/blog/argue-back-rubber-duck/) rather than for an opinion on it: the framing decides the answer far more than the model does." },
+      { t: "code", label: "prompt 10, with a judge that is not the model", lines: [
+        { text: "// The inversion is the last line. Tests written before", color: "#5E5344" },
+        { text: "// you start cannot be negotiated with afterwards.", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "The deliverable is a repository. It must build from a", color: "#9A8B70" },
+        { text: "clean checkout, pass the test suite unchanged, and", color: "#9A8B70" },
+        { text: "handle the three failure cases in the rubric.", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "Write the tests now and give them to me before I", color: "#E0A458" },
+        { text: "write any code. Do not modify them later.", color: "#BF6B4E" }
+      ] },
+
+      { t: "h", text: "The comment that was right" },
+      { t: "p", text: "One reply, buried under the congratulations, said roughly this: a beginner cannot learn a new technology this way, because a beginner cannot tell when the thing teaching them is wrong. That is the strongest objection in the thread and no amount of prompt improvement answers it." },
+      { t: "p", text: "But it is not evenly true, and the axis it varies along is not the one people reach for. The question is not how good the model is at the subject. It is how cheaply something that is not the model can tell you that you are wrong." },
+      { t: "img", src: "/blog/img/verifier-axis.svg", w: 1000, h: 430,
+        alt: "A single axis from subjects with a cheap external verifier to subjects with none. Left to right: does it compile (Rust, Go, TypeScript); do the tests pass (algorithms, SQL); does it stay up (Terraform, Kubernetes); does it reproduce (statistics, data work); does a peer agree (system design, writing); you find out later (medicine, law, strategy). A shaded band marks the right-hand end as supplement rather than substitute.",
+        caption: "The further right you sit, the more of the course you are grading yourself — and the grader is the thing being graded." },
+      { t: "p", text: "On the left of that axis the ten prompts are close to a full substitute, and the reason is unglamorous: a borrow checker is a free, tireless, incorruptible examiner that has never once awarded partial credit for intent. You do not need the platform to tell you whether you learned Rust. The compiler will do it, all day, for nothing." },
+      { t: "p", text: "On the right there is no such examiner, and the certificate exists precisely because verification is expensive there. That is not a racket, it is the point of the institution. A model can teach you employment law fluently and confidently and you will not find out for four years." },
+      { t: "note", tone: "warn", label: "The confident-and-wrong failure is the expensive one",
+        text: "In a subject with a verifier, a wrong lesson costs you an afternoon and an error message. In a subject without one, it costs you nothing at all until the day it costs you everything, and in between it feels exactly like learning. If you cannot name the thing that will tell you that you are wrong, you are not doing the eight-week course — you are reading." },
+
+      { t: "h", text: "The two jobs left open" },
+      { t: "p", text: "Accountability first, because it is the one that actually kills these. A cohort has a Tuesday. A chat window will wait for you, without comment, for years. Nothing in the ten prompts notices that you stopped in week three, and the schedule prompt in particular produces a document that is completely indifferent to whether it is being followed." },
+      { t: "p", text: "The fix is not a better prompt, it is a deadline you did not set. A talk you have agreed to give. A pull request somebody is waiting on. A person doing the same eight weeks who will ask. Anything whose calendar is not yours." },
+      { t: "p", text: "Then the credential, which is what the comment section actually wanted to know about. There is no certificate at the end of this and there is no honest way to manufacture one. What substitutes, in engineering at least, is the artefact plus a written account of the decisions in it — worse than a degree at getting through a filter, better than a certificate at surviving the conversation afterwards, because an interviewer can interrogate it and it will hold or it will not." },
+      { t: "note", tone: "info", label: "Where the substitution does not work at all",
+        text: "Anywhere a licence is a legal precondition rather than a signal — medicine, law, accountancy, aviation, structural engineering. The credential there is not a claim about your ability, it is permission to act, and permission is not something a capstone project confers no matter how good the capstone is." },
+
+      { t: "h", text: "What I would actually do" },
+      { t: "p", text: "Take the ten prompts. Run them as four jobs in the order that measures before it plans. Write the plan once and stop rewriting it. Treat the four test prompts as the course rather than as the assessment of the course, because they are, and because you will otherwise skip them for the ones that feel productive. And put one thing that is not a language model in charge of deciding whether you got it right." },
+      { t: "p", text: "What this does not do is delete anything. It replaces the syllabus and the problem set, which were always the cheapest parts to produce, and it does not touch the two expensive ones. That is a genuinely good trade and it is available today at roughly the price of a coffee, which is a more interesting claim than the one in the headline — and considerably less likely to be shared." },
+      { t: "links", label: "References", items: [
+        { label: "Bloom, The 2 Sigma Problem (1984)", href: "https://journals.sagepub.com/doi/10.3102/0013189X013006004", note: "The forty-year-old result the headline is implicitly claiming." },
+        { label: "Roediger & Karpicke, Test-Enhanced Learning (2006)", href: "https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x", note: "Rereading wins at five minutes and loses at a week. Why prompts 7 to 10 are the ones that matter." },
+        { label: "Bjork Learning and Forgetting Lab", href: "https://bjorklab.psych.ucla.edu/research/", note: "Desirable difficulties — the reason the effective study session is the one that felt worse." }
+      ] }
+    ],
+    takeaways: [
+      "The prompts replace four of a course's six parts, and genuinely beat a recorded course on the two that matter most: unlimited practice and instant feedback.",
+      "Reorder before you run: diagnose (2) before you plan (1, 6). A syllabus written first is a syllabus for the average stranger.",
+      "Three of the ten prompts ask the question-setter to mark your answer. Mark in a fresh conversation, state a pass rate, and prefer a deliverable a compiler can judge.",
+      "Ask for confidence alongside each diagnostic answer. Certain-and-wrong is the highest-value study list you will get.",
+      "The deciding question is not how good the model is at the subject — it is how cheaply something other than the model can tell you that you are wrong.",
+      "Accountability and the credential are the two jobs left open. Borrow a deadline you did not set, and substitute an artefact plus a written account of it.",
+      "Where a licence is legally required, no capstone substitutes for it — the credential there is permission, not evidence."
+    ]
+  },
+  {
     slug: "health-check-that-returns-200", cat: "Cloud & DevOps", date: "Aug 2026", minutes: 18,
     tags: ["Tutorial", "AWS ECS", "Observability", "Reliability", "Nginx"],
     title: "A health check that returns 200 while the app is broken",

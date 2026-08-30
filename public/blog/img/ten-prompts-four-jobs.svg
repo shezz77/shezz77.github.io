@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="516" viewBox="0 0 1000 516" role="img" aria-label="The ten prompts grouped into four jobs. Diagnose is prompt two, the fifteen-question assessment. Plan is prompts one, four and six: the course, the project path and the schedule. Teach is prompts three and five: the daily lesson and the one-to-one tutor. Test is prompts seven, eight, nine and ten: practice with feedback, the exam, the flashcards and the capstone. Four of the ten are planning and four are testing.">
+  <style>
+    .bar { animation: bar 9s ease-in-out infinite; fill: #D6CBB6; }
+    .r2 { animation-delay: .8s; } .r3 { animation-delay: 1.6s; } .r4 { animation-delay: 2.4s; }
+    @keyframes bar {
+      0%, 3%    { fill: #D6CBB6; }
+      8%, 30%   { fill: #BF3B24; }
+      36%, 100% { fill: #D6CBB6; }
+    }
+    .chip { animation: chip 9s ease-in-out infinite; }
+    .c2 { animation-delay: .8s; } .c3 { animation-delay: 1.6s; } .c4 { animation-delay: 2.4s; }
+    @keyframes chip {
+      0%, 3%    { opacity: .55; }
+      8%, 30%   { opacity: 1; }
+      36%, 100% { opacity: .55; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .bar { animation: none; fill: #D6CBB6; }
+      .chip { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="516" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">TEN PROMPTS, FOUR JOBS</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">The list reads as ten tools. It is four, and half of it is one job wearing four hats</text>
+
+    <rect x="30" y="88" width="940" height="84" fill="#F5F1E8"/>
+    <rect class="bar" x="30" y="88" width="6" height="84"/>
+    <text x="56" y="122" fill="#1B1712" font-size="16">diagnose</text>
+    <text x="56" y="150" fill="#5A5449" font-size="11.5">find the floor before you build anything on top of it</text>
+    <g class="chip"><rect x="850" y="110" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+    <text x="873" y="137" fill="#BF3B24" font-size="17" text-anchor="middle">2</text></g>
+
+    <rect x="30" y="184" width="940" height="84" fill="#F5F1E8"/>
+    <rect class="bar r2" x="30" y="184" width="6" height="84"/>
+    <text x="56" y="218" fill="#1B1712" font-size="16">plan</text>
+    <text x="56" y="246" fill="#5A5449" font-size="11.5">the syllabus, the project ladder, the calendar &#8212; three views of one artefact</text>
+    <g class="chip c2">
+      <rect x="754" y="206" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="777" y="233" fill="#BF3B24" font-size="17" text-anchor="middle">1</text>
+      <rect x="802" y="206" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="825" y="233" fill="#BF3B24" font-size="17" text-anchor="middle">4</text>
+      <rect x="850" y="206" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="873" y="233" fill="#BF3B24" font-size="17" text-anchor="middle">6</text>
+    </g>
+
+    <rect x="30" y="280" width="940" height="84" fill="#F5F1E8"/>
+    <rect class="bar r3" x="30" y="280" width="6" height="84"/>
+    <text x="56" y="314" fill="#1B1712" font-size="16">teach</text>
+    <text x="56" y="342" fill="#5A5449" font-size="11.5">explain one thing, then check I followed it before moving on</text>
+    <g class="chip c3">
+      <rect x="802" y="302" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="825" y="329" fill="#BF3B24" font-size="17" text-anchor="middle">3</text>
+      <rect x="850" y="302" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="873" y="329" fill="#BF3B24" font-size="17" text-anchor="middle">5</text>
+    </g>
+
+    <rect x="30" y="376" width="940" height="84" fill="#F5F1E8"/>
+    <rect class="bar r4" x="30" y="376" width="6" height="84"/>
+    <text x="56" y="410" fill="#1B1712" font-size="16">test</text>
+    <text x="56" y="438" fill="#5A5449" font-size="11.5">retrieval, spacing, and one thing you have to actually build</text>
+    <g class="chip c4">
+      <rect x="706" y="398" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="729" y="425" fill="#BF3B24" font-size="17" text-anchor="middle">7</text>
+      <rect x="754" y="398" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="777" y="425" fill="#BF3B24" font-size="17" text-anchor="middle">8</text>
+      <rect x="802" y="398" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="825" y="425" fill="#BF3B24" font-size="17" text-anchor="middle">9</text>
+      <rect x="850" y="398" width="46" height="42" fill="#FCFAF4" stroke="#BF3B24" stroke-width="2"/>
+      <text x="873" y="425" fill="#BF3B24" font-size="17" text-anchor="middle">10</text>
+    </g>
+
+    <text x="30" y="498" fill="#1B1712" font-size="13.5">Four of the ten are planning. Planning is the part you were never short of &#8212; and the part that feels most like progress.</text>
+  </g>
+</svg>
