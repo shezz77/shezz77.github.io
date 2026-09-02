@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-label="Six layers listed down the left: DNS, TLS, cache, database, queue and host. For each, the left column shows what operating it used to involve — a zone file, openssl and a cron job, a varnish config, my.cnf and replication, a broker you kept alive, apt upgrade at two in the morning. The right column shows what it is today: one Terraform resource, a certificate that renews itself, a checkbox, a parameter group, a queue URL, a task definition. A panel slides across to cover the right column, marked managed, and a red marker flashes through it periodically, labelled still yours at three in the morning. Ninety per cent of organisations have adopted at least one platform.">
+  <style>
+    .cover { animation: slide 9s cubic-bezier(.5,0,.4,1) infinite; }
+    @keyframes slide {
+      0%, 8%    { transform: translateX(360px); opacity: 0; }
+      26%, 68%  { transform: translateX(0); opacity: 1; }
+      88%, 100% { transform: translateX(360px); opacity: 0; }
+    }
+    .page { animation: page 9s ease-in-out infinite; opacity: 0; }
+    @keyframes page {
+      0%, 40%   { opacity: 0; }
+      48%, 60%  { opacity: 1; }
+      70%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cover { animation: none; transform: translateX(0); opacity: 1; }
+      .page  { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="500" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="40" fill="#BF3B24" font-size="13" letter-spacing="3">THE LAYERS DID NOT GO AWAY. THEY GOT RENTED.</text>
+    <text x="110" y="100" fill="#8A8578" font-size="11" letter-spacing="1.5">WHAT OPERATING IT USED TO MEAN</text>
+    <text x="540" y="100" fill="#8A8578" font-size="11" letter-spacing="1.5">WHAT IT IS ON YOUR TEAM TODAY</text>
+    
+    <text x="30" y="150" fill="#1B1712" font-size="12.5">DNS</text>
+    <rect x="110" y="128" width="360" height="34" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="126" y="150" fill="#5A5449" font-size="12">zone file, serial numbers, TTLs</text>
+    <rect x="540" y="128" width="330" height="34" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+    <text x="556" y="150" fill="#7A6A3F" font-size="12">one Terraform resource</text>
+    <text x="30" y="200" fill="#1B1712" font-size="12.5">TLS</text>
+    <rect x="110" y="178" width="360" height="34" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="126" y="200" fill="#5A5449" font-size="12">openssl, a cron job, an outage</text>
+    <rect x="540" y="178" width="330" height="34" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+    <text x="556" y="200" fill="#7A6A3F" font-size="12">ACM, renews itself</text>
+    <text x="30" y="250" fill="#1B1712" font-size="12.5">Cache</text>
+    <rect x="110" y="228" width="360" height="34" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="126" y="250" fill="#5A5449" font-size="12">varnish.vcl you had to read</text>
+    <rect x="540" y="228" width="330" height="34" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+    <text x="556" y="250" fill="#7A6A3F" font-size="12">a checkbox and an endpoint</text>
+    <text x="30" y="300" fill="#1B1712" font-size="12.5">Database</text>
+    <rect x="110" y="278" width="360" height="34" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="126" y="300" fill="#5A5449" font-size="12">my.cnf, replication, backups</text>
+    <rect x="540" y="278" width="330" height="34" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+    <text x="556" y="300" fill="#7A6A3F" font-size="12">RDS parameter group</text>
+    <text x="30" y="350" fill="#1B1712" font-size="12.5">Queue</text>
+    <rect x="110" y="328" width="360" height="34" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="126" y="350" fill="#5A5449" font-size="12">a broker you kept alive</text>
+    <rect x="540" y="328" width="330" height="34" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+    <text x="556" y="350" fill="#7A6A3F" font-size="12">a queue URL</text>
+    <text x="30" y="400" fill="#1B1712" font-size="12.5">Host</text>
+    <rect x="110" y="378" width="360" height="34" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="126" y="400" fill="#5A5449" font-size="12">apt upgrade at 2am</text>
+    <rect x="540" y="378" width="330" height="34" fill="#F1EEE1" stroke="#E0A458" stroke-width="1.5"/>
+    <text x="556" y="400" fill="#7A6A3F" font-size="12">a task definition</text>
+
+    <g class="cover">
+      <rect x="540" y="118" width="330" height="314" fill="#F5F1E8" fill-opacity=".93" stroke="#D6CBB6" stroke-width="2"/>
+      <text x="705" y="262" text-anchor="middle" fill="#8A8578" font-size="13" letter-spacing="3">MANAGED</text>
+      <text x="705" y="290" text-anchor="middle" fill="#8A8578" font-size="11.5">nothing here has paged anyone</text>
+      <text x="705" y="308" text-anchor="middle" fill="#8A8578" font-size="11.5">on this team in two years</text>
+      <g class="page">
+        <rect x="540" y="118" width="330" height="314" fill="none" stroke="#BF3B24" stroke-width="2.5"/>
+        <circle cx="870" cy="118" r="7" fill="#BF3B24"/>
+        <text x="705" y="352" text-anchor="middle" fill="#BF3B24" font-size="12.5">until the Tuesday it does</text>
+      </g>
+    </g>
+
+    <line x1="30" y1="452" x2="970" y2="452" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="480" fill="#5A5449" font-size="12.5">90% of organisations run on at least one platform (DORA, 2025). The gap you interview for is a feature of that, not a defect.</text>
+  </g>
+</svg>

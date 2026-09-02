@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="One hundred dots standing for one hundred professional developers answering the 2025 Stack Overflow survey. Twenty-seven are marked full-stack and pulse together in a wave; fourteen are back-end; four are front-end; the remaining fifty-five are every other role combined. A caption notes that full-stack was the most common single answer, at thirty-one per cent in 2024 and twenty-seven per cent in 2025, and that a label held by more than a quarter of the profession no longer separates anyone from anyone.">
+  <style>
+    .fs { animation: wave 5.5s ease-in-out infinite; }
+    .d0 { animation-delay: 0.00s; } .d1 { animation-delay: 0.28s; } .d2 { animation-delay: 0.56s; } .d3 { animation-delay: 0.84s; } .d4 { animation-delay: 1.12s; } .d5 { animation-delay: 1.40s; } .d6 { animation-delay: 1.68s; } .d7 { animation-delay: 1.96s; } .d8 { animation-delay: 2.24s; }
+    @keyframes wave {
+      0%, 40%, 100% { r: 6.5px; opacity: 1; }
+      18%           { r: 10px;  opacity: .55; }
+    }
+    @media (prefers-reduced-motion: reduce) { .fs { animation: none; } }
+  </style>
+  <rect width="1000" height="430" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="40" fill="#BF3B24" font-size="13" letter-spacing="3">A CATEGORY THAT HOLDS A QUARTER OF THE ROOM</text>
+    <text x="30" y="70" fill="#5A5449" font-size="12.5">100 developers, 2025 Stack Overflow survey — self-reported role</text>
+    <text x="30" y="106" fill="#8A8578" font-size="11" letter-spacing="1.5">EACH DOT IS ONE DEVELOPER</text>
+    
+    <circle class="fs d0" cx="46" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d1" cx="83" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d2" cx="120" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d3" cx="157" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d4" cx="194" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d5" cx="231" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d6" cx="268" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d7" cx="305" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d8" cx="342" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d0" cx="379" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d1" cx="416" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d2" cx="453" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d3" cx="490" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d4" cx="527" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d5" cx="564" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d6" cx="601" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d7" cx="638" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d8" cx="675" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d0" cx="712" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d1" cx="749" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d2" cx="786" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d3" cx="823" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d4" cx="860" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d5" cx="897" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d6" cx="934" cy="138" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d7" cx="46" cy="184" r="6.5" fill="#BF3B24"/>
+    <circle class="fs d8" cx="83" cy="184" r="6.5" fill="#BF3B24"/>
+    <circle cx="120" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="157" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="194" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="231" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="268" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="305" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="342" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="379" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="416" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="453" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="490" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="527" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="564" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="601" cy="184" r="6.5" fill="#E0A458"/>
+    <circle cx="638" cy="184" r="6.5" fill="#7A6A3F"/>
+    <circle cx="675" cy="184" r="6.5" fill="#7A6A3F"/>
+    <circle cx="712" cy="184" r="6.5" fill="#7A6A3F"/>
+    <circle cx="749" cy="184" r="6.5" fill="#7A6A3F"/>
+    <circle cx="786" cy="184" r="6.5" fill="#D6CBB6"/>
+    <circle cx="823" cy="184" r="6.5" fill="#D6CBB6"/>
+    <circle cx="860" cy="184" r="6.5" fill="#D6CBB6"/>
+    <circle cx="897" cy="184" r="6.5" fill="#D6CBB6"/>
+    <circle cx="934" cy="184" r="6.5" fill="#D6CBB6"/>
+    <circle cx="46" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="83" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="120" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="157" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="194" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="231" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="268" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="305" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="342" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="379" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="416" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="453" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="490" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="527" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="564" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="601" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="638" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="675" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="712" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="749" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="786" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="823" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="860" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="897" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="934" cy="230" r="6.5" fill="#D6CBB6"/>
+    <circle cx="46" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="83" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="120" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="157" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="194" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="231" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="268" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="305" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="342" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="379" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="416" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="453" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="490" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="527" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="564" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="601" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="638" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="675" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="712" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="749" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="786" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="823" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="860" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="897" cy="276" r="6.5" fill="#D6CBB6"/>
+    <circle cx="934" cy="276" r="6.5" fill="#D6CBB6"/>
+
+    <line x1="30" y1="322" x2="970" y2="322" stroke="#E4DBCB" stroke-width="1"/>
+
+    <circle cx="46" cy="356" r="6.5" fill="#BF3B24"/>
+    <text x="64" y="361" fill="#1B1712" font-size="12.5">Full-stack — 27</text>
+    <circle cx="266" cy="356" r="6.5" fill="#E0A458"/>
+    <text x="284" y="361" fill="#1B1712" font-size="12.5">Back-end — 14</text>
+    <circle cx="486" cy="356" r="6.5" fill="#7A6A3F"/>
+    <text x="504" y="361" fill="#1B1712" font-size="12.5">Front-end — 4</text>
+    <circle cx="686" cy="356" r="6.5" fill="#D6CBB6"/>
+    <text x="704" y="361" fill="#8A8578" font-size="12.5">Everything else — 55</text>
+
+    <text x="30" y="400" fill="#5A5449" font-size="12.5">Top role six years running as of 2024, when it read 31%. A word this many people answer to has stopped partitioning anything.</text>
+  </g>
+</svg>

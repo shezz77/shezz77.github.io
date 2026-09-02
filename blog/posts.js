@@ -1,5 +1,122 @@
 export const POSTS = [
   {
+    slug: "full-stack-lost-its-meaning", cat: "Leadership", date: "Sep 2026", minutes: 16,
+    tags: ["Hiring", "Interviewing", "Careers", "Architecture"],
+    title: "“Full stack” lost its meaning in 2010, not last year",
+    excerpt: "A post came past me arguing that nobody with React and Firebase should be allowed the title. The room it describes is real. The diagnosis is wrong, the cure is unavailable, and the counter-list it offers is the same mistake one rung up.",
+    blocks: [
+      { t: "p", text: "The post arrives every few weeks in more or less the same shape. Stop calling yourself full stack if you only know React and Firebase. I interview a lot of developers and everyone wants the senior title. Building a clean UI doesn't mean you know how to structure a database for ten thousand concurrent users, manage DNS, or handle server-side caching. The industry watered down the title. Let's bring the standard back up." },
+      { t: "p", text: "I interview a lot of developers too, and the room being described is real. The candidate who has shipped four Next.js apps and has never once opened a query plan exists, and they are usually asking for a title that quietly assumes they have. So I am not going to argue with the observation." },
+      { t: "p", text: "I am going to argue with the three things people conclude from it: that the word used to mean something precise, that the gap is a standards problem, and that tightening the word is a fix that is actually available to us." },
+
+      { t: "h", text: "The word was never a list" },
+      { t: "p", text: "The term gets attributed to a 2010 essay by Carlos Bueno, then at Facebook. It is worth reading because of how little it resembles the thing being defended in the rant. The definition is one sentence: a full-stack programmer is a generalist, someone who can create a non-trivial application by themselves." },
+      { t: "img", src: "/blog/img/fs-definition-drift.svg", w: 1000, h: 470,
+        alt: "Two panels. On the left, the 2010 definition held still: a generalist, someone who can create a non-trivial application by themselves, who can visualise what happens up and down the stack. On the right, what a job advert checks instead — eight named technologies appearing one row at a time, with a bar underneath labelled checklist length that keeps growing. The definition never moves; only the checklist does.",
+        caption: "The left panel has not changed since 2010. Only the right panel has ever moved, and it is the only part anyone can verify in ten seconds." },
+      { t: "p", text: "There is no list of technologies in it. There is a claim about mental models — that people who develop broad skills tend to build a good sense of how the layers behave, and that this pays off most in performance work. Bueno is explicit that nobody knows everything: you should be able to visualise what happens up and down the stack as the application does its thing. That is a description of a habit of mind, not an inventory." },
+      { t: "quote", text: "The definition was never watered down. It was never a definition. It was a description of a person, and an applicant tracking system cannot hire a description." },
+      { t: "p", text: "That is the whole mechanism, and it is structural rather than moral. A job title has to be checkable by somebody who is not able to check it. The only form of “can build a non-trivial application alone” that survives contact with a recruiter, a filter and a five-minute CV scan is a list of nouns. So it became a list of nouns, immediately, and the specific nouns have been rotating ever since — LAMP, then MEAN, then MERN, now whatever is in the advert this quarter." },
+
+      { t: "h", text: "A word that a quarter of the room answers to" },
+      { t: "p", text: "There is a decent proxy for how much signal is left in the label. Stack Overflow asks tens of thousands of developers what they are, every year, and lets them pick." },
+      { t: "img", src: "/blog/img/fs-plurality.svg", w: 1000, h: 430,
+        alt: "One hundred dots standing for one hundred developers answering the 2025 Stack Overflow survey. Twenty-seven are marked full-stack and pulse together in a wave, fourteen are back-end, four are front-end, and the remaining fifty-five are every other role combined.",
+        caption: "27% in 2025, 31% in 2024, and the most common single answer for six years running. This is not a category any more." },
+      { t: "p", text: "Twenty-seven per cent of about 43,500 respondents in 2025, down slightly from thirty-one the year before. I would not read anything into the movement — sample composition moves more than that on its own. The level is the point. A label claimed by better than a quarter of the profession is not a filter. It is a greeting." },
+      { t: "note", tone: "info", label: "This is what a dead category looks like",
+        text: "A classification earns its keep by splitting a population into groups that behave differently. When the largest bucket holds a quarter of everyone and its members range from a bootcamp graduate with one deployed CRUD app to someone who has run a sharded database in production, the bucket has stopped carrying information. No redefinition fixes that, because the problem is the size of the set, not the wording of the label." },
+
+      { t: "h", text: "The counter-list is the same mistake, one rung up" },
+      { t: "p", text: "Here is where I part company with the complaint. Its evidence that the title has been debased is a list: databases at ten thousand concurrent users, DNS, server-side caching. That is a checklist. It is a longer and more expensive checklist than React and Firebase, and it is aimed at people who are guilty of using a checklist." },
+      { t: "p", text: "Take DNS specifically. Most genuinely strong backend engineers I have worked with could not write a zone file from memory. They can read `dig` output, and they know to drop the TTL to sixty seconds a day before a cutover and put it back afterwards. Those are two completely different claims, and only the second one has ever mattered on a Tuesday." },
+      { t: "list", items: [
+        "It tests recall of layers rather than reasoning across them, which is the exact failure it is accusing juniors of.",
+        "It is era-specific. Every seniority checklist is autobiography — it lists what was hard the year the author learned it.",
+        "It has no ceiling. Somebody can always name a layer you do not operate, and by this standard nobody is full stack, including the person writing the post."
+      ] },
+      { t: "quote", text: "You cannot fix a checklist problem with a better checklist. You can only move it somewhere more flattering to yourself." },
+
+      { t: "h", text: "The layers did not get skipped. They got rented." },
+      { t: "p", text: "There is a real gap underneath the complaint, and it deserves a better explanation than declining standards. The layers people used to learn by being hurt by are, for most teams, no longer operated by anyone on the team." },
+      { t: "img", src: "/blog/img/fs-rented-layers.svg", w: 1000, h: 500,
+        alt: "Six layers — DNS, TLS, cache, database, queue and host. On the left, what operating each used to involve: a zone file, openssl and a cron job, a varnish config, my.cnf and replication, a broker you kept alive, apt upgrade at two in the morning. On the right, what each is today: one Terraform resource, a certificate that renews itself, a checkbox, a parameter group, a queue URL, a task definition. A panel marked managed slides across the right column, and a red marker flashes through it periodically.",
+        caption: "Every one of these is still in the request path. None of them has generated a single page on most teams in two years, which is exactly the problem." },
+      { t: "p", text: "DORA's 2025 report puts platform adoption at 90% of organisations. DNS is a Terraform resource. TLS renews itself. Caching is a managed endpoint and a checkbox. This was not an accident or a decline — it is the industry succeeding, loudly and on purpose, at the thing it spent fifteen years trying to do." },
+      { t: "p", text: "So the engineer who has never managed DNS has usually never been handed DNS to manage. Reading that as a character defect gets the causality backwards. We removed the training ground deliberately, because the training ground was outages, and we have not replaced it with anything." },
+      { t: "note", tone: "warn", label: "The rented layer is worse in an incident, not better",
+        text: "The abstraction is a good trade right up to the moment it fails, and then it hands you a worse position than the zone file did: fewer knobs, less visibility, someone else's status page, and a support ticket. The managed database will not show you the buffer pool. This is the honest argument for depth, and it is nothing to do with titles — the person who understands the layer is the only one who can reason about it on the day nobody is allowed to touch it." },
+
+      { t: "h", text: "The only question worth asking is which floor you stop on" },
+      { t: "p", text: "If breadth is not the variable, something else has to be. The thing I actually care about in an interview is how far down a problem someone can follow before they have to hand it to somebody else — and, just as much, whether they know that they handed it over." },
+      { t: "img", src: "/blog/img/fs-descent.svg", w: 1000, h: 540,
+        alt: "Eight stacked layers, from the browser component down through CDN, route handler, service layer, ORM, query plan, connection pool, and disk, network and kernel. A marker descends during an incident. It halts at the ORM, labelled floor A, where the answer becomes the ORM is slow and the problem becomes somebody else's. It then continues to the query plan and connection pool, floor B, where the answer is that the index was never used.",
+        caption: "Nobody descends to the kernel. Breadth is not the variable — the floor is, and it is the one thing a checklist cannot report." },
+      { t: "p", text: "“The ORM is slow” is the most common floor and it is a genuinely reasonable place to stop. It is also true, unfalsifiable, and somebody else's problem by lunchtime. One floor lower is [the query plan, where the answer is usually a composite index and no new framework at all](/blog/make-a-slow-mysql-query-fast/). The distance between those two floors is worth more than any six items on a CV." },
+      { t: "p", text: "Which means the interview question changes shape. Not “do you know X” — that is answerable by anyone who has read about X — but a question that requires you to have been there and to have been wrong." },
+      { t: "table", label: "The same four topics, asked two ways",
+        head: ["Asked as a checklist", "What that actually measures", "Asked as a descent"],
+        rows: [
+          ["Do you know Redis?", "Whether they have typed the word", "Tell me about something that was cached that should not have been. How did you find out?"],
+          ["Have you managed DNS?", "Whether they happened to be on the team that owned it", "Walk me through a cutover where the TTL bit you."],
+          ["Can you scale to 10k concurrent users?", "Whether they will say yes", "What broke first the last time load doubled on you, and what did you think it would be?"],
+          ["Do you know NestJS?", "Framework familiarity", "Where does business logic live in your app, and what stops it living somewhere else?"]
+        ] },
+      { t: "p", text: "Every question in the right-hand column has the same property: it cannot be answered by somebody who was not there, and it cannot be prepared for the night before. It also lets a strong candidate stop at floor five and still pass, as long as they can say where they stopped and why — which is the actual thing the rant is reaching for when it says senior." },
+
+      { t: "h", text: "NestJS will not save you at scale" },
+      { t: "p", text: "One technical objection, because the framework argument in these posts is a real point stated wrongly. The claim is that a strict backend like NestJS saves your life when your Next.js app suddenly scales. The distinction is real. It is not about scale." },
+      { t: "p", text: "Next.js will happily let you put a Stripe call in a server action in a file next to a component, and nothing in the tooling will object. Nest makes you name a module, declare a provider and inject it. That is a constraint, and constraints are frequently worth paying for — particularly on a team where [nobody has time to review every file properly](/blog/the-review-bottleneck/). But what saves you at ten thousand concurrent users is the connection pool, the index and the queue. It has never once been the dependency injection container." },
+      { t: "code", label: "the boundary, drawn without changing framework", lines: [
+        { text: "// The rule is not which framework. It is whether the", color: "#5E5344" },
+        { text: "// business rule can be read without one.", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "// app/checkout/actions.ts  — transport only", color: "#9A8B70" },
+        { text: "export async function checkout(form: FormData) {", color: "#9A8B70" },
+        { text: "  const input = CheckoutInput.parse(form)", color: "#9A8B70" },
+        { text: "  return placeOrder(input, { payments, orders })", color: "#E0A458" },
+        { text: "}", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "// core/orders/place-order.ts — no next/* import,", color: "#5E5344" },
+        { text: "// no request object, no framework at all.", color: "#5E5344" },
+        { text: "export async function placeOrder(input, deps) { … }", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "Most teams that say they outgrew Next.js outgrew the absence of a service layer they never drew. The migration gave them one as a side effect, and they credited the framework for it. That is an expensive way to buy a directory." },
+      { t: "note", tone: "tip", label: "The cheap version of the test",
+        text: "Grep your business rules for framework imports. If the module that decides whether an order can be placed imports from `next/*`, `express`, or a request object, the framework is your architecture and you will migrate one day whether you meant to or not. Fixing that is an afternoon of moving files, not a rewrite — and it is available in every framework, including the one being sneered at." },
+
+      { t: "h", text: "What “senior” is actually claiming" },
+      { t: "p", text: "The rant links two things: that people want the senior title, and that they do not know enough layers. That link is the part I would most want to break. Seniority has never been the size of the surface someone has touched." },
+      { t: "p", text: "The junior engineer says the ORM is slow. The senior engineer says: I think it is the ORM, here is how I would find out in twenty minutes, and here is specifically what I would expect to see if I am wrong. The second person may know exactly the same number of technologies. What they have is a calibrated account of their own uncertainty, and it is the single most reliable thing I have ever been able to test for." },
+      { t: "quote", text: "Seniority is not the size of what you know. It is the accuracy of your account of what you do not." },
+      { t: "p", text: "It is also worth saying that nobody's depth is planned. Kent Beck's paint-drip model describes this better than the T-shape ever did: you move the brush across a lot of surface, and every so often something catches and runs deep, and you do not get to choose in advance which one. Judging a five-year career by which drips have formed yet is judging the weather." },
+
+      { t: "h", text: "So — has the term lost its meaning?" },
+      { t: "p", text: "Yes, and the date is 2010, not last year. It stopped meaning anything the moment it stopped being something you said about a colleague and became a box in a form. Bootcamps did not do that. React did not do that. Firebase did not do that, and neither did the models writing half the CRUD in the industry this year. A tracking system with a keyword filter did that, about fifteen years ago, and the process is not reversible by anyone reading this." },
+      { t: "p", text: "Which is why “let's bring the standard back up” does not have an implementation. We do not own the word, there is no body that certifies it, and the only leverage any of us has over it is in our own job adverts and our own interview loops. That leverage is real and it is small and it does not run through the word at all." },
+      { t: "p", text: "What I do instead is unglamorous. The advert names the system rather than the stack — the traffic, the data volume, the on-call rotation, the thing that is currently on fire. The loop asks four descent questions and no trivia. And the offer is calibrated on the floor somebody can reach, not on the number of nouns they arrived with." },
+      { t: "p", text: "As for the person with React and Firebase: they are usually not claiming to know DNS. They are claiming they can ship something on their own, which is precisely what the word meant in 2010 and is a genuinely valuable thing to be able to do. The useful response is not to take the title off them. It is to ask which floor they stop on, and then — the part the original post leaves out entirely — to give them a reason and a chance to go one floor lower. Depth was never produced by a stricter title. It was produced by an incident, and by somebody senior enough to sit through it with them instead of taking the keyboard." },
+
+      { t: "links", label: "References", items: [
+        { label: "Carlos Bueno, The Full Stack, Part I (2010)", href: "https://carlos.bueno.org/2010/11/full-stack.html", note: "The original: a generalist who can build a non-trivial application alone. No technology list anywhere in it." },
+        { label: "Stack Overflow Developer Survey 2025", href: "https://survey.stackoverflow.co/2025/developers", note: "Full-stack at 27% of 43,560 respondents — the largest single self-reported role." },
+        { label: "Stack Overflow's write-up of the 2024 results", href: "https://stackoverflow.blog/2025/01/01/developers-want-more-more-more-the-2024-results-from-stack-overflow-s-annual-developer-survey/", note: "31% full-stack, top role six years running." },
+        { label: "DORA, State of AI-assisted Software Development (2025)", href: "https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report", note: "90% of organisations have adopted at least one platform. The layers are rented almost everywhere." },
+        { label: "Kent Beck, Paint Drip People", href: "https://tidyfirst.substack.com/p/paint-drip-people", note: "Why depth is discovered rather than planned, and why the T-shape flatters nobody accurately." }
+      ] }
+    ],
+    takeaways: [
+      "The 2010 definition was “a generalist who can create a non-trivial application by themselves” — a description of a habit of mind, with no technology list in it at all.",
+      "The word degraded when it became a job title, because a title has to be checkable by someone who cannot check it, and the only checkable form is a list of nouns.",
+      "Full-stack is the largest self-reported role at 27% of respondents in 2025. A label a quarter of the profession answers to is a greeting, not a filter.",
+      "Answering a checklist with a longer checklist — DNS, 10k concurrent, caching — repeats the mistake. Every seniority checklist is autobiography.",
+      "The gap is real but it is caused by success: 90% of organisations run on a platform, so the layers that used to teach depth are rented and no longer page anyone.",
+      "Interview for the floor someone descends to, not the layers they can name. “What broke first the last time load doubled?” cannot be prepared for.",
+      "NestJS versus Next.js is a question about where structure lives, not about scale. Draw the service boundary yourself and you get most of it without migrating.",
+      "Seniority is a calibrated account of your own uncertainty, and depth arrives as paint drips rather than on a plan — so judge the descent, not the inventory."
+    ]
+  },
+  {
     slug: "ten-prompts-that-replace-a-course", cat: "AI", date: "Aug 2026", minutes: 16,
     tags: ["AI-assisted", "Learning", "Prompting", "Study"],
     title: "The ten prompts that replace a course, and the two jobs they leave open",
