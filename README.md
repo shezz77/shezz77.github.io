@@ -44,6 +44,23 @@ public/               # static assets served from the site root
   Shehzad_Aslam_Software_Architect_Resume.docx
 ```
 
+## Campaign links
+
+Cloudflare Web Analytics never logs query strings, so a `?utm_source=` tag is
+invisible in the dashboard — and the LinkedIn mobile app usually strips the
+referrer too. Path *is* a reported dimension, so campaigns live in the path.
+
+`npm run build:blog` generates a `/go/<name>/` page for every note, plus the
+extras in `blog/campaigns.js`. Each one counts the click, then forwards to its
+destination with `?ref=<name>`. `public/track.js` stashes that for the session
+and tags the subject line of any mailto: the visitor clicks afterwards, so an
+enquiry arrives as `Architecture call [the-monolith-you-should-keep]` — closing
+the loop from a LinkedIn post to an actual conversation.
+
+Share `/go/…` links, never the raw `/blog/…` URL. The generated list of every
+campaign URL lands in `campaign-links.txt` (gitignored, like the rest of the
+generated output). Drafts that use them: `linkedin-posts.md`.
+
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site and

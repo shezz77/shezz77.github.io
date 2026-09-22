@@ -667,5 +667,8 @@ class Component extends DCLogic {
          route changes are counted and not just full page loads. -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
             data-cf-beacon='{"token": "377b11f74ca04ea09bf79fb30e538200", "spa": true}'></script>
+    <!-- Carries a /go/ campaign through the session and tags the mailto: it
+         ends in, so an enquiry says which note produced it. See public/track.js. -->
+    <script defer src="/track.js"></script>
   </body>
 </html>

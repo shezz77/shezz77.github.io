@@ -12,6 +12,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execFileSync } from 'node:child_process'
 import { POSTS, CATS } from '../blog/posts.js'
+import { CAMPAIGNS } from '../blog/campaigns.js'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SITE = 'https://shezz77.com'
@@ -434,9 +435,98 @@ ${urls
 `
 }
 
+// ---------------------------------------------------------------------------
+// Campaign links. Cloudflare Web Analytics does not log query strings, so a
+// UTM tag is invisible in the dashboard and a referrer is whatever the sharing
+// app feels like sending. A path is neither: /go/<name>/ is its own row in the
+// Paths report, and it is the same row whether the click came from the
+// LinkedIn web feed, the mobile app, or a forwarded DM.
+// ---------------------------------------------------------------------------
+
+const CF_BEACON = '377b11f74ca04ea09bf79fb30e538200'
+
+/** Append ?ref= before the fragment, which is where a query string has to go. */
+function withRef(to, name) {
+  const hash = to.indexOf('#')
+  const path = hash === -1 ? to : to.slice(0, hash)
+  const frag = hash === -1 ? '' : to.slice(hash)
+  return `${path}${path.includes('?') ? '&' : '?'}ref=${name}${frag}`
+}
+
+function goPage({ name, to, note }) {
+  const dest = withRef(to, name)
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>${esc(note)}</title>
+    <!-- No JS: still gets there, just without the count. -->
+    <noscript><meta http-equiv="refresh" content="0;url=${esc(dest)}" /></noscript>
+    <style>
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+             background: #F5F1E8; color: #1B1712;
+             font-family: "IBM Plex Sans", system-ui, sans-serif; }
+      div { text-align: center; padding: 24px; }
+      p { margin: 0 0 6px; font-size: 13px; letter-spacing: 3px;
+          text-transform: uppercase; color: #8A8578; }
+      a { color: #BF3B24; font-size: 19px; font-weight: 600; text-decoration: none; }
+    </style>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "${CF_BEACON}"}'></script>
+  </head>
+  <body>
+    <div>
+      <p>Field Notes</p>
+      <a href="${esc(dest)}">${esc(note)} \u2192</a>
+    </div>
+    <script>
+      // Leave before the beacon reports and the click is not counted, which is
+      // the entire point of this page. Watch for the beacon's own request and
+      // go as soon as it has been made; give up and go anyway at 1.2s, because
+      // a lost data point is cheaper than a visitor staring at an interstitial.
+      (function () {
+        var DEST = ${JSON.stringify(dest)}
+        var done = false
+        function go() { if (!done) { done = true; location.replace(DEST) } }
+        try {
+          new PerformanceObserver(function (list) {
+            for (var e of list.getEntries()) {
+              // The beacon POST, not the <script> that loaded it.
+              if (e.name.indexOf('cloudflareinsights.com') > -1 && e.initiatorType !== 'script') {
+                setTimeout(go, 120)
+              }
+            }
+          }).observe({ type: 'resource', buffered: true })
+        } catch (err) {}
+        setTimeout(go, 1200)
+      })()
+    </script>
+  </body>
+</html>
+`
+}
+
+function campaigns() {
+  const seen = new Map()
+  const all = [
+    ...POSTS.map((p) => ({ name: p.slug, to: `/blog/${p.slug}/`, note: p.title })),
+    ...CAMPAIGNS,
+  ]
+  for (const c of all) {
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(c.name)) throw new Error(`bad campaign name: ${c.name}`)
+    if (seen.has(c.name)) throw new Error(`duplicate campaign: ${c.name}`)
+    seen.set(c.name, c)
+  }
+  return [...seen.values()]
+}
+
 function robots() {
   return `User-agent: *
 Allow: /
+Disallow: /go/
 
 Sitemap: ${SITE}/sitemap.xml
 `
@@ -488,12 +578,26 @@ function main() {
     )
   }
 
+  const goDir = path.join(ROOT, 'public/go')
+  fs.rmSync(goDir, { recursive: true, force: true })
+  const links = campaigns()
+  for (const c of links) {
+    const dir = path.join(goDir, c.name)
+    fs.mkdirSync(dir, { recursive: true })
+    fs.writeFileSync(path.join(dir, 'index.html'), goPage(c))
+  }
+  fs.writeFileSync(
+    path.join(ROOT, 'campaign-links.txt'),
+    links.map((c) => `${SITE}/go/${c.name}/\n    ${c.note}\n`).join('\n'),
+  )
+
   fs.writeFileSync(path.join(outDir, 'rss.xml'), rss())
   fs.writeFileSync(path.join(ROOT, 'public/sitemap.xml'), sitemap())
   fs.writeFileSync(path.join(ROOT, 'public/robots.txt'), robots())
 
   const made = [...cards.values()].filter(Boolean).length
   console.log(`blog: ${POSTS.length} notes + index, ${made} og cards, rss.xml, sitemap.xml, robots.txt`)
+  console.log(`campaigns: ${links.length} /go/ links -> campaign-links.txt`)
 }
 
 main()
