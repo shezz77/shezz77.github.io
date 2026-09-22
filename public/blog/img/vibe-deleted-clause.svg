@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="The original vibe coding tweet from February 2025, shown as one block of text with a cut line through it. Above the cut, the two sentences that are quoted everywhere: there is a new kind of coding I call vibe coding, where you fully give in to the vibes, embrace exponentials, and forget that the code even exists. Below the cut, the rest of the same tweet, which fades: I accept all always and do not read the diffs anymore; the code grows beyond my usual comprehension; sometimes the model cannot fix a bug so I work around it or ask for random changes until it goes away; it is not too bad for throwaway weekend projects. The last line, naming the scope, is highlighted.">
+  <style>
+    .fade { animation: fade 8s ease-in-out infinite; }
+    @keyframes fade {
+      0%, 14%   { opacity: 1; }
+      44%, 78%  { opacity: .18; }
+      96%, 100% { opacity: 1; }
+    }
+    .cut { animation: cut 8s ease-in-out infinite; }
+    @keyframes cut {
+      0%, 10%   { opacity: 0; stroke-dashoffset: 40; }
+      30%, 82%  { opacity: 1; stroke-dashoffset: 0; }
+      96%, 100% { opacity: 0; stroke-dashoffset: 40; }
+    }
+    .scope { animation: scope 8s ease-in-out infinite; }
+    @keyframes scope {
+      0%, 40%   { opacity: 0; }
+      58%, 82%  { opacity: 1; }
+      94%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fade  { animation: none; opacity: .45; }
+      .cut   { animation: none; opacity: 1; stroke-dashoffset: 0; }
+      .scope { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">ONE TWEET, 2 FEBRUARY 2025</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">The definition travelled. The scope it was given, four sentences later, did not.</text>
+
+    <rect x="30" y="88" width="940" height="348" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+
+    <text x="58" y="122" fill="#BF3B24" font-size="10.5" letter-spacing="2.5">THE PART THAT GOT 4.5 MILLION VIEWS</text>
+    <text x="58" y="154" fill="#1B1712" font-size="15">There's a new kind of coding I call "vibe coding", where you</text>
+    <text x="58" y="181" fill="#1B1712" font-size="15">fully give in to the vibes, embrace exponentials, and forget</text>
+    <text x="58" y="208" fill="#1B1712" font-size="15">that the code even exists.</text>
+
+    <line class="cut" x1="48" y1="234" x2="952" y2="234" stroke="#BF3B24" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+    <g class="fade">
+      <text x="58" y="268" fill="#8A8578" font-size="10.5" letter-spacing="2.5">THE REST OF THE SAME TWEET</text>
+      <text x="58" y="298" fill="#5A5449" font-size="14">I "Accept All" always, I don't read the diffs anymore.</text>
+      <text x="58" y="324" fill="#5A5449" font-size="14">The code grows beyond my usual comprehension, I'd have to</text>
+      <text x="58" y="350" fill="#5A5449" font-size="14">really read through it for a while. Sometimes the LLMs can't</text>
+      <text x="58" y="376" fill="#5A5449" font-size="14">fix a bug so I just work around it or ask for random changes</text>
+      <text x="58" y="402" fill="#5A5449" font-size="14">until it goes away.</text>
+    </g>
+
+    <g class="scope">
+      <rect x="500" y="384" width="452" height="34" fill="#E0A458" opacity=".22" rx="2"/>
+      <text x="516" y="406" fill="#1B1712" font-size="14">It's not too bad for throwaway weekend projects.</text>
+    </g>
+  </g>
+</svg>
