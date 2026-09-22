@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="450" viewBox="0 0 1000 450" role="img" aria-label="Two panels comparing the same request made by two different accounts. On the left, the test that ran: signed in as one user, a request for the orders table returns that user's three orders, and the result is marked correct, ship it. On the right, the test that did not run: a second, unrelated account sends the identical request and receives everybody's orders, row after row spilling in, ending in seven thousand three hundred and one more. A caption notes the policy allows any signed-in caller to read the table. The closing line says authorisation is the absence of a response, and nothing in the build loop asks for it.">
+  <style>
+    .row { animation: row 8s ease-out infinite; }
+    @keyframes row { 0%, 30% { opacity: 0; transform: translateX(-10px); } 40%, 92% { opacity: 1; transform: translateX(0); } 98%, 100% { opacity: 0; } }
+    .r2 { animation-delay: .3s; } .r3 { animation-delay: .6s; } .r4 { animation-delay: .9s; } .r5 { animation-delay: 1.2s; }
+    .flag { animation: flag 8s ease-out infinite; animation-delay: 1.6s; }
+    @keyframes flag { 0%, 30% { opacity: 0; } 42%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+    .frame { animation: frame 8s ease-in-out infinite; }
+    @keyframes frame { 0%, 40% { stroke-width: 1.5; } 54%, 84% { stroke-width: 4; } 96%, 100% { stroke-width: 1.5; } }
+    @media (prefers-reduced-motion: reduce) {
+      .row, .flag { animation: none; opacity: 1; transform: none; }
+      .frame { animation: none; stroke-width: 3; }
+    }
+  </style>
+  <rect width="1000" height="450" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">ONE ACCOUNT IS NOT A TEST</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Every broken-access-control bug is invisible to a single signed-in user. The agent had one. So did you, all week.</text>
+
+    <rect x="30" y="100" width="450" height="262" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="50" y="130" fill="#5A5449" font-size="10.5" letter-spacing="2.5">THE TEST THAT RAN</text>
+    <text x="50" y="160" fill="#1B1712" font-size="12.5">signed in as ada@yourcompany.com</text>
+    <text x="50" y="186" fill="#9A8B70" font-size="12">GET /rest/v1/orders?select=*</text>
+    <line x1="50" y1="200" x2="460" y2="200" stroke="#E2DACA" stroke-width="1"/>
+    <g fill="#5A5449" font-size="12">
+      <text x="50" y="226">order 41   ada</text>
+      <text x="50" y="250">order 42   ada</text>
+      <text x="50" y="274">order 43   ada</text>
+    </g>
+    <text x="50" y="316" fill="#5A5449" font-size="12.5">3 rows. Exactly right.</text>
+    <text x="50" y="338" fill="#8A8578" font-size="11.5">Feature works. Screenshot it and ship.</text>
+
+    <rect class="frame" x="520" y="100" width="450" height="262" fill="#F5F1E8" stroke="#BF3B24" rx="3"/>
+    <text x="540" y="130" fill="#BF3B24" font-size="10.5" letter-spacing="2.5">THE TEST THAT DID NOT</text>
+    <text x="540" y="160" fill="#1B1712" font-size="12.5">signed in as anyone@else.com</text>
+    <text x="540" y="186" fill="#9A8B70" font-size="12">GET /rest/v1/orders?select=*</text>
+    <line x1="540" y1="200" x2="950" y2="200" stroke="#E2DACA" stroke-width="1"/>
+    <g font-size="12" fill="#5A5449">
+      <text class="row"    x="540" y="226">order 41   ada</text>
+      <text class="row r2" x="540" y="250">order 42   ada</text>
+      <text class="row r3" x="540" y="274">order 43   ada</text>
+      <text class="row r4" x="540" y="298" fill="#BF3B24">order 44   a customer who is not you</text>
+      <text class="row r5" x="540" y="322" fill="#BF3B24">... 7,301 more</text>
+    </g>
+    <text class="flag" x="540" y="348" fill="#BF3B24" font-size="11.5">the policy says: any signed-in caller may read</text>
+
+    <text x="30" y="410" fill="#1B1712" font-size="12.5">The agent verified the feature, and the feature was fine. Authorisation is not a feature — it is the absence of an answer,</text>
+    <text x="30" y="430" fill="#8A8578" font-size="12.5">and nothing in a build-until-it-works loop ever asks for one.</text>
+  </g>
+</svg>

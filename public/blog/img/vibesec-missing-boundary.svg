@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-label="Two request paths compared. In the three-tier version, the browser sends a request to your server, which checks who the caller is and what they may read, and only then reaches the database; the server is marked as the only way in. In the generated version, there is no server: the browser reaches the database directly through a hosted data API, and the middle of the diagram is an empty dashed box labelled nothing here now. The database in the second path is annotated: the row policy is the boundary, and the default on a new table is no policy at all. A request marker travels both paths, pausing at the server on the first and passing straight through on the second.">
+  <style>
+    .p1 { animation: p1 9s ease-in-out infinite; }
+    @keyframes p1 { 0%, 6% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 26%, 40% { transform: translateX(104px); } 62% { transform: translateX(500px); opacity: 1; } 70%, 100% { transform: translateX(500px); opacity: 0; } }
+    .p2 { animation: p2 9s ease-in-out infinite; animation-delay: 1.2s; }
+    @keyframes p2 { 0%, 6% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 34% { transform: translateX(500px); opacity: 1; } 42%, 100% { transform: translateX(500px); opacity: 0; } }
+    .gate { animation: gate 9s ease-in-out infinite; }
+    @keyframes gate { 0%, 24% { opacity: .25; } 30%, 42% { opacity: 1; } 50%, 100% { opacity: .25; } }
+    .hole { animation: hole 9s ease-in-out infinite; }
+    @keyframes hole { 0%, 46% { opacity: .35; } 58%, 78% { opacity: 1; } 90%, 100% { opacity: .35; } }
+    @media (prefers-reduced-motion: reduce) {
+      .p1, .p2 { animation: none; opacity: 0; }
+      .gate, .hole { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="500" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THE BOUNDARY DID NOT MOVE. IT WAS REMOVED.</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">An old vulnerability class on a new topology: the browser now talks to the database, so the check has to live inside it.</text>
+
+    <text x="30" y="98" fill="#8A8578" font-size="10.5" letter-spacing="2.5">WHAT YOU USED TO SHIP</text>
+
+    <rect x="30" y="110" width="200" height="76" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="130" y="142" fill="#1B1712" font-size="13" text-anchor="middle">browser</text>
+    <text x="130" y="164" fill="#8A8578" font-size="11" text-anchor="middle">everything here is a lie</text>
+
+    <g stroke="#D6CBB6" stroke-width="1.5" fill="none">
+      <line x1="230" y1="148" x2="322" y2="148"/>
+      <line x1="630" y1="148" x2="722" y2="148"/>
+    </g>
+    <g fill="#D6CBB6">
+      <polygon points="330,148 320,143 320,153"/>
+      <polygon points="730,148 720,143 720,153"/>
+    </g>
+
+    <rect class="gate" x="330" y="110" width="300" height="76" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+    <text x="480" y="142" fill="#1B1712" font-size="13" text-anchor="middle">your server</text>
+    <text x="480" y="164" fill="#5A5449" font-size="11" text-anchor="middle">who are you, and what may you read</text>
+
+    <rect x="730" y="110" width="240" height="76" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="850" y="142" fill="#1B1712" font-size="13" text-anchor="middle">database</text>
+    <text x="850" y="164" fill="#8A8578" font-size="11" text-anchor="middle">trusts whatever asks</text>
+
+    <circle class="p1" cx="236" cy="148" r="5.5" fill="#5A5449"/>
+    <text x="480" y="208" fill="#BF3B24" font-size="10.5" letter-spacing="2.5" text-anchor="middle">THE ONLY WAY IN</text>
+
+    <line x1="30" y1="232" x2="970" y2="232" stroke="#E2DACA" stroke-width="1" stroke-dasharray="4 5"/>
+
+    <text x="30" y="264" fill="#8A8578" font-size="10.5" letter-spacing="2.5">WHAT THE GENERATOR SHIPPED</text>
+
+    <rect x="30" y="276" width="200" height="76" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="130" y="308" fill="#1B1712" font-size="13" text-anchor="middle">browser</text>
+    <text x="130" y="330" fill="#8A8578" font-size="11" text-anchor="middle">untrusted, by definition</text>
+
+    <line x1="230" y1="314" x2="722" y2="314" stroke="#BF3B24" stroke-width="1.8" opacity=".55"/>
+    <polygon points="730,314 720,309 720,319" fill="#BF3B24" opacity=".55"/>
+
+    <rect class="hole" x="330" y="276" width="300" height="76" fill="#FCFAF4" stroke="#BF3B24" stroke-width="1.5" stroke-dasharray="6 6" rx="3"/>
+    <text class="hole" x="480" y="311" fill="#BF3B24" font-size="13" text-anchor="middle">nothing here now</text>
+    <text class="hole" x="480" y="333" fill="#8A8578" font-size="11" text-anchor="middle">no code of yours runs on this path</text>
+
+    <rect x="730" y="276" width="240" height="76" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+    <text x="850" y="308" fill="#1B1712" font-size="13" text-anchor="middle">hosted data API</text>
+    <text x="850" y="330" fill="#8A8578" font-size="11" text-anchor="middle">answers the browser directly</text>
+
+    <circle class="p2" cx="236" cy="314" r="6.5" fill="#BF3B24"/>
+
+    <text x="730" y="382" fill="#BF3B24" font-size="12">the row policy is the boundary</text>
+    <text x="730" y="402" fill="#5A5449" font-size="12">on a new table, there isn't one</text>
+
+    <text x="30" y="382" fill="#1B1712" font-size="12.5">Nothing was misconfigured to get here. The middle tier was never</text>
+    <text x="30" y="402" fill="#1B1712" font-size="12.5">generated, because nothing in the demo needed it.</text>
+
+    <text x="30" y="470" fill="#8A8578" font-size="11">Every access check you did not write is not a weak check. It is an open route, and it is reachable with curl.</text>
+  </g>
+</svg>
