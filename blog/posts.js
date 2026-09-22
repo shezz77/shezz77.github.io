@@ -1,5 +1,161 @@
 export const POSTS = [
   {
+    slug: "malware-that-asked-your-ai-cli", cat: "AI", date: "Sep 2026", minutes: 17,
+    tags: ["Security", "Supply chain", "Vibe coding", "Claude Code", "npm"],
+    title: "The malware didn't search your laptop. It asked your AI to.",
+    excerpt: "In August 2025 eight poisoned versions of Nx ran an install script that checked whether you had Claude Code, Gemini CLI or Amazon Q, launched whichever it found with the flag that skips every permission prompt, and asked it in plain English to list your secrets. The AI part mostly failed. That is not the reassuring half of the story.",
+    blocks: [
+      { t: "p", text: "The script did not contain a file scanner. It did not need one. It checked whether three programs were on your PATH — `claude`, `gemini` and `q` — and if any of them was, it started it with the one flag whose name tells you not to use it, handed it a paragraph of English, and waited." },
+      { t: "p", text: "The paragraph opened with `You are a file-search agent.` It asked for a recursive walk of your home directory, your config folders and anywhere a crypto wallet might keep its files, eight levels deep, without sudo, writing the path of anything that looked like a key, a keystore, an `.env` or an `id_rsa` into `/tmp/inventory.txt`. The script then collected that list, encoded it, and published it — to a public repository, in your own GitHub account, using your own token." },
+      { t: "p", text: "That was the s1ngularity attack on Nx, a build system with millions of weekly downloads, on 26 August 2025. It is the first widely documented malware that left its search logic out and borrowed an AI agent's instead. It deserves a careful read a year on, because the people most exposed to the next one are exactly the people this series is about: those of us who run a coding agent all day with the prompts switched off." },
+
+      { t: "h", text: "What actually ran" },
+      { t: "p", text: "Eight versions of `nx`, and matching versions of a handful of `@nx/*` plugins, were live on npm for a little over four hours on the evening of 26 August, US Eastern time. Each carried a `postinstall` hook pointing at a file called `telemetry.js`. npm runs that hook automatically, as you, the moment the install finishes. You did not have to import the package, build anything or start your app. Installing it was enough." },
+      { t: "img", src: "/blog/img/s1-attack-chain.svg", w: 1000, h: 540,
+        alt: "The s1ngularity attack chain in four steps and two lanes. Step one: a pull request title runs as bash in Nx's CI, because the workflow used pull_request_target and pasted the title into a run step. Step two: the publish workflow sends the npm token to an attacker's webhook. Step three: on 26 August 2025, eight poisoned nx versions and several @nx plugins are live on npm for about four hours. Step four: npm install runs telemetry.js as the user. The script then forks into two lanes. The first lane, ordinary theft by hand, collects gh auth token, the npmrc file, environment variables, SSH keys, .env files and wallet paths, with no AI involved. The second lane, outlined in red as the new part, launches claude with dangerously-skip-permissions, gemini with yolo, or q with trust-all-tools, and asks the agent to write every sensitive path into /tmp/inventory.txt. Both lanes merge into one box: the results are base64-encoded three times and committed as results.b64 to a public repository named s1ngularity-repository in the victim's own GitHub account, using the victim's own token. A final line notes that sudo shutdown -h 0 was appended to bashrc and zshrc.",
+        caption: "Only the red lane is new. The rest is a supply-chain compromise of the kind npm has seen for a decade." },
+      { t: "p", text: "The script did two jobs side by side, and it is worth pulling them apart, because only one of them is new. The first was ordinary credential theft, written by hand: environment variables, the output of `gh auth token`, `~/.npmrc`, SSH keys, `.env` files, and the storage paths of a list of wallet apps. None of that needed an AI." },
+      { t: "p", text: "The second job was delegation. If an AI CLI was installed, the script launched it non-interactively with its permission checks turned off:" },
+      { t: "code", label: "what telemetry.js spawned, once for each CLI it found", lines: [
+        { text: "# -p / --no-interactive: no terminal, nobody to ask", color: "#5E5344" },
+        { text: "# the other flag: so that nothing needs asking", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "claude --dangerously-skip-permissions -p \"$PROMPT\"", color: "#E0A458" },
+        { text: "gemini --yolo -p \"$PROMPT\"", color: "#E0A458" },
+        { text: "q chat --trust-all-tools --no-interactive \"$PROMPT\"", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# $PROMPT: search $HOME, ~/.config, wallet dirs, /etc ...", color: "#BF6B4E" },
+        { text: "#   depth 8, no sudo, one path per line -> /tmp/inventory.txt", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "Whatever the agent wrote to the inventory file, the script read back, base64-encoded three times over, and committed as `results.b64` to a new public repository named `s1ngularity-repository` under the victim's account. On the way out it appended `sudo shutdown -h 0` to `~/.bashrc` and `~/.zshrc`, so the next terminal you opened asked for your password and, if you typed it, turned the machine off. It skipped Windows altogether: one of its first checks exited on `win32`." },
+
+      { t: "h", text: "Why ask the agent at all" },
+      { t: "p", text: "A file scanner is about forty lines. The attacker could have written one in less time than the prompt took. So the interesting question is what they gained by not writing it, and there are three answers. All three get more valuable over time." },
+      { t: "list", items: [
+        "The malicious logic is English. Scanners look for code that walks the filesystem and matches wallet paths. This payload had none. It had a string, and a string that says \"find files named keystore\" looks like documentation until something executes it.",
+        "The agent adapts. A hand-written scanner knows the paths its author thought of. An agent told to look for secrets can open a config file, notice that it points at another one, and follow it. On this outing it mostly did not. The capability is what matters, not this outing's results.",
+        "The agent was already trusted. It was installed, signed in, allowed through whatever endpoint tooling you run and, if you had set it up to stop interrupting you, pre-authorised to run any command and read any file. The attacker did not need to escalate anything. You had already done that, for convenience."
+      ] },
+      { t: "quote", text: "Your coding agent is the most capable program on your machine, it takes instructions in English, and it will take them from anything that can run a command as you." },
+      { t: "p", text: "Security people have a name for attacks that use tools already on the machine instead of bringing their own: living off the land. The land used to mean `curl`, `powershell` and `certutil`. s1ngularity added a new program to that list, and it is the one we have spent two years making more capable on purpose." },
+
+      { t: "h", text: "It mostly failed, and that is not the reassuring part" },
+      { t: "p", text: "The honest numbers come from Wiz, who went through the leaked repositories afterwards. Roughly half the victims had at least one AI CLI installed. Claude refused almost a quarter of the requests outright. Gemini refused less often, but its own workspace restrictions stopped a similar share. Across all three, the AI-driven search worked in under a quarter of cases, and even then it often searched only the Nx directory it had been launched from and came back with fourteen or fifteen harmless files." },
+      { t: "img", src: "/blog/img/s1-what-did-damage.svg", w: 1000, h: 470,
+        alt: "Two panels comparing the two halves of the attack. The left panel, the novel part, asking the AI, shows three bars: about 50 percent of victims had an AI CLI installed, Claude refused almost a quarter of requests, and the AI search succeeded in under a quarter of cases, often returning only fourteen or fifteen harmless Nx files. The right panel, outlined in red, the boring part, theft by hand, shows four large figures: more than 1,700 users had secrets published, more than 2,000 of those secrets were verified live, 90 percent of leaked GitHub tokens still worked 24 hours later, and in a second wave more than 6,700 private repositories were made public across at least 480 accounts.",
+        caption: "The prompt was the headline. The hand-written half is what people are still rotating keys for." },
+      { t: "p", text: "The hand-written half did the damage. More than 1,700 users had secrets published, and over 2,000 of those secrets were verified as live. Ninety percent of the leaked GitHub tokens still worked a full day after the repositories came down. In a second wave, the attacker used those tokens to flip more than 6,700 private repositories to public across at least 480 accounts, and one organisation lost more than 700 at once." },
+      { t: "p", text: "So the fair reading is that the AI was the least effective part of the attack. I still would not take much comfort from that, for two reasons. The first is that this was a first attempt, and a first attempt that works a quarter of the time is a proof of concept, not a failure. Attackers iterate on prompts exactly the way the rest of us do." },
+      { t: "p", text: "The second is where the refusals came from. Each one was the model's judgement, made fresh each time, about a prompt the attacker controlled. Nobody configured them, and nobody could rely on them. A control you did not set and cannot test is weather, not security." },
+      { t: "note", tone: "warn", label: "What I would not claim from this",
+        text: "None of this shows that AI agents are a malware risk in themselves, or that the vendors did anything wrong. The safety training is the reason the numbers are as low as they are. What it does show is narrower. A permission-skipping flag turns an assistant into a tool that anything running as you can drive, and on a great many developer machines that flag is switched on out of habit." },
+
+      { t: "h", text: "How it reached people who never used Nx" },
+      { t: "p", text: "The root cause should send every maintainer to their workflows tonight. Five days before the release, Nx merged a GitHub Actions workflow that validated pull request titles by pasting the title straight into a bash step. It ran on `pull_request_target`, the trigger that runs in the context of the base repository with its secrets and a read-write token. A pull request titled `$(anything)` was code execution in Nx's CI. The workflow was reverted the next day, but the vulnerable copy survived on older branches. That was enough for the attacker to reach the publish pipeline and send the npm token to a webhook." },
+      { t: "code", label: "the pattern that leaked the token, and the fix", lines: [
+        { text: "# the title is pasted into the script before bash sees it", color: "#5E5344" },
+        { text: "on: pull_request_target", color: "#BF6B4E" },
+        { text: "steps:", color: "#9A8B70" },
+        { text: "  - run: echo \"${{ github.event.pull_request.title }}\"", color: "#BF6B4E" },
+        { text: "", color: "#5E5344" },
+        { text: "# untrusted input travels as data, never as script", color: "#5E5344" },
+        { text: "on: pull_request", color: "#E0A458" },
+        { text: "steps:", color: "#9A8B70" },
+        { text: "  - env:", color: "#9A8B70" },
+        { text: "      TITLE: ${{ github.event.pull_request.title }}", color: "#9A8B70" },
+        { text: "    run: echo \"$TITLE\"", color: "#E0A458" }
+      ] },
+      { t: "p", text: "Then the amplifier. The Nx Console editor extension, in versions 18.6.30 to 18.65.1, installed the latest `nx` on startup to check version compatibility. People who had never opened an Nx workspace were infected by opening their editor during those four hours. Your editor extensions are package managers too. They just do not mention it." },
+
+      { t: "h", text: "The flag is the vulnerability" },
+      { t: "p", text: "This is the part that is specifically about how we work now. `--dangerously-skip-permissions`, `--yolo` and `--trust-all-tools` exist because the prompts really are tiresome, and plenty of people (I have been one of them) alias the flag into their shell so an agent can run for an hour without stopping. Every one of those people had signed the attacker's permission slip in advance." },
+      { t: "img", src: "/blog/img/s1-three-configs.svg", w: 1000, h: 450,
+        alt: "The same malicious prompt sent to the same agent under three configurations. In the first column, bypass flag on, every tool call runs and nobody is asked, so find across the home directory runs and the inventory file is written: the attack works. In the second column, default permissions in print mode, reading outside the project needs approval and there is no terminal and nobody to approve, so the tool call is refused and there is nothing to write. In the third column, bypass disabled by an admin-owned managed setting, the flag stops working and the session cannot start in bypass mode. A footer notes that none of the three stops the install script reading the npmrc file itself, which is a separate door: install scripts and plaintext tokens.",
+        caption: "The attack needed the flag to do exactly what its name says. Take the flag away and the prompt has nobody to obey it." },
+      { t: "p", text: "Run the same prompt against the same agent with the flag gone and the picture changes completely. In print mode there is no terminal and nobody to answer a prompt, so any tool call that needs approval is simply refused, and both reading your home directory and running `find` across it need approval. The attack relied on the flag doing precisely what its name promises." },
+      { t: "p", text: "It is also worth knowing which controls are boundaries and which are filters. A deny rule like `Read(~/.ssh/**)` stops Claude's own file tools and the shell commands Claude Code recognises. The documentation is explicit that it does not cover a command that reads files without naming them: `grep -r` from the right directory walks straight past it. The sandbox is the boundary, because the operating system enforces it. Even the sandbox reads your whole machine by default, `~/.ssh` and `~/.aws` included, until you tell it otherwise." },
+      { t: "note", tone: "tip", label: "Turn bypass off where you can't turn it back on",
+        text: "`permissions.disableBypassPermissionsMode` set to `\"disable\"` works in `~/.claude/settings.json`, but anything running as you can edit that file, including a postinstall script. Put it in managed settings instead. That file lives in a system directory that needs an administrator to change, and nothing in your own settings overrides it, which is exactly the property you want against code running as you." },
+      { t: "code", label: "managed-settings.json — admin-owned, so an install script can't edit it", lines: [
+        { text: "{", color: "#9A8B70" },
+        { text: "  \"permissions\": {", color: "#9A8B70" },
+        { text: "    \"disableBypassPermissionsMode\": \"disable\"", color: "#E0A458" },
+        { text: "  },", color: "#9A8B70" },
+        { text: "  \"sandbox\": {", color: "#9A8B70" },
+        { text: "    \"enabled\": true,", color: "#E0A458" },
+        { text: "    \"allowUnsandboxedCommands\": false", color: "#E0A458" },
+        { text: "  }", color: "#9A8B70" },
+        { text: "}", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "// allowUnsandboxedCommands: false removes the escape hatch", color: "#5E5344" },
+        { text: "// that lets a blocked command retry outside the sandbox.", color: "#5E5344" }
+      ] },
+      { t: "p", text: "In each project's `.claude/settings.json` I add a sandbox rule that denies reads of `~/` and re-allows `.`, so shell commands can see the project and nothing else in my home directory. It has to be the project file: in your user settings, `.` resolves to `~/.claude`, not to the project." },
+      { t: "p", text: "When I really do want an agent to run unattended for an hour, which is a perfectly reasonable thing to want, it runs in a dev container with the project mounted and nothing else: no home directory, no SSH agent, no cloud credentials, and a token scoped to the one repository. In there the flag is fine. The flag was never the problem on a machine with nothing worth taking. For the wider version of this argument, see [putting a boundary around an agent](/blog/claude-agent-sdk-hooks-permissions/)." },
+
+      { t: "h", text: "The other door is still open" },
+      { t: "p", text: "Locking the agent down closes the door s1ngularity added. It does nothing about the one the attack walked through first: `npm install` ran a stranger's code as you, in a home directory full of long-lived tokens stored in plain text. Most of the stolen secrets came through that door. These are the changes that close it, in the order I would make them." },
+      { t: "table", label: "The old door, and what closes it",
+        head: ["Change", "What it stops", "What it costs"],
+        rows: [
+          ["Dependency install scripts off by default. pnpm 10 and later does this already; npm needs ignore-scripts=true", "A poisoned postinstall never runs: s1ngularity, and both Shai-Hulud waves", "An allowlist for the few packages that really do build, such as esbuild and sharp"],
+          ["A release cooldown: minimumReleaseAge in pnpm, min-release-age in npm", "Every malicious Nx version was pulled within five hours, so a one-day wait skipped them all", "An explicit exclusion when an urgent security patch lands"],
+          ["Short-lived, scoped tokens: granular npm tokens with an expiry, fine-grained GitHub tokens, SSO for cloud access", "A stolen token that has already expired, or can only touch one repository", "Logging in again now and then"],
+          ["No production secrets on the laptop at all", "The .env that turns a developer compromise into a customer one", "Staging keys locally; production keys only in the deploy environment"],
+          ["Trusted publishing over OIDC, and 2FA on publish, for anything you maintain", "Your package becoming the next Nx", "An afternoon of CI changes"],
+          ["A short list of editor extensions, with auto-install behaviour checked", "Getting infected by an editor you only opened", "Paying attention to what your editor installs"]
+        ] },
+      { t: "code", label: "the two settings that would have skipped every poisoned version", lines: [
+        { text: "# ~/.npmrc   (min-release-age needs npm 11.10+, and is in days)", color: "#5E5344" },
+        { text: "ignore-scripts=true", color: "#E0A458" },
+        { text: "min-release-age=1", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# pnpm-workspace.yaml   (pnpm 10.16+, in minutes; 1440 is the default in 11)", color: "#5E5344" },
+        { text: "minimumReleaseAge: 1440", color: "#E0A458" }
+      ] },
+      { t: "p", text: "Of everything I know, the cooldown gives the most protection for the least effort. Compromises of popular packages are almost always caught within hours, because popular packages have a lot of people watching them. A day's delay costs you nothing you will notice, and it moves you from the first wave of victims to the people reading about it afterwards. One caveat: the setting applies when you install, not when Renovate or Dependabot opens a pull request, so give those their own delay." },
+      { t: "p", text: "Shai-Hulud, the self-replicating worm that arrived three weeks later, is the argument for doing this now rather than after the next one. It ran an open-source secret scanner over its victims' machines, then used any npm token it found to publish infected versions of their own packages, reaching more than five hundred in the first wave. The second wave, in November 2025, moved from postinstall to preinstall and backdoored 796 packages with more than twenty million weekly downloads between them. Each round was faster than the one before, and none of them needed the AI trick." },
+
+      { t: "h", text: "If you think you were caught" },
+      { t: "p", text: "These checks are for this attack specifically, but the order works for the next one too." },
+      { t: "list", items: [
+        "Search your GitHub account and organisations for repositories named s1ngularity-repository, and check the audit log for repo.create events and visibility changes you did not make.",
+        "Look for /tmp/inventory.txt, and for sudo shutdown -h 0 at the end of ~/.bashrc and ~/.zshrc.",
+        "Rotate before you clean up. Revoke GitHub and npm tokens, replace SSH keys, and rotate anything in an .env the script could reach. Deleting the leaked repository does not un-leak what was in it, and ninety percent of those tokens still worked a day later.",
+        "Clear the npm cache and ~/.npm/_npx, then reinstall from the lockfile with scripts turned off."
+      ] },
+
+      { t: "h", text: "What I actually do" },
+      { t: "p", text: "Bypass mode is disabled in managed settings on my machine, and I cannot switch it back on without an administrator password, which is the whole point. Unattended runs happen in a container that holds the project and a repository-scoped token and nothing else. Install scripts are off and allowlisted per project, and nothing published less than a day ago gets installed unless I name it." },
+      { t: "p", text: "None of that is exotic. A few years ago none of it was needed, because the most capable program on a developer's machine could not be asked to do anything in English. The agent did not create a new vulnerability here. It made an old one, that code you install runs as you, far more useful to whoever writes that code. The fix is the old fix applied to a new program: give it only what the task needs, and make sure nothing you allowed for convenience can be borrowed. The credentials an agent holds are part of your attack surface, which [the database post](/blog/vibe-coding-security-checklist/) covers from the other side." },
+
+      { t: "links", label: "References", items: [
+        { label: "Nx, Security advisory GHSA-cxm3-wv7p-598c", href: "https://github.com/nrwl/nx/security/advisories/GHSA-cxm3-wv7p-598c", note: "The affected versions, the pull_request_target and PR-title injection root cause, the full timeline, the Nx Console amplifier, and the remediation steps." },
+        { label: "Nx, S1ngularity: what happened, how we responded, what we learned", href: "https://nx.dev/blog/s1ngularity-postmortem", note: "The maintainers' postmortem: trusted publishing, 2FA-approved releases, and no CI runs for external contributors." },
+        { label: "Wiz, s1ngularity's aftermath", href: "https://www.wiz.io/blog/s1ngularitys-aftermath", note: "1,700+ users and 2,000+ verified secrets leaked; 90% of GitHub tokens valid after 24 hours; 6,700+ private repos made public; AI CLI install, refusal and success rates." },
+        { label: "StepSecurity, Nx build system compromised with data-stealing malware", href: "https://www.stepsecurity.io/blog/supply-chain-security-alert-popular-nx-build-system-package-compromised-with-data-stealing-malware", note: "The payload in detail: the three CLI invocations, the prompt, triple-base64 results.b64, and the win32 early exit." },
+        { label: "Wiz, Shai-Hulud 2.0 ongoing supply chain attack", href: "https://www.wiz.io/blog/shai-hulud-2-0-ongoing-supply-chain-attack", note: "The November 2025 wave: preinstall execution and more than 25,000 exposed repositories." },
+        { label: "Datadog Security Labs, The Shai-Hulud 2.0 npm worm", href: "https://securitylabs.datadoghq.com/articles/shai-hulud-2.0-npm-worm/", note: "Analysis of the second wave's spread across npm." },
+        { label: "Claude Code docs, Configure permissions", href: "https://code.claude.com/docs/en/permissions", note: "disableBypassPermissionsMode, managed settings, and what Read deny rules do and do not cover." },
+        { label: "Claude Code docs, Sandboxing", href: "https://code.claude.com/docs/en/sandboxing", note: "OS-level filesystem and network isolation; the default of reading the whole machine; denyRead, allowRead and allowUnsandboxedCommands." },
+        { label: "Socket, pnpm 10.0.0 blocks lifecycle scripts by default", href: "https://socket.dev/blog/pnpm-10-0-0-blocks-lifecycle-scripts-by-default", note: "Dependency install scripts do not run unless the package is allowlisted." },
+        { label: "Locking down dependency installs across npm, pnpm, yarn and bun", href: "https://craigory.dev/blog/2026-05-29/package-manager-release-cooldown/", note: "Release-cooldown and install-script settings for each package manager, with the versions that added them." },
+        { label: "GitHub Security Lab, Preventing pwn requests", href: "https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/", note: "Why pull_request_target with untrusted input is dangerous, and the safer patterns." }
+      ] }
+    ],
+    takeaways: [
+      "The s1ngularity payload in Nx did not ship a file scanner. It launched Claude Code, Gemini CLI or Amazon Q with permission checks turned off and asked, in English, for a list of your secrets.",
+      "A payload that is a prompt has no scanning code to detect, and an agent can adapt in ways a hand-written scanner cannot. That is why this is worth taking seriously even though it mostly failed.",
+      "The AI half worked in under a quarter of cases. The hand-written half leaked more than 2,000 verified secrets, and 90% of the GitHub tokens still worked a day later.",
+      "Model refusals are not a control you configured. Count them as luck, not as defence.",
+      "Disable bypass mode in managed settings, where code running as you cannot edit it, and run unattended agents in a container with nothing else mounted.",
+      "A deny rule is a filter, not a boundary. The sandbox is the boundary, and even the sandbox reads ~/.ssh by default until you restrict it.",
+      "Turn dependency install scripts off and add a one-day release cooldown. Every malicious Nx version was pulled within five hours.",
+      "The root cause was a pull request title pasted into a bash step on pull_request_target. Pass untrusted input through env, never into the script.",
+      "Rotate before you clean up. Deleting the leaked repository revokes nothing."
+    ]
+  },
+  {
     slug: "vibe-coding-security-checklist", cat: "AI", date: "Sep 2026", minutes: 19,
     tags: ["Security", "Vibe coding", "AI-assisted", "Access control", "Secrets"],
     title: "Anybody can read your vibe-coded site's database, and it takes about a minute",

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="Two panels comparing the two halves of the attack. The left panel, the novel part, asking the AI, shows three bars: about 50 percent of victims had an AI CLI installed, Claude refused almost a quarter of requests, and the AI search succeeded in under a quarter of cases, often returning only fourteen or fifteen harmless Nx files. The right panel, outlined in red, the boring part, theft by hand, shows four large figures: more than 1,700 users had secrets published, more than 2,000 of those secrets were verified live, 90 percent of leaked GitHub tokens still worked 24 hours later, and in a second wave more than 6,700 private repositories were made public across at least 480 accounts.">
+  <style>
+    .bar { transform-box: fill-box; transform-origin: left center; animation: grow 9s ease-out infinite; }
+    @keyframes grow { 0%, 4% { transform: scaleX(0); } 16%, 92% { transform: scaleX(1); } 99%, 100% { transform: scaleX(1); opacity: 0; } }
+    .b2 { animation-delay: .5s; } .b3 { animation-delay: 1s; }
+    .st { animation: st 9s ease-out infinite; opacity: 0; }
+    @keyframes st { 0%, 20% { opacity: 0; } 28%, 93% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    .s2 { animation-delay: .5s; } .s3 { animation-delay: 1s; } .s4 { animation-delay: 1.5s; }
+    @media (prefers-reduced-motion: reduce) {
+      .bar { animation: none; transform: none; }
+      .st { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THE HEADLINE HALF, AND THE HALF THAT HURT</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Figures from Wiz's analysis of the leaked repositories.</text>
+
+    <rect x="30" y="84" width="450" height="330" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="50" y="112" fill="#5A5449" font-size="11" letter-spacing="2">THE NOVEL PART · ASKING THE AI</text>
+
+    <text x="50" y="148" fill="#1B1712" font-size="12.5">victims with an AI CLI installed</text>
+    <rect x="50" y="158" width="400" height="16" fill="#EDE6D8"/>
+    <rect class="bar" x="50" y="158" width="200" height="16" fill="#E0A458"/>
+    <text x="258" y="171" fill="#5A5449" font-size="11.5">~50%</text>
+
+    <text x="50" y="210" fill="#1B1712" font-size="12.5">Claude requests refused outright</text>
+    <rect x="50" y="220" width="400" height="16" fill="#EDE6D8"/>
+    <rect class="bar b2" x="50" y="220" width="96" height="16" fill="#E0A458"/>
+    <text x="154" y="233" fill="#5A5449" font-size="11.5">almost a quarter</text>
+
+    <text x="50" y="272" fill="#1B1712" font-size="12.5">AI search actually succeeded</text>
+    <rect x="50" y="282" width="400" height="16" fill="#EDE6D8"/>
+    <rect class="bar b3" x="50" y="282" width="92" height="16" fill="#E0A458"/>
+    <text x="150" y="295" fill="#5A5449" font-size="11.5">under a quarter</text>
+
+    <text x="50" y="340" fill="#8A8578" font-size="11.5">when it did run, it often searched only the</text>
+    <text x="50" y="358" fill="#8A8578" font-size="11.5">Nx folder and returned 14–15 harmless files</text>
+    <text x="50" y="392" fill="#5A5449" font-size="11.5">a first draft, not a failure</text>
+
+    <rect x="510" y="84" width="460" height="330" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+    <text x="530" y="112" fill="#BF3B24" font-size="11" letter-spacing="2">THE BORING PART · THEFT BY HAND</text>
+
+    <g class="st">
+      <text x="530" y="160" fill="#BF3B24" font-size="30">1,700+</text>
+      <text x="680" y="156" fill="#1B1712" font-size="12.5">users with secrets published</text>
+    </g>
+    <g class="st s2">
+      <text x="530" y="222" fill="#BF3B24" font-size="30">2,000+</text>
+      <text x="680" y="218" fill="#1B1712" font-size="12.5">secrets verified as live</text>
+    </g>
+    <g class="st s3">
+      <text x="530" y="284" fill="#BF3B24" font-size="30">90%</text>
+      <text x="680" y="272" fill="#1B1712" font-size="12.5">of GitHub tokens still</text>
+      <text x="680" y="290" fill="#1B1712" font-size="12.5">worked 24 hours later</text>
+    </g>
+    <g class="st s4">
+      <text x="530" y="346" fill="#BF3B24" font-size="30">6,700+</text>
+      <text x="680" y="334" fill="#1B1712" font-size="12.5">private repos made public</text>
+      <text x="680" y="352" fill="#1B1712" font-size="12.5">in wave two, 480+ accounts</text>
+    </g>
+    <text x="530" y="392" fill="#5A5449" font-size="11.5">no prompt required</text>
+
+    <text x="30" y="446" fill="#8A8578" font-size="11">The refusals were the model's judgement on the attacker's prompt. Nobody configured them, so nobody can count on them.</text>
+  </g>
+</svg>

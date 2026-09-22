@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="540" viewBox="0 0 1000 540" role="img" aria-label="The s1ngularity attack chain in four steps and two lanes. Step one: a pull request title runs as bash in Nx's CI, because the workflow used pull_request_target and pasted the title into a run step. Step two: the publish workflow sends the npm token to an attacker's webhook. Step three: on 26 August 2025, eight poisoned nx versions and several @nx plugins are live on npm for about four hours. Step four: npm install runs telemetry.js as the user. The script then forks into two lanes. The first lane, ordinary theft by hand, collects gh auth token, the npmrc file, environment variables, SSH keys, .env files and wallet paths, with no AI involved. The second lane, outlined in red as the new part, launches claude with dangerously-skip-permissions, gemini with yolo, or q with trust-all-tools, and asks the agent to write every sensitive path into /tmp/inventory.txt. Both lanes merge: the results are base64-encoded three times and committed as results.b64 to a public repository named s1ngularity-repository in the victim's own GitHub account, using the victim's own token. A final line notes that sudo shutdown -h 0 was appended to bashrc and zshrc.">
+  <style>
+    .st { animation: st 12s ease-out infinite; opacity: 0; }
+    @keyframes st { 0%, 3% { opacity: 0; } 9%, 93% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    .s2 { animation-delay: .7s; } .s3 { animation-delay: 1.4s; } .s4 { animation-delay: 2.1s; }
+    .s5 { animation-delay: 2.9s; } .s6 { animation-delay: 3.7s; } .s7 { animation-delay: 4.6s; } .s8 { animation-delay: 5.4s; }
+    .glow { animation: glow 2.4s ease-in-out infinite; }
+    @keyframes glow { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: .35; } }
+    @media (prefers-reduced-motion: reduce) {
+      .st { animation: none; opacity: 1; }
+      .glow { animation: none; }
+    }
+  </style>
+  <rect width="1000" height="540" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">S1NGULARITY, 21–26 AUGUST 2025</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">From a pull request title to your secrets in a public repository in your own account.</text>
+
+    <g class="st">
+      <rect x="30" y="86" width="218" height="80" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="46" y="110" fill="#BF3B24" font-size="11" letter-spacing="1.5">01 · 21–24 AUG</text>
+      <text x="46" y="133" fill="#1B1712" font-size="12.5">a PR title runs as</text>
+      <text x="46" y="152" fill="#1B1712" font-size="12.5">bash in Nx's CI</text>
+    </g>
+    <g class="st s2">
+      <path d="M252 126 H266" stroke="#5A5449" stroke-width="1.5"/><path d="M266 121 L272 126 L266 131 Z" fill="#5A5449"/>
+      <rect x="276" y="86" width="218" height="80" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="292" y="110" fill="#BF3B24" font-size="11" letter-spacing="1.5">02 · THE TOKEN</text>
+      <text x="292" y="133" fill="#1B1712" font-size="12.5">publish job sends the</text>
+      <text x="292" y="152" fill="#1B1712" font-size="12.5">npm token to a webhook</text>
+    </g>
+    <g class="st s3">
+      <path d="M498 126 H512" stroke="#5A5449" stroke-width="1.5"/><path d="M512 121 L518 126 L512 131 Z" fill="#5A5449"/>
+      <rect x="522" y="86" width="218" height="80" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="538" y="110" fill="#BF3B24" font-size="11" letter-spacing="1.5">03 · 26 AUG, ~4 HOURS</text>
+      <text x="538" y="133" fill="#1B1712" font-size="12.5">8 poisoned nx versions</text>
+      <text x="538" y="152" fill="#1B1712" font-size="12.5">+ @nx/* plugins live</text>
+    </g>
+    <g class="st s4">
+      <path d="M744 126 H758" stroke="#5A5449" stroke-width="1.5"/><path d="M758 121 L764 126 L758 131 Z" fill="#5A5449"/>
+      <rect x="768" y="86" width="202" height="80" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+      <text x="784" y="110" fill="#BF3B24" font-size="11" letter-spacing="1.5">04 · npm install</text>
+      <text x="784" y="133" fill="#1B1712" font-size="12.5">postinstall runs</text>
+      <text x="784" y="152" fill="#1B1712" font-size="12.5">telemetry.js, as you</text>
+    </g>
+
+    <g class="st s5" stroke="#5A5449" stroke-width="1.5" fill="none">
+      <path d="M869 166 V190 H250 V210"/>
+      <path d="M740 190 V210"/>
+    </g>
+
+    <g class="st s5">
+      <rect x="30" y="214" width="440" height="122" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="48" y="240" fill="#5A5449" font-size="11" letter-spacing="2">BY HAND · ORDINARY THEFT</text>
+      <text x="48" y="266" fill="#1B1712" font-size="12.5">gh auth token · ~/.npmrc · env vars</text>
+      <text x="48" y="288" fill="#1B1712" font-size="12.5">~/.ssh/id_rsa · .env files · wallet paths</text>
+      <text x="48" y="316" fill="#8A8578" font-size="11.5">no AI involved — this half did most of the damage</text>
+    </g>
+    <g class="st s6">
+      <rect class="glow" x="500" y="214" width="470" height="122" fill="#F5F1E8" stroke="#BF3B24" stroke-width="2" rx="3"/>
+      <text x="518" y="240" fill="#BF3B24" font-size="11" letter-spacing="2">BY ASKING YOUR AI · THE NEW PART</text>
+      <text x="518" y="264" fill="#E0A458" font-size="12">claude --dangerously-skip-permissions -p</text>
+      <text x="518" y="284" fill="#E0A458" font-size="12">gemini --yolo -p</text>
+      <text x="518" y="304" fill="#E0A458" font-size="12">q chat --trust-all-tools --no-interactive</text>
+      <text x="518" y="325" fill="#5A5449" font-size="11.5">"find the secrets" → /tmp/inventory.txt</text>
+    </g>
+
+    <g class="st s7" stroke="#5A5449" stroke-width="1.5" fill="none">
+      <path d="M250 336 V358 H735 V376"/>
+      <path d="M735 336 V358"/>
+      <path d="M500 358 V376"/>
+    </g>
+    <g class="st s7">
+      <path d="M495 376 L500 384 L505 376 Z" fill="#5A5449"/>
+      <rect x="30" y="386" width="940" height="70" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+      <text x="48" y="414" fill="#BF3B24" font-size="13">base64 × 3 → results.b64 → public repo "s1ngularity-repository"</text>
+      <text x="48" y="438" fill="#1B1712" font-size="12.5">created in YOUR GitHub account, with YOUR token, for anybody to read</text>
+    </g>
+
+    <g class="st s8">
+      <text x="30" y="484" fill="#5A5449" font-size="12">and on the way out:  echo "sudo shutdown -h 0" &gt;&gt; ~/.bashrc ~/.zshrc</text>
+    </g>
+
+    <text x="30" y="522" fill="#8A8578" font-size="11">Only the red lane is new. Everything else is a supply-chain compromise npm has seen for a decade.</text>
+  </g>
+</svg>

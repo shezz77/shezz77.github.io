@@ -231,3 +231,30 @@ Cheapest check on the list: make a second test account and re-run the same reque
 Full checklist in blast-radius order, plus a ten-minute curl audit you can run against your own site — link in the first comment.
 
 What's the first thing you check before a generated app gets a public URL?
+
+---
+
+## Extra — The malware that asked your AI (image post)
+
+Image: `social/linkedin-ai-cli-malware.png`. First comment: `shezz77.com/go/malware-that-asked-your-ai-cli/`
+
+This malware didn't bring a file scanner. It brought a paragraph of English.
+
+In August 2025, eight poisoned versions of Nx — a build tool with millions of weekly downloads — shipped an install script that checked whether you had Claude Code, Gemini CLI or Amazon Q installed.
+
+If you did, it launched the agent with the flag that skips every permission prompt and asked it, politely, to search your home directory for keys, wallets and .env files and write the paths to a file. Then it published the results to a public repo in your own GitHub account, using your own token.
+
+The AI part mostly failed. Claude refused almost a quarter of the requests, and the search worked in under a quarter of cases. The hand-written theft next to it leaked 2,000+ live secrets, and 90% of the GitHub tokens still worked a day later.
+
+That's not the reassuring part. The refusals were the model's judgement on the attacker's prompt. Nobody configured them, and nobody can count on them.
+
+What closes it:
+
+— bypass mode disabled in managed settings, where code running as you can't turn it back on
+— unattended agents in a container with nothing else mounted
+— dependency install scripts off by default
+— a one-day release cooldown (every poisoned version was gone within five hours)
+
+The full breakdown, with the exact settings, is in the first comment.
+
+Is --dangerously-skip-permissions aliased in your shell right now?

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="450" viewBox="0 0 1000 450" role="img" aria-label="The same malicious prompt sent to the same agent under three configurations. In the first column, bypass flag on, every tool call runs and nobody is asked, so find across the home directory runs and the inventory file is written: the attack works. In the second column, default permissions in print mode, reading outside the project needs approval and there is no terminal and nobody to approve, so the tool call is refused and there is nothing to write. In the third column, bypass disabled by an admin-owned managed setting, the flag stops working and the session cannot start in bypass mode. A footer notes that none of the three stops the install script reading the npmrc file itself, which is a separate door: install scripts and plaintext tokens.">
+  <style>
+    .st { animation: st 10s ease-out infinite; opacity: 0; }
+    @keyframes st { 0%, 4% { opacity: 0; } 10%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+    .s2 { animation-delay: 1s; } .s3 { animation-delay: 2s; } .s4 { animation-delay: 3s; }
+    @media (prefers-reduced-motion: reduce) {
+      .st { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="450" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">SAME PROMPT, SAME AGENT, THREE SETUPS</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">"You are a file-search agent ... record each path in /tmp/inventory.txt"</text>
+
+    <g class="st">
+      <rect x="30" y="84" width="300" height="270" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+      <text x="48" y="112" fill="#BF3B24" font-size="11" letter-spacing="2">BYPASS FLAG ON</text>
+      <text x="48" y="140" fill="#1B1712" font-size="12.5">every tool call runs</text>
+      <text x="48" y="160" fill="#1B1712" font-size="12.5">nobody is asked</text>
+      <text x="48" y="196" fill="#E0A458" font-size="12">$ find ~ -maxdepth 8 ...</text>
+      <text x="48" y="216" fill="#5A5449" font-size="11.5">runs</text>
+      <text x="48" y="248" fill="#E0A458" font-size="12">&gt; /tmp/inventory.txt</text>
+      <text x="48" y="268" fill="#5A5449" font-size="11.5">written</text>
+      <line x1="48" y1="296" x2="312" y2="296" stroke="#D6CBB6" stroke-width="1.2"/>
+      <text x="48" y="328" fill="#BF3B24" font-size="13">THE ATTACK WORKS</text>
+    </g>
+
+    <g class="st s2">
+      <rect x="350" y="84" width="300" height="270" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="368" y="112" fill="#5A5449" font-size="11" letter-spacing="2">DEFAULT PERMISSIONS, -p</text>
+      <text x="368" y="140" fill="#1B1712" font-size="12.5">reading outside the</text>
+      <text x="368" y="160" fill="#1B1712" font-size="12.5">project needs approval</text>
+      <text x="368" y="196" fill="#1B1712" font-size="12.5">no terminal attached,</text>
+      <text x="368" y="216" fill="#1B1712" font-size="12.5">nobody to approve it</text>
+      <text x="368" y="248" fill="#E0A458" font-size="12">tool call refused</text>
+      <line x1="368" y1="296" x2="632" y2="296" stroke="#D6CBB6" stroke-width="1.2"/>
+      <text x="368" y="328" fill="#5A5449" font-size="13">NOTHING TO WRITE</text>
+    </g>
+
+    <g class="st s3">
+      <rect x="670" y="84" width="300" height="270" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="688" y="112" fill="#5A5449" font-size="11" letter-spacing="2">BYPASS OFF BY POLICY</text>
+      <text x="688" y="140" fill="#1B1712" font-size="12.5">managed settings,</text>
+      <text x="688" y="160" fill="#1B1712" font-size="12.5">admin-owned file</text>
+      <text x="688" y="196" fill="#1B1712" font-size="12.5">the flag stops working;</text>
+      <text x="688" y="216" fill="#1B1712" font-size="12.5">your settings can't</text>
+      <text x="688" y="236" fill="#1B1712" font-size="12.5">override it</text>
+      <line x1="688" y1="296" x2="952" y2="296" stroke="#D6CBB6" stroke-width="1.2"/>
+      <text x="688" y="328" fill="#5A5449" font-size="13">THE FLAG DOES NOTHING</text>
+    </g>
+
+    <g class="st s4">
+      <rect x="30" y="374" width="940" height="40" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" stroke-dasharray="5 4" rx="3"/>
+      <text x="48" y="399" fill="#5A5449" font-size="12">None of the three stops telemetry.js reading ~/.npmrc itself. That is the other door.</text>
+    </g>
+
+    <text x="30" y="438" fill="#8A8578" font-size="11">The attack needed the flag to do exactly what its name says.</text>
+  </g>
+</svg>
