@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="450" viewBox="0 0 1000 450" role="img" aria-label="Two diverging lines from November 2022 to June 2026 tracking employment for workers aged 22 to 25. In the two most AI-exposed occupation quintiles employment falls about 11 percent. In the three least-exposed quintiles it grows about 10 percent. The gap between them is marked at 19 percent. A third, flat line shows experienced workers in the same exposed occupations, who show no comparable gap.">
+  <style>
+    .ln { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 10s ease-in-out infinite; }
+    @keyframes draw { 0%, 4% { stroke-dashoffset: 900; } 44%, 88% { stroke-dashoffset: 0; } 99%, 100% { stroke-dashoffset: 900; } }
+    .lb { animation: lb 10s ease-in-out infinite; }
+    @keyframes lb { 0%, 38% { opacity: 0; } 52%, 88% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    .brk { animation: brk 10s ease-in-out infinite; }
+    @keyframes brk { 0%, 54% { opacity: 0; } 68%, 88% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .ln { animation: none; stroke-dashoffset: 0; }
+      .lb, .brk { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="450" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">AGES 22 TO 25, NOV 2022 TO JUN 2026</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Same age band, same economy. The only variable is how exposed the occupation is to AI.</text>
+
+    <line x1="110" y1="268" x2="760" y2="268" stroke="#D6CBB6" stroke-width="1.5" stroke-dasharray="4 5"/>
+    <text x="102" y="272" fill="#8A8578" font-size="11" text-anchor="end">0%</text>
+
+    <path class="ln" d="M110,268 C 233,258 316,232 431,214 C 546,196 661,186 760,180" fill="none" stroke="#7E8C6A" stroke-width="2.5"/>
+    <path class="ln" d="M110,268 C 233,282 316,306 431,328 C 546,350 661,358 760,362" fill="none" stroke="#BF3B24" stroke-width="2.5"/>
+    <path class="ln" d="M110,268 C 266,266 431,270 595,267 C 678,266 727,268 760,267" fill="none" stroke="#C3BBA9" stroke-width="2"/>
+
+    <g class="lb" font-size="12.5">
+      <text x="776" y="176" fill="#5A7040">+10%</text>
+      <text x="776" y="196" fill="#8A8578" font-size="11">three least-exposed</text>
+      <text x="776" y="211" fill="#8A8578" font-size="11">quintiles</text>
+
+      <text x="776" y="264" fill="#8A8578" font-size="11">experienced workers,</text>
+      <text x="776" y="279" fill="#8A8578" font-size="11">same occupations</text>
+
+      <text x="776" y="358" fill="#BF3B24">&#8722;11%</text>
+      <text x="776" y="378" fill="#8A8578" font-size="11">two most-exposed</text>
+      <text x="776" y="393" fill="#8A8578" font-size="11">quintiles</text>
+    </g>
+
+    <g class="brk">
+      <line x1="744" y1="180" x2="744" y2="362" stroke="#BF3B24" stroke-width="1.5"/>
+      <line x1="738" y1="180" x2="750" y2="180" stroke="#BF3B24" stroke-width="1.5"/>
+      <line x1="738" y1="362" x2="750" y2="362" stroke="#BF3B24" stroke-width="1.5"/>
+      <rect x="676" y="254" width="56" height="24" fill="#FCFAF4"/>
+      <text x="730" y="272" fill="#BF3B24" font-size="14" text-anchor="end">19%</text>
+    </g>
+
+    <g font-size="11.5" fill="#8A8578">
+      <text x="110" y="412">Nov 2022</text>
+      <text x="760" y="412" text-anchor="end">Jun 2026</text>
+    </g>
+    <text x="30" y="440" fill="#8A8578" font-size="11">The adjustment runs through hiring, not separations. Nobody was let go — the seat simply stopped being opened.</text>
+  </g>
+</svg>

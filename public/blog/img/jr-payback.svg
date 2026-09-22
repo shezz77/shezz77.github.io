@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="A curve showing the value a junior engineer returns over six years. It is negative for roughly the first nine months, crosses zero, then climbs steadily, with the largest returns arriving in years four to six once the person has become a senior engineer. A vertical line at two years and eleven months marks median engineering tenure. The area left of that line is labelled what you pay for; the area right of it, containing most of the return, is labelled what somebody else collects.">
+  <style>
+    .curve { stroke-dasharray: 1100; stroke-dashoffset: 1100; animation: draw 11s ease-in-out infinite; }
+    @keyframes draw { 0%, 4% { stroke-dashoffset: 1100; } 46%, 88% { stroke-dashoffset: 0; } 99%, 100% { stroke-dashoffset: 1100; } }
+    .pay { animation: pay 11s ease-in-out infinite; }
+    @keyframes pay { 0%, 22% { opacity: 0; } 34%, 88% { opacity: .14; } 99%, 100% { opacity: 0; } }
+    .coll { animation: coll 11s ease-in-out infinite; }
+    @keyframes coll { 0%, 50% { opacity: 0; } 62%, 88% { opacity: .16; } 99%, 100% { opacity: 0; } }
+    .lb { animation: lb 11s ease-in-out infinite; }
+    @keyframes lb { 0%, 56% { opacity: 0; } 68%, 88% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .curve { animation: none; stroke-dashoffset: 0; }
+      .pay { animation: none; opacity: .1; }
+      .coll { animation: none; opacity: .12; }
+      .lb { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHO PAYS, AND WHO COLLECTS</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">The junior seat was never priced as labour. It was an option on what the person becomes, and the option matures late.</text>
+
+    <rect class="pay"  x="110" y="100" width="403" height="292" fill="#BF3B24"/>
+    <rect class="coll" x="513" y="100" width="425" height="292" fill="#7E8C6A"/>
+
+    <line x1="110" y1="300" x2="948" y2="300" stroke="#D6CBB6" stroke-width="1.5"/>
+    <line x1="110" y1="100" x2="110" y2="392" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="118" y="94" fill="#8A8578" font-size="10.5" letter-spacing="2.5">VALUE RETURNED</text>
+
+    <path class="curve" d="M110,300 C 140,338 175,358 215,352 C 255,346 290,320 330,300 C 380,275 440,250 513,228 C 600,202 700,168 800,142 C 860,127 910,118 938,114"
+          fill="none" stroke="#BF3B24" stroke-width="2.5"/>
+
+    <line x1="513" y1="100" x2="513" y2="392" stroke="#1B1712" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+    <g class="lb">
+      <text x="300" y="140" fill="#BF3B24" font-size="12.5" text-anchor="middle">what you pay for</text>
+      <text x="300" y="160" fill="#8A8578" font-size="11" text-anchor="middle">the ramp, the review time,</text>
+      <text x="300" y="176" fill="#8A8578" font-size="11" text-anchor="middle">the mistakes</text>
+
+      <text x="740" y="232" fill="#5A7040" font-size="12.5" text-anchor="middle">what somebody else collects</text>
+      <text x="740" y="252" fill="#8A8578" font-size="11" text-anchor="middle">the senior engineer, arriving</text>
+      <text x="740" y="268" fill="#8A8578" font-size="11" text-anchor="middle">on a different payroll</text>
+
+      <text x="505" y="416" fill="#1B1712" font-size="11.5" text-anchor="end">median engineering tenure</text>
+      <text x="505" y="432" fill="#8A8578" font-size="11" text-anchor="end">2 yr 11 mo</text>
+    </g>
+
+    <g font-size="11.5" fill="#8A8578">
+      <text x="110" y="416" text-anchor="middle">hire</text>
+      <text x="800" y="416" text-anchor="middle">year 5</text>
+    </g>
+    <text x="30" y="458" fill="#8A8578" font-size="11">Every firm faces this arithmetic individually. That is why appeals to the industry's collective interest have never worked.</text>
+  </g>
+</svg>

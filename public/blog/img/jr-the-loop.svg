@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-label="A four-step loop that turns a junior engineer into a senior one: take a task slightly beyond you, be wrong in a bounded way, see the consequence while it is still small, and have somebody senior sit through it with you. The loop then repeats and the model in your head updates. The first step is overlaid in red and marked absorbed, because an agent now does that task, so the loop never starts. A note explains that the task was only ever the vehicle, and it is the vehicle that was removed.">
+  <style>
+    .dot { animation: dot 12s ease-in-out infinite; }
+    @keyframes dot {
+      0%, 4%   { transform: translate(0,0); opacity: 1; }
+      16%      { transform: translate(240px,108px); }
+      30%      { transform: translate(0,216px); }
+      44%      { transform: translate(-240px,108px); }
+      54%      { transform: translate(0,0); opacity: 1; }
+      62%      { transform: translate(0,0); opacity: .25; }
+      70%, 100% { transform: translate(0,0); opacity: .25; }
+    }
+    .cut { animation: cut 12s ease-in-out infinite; }
+    @keyframes cut { 0%, 56% { opacity: 0; } 68%, 94% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    .stall { animation: stall 12s ease-in-out infinite; }
+    @keyframes stall { 0%, 62% { opacity: 0; } 74%, 94% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .dot { animation: none; opacity: 0; }
+      .cut, .stall { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="500" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHAT ACTUALLY TURNED A JUNIOR INTO A SENIOR</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">It was never the tasks. The tasks were the vehicle, and the vehicle is the part that was removed.</text>
+
+    <g fill="none" stroke="#D6CBB6" stroke-width="1.8">
+      <path d="M484,190 C 530,196 556,214 566,240"/>
+      <path d="M566,320 C 556,346 530,364 484,370"/>
+      <path d="M246,370 C 200,364 174,346 164,320"/>
+      <path d="M164,240 C 174,214 200,196 246,190"/>
+    </g>
+    <g fill="#D6CBB6">
+      <polygon points="566,246 560,234 573,233"/>
+      <polygon points="484,372 494,364 494,377"/>
+      <polygon points="164,314 170,326 157,327"/>
+      <polygon points="246,188 236,196 236,183"/>
+    </g>
+
+    <rect x="250" y="140" width="230" height="64" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="365" y="167" fill="#1B1712" font-size="12.5" text-anchor="middle">take a task slightly</text>
+    <text x="365" y="185" fill="#1B1712" font-size="12.5" text-anchor="middle">beyond you</text>
+
+    <rect x="490" y="248" width="230" height="64" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="605" y="275" fill="#1B1712" font-size="12.5" text-anchor="middle">be wrong, in a</text>
+    <text x="605" y="293" fill="#1B1712" font-size="12.5" text-anchor="middle">bounded way</text>
+
+    <rect x="250" y="356" width="230" height="64" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="365" y="383" fill="#1B1712" font-size="12.5" text-anchor="middle">see the consequence</text>
+    <text x="365" y="401" fill="#1B1712" font-size="12.5" text-anchor="middle">while it is still small</text>
+
+    <rect x="10" y="248" width="230" height="64" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="125" y="275" fill="#1B1712" font-size="12.5" text-anchor="middle">somebody senior</text>
+    <text x="125" y="293" fill="#1B1712" font-size="12.5" text-anchor="middle">sits through it</text>
+
+    <circle class="dot" cx="365" cy="172" r="6.5" fill="#BF3B24"/>
+
+    <g class="cut">
+      <rect x="250" y="140" width="230" height="64" fill="#BF3B24" opacity=".14" rx="3"/>
+      <rect x="250" y="140" width="230" height="64" fill="none" stroke="#BF3B24" stroke-width="2.5" rx="3"/>
+      <text x="365" y="126" fill="#BF3B24" font-size="10.5" letter-spacing="2.5" text-anchor="middle">ABSORBED BY THE AGENT</text>
+    </g>
+
+    <g class="stall">
+      <text x="365" y="272" fill="#BF3B24" font-size="13.5" text-anchor="middle">the loop never starts</text>
+      <text x="365" y="294" fill="#8A8578" font-size="11.5" text-anchor="middle">and nothing else in it</text>
+      <text x="365" y="311" fill="#8A8578" font-size="11.5" text-anchor="middle">was broken</text>
+    </g>
+
+    <line x1="770" y1="150" x2="770" y2="410" stroke="#E2DACA" stroke-width="1.5"/>
+    <text x="796" y="176" fill="#BF3B24" font-size="10.5" letter-spacing="2.5">THE MISREADING</text>
+    <text x="796" y="206" fill="#5A5449" font-size="12">We read the junior seat as</text>
+    <text x="796" y="224" fill="#5A5449" font-size="12">a supply of cheap labour,</text>
+    <text x="796" y="242" fill="#5A5449" font-size="12">so when the labour got</text>
+    <text x="796" y="260" fill="#5A5449" font-size="12">cheaper elsewhere, the</text>
+    <text x="796" y="278" fill="#5A5449" font-size="12">seat looked redundant.</text>
+    <text x="796" y="312" fill="#1B1712" font-size="12">It was a supply of</text>
+    <text x="796" y="330" fill="#1B1712" font-size="12">seniors, on a five-year</text>
+    <text x="796" y="348" fill="#1B1712" font-size="12">delivery schedule.</text>
+  </g>
+</svg>

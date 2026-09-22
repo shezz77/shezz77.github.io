@@ -1,5 +1,169 @@
 export const POSTS = [
   {
+    slug: "we-stopped-hiring-juniors", cat: "Leadership", date: "Sep 2026", minutes: 18,
+    tags: ["Hiring", "Careers", "Engineering management", "AI-assisted"],
+    title: "We stopped hiring juniors and called it a market",
+    excerpt: "Employment for 22-to-25-year-olds in AI-exposed occupations is now 19% below their less-exposed peers. But the hole was dug in 2022, before the chatbot, by a tax change that was repealed last year — and the gap widened anyway. What is keeping the seat empty is not what either side of the argument says it is.",
+    blocks: [
+      { t: "p", text: "The argument arrives in two shapes and they never touch. One says AI took the entry-level jobs and here is the chart. The other says this is a post-2021 correction with a chatbot painted on the front of it, and you are blaming a language model for interest rates." },
+      { t: "p", text: "Both of them have real evidence, which is why neither side ever moves. And both of them are answering a question about causation when the interesting question is about sequence — because the hole in the junior pipeline was dug before ChatGPT existed, the main reason it was dug has since been removed, and the hole got deeper anyway." },
+      { t: "p", text: "That last fact is the one worth sitting with. It rules out most of the comfortable explanations on both sides." },
+
+      { t: "h", text: "The hole was dug before the chatbot arrived" },
+      { t: "p", text: "Start with the part the AI-did-it version gets wrong. In January 2022 — ten months before ChatGPT — a provision of the 2017 tax act came into force in the US that stopped companies deducting software development salaries in the year they were paid. Section 174 required them to be amortised over five years instead, or fifteen if the work was done abroad." },
+      { t: "p", text: "That is an accounting change with no engineering content whatsoever, and it repriced engineers overnight. A developer's salary stopped being an expense and became something closer to a capital purchase. Then rates rose, and then the correction to two years of pandemic over-hiring landed on top of both." },
+      { t: "img", src: "/blog/img/jr-sequence.svg", w: 1000, h: 470,
+        alt: "A timeline from 2021 to 2026. In January 2022 Section 174 forces companies to amortise software salaries over five years. Through 2022, rate rises and the correction to pandemic over-hiring follow. ChatGPT is released in November 2022, after all of these. In July 2025 Section 174 is permanently repealed and immediate expensing returns, withdrawing the main tax explanation. By June 2026 the employment gap for 22-to-25-year-olds in AI-exposed occupations has nonetheless widened from 15 percent to 19 percent.",
+        caption: "Three explanations arrive before the technology does. The fourth event is the one that breaks the tidy version of either story." },
+      { t: "p", text: "A 2026 paper working from state unemployment-insurance claims makes this case directly: entry-level conditions in AI-exposed occupations were already deteriorating before generative AI was publicly available, which is awkward for any account that starts the clock in November 2022. If you have been rolling your eyes at colleagues who blame the model for everything, this is your evidence and it is good." },
+      { t: "quote", text: "Anyone who tells you the junior market collapsed because of AI has to explain why it started collapsing before the product shipped." },
+
+      { t: "h", text: "Then the reason was withdrawn, and nothing came back" },
+      { t: "p", text: "Here is where the sceptical account runs out of road. Section 174 was not merely softened. It was repealed, permanently, by legislation enacted in July 2025, with immediate expensing of domestic research restored for tax years beginning after December 2024 and companies allowed to recover the balance they had capitalised in the meantime." },
+      { t: "p", text: "The single cleanest macro explanation for why a junior engineer became expensive on paper was removed from the board, in full, with no sunset. Rates had come off their peak. The over-hiring correction was three years old." },
+      { t: "p", text: "The gap for 22-to-25-year-olds in the most AI-exposed occupations was 15% in July 2025. By June 2026 it was 19%." },
+      { t: "note", tone: "info", label: "Why that particular fact does the work",
+        text: "A natural experiment landed in the middle of the argument. If the tax treatment of engineering salaries were carrying the explanation, repealing it should have shown up in entry-level hiring within a year or so of firms being able to expense a graduate again. Instead the gap widened by four points over the same period. That does not prove AI is the cause, but it retires the strongest alternative, and the sceptical case has been leaning on it heavily." },
+
+      { t: "h", text: "What the numbers actually say" },
+      { t: "p", text: "The research everyone is citing is the Stanford Digital Economy Lab's canaries work, updated in August 2026 from payroll records rather than surveys. It is worth reading precisely rather than as a headline, because the precise version is more interesting and considerably less apocalyptic." },
+      { t: "img", src: "/blog/img/jr-exposure-gap.svg", w: 1000, h: 450,
+        alt: "Two diverging lines from November 2022 to June 2026 tracking employment for workers aged 22 to 25. In the two most AI-exposed occupation quintiles employment falls about 11 percent. In the three least-exposed quintiles it grows about 10 percent. The gap between them is marked at 19 percent. A third, flat line shows experienced workers in the same exposed occupations, who show no comparable gap.",
+        caption: "Same age band, same economy, same three and a half years. The variable is exposure, and the older cohort in those same occupations is fine." },
+      { t: "list", items: [
+        "Employment for 22-to-25-year-olds in the two most AI-exposed quintiles fell about 11% between November 2022 and June 2026. In the three least-exposed quintiles, the same age band grew about 10%.",
+        "Experienced workers in those same exposed occupations show no comparable gap. This is an age effect inside an occupation, not an occupation dying.",
+        "There is no widespread economy-wide displacement. The authors say so explicitly, and anyone quoting them for a jobs-apocalypse headline is quoting them against their own conclusion.",
+        "The adjustment runs through reduced hiring rather than increased separations. Nobody was let go. The seat simply stopped being opened.",
+        "The declines concentrate where AI automates tasks rather than where it complements the worker — which is a claim about what the tool does to the work, not about how good the tool is."
+      ] },
+      { t: "p", text: "That fourth point is the one I would put on a slide. This was not a redundancy programme. There was no meeting. Every individual decision was a requisition that quietly did not get written, and a requisition that does not get written generates no announcement, no severance line, and no moment at which anybody had to defend it." },
+      { t: "note", tone: "warn", label: "Where I would hold this loosely",
+        text: "“AI-exposed” is an index of task overlap between an occupation and what models can do. It is a reasonable construct and it is not a measurement of anything a model actually did at a specific employer, and the exposure indices are genuinely contested. What makes this harder to wave away than most such work is that the authors also run it with technology firms and computer occupations excluded — so “it is just the tech correction” does not account for the pattern either. Treat it as a strong signal with a plausible mechanism, not as a settled causal estimate." },
+
+      { t: "h", text: "The seat was never priced as labour" },
+      { t: "p", text: "So if it is not the tax code, and it is not a mass firing, what is actually keeping the seat empty? The answer is in the arithmetic of what a junior seat always was, which almost nobody writes down because it has never appeared on a budget line." },
+      { t: "p", text: "Three to six months is the usual figure for an experienced hire to reach full productivity. A graduate is not an experienced hire. For most of the first year the value returned is negative — not low, negative — because the output has to be reviewed by somebody whose time is worth more, and the review is slower than doing it would have been." },
+      { t: "img", src: "/blog/img/jr-payback.svg", w: 1000, h: 470,
+        alt: "A curve showing the value a junior engineer returns over six years. It is negative for roughly the first nine months, crosses zero, then climbs steadily, with the largest returns arriving in years four to six once the person has become a senior engineer. A vertical line at two years and eleven months marks median engineering tenure. The area left of that line is labelled what you pay for; the area right of it, containing most of the return, is labelled what somebody else collects.",
+        caption: "The big returns sit to the right of the line. The line is where the average engineer leaves." },
+      { t: "p", text: "Ravio put average tenure in engineering at two years and eleven months in 2025. Set that against a curve whose steepest section is years four to six, and the shape of the trade becomes obvious: the firm that pays for the ramp is usually not the firm that employs the senior engineer it produced." },
+      { t: "quote", text: "The junior seat was never a supply of cheap labour. It was a supply of seniors, on a five-year delivery schedule, mostly delivered to somebody else." },
+      { t: "p", text: "Which raises the obvious question of why anybody ever did it. And the answer is that until about three years ago, they had no choice. If you wanted the near-term output — the small tickets, the test coverage, the migration nobody wanted, the first draft of the endpoint — you had to buy it attached to a person, and the person came with a ramp. The apprenticeship was not funded. It was bundled." },
+
+      { t: "h", text: "Nobody defunded it, because it was never funded" },
+      { t: "p", text: "That bundling is the whole mechanism, and unbundling it is the thing that actually happened. The near-term output is now available without the person. So the ramp cost became visible as a standalone expense for the first time — and a cost that has just become visible, with a benefit that lands after the average employee has left, does not survive a budget review." },
+      { t: "note", tone: "info", label: "The reason this happened without a decision",
+        text: "A training programme with a line item gets cut in a meeting, and somebody has to argue for it. A training programme that exists as a by-product of how work was allocated disappears the moment the work is allocated differently, and nobody experiences that as a decision at all. Every engineering leader I know who has stopped opening junior roles can give you a defensible reason for each individual quarter. None of them would describe themselves as having closed the apprenticeship." },
+      { t: "p", text: "And this is why the standard advice fails. “Hire juniors, it pays off” is aimed at the firm, and for a great many firms it now genuinely does not pay off inside the horizon they actually hold. Telling people their arithmetic is wrong when it is right is not persuasion, and it is the reason the conversation has been stuck for two years." },
+      { t: "table", label: "Who pays and who collects, which is the entire problem",
+        head: ["", "Falls on", "Arrives"],
+        rows: [
+          ["The ramp: salary, review time, the mistakes", "This team, this budget, this year", "Immediately"],
+          ["Mid-level capacity", "Probably still you, if they stay", "Year 2 to 3"],
+          ["A senior engineer who has seen things break", "The industry, and usually a competitor", "Year 4 to 6"],
+          ["The shortage, when the cohort never existed", "Whoever is running engineering by then", "Year 5 onwards"]
+        ] },
+      { t: "p", text: "Read down the right-hand column. This is a textbook externality, and externalities are not solved by asking participants to be more far-sighted. They get solved by changing what an individual participant collects, or they do not get solved." },
+
+      { t: "h", text: "What actually made a senior" },
+      { t: "p", text: "There is a second mistake underneath the economic one, and it is the mistake I care about more, because it is the one that is fixable by people reading this." },
+      { t: "p", text: "We talk about junior work as though the tasks were the point — as though a graduate became a senior engineer by completing a sufficient quantity of small tickets, and the tickets were a kind of tuition paid in labour. That is not how it worked. I have watched people do four years of small tickets and arrive at the end as a faster version of the person who started." },
+      { t: "img", src: "/blog/img/jr-the-loop.svg", w: 1000, h: 500,
+        alt: "A four-step loop that turns a junior engineer into a senior one: take a task slightly beyond you, be wrong in a bounded way, see the consequence while it is still small, and have somebody senior sit through it with you. The first step is overlaid in red and marked absorbed, because an agent now does that task, so the loop never starts. A panel explains the misreading: we read the junior seat as a supply of cheap labour, when it was a supply of seniors on a five-year delivery schedule.",
+        caption: "Four steps, and only the first one was automated. That was enough, because it is the one the other three hang off." },
+      { t: "p", text: "The loop is the thing: take on something slightly past your competence, be wrong, watch the consequence while it is still small enough to watch, and have somebody senior sit through it with you rather than take the keyboard. The tasks were never the curriculum. They were the vehicle the loop travelled in, and they were a mediocre vehicle that happened to be free." },
+      { t: "p", text: "[I ended a piece a few weeks ago by saying that depth was never produced by a stricter job title — it was produced by an incident, and by somebody senior enough to sit through it with you](/blog/full-stack-lost-its-meaning/). This is the same claim from the other end. If that is what produces depth, then removing the small tickets does not remove the training. It removes the excuse for the training, which is a different and more recoverable problem." },
+
+      { t: "h", text: "The seat got more dangerous at exactly the wrong moment" },
+      { t: "p", text: "One more thing happened, and it rarely gets said out loud because it sounds unkind. The junior seat used to have a safety property built into it that had nothing to do with anybody's judgement: a junior could only do damage at the speed they could type." },
+      { t: "p", text: "That was load-bearing. It meant a misunderstanding produced one wrong file, which showed up in one review, on one afternoon, at a size a senior could hold in their head. The blast radius was bounded by throughput, and throughput was bounded by a human." },
+      { t: "quote", text: "The speed limit was doing more pedagogical work than any of us noticed, and it is the first thing an agent removes." },
+      { t: "p", text: "Now the same misunderstanding produces a 900-line pull request that is plausible, internally consistent, matches the house style, and has tests that pass. The judgement gap is unchanged. The output volume is senior. And it lands on a reviewer who was already [the bottleneck nobody staffed for](/blog/the-review-bottleneck/), and who now has to do the much harder job of working out whether the author understands what they have submitted." },
+      { t: "note", tone: "warn", label: "This is the same failure as unadopted code, with a career attached",
+        text: "Code that gets merged without anybody having read it properly is [a liability I have written about before](/blog/two-honest-endings-for-vibe-code/). When the author is a junior, there is a second loss stacked on the first: not only does nobody own the code, but the person who submitted it did not learn anything from it either. The review was the lesson. A rubber-stamped approval on generated work is two failures wearing one trench coat." },
+      { t: "p", text: "Taken together with the economics, this is a complete account of why the seat is empty. It became harder to justify and harder to supervise in the same eighteen months. No malice and no memo required." },
+
+      { t: "h", text: "What works, given that moralising does not" },
+      { t: "p", text: "If the problem is that the return arrives after the person leaves, the only intervention with any leverage is to move the return earlier. Not to appeal to the industry's collective interest, which has never once worked on anything. Compress the payback so it lands inside the tenure you actually get." },
+      { t: "p", text: "Everything below is aimed at that single number." },
+      { t: "table", label: "The old vehicle, and what has to replace it",
+        head: ["What used to do the teaching", "Why it stopped", "What replaces it"],
+        rows: [
+          ["A backlog of small tickets", "The agent finishes them before the ticket is groomed", "One owned surface, small, with their name in CODEOWNERS"],
+          ["Being wrong slowly and visibly", "Volume is senior now; wrongness arrives at scale", "Wrongness on purpose: break it in staging and watch what pages"],
+          ["Reading the codebase to find where things are", "The model answers in four seconds, correctly, most of the time", "Ask them to predict the answer before they ask, then compare"],
+          ["Sitting next to somebody during an incident", "Incidents are rarer and remote, and juniors are not paged", "Put them on the rota as scribe from week three, driver by month six"]
+        ] },
+      { t: "p", text: "The CODEOWNERS row is the cheapest thing on this list and the one I would do first. A ticket queue teaches nothing because nothing in it is theirs the following week. A surface — one queue consumer, one webhook handler, one report — produces the thing that actually matters, which is somebody who finds out on Tuesday that a decision they made in March was wrong." },
+      { t: "code", label: "the cheapest apprenticeship mechanism in the repository", lines: [
+        { text: "# CODEOWNERS", color: "#5E5344" },
+        { text: "# Not a ticket queue. A surface, with a name on it.", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "/services/billing/webhooks/    @priya  @marcus", color: "#9A8B70" },
+        { text: "#                              junior   senior", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "# Priya reviews every change here. Including mine.", color: "#E0A458" },
+        { text: "# Marcus is on the line for the outcome, not the diff.", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# The point is the pager, not the permission: she finds", color: "#BF6B4E" },
+        { text: "# out in March whether February's call was right.", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "The second thing is the agent itself, which is not the enemy here and is in fact the best tutor a junior engineer has ever had access to — on one condition, which is the same condition as always. It has to explain rather than deliver, and the verdict has to come from somewhere else." },
+      { t: "code", label: "the agent as a tutor, which requires saying so explicitly", lines: [
+        { text: "# The default interaction hands over a finished answer.", color: "#5E5344" },
+        { text: "# That is the correct default for a senior in a hurry", color: "#5E5344" },
+        { text: "# and the wrong one for somebody in year one.", color: "#5E5344" },
+        { text: "", color: "#5E5344" },
+        { text: "Do not write the code. Ask me what I think the", color: "#9A8B70" },
+        { text: "problem is first. Then tell me which part of my", color: "#9A8B70" },
+        { text: "answer is wrong, and only that part.", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "When I am stuck, give me the next question to", color: "#E0A458" },
+        { text: "ask, not the next line to type.", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# Then go and be wrong in staging, where it is cheap.", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "And the third thing is what a senior does in review, which has to change shape. Reviewing a junior's generated pull request for correctness is nearly worthless now — the model is decent at correctness and the reviewer cannot tell from the diff who understood what. The question that carries information is the same one I would ask about any generated code, [which is whether the author can own it](/blog/two-honest-endings-for-vibe-code/), asked out loud." },
+      { t: "list", items: [
+        "Which part of this did you already know was right, and which part are you taking on trust? The answer to that is the entire lesson plan for the next month.",
+        "What did you try that did not work? A junior who has no discarded attempts did not do the work, and the absence is invisible in the diff.",
+        "What breaks this? Not in general — in this file, next quarter, when the volume triples."
+      ] },
+
+      { t: "h", text: "Where I would concede the point" },
+      { t: "p", text: "A twelve-person company with no senior slack genuinely cannot absorb a graduate right now, and telling them otherwise is asking them to take a risk with somebody else's runway. That constraint is real and it is not a moral failing, and any argument of this kind that does not say so plainly is not being honest about the arithmetic it just spent four sections describing." },
+      { t: "p", text: "It is also fair to say that the old apprenticeship was wasteful. A great deal of what juniors used to do was genuinely low-value work that taught nothing — a person can spend two years renaming things and updating fixtures and learn almost nothing, and we should not be nostalgic about it just because the good version and the useless version were served from the same queue. Some of what has been automated deserved to be." },
+      { t: "p", text: "What I do not accept is the inference people draw from those two concessions: that because the seat is hard to justify per-firm and the old version was partly wasteful, the shortage is somebody else's problem to solve. It is a genuine collective-action problem, and those do sometimes get solved centrally. I would not plan around it." },
+
+      { t: "h", text: "The bill arrives on somebody else's watch" },
+      { t: "p", text: "The uncomfortable thing about this particular gap is the lag. The cohort that is not being hired in 2026 is the cohort that will not be available as mid-levels in 2030 and not available as seniors around 2032. Nobody currently making the decision will be holding the consequence, and the people who will be holding it are, right now, sending applications into a pipeline that does not have a first rung." },
+      { t: "p", text: "Which is why I would not wait for the industry to work this out. The industry is a set of firms each doing correct arithmetic. It is not going to reach a different answer by being reminded that seniors come from somewhere." },
+      { t: "p", text: "So the lever you hold is narrower than the problem and it is the only one available: how fast somebody becomes useful on your team, specifically. Give them a surface rather than a queue. Put them near an incident before they feel ready. Make the model explain instead of deliver. Review for what they understood, not for whether it compiles. None of that requires a policy, a budget line, or anybody else's agreement." },
+      { t: "p", text: "And it is worth being clear about what the last three years actually removed, because it was not a job and it was not a skill. It removed the arrangement under which the industry trained its successors by accident, while thinking it was buying cheap labour. That arrangement is not coming back. What replaces it has to be done on purpose, by somebody, or it does not get done — and the entire history of things that only happen by accident suggests that is not a safe assumption." },
+
+      { t: "links", label: "References", items: [
+        { label: "Stanford Digital Economy Lab, Canaries in the Coal Mine? (August 2026 update)", href: "https://digitaleconomy.stanford.edu/news/canariesaug26/", note: "The gap for ages 22–25 in the most AI-exposed occupations widened from 15% to 19%; adjustment runs through hiring, not separations; no economy-wide displacement." },
+        { label: "Brynjolfsson, Chandar & Chen, the original Canaries paper", href: "https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/", note: "The six facts, the payroll-record methodology, and the robustness tests that exclude technology firms and computer occupations." },
+        { label: "AI-exposed jobs deteriorated before ChatGPT (2026)", href: "https://arxiv.org/pdf/2601.02554", note: "The strongest version of the sceptical case: entry-level conditions in exposed occupations were already worsening before generative AI shipped." },
+        { label: "The Pragmatic Engineer on Section 174", href: "https://blog.pragmaticengineer.com/section-174/", note: "Why amortising developer salaries over five years repriced engineering headcount from January 2022, ten months before ChatGPT." },
+        { label: "Grant Thornton, permanent full expensing for US research under the OBBBA", href: "https://www.grantthornton.com/insights/alerts/tax/2025/insights/full-expensing-of-domestic-research", note: "The July 2025 repeal, effective for tax years beginning after December 2024, with no sunset. The natural experiment in the middle of the argument." },
+        { label: "Ravio, employee tenure trends", href: "https://ravio.com/blog/employee-tenure-trends", note: "Average tenure in engineering at two years and eleven months — the line the payback curve has to beat." }
+      ] }
+    ],
+    takeaways: [
+      "The junior pipeline started closing before ChatGPT: Section 174 forced five-year amortisation of developer salaries from January 2022, alongside rate rises and the over-hiring correction.",
+      "Section 174 was permanently repealed effective 2025 — and the employment gap for 22-to-25-year-olds in AI-exposed occupations still widened from 15% to 19% by June 2026. The tax explanation has been retired by events.",
+      "The mechanism is reduced hiring, not separations. Nobody was let go; the requisition just stopped being written, which is why it happened with no decision and no announcement.",
+      "Experienced workers in the same exposed occupations show no comparable gap, and there is no economy-wide displacement. This is an age effect inside an occupation.",
+      "The junior seat was never priced as labour — it was an option on a future senior, maturing in years 4–6 against average engineering tenure of 2 years 11 months. It only ever got funded because near-term output came bundled with a person.",
+      "Unbundling made the ramp cost visible as a standalone expense for the first time, and a newly visible cost with a benefit that lands after the average employee leaves does not survive a budget review.",
+      "What produced seniors was a loop — take a task past your competence, be wrong, see the small consequence, have someone senior sit through it. Only the first step was automated, and the other three hang off it.",
+      "A junior used to be safe because they could only do damage at typing speed. Agents removed the speed limit and not the judgement gap, so the seat got harder to supervise and harder to justify in the same eighteen months.",
+      "Appeals to collective interest will not fix an externality. The only available lever is compressing time-to-usefulness: a surface in CODEOWNERS rather than a ticket queue, the incident rota from week three, and an agent instructed to explain rather than deliver."
+    ]
+  },
+  {
     slug: "two-honest-endings-for-vibe-code", cat: "AI", date: "Sep 2026", minutes: 17,
     tags: ["AI-assisted", "Vibe coding", "Code review", "Maintainability", "Agents"],
     title: "Vibe coding has two honest endings, and we industrialised the third",
