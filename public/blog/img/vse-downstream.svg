@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="Two groups of bars on the same linear scale, from Faros AI's 2026 telemetry across 22,000 developers. Upstream, what the dashboard shows: pull request merge rate per developer up 16 percent, task throughput up 34 percent, epics completed up 66 percent. Downstream, where it lands: pull requests merged without any review up 31 percent, bugs per developer up 54 percent, incidents per pull request up 243 percent, and median time in review up 441 percent, a bar that runs almost the full width of the chart.">
+  <style>
+    .bar { transform-box: fill-box; transform-origin: left center; animation: grow 10s ease-out infinite; }
+    @keyframes grow { 0%, 3% { transform: scaleX(0); } 13%, 93% { transform: scaleX(1); } 99%, 100% { transform: scaleX(1); opacity: 0; } }
+    .d1 { animation-delay: 1.6s; } .d2 { animation-delay: 2s; } .d3 { animation-delay: 2.4s; } .d4 { animation-delay: 2.8s; }
+    @media (prefers-reduced-motion: reduce) { .bar { animation: none; transform: none; } }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THE SAME DATA, BOTH ENDS OF THE PIPE</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Faros AI, 2026: 22,000 developers, 4,000+ teams, under high AI adoption. One linear scale.</text>
+
+    <text x="30" y="100" fill="#5A5449" font-size="11" letter-spacing="2">UPSTREAM · WHAT THE DASHBOARD SHOWS</text>
+    <text x="30" y="131" fill="#1B1712" font-size="12.5">PR merge rate per developer</text>
+    <rect class="bar" x="380" y="118" width="21" height="18" fill="#E0A458"/>
+    <text x="409" y="131" fill="#5A5449" font-size="12">+16%</text>
+    <text x="30" y="163" fill="#1B1712" font-size="12.5">task throughput per developer</text>
+    <rect class="bar" x="380" y="150" width="43" height="18" fill="#E0A458"/>
+    <text x="431" y="163" fill="#5A5449" font-size="12">+34%</text>
+    <text x="30" y="195" fill="#1B1712" font-size="12.5">epics completed per developer</text>
+    <rect class="bar" x="380" y="182" width="84" height="18" fill="#E0A458"/>
+    <text x="472" y="195" fill="#5A5449" font-size="12">+66%</text>
+
+    <line x1="30" y1="222" x2="970" y2="222" stroke="#D6CBB6" stroke-width="1.2"/>
+
+    <text x="30" y="252" fill="#BF3B24" font-size="11" letter-spacing="2">DOWNSTREAM · WHERE IT LANDS</text>
+    <text x="30" y="283" fill="#1B1712" font-size="12.5">PRs merged with no review</text>
+    <rect class="bar d1" x="380" y="270" width="40" height="18" fill="#BF3B24"/>
+    <text x="428" y="283" fill="#5A5449" font-size="12">+31%</text>
+    <text x="30" y="315" fill="#1B1712" font-size="12.5">bugs per developer</text>
+    <rect class="bar d2" x="380" y="302" width="68" height="18" fill="#BF3B24"/>
+    <text x="456" y="315" fill="#5A5449" font-size="12">+54%</text>
+    <text x="30" y="347" fill="#1B1712" font-size="12.5">incidents per pull request</text>
+    <rect class="bar d3" x="380" y="334" width="308" height="18" fill="#BF3B24"/>
+    <text x="696" y="347" fill="#5A5449" font-size="12">+243%</text>
+    <text x="30" y="379" fill="#1B1712" font-size="12.5">median time in review</text>
+    <rect class="bar d4" x="380" y="366" width="560" height="18" fill="#BF3B24"/>
+    <text x="930" y="379" fill="#FCFAF4" font-size="12" text-anchor="end">+441%</text>
+
+    <line x1="380" y1="110" x2="380" y2="394" stroke="#5A5449" stroke-width="1.2"/>
+
+    <text x="30" y="440" fill="#8A8578" font-size="11">Generation got cheap. Verification did not. The queue formed in front of whoever is most senior.</text>
+  </g>
+</svg>

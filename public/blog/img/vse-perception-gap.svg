@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="Three horizontal bars around a zero line for the METR 2025 trial of experienced open-source developers. Expected before starting: 24 percent faster. Believed afterwards: 20 percent faster. Measured: 19 percent slower, drawn in red on the other side of the zero line. Below, a note on the February 2026 follow-up: METR could no longer measure cleanly because 30 to 50 percent of developers declined to submit tasks they did not want to do without AI.">
+  <style>
+    .bar { transform-box: fill-box; animation: grow 9s ease-out infinite; }
+    .r { transform-origin: left center; } .l { transform-origin: right center; }
+    @keyframes grow { 0%, 4% { transform: scaleX(0); } 14%, 93% { transform: scaleX(1); } 99%, 100% { transform: scaleX(1); opacity: 0; } }
+    .b2 { animation-delay: .8s; } .b3 { animation-delay: 1.8s; }
+    .st { animation: st 9s ease-out infinite; opacity: 0; }
+    @keyframes st { 0%, 26% { opacity: 0; } 34%, 93% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .bar { animation: none; transform: none; }
+      .st { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="430" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHAT IT FELT LIKE, AND WHAT WAS MEASURED</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">METR, 2025: 16 experienced open-source developers, real tasks in repositories they knew well.</text>
+
+    <line x1="560" y1="92" x2="560" y2="286" stroke="#5A5449" stroke-width="1.5"/>
+    <text x="548" y="104" fill="#8A8578" font-size="11" text-anchor="end">← slower</text>
+    <text x="572" y="104" fill="#8A8578" font-size="11">faster →</text>
+
+    <text x="30" y="143" fill="#1B1712" font-size="12.5">expected, before starting</text>
+    <rect class="bar r" x="560" y="126" width="192" height="24" fill="#E0A458"/>
+    <text x="762" y="143" fill="#5A5449" font-size="12.5">24% faster</text>
+
+    <text x="30" y="197" fill="#1B1712" font-size="12.5">believed, afterwards</text>
+    <rect class="bar r b2" x="560" y="180" width="160" height="24" fill="#E0A458"/>
+    <text x="730" y="197" fill="#5A5449" font-size="12.5">20% faster</text>
+
+    <text x="30" y="251" fill="#BF3B24" font-size="12.5">measured</text>
+    <rect class="bar l b3" x="408" y="234" width="152" height="24" fill="#BF3B24"/>
+    <text x="398" y="251" fill="#BF3B24" font-size="12.5" text-anchor="end">19% slower</text>
+
+    <g class="st">
+      <rect x="30" y="306" width="940" height="78" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="48" y="332" fill="#BF3B24" font-size="11" letter-spacing="2">THE FEBRUARY 2026 FOLLOW-UP</text>
+      <text x="48" y="354" fill="#1B1712" font-size="12.5">57 developers, 800+ tasks, and 30–50% withheld tasks they would not do without AI.</text>
+      <text x="48" y="373" fill="#5A5449" font-size="11.5">Estimates moved towards a speed-up; METR itself calls them very weak evidence.</text>
+    </g>
+
+    <text x="30" y="414" fill="#8A8578" font-size="11">The feeling is now the main thing most teams measure, and it has a documented bias.</text>
+  </g>
+</svg>

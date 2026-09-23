@@ -258,3 +258,33 @@ What closes it:
 The full breakdown, with the exact settings, is in the first comment.
 
 Is --dangerously-skip-permissions aliased in your shell right now?
+
+---
+
+## Extra — Vibe coding's side effects (image post)
+
+Image: `social/linkedin-vibe-side-effects.png`. First comment: `shezz77.com/go/vibe-coding-side-effects/`
+
+Vibe coding works. That's why it needs a leaflet.
+
+Eighteen months in, the evidence is finally good enough to write one, and it isn't the argument either side wanted.
+
+The gains are real. Faros's telemetry across 22,000 developers shows task throughput up 34% and epics completed up 66%.
+
+The same data, further down the pipe:
+— median time in review up 441%
+— incidents per pull request up 243%
+— pull requests merged with no review at all up 31%
+
+Other side effects:
+— feeling faster than you are: METR measured experienced devs 19% slower while they believed they were 20% faster
+— code that grows and never gets tidier: refactoring down 70%, duplication up 81% (GitClear)
+— skills that never form: learners using AI scored 50% vs 67% on concepts they'd just used, worst on debugging (Anthropic)
+
+And effects on people who never used it: curl shut its bug bounty when real vulnerabilities fell below 5% of reports, and Tailwind lost ~80% of its revenue while its downloads hit a record.
+
+None of this says stop. It says dose. Measure lead time and incidents per change, not the feeling. If throughput is up and incidents are up faster, you're only looking at half the chart.
+
+The full leaflet, with the dosage I actually use, is in the first comment.
+
+Which side effect is your team feeling most right now?

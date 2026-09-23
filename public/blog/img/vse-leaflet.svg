@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="A mock medicine leaflet titled Vibe Coding, patient information, read all of this leaflet before you ship. Indicated for prototypes, internal tools, market tests and code you will delete. Common side effects: feeling faster than you are, measured as 19 percent slower while believing 20 percent faster; the work moving into review, median time in review up 441 percent; code that grows and never gets tidier, with refactoring down 70 percent and duplication up 81 percent. Uncommon but serious: skills that never form, 17 percent lower quiz scores for learners; open databases and borrowed agents. Effects on others: maintainers drowning in generated reports, and documentation traffic collapsing. Interactions: usage-based bills. Stop taking if the codebase is mature, if you are learning something new, or if nobody will review the output.">
+  <style>
+    .st { animation: st 12s ease-out infinite; opacity: 0; }
+    @keyframes st { 0%, 3% { opacity: 0; } 9%, 93% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    .s2 { animation-delay: .7s; } .s3 { animation-delay: 1.4s; } .s4 { animation-delay: 2.1s; }
+    .s5 { animation-delay: 2.8s; } .s6 { animation-delay: 3.5s; } .s7 { animation-delay: 4.2s; }
+    @media (prefers-reduced-motion: reduce) { .st { animation: none; opacity: 1; } }
+  </style>
+  <rect width="1000" height="600" fill="#FCFAF4"/>
+  <rect x="20" y="16" width="960" height="568" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.5" rx="4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <rect x="20" y="16" width="960" height="104" fill="#F5F1E8" rx="4"/>
+    <line x1="20" y1="120" x2="980" y2="120" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="44" y="60" fill="#1B1712" font-size="28" font-weight="700" letter-spacing="2">VIBE CODING</text>
+    <text x="264" y="60" fill="#BF3B24" font-size="14" letter-spacing="1">prompts, unlimited</text>
+    <text x="956" y="52" fill="#5A5449" font-size="11" letter-spacing="2.5" text-anchor="end">PACKAGE LEAFLET</text>
+    <text x="956" y="72" fill="#8A8578" font-size="11" text-anchor="end">September 2026 edition</text>
+    <text x="44" y="96" fill="#5A5449" font-size="12">Information for the builder. Read all of this leaflet before you ship.</text>
+
+    <line x1="500" y1="140" x2="500" y2="522" stroke="#D6CBB6" stroke-width="1" stroke-dasharray="3 4"/>
+
+    <g class="st">
+      <text x="44" y="162" fill="#BF3B24" font-size="11" letter-spacing="2">1. WHAT IT IS FOR</text>
+      <text x="44" y="186" fill="#1B1712" font-size="12.5">prototypes · internal tools · market tests</text>
+      <text x="44" y="204" fill="#1B1712" font-size="12.5">and anything you will actually delete</text>
+    </g>
+
+    <g class="st s2">
+      <text x="44" y="244" fill="#BF3B24" font-size="11" letter-spacing="2">2. COMMON SIDE EFFECTS</text>
+      <text x="44" y="268" fill="#1B1712" font-size="12.5">• feeling faster than you are</text>
+      <text x="60" y="286" fill="#8A8578" font-size="11.5">measured 19% slower, felt 20% faster</text>
+      <text x="44" y="312" fill="#1B1712" font-size="12.5">• work piling up in review</text>
+      <text x="60" y="330" fill="#8A8578" font-size="11.5">median time in review +441%</text>
+      <text x="44" y="356" fill="#1B1712" font-size="12.5">• code that grows and never tidies</text>
+      <text x="60" y="374" fill="#8A8578" font-size="11.5">refactoring −70%, duplication +81%</text>
+    </g>
+
+    <g class="st s3">
+      <text x="44" y="414" fill="#BF3B24" font-size="11" letter-spacing="2">3. INTERACTIONS</text>
+      <text x="44" y="438" fill="#1B1712" font-size="12.5">• usage-based bills you can't price per turn</text>
+      <text x="44" y="462" fill="#1B1712" font-size="12.5">• trust falling while use rises</text>
+      <text x="60" y="480" fill="#8A8578" font-size="11.5">84% use it, 3.1% highly trust it</text>
+    </g>
+
+    <g class="st s4">
+      <text x="524" y="162" fill="#BF3B24" font-size="11" letter-spacing="2">4. UNCOMMON BUT SERIOUS</text>
+      <text x="524" y="186" fill="#1B1712" font-size="12.5">• skills that never form</text>
+      <text x="540" y="204" fill="#8A8578" font-size="11.5">learners 17 points lower, worst at debugging</text>
+      <text x="524" y="230" fill="#1B1712" font-size="12.5">• a database anybody can read</text>
+      <text x="524" y="254" fill="#1B1712" font-size="12.5">• an agent somebody else can drive</text>
+    </g>
+
+    <g class="st s5">
+      <text x="524" y="294" fill="#BF3B24" font-size="11" letter-spacing="2">5. EFFECTS ON PEOPLE AROUND YOU</text>
+      <text x="524" y="318" fill="#1B1712" font-size="12.5">• maintainers buried in generated reports</text>
+      <text x="540" y="336" fill="#8A8578" font-size="11.5">curl's valid-report share fell below 5%</text>
+      <text x="524" y="362" fill="#1B1712" font-size="12.5">• docs nobody visits any more</text>
+      <text x="540" y="380" fill="#8A8578" font-size="11.5">Tailwind revenue −80%, downloads at a record</text>
+    </g>
+
+    <g class="st s6">
+      <rect x="516" y="404" width="440" height="100" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.6" rx="3"/>
+      <text x="534" y="428" fill="#BF3B24" font-size="11" letter-spacing="2">6. STOP TAKING IF</text>
+      <text x="534" y="452" fill="#1B1712" font-size="12.5">the codebase is mature and the change is old</text>
+      <text x="534" y="472" fill="#1B1712" font-size="12.5">you are trying to learn something new</text>
+      <text x="534" y="492" fill="#1B1712" font-size="12.5">nobody is going to review the output</text>
+    </g>
+
+    <line x1="44" y1="530" x2="956" y2="530" stroke="#D6CBB6" stroke-width="1.2"/>
+    <g class="st s7">
+      <text x="44" y="560" fill="#5A5449" font-size="12">Keep out of reach of production unless reviewed. Do not exceed the dose that felt good in the demo.</text>
+    </g>
+  </g>
+</svg>
