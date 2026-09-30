@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "dist",
+      "runtimeExecutable": "/Users/shezz/.nvm/versions/node/v22.18.0/bin/node",
+      "runtimeArgs": [
+        "node_modules/vite/bin/vite.js",
+        "preview",
+        "--port",
+        "4173"
+      ],
+      "port": 4173
+    }
+  ]
+}

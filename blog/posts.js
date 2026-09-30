@@ -1,5 +1,124 @@
 export const POSTS = [
   {
+    slug: "nvidia-openshell-agent-boundary", cat: "AI", date: "Oct 2026", minutes: 14,
+    tags: ["AI agents", "Security", "Sandboxing", "Claude Code", "Open source"],
+    title: "NVIDIA's OpenShell takes the permissions out of the agent",
+    excerpt: "Every control I wrote about last month lived inside the agent, or inside a settings file the agent's own user can edit. OpenShell, NVIDIA's Apache-licensed agent runtime, puts the boundary somewhere else: a supervisor process the agent cannot reach, a policy per program and per HTTP method, and credentials the agent never holds. Here is how it works, what it costs, and where I would and would not use it.",
+    blocks: [
+      { t: "p", text: "The lesson of [the s1ngularity attack](/blog/malware-that-asked-your-ai-cli/) was uncomfortable in a specific way. The malware did not break any control. It started a coding agent with the flag that switches the controls off, and asked. The permission prompts, the deny rules and the model's own refusals all lived inside the thing being driven, and one command-line flag was enough to set them aside." },
+      { t: "p", text: "The fix I suggested then was to push the setting somewhere an ordinary user cannot edit it, and to run long unattended sessions in a container with nothing worth stealing. That works. It is also a pile of hand-made plumbing that every team rebuilds slightly differently. [OpenShell](https://github.com/NVIDIA/OpenShell) is NVIDIA's attempt to make that plumbing a product, and it is worth reading closely even if you never install it, because its design says clearly where an agent's boundary ought to sit." },
+
+      { t: "h", text: "What it is" },
+      { t: "p", text: "OpenShell describes itself as \"the safe, private runtime for autonomous AI agents\". It is written in Rust, licensed Apache-2.0, and was made public in February 2026. NVIDIA announced it at GTC in March as the runtime underneath NemoClaw, its security stack for OpenClaw agents. It passed 12,000 stars in seven months, and the current release is v0.1.2, from 28 September. The 0.1 line is the first with a stated stability policy: weekly stable releases, fixes for the latest two minor versions, and a label on the interfaces that may still change in a patch release." },
+      { t: "p", text: "You do not have to use NVIDIA's agent. The documentation names Claude Code, Codex, OpenCode and GitHub Copilot CLI as intended workloads, and the repository ships credential definitions for Anthropic, OpenAI, OpenRouter, Bedrock, Vertex, GitHub, PyPI and several others. The default sandbox image is a minimal Ubuntu with no agent installed. You bring the agent. OpenShell decides what it can touch." },
+      { t: "code", label: "getting started, from the README", lines: [
+        { text: "curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh", color: "#E0A458" },
+        { text: "openshell sandbox create --name demo", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# pin the version in anything you script", color: "#5E5344" },
+        { text: "curl -LsSf .../install.sh | OPENSHELL_VERSION=v0.1.2 sh", color: "#9A8B70" }
+      ] },
+
+      { t: "h", text: "Four parts, and one line between them" },
+      { t: "p", text: "The architecture document is the best thing in the repository, so here is a summary of it. There are four parts. What matters is which side of the boundary each one sits on." },
+      { t: "img", src: "/blog/img/os-architecture.svg", w: 1000, h: 520,
+        alt: "OpenShell's architecture in two zones separated by a red dashed boundary line. On the untrusted side, a box labelled workload contains the agent process, such as Claude Code or Codex, running as a non-root user with no Linux capabilities, with Landlock limiting its filesystem and seccomp intercepting every network open and DNS query. Next to it the sandbox process launches the agent as a child, identifies which binary made each request from /proc, and makes no policy decisions. On the trusted side, the supervisor checks every request against policy, injects credentials only into approved requests, resolves DNS and opens the real connection. Above it the gateway, the control plane, holds identity, sandbox state, policy delivery, providers and the policy prover, and signs a JWT scoped to one sandbox. A compute driver row lists Docker, Podman, Kubernetes and MicroVM, each of which removes the workload's direct network path. Arrows show a request going from the agent through the sandbox protocol, over mutual TLS, to the supervisor and out to an approved host such as api.github.com.",
+        caption: "The agent sits on the left, in the untrusted zone. Everything that decides anything is on the right." },
+      { t: "list", items: [
+        "The gateway is the control plane. It holds identity, sandbox state and policy, and it is the only component that signs credentials: a JWT scoped to one sandbox.",
+        "The compute driver provisions the workload on Docker, Podman, Kubernetes or a MicroVM, and removes the workload's direct route to the network. Container networking is switched off. On Kubernetes a NetworkPolicy allows traffic only to the supervisor. The VM has no network device at all.",
+        "The supervisor sits on the trusted side. Every connection the agent wants goes to it, and it checks the request against policy, adds credentials if the destination is approved, resolves DNS and opens the real connection itself.",
+        "The sandbox process sits inside the boundary with the agent. It launches the agent as its own child, works out from `/proc` which program is making each request, and passes that to the supervisor. It never decides anything."
+      ] },
+      { t: "p", text: "Inside the workload, the agent runs as one non-root user with no Linux capabilities. Landlock restricts which paths it can read and write, and seccomp user notification intercepts every TCP connect and DNS lookup and hands it to the supervisor. There is no `HTTPS_PROXY` variable for the agent to unset, because there is no network to fall back to without the supervisor. The failure mode is the one you want: the agent does not start until the supervisor confirms the boundary, and it is frozen if that connection drops." },
+      { t: "quote", text: "The agent can still be told to do anything. What changes is that nothing it can reach is able to say yes." },
+
+      { t: "h", text: "A policy per program, not per sandbox" },
+      { t: "p", text: "Most sandboxes I have used give you one network allowlist for the whole box. OpenShell's policy is per binary, and for REST endpoints it is aware of HTTP methods. This is the quickstart example from the repository, trimmed only of its comments:" },
+      { t: "code", label: "examples/sandbox-policy-quickstart/policy.yaml", lines: [
+        { text: "version: 1", color: "#9A8B70" },
+        { text: "filesystem_policy:", color: "#9A8B70" },
+        { text: "  include_workdir: true", color: "#9A8B70" },
+        { text: "  read_only: [/bin, /usr, /lib, /proc, /dev/urandom, /app, /etc, /var/log]", color: "#9A8B70" },
+        { text: "  read_write: [/sandbox, /tmp, /dev/null]", color: "#E0A458" },
+        { text: "landlock:", color: "#9A8B70" },
+        { text: "  compatibility: best_effort", color: "#BF6B4E" },
+        { text: "", color: "#5E5344" },
+        { text: "network_policies:", color: "#9A8B70" },
+        { text: "  github_api:", color: "#9A8B70" },
+        { text: "    name: github-api-readonly", color: "#9A8B70" },
+        { text: "    endpoints:", color: "#9A8B70" },
+        { text: "      - host: api.github.com", color: "#E0A458" },
+        { text: "        port: 443", color: "#9A8B70" },
+        { text: "        protocol: rest", color: "#9A8B70" },
+        { text: "        enforcement: enforce", color: "#9A8B70" },
+        { text: "        access: read-only", color: "#E0A458" },
+        { text: "    binaries:", color: "#9A8B70" },
+        { text: "      - { path: /usr/bin/curl }", color: "#E0A458" }
+      ] },
+      { t: "p", text: "Read the last block carefully. It does not say \"this sandbox may reach GitHub\". It says `curl` may send GET requests to `api.github.com`, and the `read-only` preset blocks POST, PUT, PATCH and DELETE. A Python script in the same sandbox asking for the same URL is refused, because the sandbox process reports which executable opened the socket. That granularity is exactly what the s1ngularity exfiltration step would have run into, since it needed to *write* to GitHub." },
+      { t: "p", text: "Policies change while the sandbox runs. `openshell policy update` adds rules, and `openshell policy set` replaces the whole file, but it refuses a new file that drops a filesystem path the running sandbox already has. That fits how Landlock works: a running process can add restrictions, but never take them away." },
+      { t: "note", tone: "warn", label: "Read the Landlock line before you copy it",
+        text: "`compatibility: best_effort` means the filesystem rules are as strong as the host kernel allows. Landlock has gained abilities with each kernel version, so the same policy file can enforce less on an older host. For anything you rely on, check what your kernel supports rather than assuming the YAML is the whole story." },
+
+      { t: "h", text: "The agent never holds the key" },
+      { t: "p", text: "This is the part I would take even if I took nothing else. In OpenShell a credential is a provider attached to the sandbox, not an environment variable inside it. The agent sends a request with no key. The supervisor, on the trusted side, adds the real key only if the request is going to an endpoint the policy approves for that credential, and only then." },
+      { t: "img", src: "/blog/img/os-credential-path.svg", w: 1000, h: 440,
+        alt: "The same malicious instruction, list every secret and upload it, followed through two setups. In the top lane, an agent on a laptop with the bypass flag: it reads the home directory, finds tokens in npmrc and environment variables, and pushes them to a public GitHub repository using the user's own token. Every step succeeds. In the bottom lane, the same agent inside OpenShell: the home directory is not mounted, so there is nothing to find; the environment holds no real keys, because the supervisor injects them per request; and a git push or POST to GitHub is refused by the read-only policy, blocked at the supervisor. A footer notes that the agent is just as willing in both lanes; only the environment around it differs.",
+        caption: "The same instruction, followed just as willingly. The difference is what exists to be taken." },
+      { t: "p", text: "Put that next to last month's attack. The prompt asked the agent to find secrets on disk and in the environment. Inside an OpenShell sandbox, the home directory is not there, and the environment holds no real tokens, because they live on the other side of the boundary and are added to outgoing requests. What the agent can see, it cannot usefully steal. What would be worth stealing, it cannot see." },
+      { t: "p", text: "It also handles prompt injection, which is the more realistic version of the same risk. An agent that reads a malicious README and decides to post your code to a paste site gets no further than the supervisor, because the paste site is not in the policy. You do not have to win an argument with the model. You only have to leave the host out of the YAML." },
+
+      { t: "h", text: "The policy prover" },
+      { t: "p", text: "Per-binary, per-method policy is precise, which means it will be edited often, and a policy edited often is one that someone eventually loosens by accident. OpenShell's answer is a prover in the gateway that checks each proposed change and flags the risky kinds: new credentialed reach, new HTTP methods, access to cloud metadata endpoints. Any finding blocks automatic approval. It also ships as a standalone `openshell-prover` command, so you can run it on policy files in CI, which is where I would run it first." },
+      { t: "p", text: "I would not overstate what \"formal verification\" buys here. The prover can tell you that a change grants something new. It cannot tell you whether granting it was a good idea. Still, a pull request that says \"this change lets the agent POST to a host with your AWS credentials attached\" gets a very different review from one that says \"updated policy.yaml\"." },
+
+      { t: "h", text: "How it compares to what you already have" },
+      { t: "p", text: "The documentation does not compare itself with anything, so this table is my reading, not NVIDIA's." },
+      { t: "table", label: "Where the boundary sits, by setup",
+        head: ["Setup", "Who enforces it", "Network control", "Where the credentials live"],
+        rows: [
+          ["Agent permission prompts and deny rules", "The agent itself", "Per tool, in the agent", "In the agent's environment"],
+          ["Claude Code's sandbox mode", "The OS, configured by the agent's settings", "A domain allowlist for the session", "In the agent's environment"],
+          ["Dev container, nothing else mounted", "Docker", "Usually all or nothing", "Whatever you pass in, scoped by you"],
+          ["OpenShell", "A separate supervisor the agent cannot reach", "Per binary, per host, per HTTP method", "Outside the sandbox, added per request"]
+        ] },
+      { t: "p", text: "None of the lower rows makes the upper ones pointless. Claude Code's own sandbox is still what I use for interactive work on my own laptop, because it costs nothing and I am sitting there watching. OpenShell is aimed at the other case: agents that run unattended, for a team or a fleet, where nobody is watching and \"the developer will notice\" is not a control." },
+
+      { t: "h", text: "What it costs" },
+      { t: "list", items: [
+        "It is young. There are over five hundred open issues and pull requests, and the recent ones are about reliability: `sandbox exec` hanging when stdin is an open pipe, and an open issue titled, fairly, \"Make OpenShell sandboxes reliable to install and operate on macOS\".",
+        "Platform support is narrower than it sounds. Linux on amd64 and arm64 and Apple Silicon with Docker Desktop are supported. Windows through WSL 2 is experimental.",
+        "On Kubernetes the boundary is only as good as your CNI. The README says it plainly: your CNI must enforce NetworkPolicy. Some do not, by default.",
+        "Anonymous telemetry is on by default. Set `OPENSHELL_TELEMETRY_ENABLED=false`, or `server.telemetryEnabled=false` in the Helm values, if that matters to you. For a security tool, I think it should.",
+        "Per-binary policy means discovering which binaries your agent actually uses. Expect an afternoon of reading denials before a real agent runs cleanly."
+      ] },
+
+      { t: "h", text: "Where I would use it" },
+      { t: "p", text: "I have read the architecture, the example policies and the issue tracker. I have not yet run it for a team, so treat this as a plan rather than a report. I would not put it on every developer laptop tomorrow. I would put it under any agent that runs without a person watching: the nightly dependency updater, the triage bot that reads public issues, the agent that opens pull requests from a ticket queue. Those are exactly the agents that read untrusted text and hold real credentials, and exactly the ones where a permission prompt has nobody to answer it." },
+      { t: "p", text: "The idea is the part that will outlast this particular project. For two years we have made agents safer by making them more careful: better refusals, more prompts, more rules in the agent's own settings. OpenShell makes them safer by making what they are careful about irrelevant. The agent can be as willing as it likes. What it can reach was decided somewhere else, by something it cannot talk to. That is the same move operating systems made about processes decades ago, and it is overdue for the most capable process on the machine." },
+
+      { t: "links", label: "References", items: [
+        { label: "NVIDIA/OpenShell on GitHub", href: "https://github.com/NVIDIA/OpenShell", note: "The README, install script, SDKs, provider definitions and the example policies quoted here." },
+        { label: "OpenShell docs, Architecture", href: "https://docs.nvidia.com/openshell/latest/about/architecture", note: "Gateway, compute driver, supervisor and sandbox; Landlock and seccomp; the fail-closed behaviour." },
+        { label: "OpenShell docs", href: "https://docs.nvidia.com/openshell/latest/", note: "Policies, providers, the policy prover, the support matrix and the release channels." },
+        { label: "Quickstart sandbox policy", href: "https://github.com/NVIDIA/OpenShell/blob/main/examples/sandbox-policy-quickstart/policy.yaml", note: "The per-binary, read-only GitHub rule." },
+        { label: "OpenShell v0.1.2 release", href: "https://github.com/NVIDIA/OpenShell/releases/tag/v0.1.2", note: "The current stable release, 28 September 2026." },
+        { label: "NVIDIA, NemoClaw for the OpenClaw community", href: "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-NemoClaw-for-the-OpenClaw-Community/default.aspx", note: "The GTC 2026 announcement of the stack OpenShell sits under." },
+        { label: "Linux kernel docs, Landlock", href: "https://docs.kernel.org/userspace-api/landlock.html", note: "What each Landlock ABI version can restrict, and why best_effort depends on your kernel." }
+      ] }
+    ],
+    takeaways: [
+      "Prompts, deny rules and refusals live inside the agent, so a single flag or a single injected instruction can set them aside. OpenShell moves the boundary to a supervisor process the agent cannot reach.",
+      "The workload has no direct network. Every connection is intercepted with seccomp and opened, or refused, by the supervisor, and the agent is frozen if the supervisor disappears.",
+      "Network policy is per binary, per host and, for REST APIs, per HTTP method. \"curl may GET api.github.com\" is a rule; \"this sandbox may reach GitHub\" is not.",
+      "Credentials never enter the sandbox. The supervisor adds them to outgoing requests bound for approved endpoints, so what the agent can see is not worth stealing.",
+      "Run the policy prover in CI. It flags new credentialed reach, new methods and metadata-endpoint access before a loosened policy ships.",
+      "It is 0.1 software: check what your kernel's Landlock supports, make sure your CNI enforces NetworkPolicy, and turn telemetry off if you need to.",
+      "Use it first under agents that run unattended and read untrusted text. Those are the ones a permission prompt cannot protect."
+    ]
+  },
+  {
     slug: "vibe-coding-side-effects", cat: "AI", date: "Sep 2026", minutes: 17,
     tags: ["Vibe coding", "AI-assisted", "Productivity", "Code quality", "Open source"],
     title: "Vibe coding works. Here's the side-effects leaflet nobody read.",

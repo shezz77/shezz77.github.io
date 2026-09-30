@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-label="OpenShell's architecture in two zones separated by a red dashed boundary line. On the untrusted side, a box labelled workload contains the agent process, such as Claude Code or Codex, running as a non-root user with no Linux capabilities, with Landlock limiting its filesystem and seccomp intercepting every network open and DNS query. Next to it the sandbox process launches the agent as a child, identifies which binary made each request from /proc, and makes no policy decisions. On the trusted side, the supervisor checks every request against policy, injects credentials only into approved requests, resolves DNS and opens the real connection. Above it the gateway, the control plane, holds identity, sandbox state, policy delivery, providers and the policy prover, and signs a JWT scoped to one sandbox. A compute driver row lists Docker, Podman, Kubernetes and MicroVM, each of which removes the workload's direct network path. Arrows show a request going from the agent through the sandbox protocol, over mutual TLS, to the supervisor and out to an approved host such as api.github.com.">
+  <style>
+    .st { animation: st 11s ease-out infinite; opacity: 0; }
+    @keyframes st { 0%, 4% { opacity: 0; } 10%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+    .s2 { animation-delay: .8s; } .s3 { animation-delay: 1.6s; } .s4 { animation-delay: 2.4s; } .s5 { animation-delay: 3.2s; }
+    .flow { stroke-dasharray: 6 5; animation: flow 1.2s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -22; } }
+    @media (prefers-reduced-motion: reduce) {
+      .st { animation: none; opacity: 1; }
+      .flow { animation: none; }
+    }
+  </style>
+  <rect width="1000" height="520" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">OPENSHELL: WHO SITS ON WHICH SIDE</text>
+    <text x="30" y="72" fill="#8A8578" font-size="11" letter-spacing="2">UNTRUSTED</text>
+    <text x="560" y="72" fill="#8A8578" font-size="11" letter-spacing="2">TRUSTED</text>
+
+    <line x1="530" y1="56" x2="530" y2="330" stroke="#BF3B24" stroke-width="2" stroke-dasharray="8 6"/>
+
+    <g class="st">
+      <rect x="30" y="86" width="480" height="230" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="48" y="112" fill="#5A5449" font-size="11" letter-spacing="2">WORKLOAD</text>
+      <rect x="48" y="126" width="210" height="172" fill="#FCFAF4" stroke="#BF3B24" stroke-width="1.6" rx="3"/>
+      <text x="64" y="152" fill="#1B1712" font-size="13">agent</text>
+      <text x="64" y="172" fill="#5A5449" font-size="11.5">Claude Code, Codex ...</text>
+      <text x="64" y="204" fill="#1B1712" font-size="11.5">non-root, no caps</text>
+      <text x="64" y="226" fill="#1B1712" font-size="11.5">Landlock: paths</text>
+      <text x="64" y="248" fill="#1B1712" font-size="11.5">seccomp: every</text>
+      <text x="64" y="266" fill="#1B1712" font-size="11.5">connect + DNS</text>
+    </g>
+    <g class="st s2">
+      <rect x="278" y="126" width="214" height="172" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="294" y="152" fill="#1B1712" font-size="13">sandbox</text>
+      <text x="294" y="184" fill="#1B1712" font-size="11.5">launches the agent</text>
+      <text x="294" y="204" fill="#1B1712" font-size="11.5">as its child</text>
+      <text x="294" y="232" fill="#1B1712" font-size="11.5">names the binary</text>
+      <text x="294" y="252" fill="#1B1712" font-size="11.5">from /proc</text>
+      <text x="294" y="282" fill="#BF3B24" font-size="11.5">decides nothing</text>
+    </g>
+
+    <g class="st s3">
+      <rect x="560" y="86" width="410" height="96" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+      <text x="578" y="112" fill="#5A5449" font-size="11" letter-spacing="2">GATEWAY · CONTROL PLANE</text>
+      <text x="578" y="138" fill="#1B1712" font-size="11.5">identity, state, policy, providers</text>
+      <text x="578" y="160" fill="#1B1712" font-size="11.5">policy prover · signs per-sandbox JWT</text>
+      <line x1="765" y1="182" x2="765" y2="206" stroke="#5A5449" stroke-width="1.4"/>
+    </g>
+    <g class="st s4">
+      <rect x="560" y="206" width="410" height="110" fill="#F5F1E8" stroke="#1B1712" stroke-width="1.6" rx="3"/>
+      <text x="578" y="232" fill="#1B1712" font-size="11" letter-spacing="2">SUPERVISOR</text>
+      <text x="578" y="258" fill="#1B1712" font-size="11.5">checks each request against policy</text>
+      <text x="578" y="278" fill="#1B1712" font-size="11.5">adds credentials only if approved</text>
+      <text x="578" y="298" fill="#1B1712" font-size="11.5">resolves DNS, opens the connection</text>
+    </g>
+
+    <g class="st s4">
+      <line x1="492" y1="262" x2="560" y2="262" stroke="#E0A458" stroke-width="2.4" class="flow"/>
+      <text x="530" y="348" fill="#5A5449" font-size="10.5" text-anchor="middle">sandbox protocol · mTLS + JWT</text>
+      <line x1="970" y1="262" x2="990" y2="262" stroke="#E0A458" stroke-width="2.4"/>
+      <text x="970" y="348" fill="#E0A458" font-size="11" text-anchor="end">→ api.github.com (GET only)</text>
+    </g>
+
+    <g class="st s5">
+      <rect x="30" y="362" width="480" height="56" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" stroke-dasharray="5 4" rx="3"/>
+      <text x="48" y="386" fill="#5A5449" font-size="11" letter-spacing="2">COMPUTE DRIVER</text>
+      <text x="48" y="406" fill="#1B1712" font-size="11.5">Docker · Podman · Kubernetes · MicroVM</text>
+      <rect x="560" y="362" width="410" height="56" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" stroke-dasharray="5 4" rx="3"/>
+      <text x="578" y="386" fill="#1B1712" font-size="11.5">no direct network: off, NetworkPolicy,</text>
+      <text x="578" y="406" fill="#1B1712" font-size="11.5">or no network device at all</text>
+    </g>
+
+    <text x="30" y="460" fill="#1B1712" font-size="12.5">Supervisor gone → agent frozen. Boundary unconfirmed → agent never starts.</text>
+    <text x="30" y="492" fill="#8A8578" font-size="11">Based on docs/about/architecture.mdx in NVIDIA/OpenShell, v0.1.2.</text>
+  </g>
+</svg>

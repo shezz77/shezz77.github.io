@@ -1,0 +1,28 @@
+Hi Ceyda,
+
+Thanks for the details — Agoda is a strong name and the scope reads like a good fit, so I'm happy to move forward. My updated CV is attached, and your questions are answered below.
+
+Phone: +92 300 9878282
+Email: shezz77.se@gmail.com
+Current location: Lahore, Pakistan
+Notice period: 30 days
+Current salary: USD 4,700 per month
+Expected salary: USD 9,000 per month — in line with the top of the range you shared, given the engineering-management scope and the move to Bangkok.
+Relocation: Yes, I'm open to relocating to Bangkok.
+Other processes: None active at the moment.
+Agoda history: I have not worked at Agoda before, and have not been in an interview process with Agoda previously.
+
+On the technical requirements:
+
+• TypeScript / React — core to my day-to-day. At Trustshoot I own an Electron.js desktop client and a React web app on a Node.js service layer. Before that I led React product teams at Moon Group (CryptoJobs, TheMoonShow) and Bayt.com (AfterHire), and built React front ends for Solelinks and ExOsecure.
+
+• Redux — yes. I built the front end of the RailComm Yard Portal, a real-time railcar tracking system, in React with Redux managing shared application state against a Node.js backend, and have used it since on AfterHire and Solelinks.
+
+• Backend / full-stack — this is where I started, and I still work hands-on: Node.js and PHP/Laravel services, MySQL, RabbitMQ for event-driven messaging, Docker and AWS ECS/ECR. I haven't shipped production C#, Kotlin or Scala, but I work in Java regularly and would be comfortable picking up a typed JVM or .NET stack.
+
+• Leadership — I'm currently Engineering Manager at Trustshoot, and was Principal Engineer leading two teams at Bayt.com. Hiring, mentoring, architecture reviews and delivery cadence across a distributed team are the day job.
+
+Happy to set up a call at whatever time works on your side.
+
+Best regards,
+Shehzad Aslam

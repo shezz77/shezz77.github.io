@@ -32,7 +32,7 @@
       <text x="74" y="189">it writes the questions</text>
       <text x="74" y="245">you answer them</text>
       <text x="74" y="301">it marks its own questions</text>
-      <text x="74" y="357" fill="#B4602C">&#8220;86 / 100 &#8212; strong grasp of the fundamentals&#8221;#8220;86 / 100 &#8220;86 / 100 &#8212; strong grasp of the fundamentals&#8221;#8212; strong grasp of the basics&#8220;86 / 100 &#8212; strong grasp of the fundamentals&#8221;#8221;</text>
+      <text x="74" y="357" fill="#B4602C">&#8220;86 / 100 &#8212; strong grasp of the basics&#8221;</text>
     </g>
     <path class="flow" d="M 410 352 L 450 352 L 450 184 L 414 184" fill="none" stroke="#B9A98C" stroke-width="2"/>
     <polygon points="418,178 418,190 406,184" fill="#B9A98C"/>
