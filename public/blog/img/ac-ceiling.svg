@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="480" viewBox="0 0 1000 480" role="img" aria-label="A chart of the best possible speed-up against the share of a job that is writing code, by Amdahl's law. The horizontal axis runs from 0 to 100 percent of the job being code-writing; the vertical axis runs from 1 times to 10 times faster. The red curve, AI removes all of the code-writing, stays nearly flat until about half the job is code and then climbs steeply, passing 2 times at 50 percent, 4 times at 75 percent and 10 times at 90 percent. A typical month, at 16 percent code-writing, is marked at 1.19 times. A dashed line at 6 times, the speed-up Google reported for one code migration, meets the curve at 83 percent, meaning at least 83 percent of that job had to be work the AI took over. A second, amber curve shows AI writing 75 percent of the code with people writing the rest: it never rises above 4 times, even when the whole job is code.">
+  <style>
+    .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: d 11s ease-out infinite; }
+    .d2 { animation-delay: .9s; }
+    @keyframes d { 0%, 4% { stroke-dashoffset: 1; } 30%, 94% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+    .m { animation: m 11s ease-out infinite; opacity: 0; }
+    .m2 { animation-delay: 1.4s; } .m3 { animation-delay: 2.6s; }
+    @keyframes m { 0%, 26% { opacity: 0; } 32%, 92% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .draw { animation: none; stroke-dashoffset: 0; }
+      .m { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="480" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THE CEILING DEPENDS ON HOW MUCH OF THE JOB WAS TYPING</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Best possible speed-up, by Amdahl's law, if the AI's share of the work costs nothing.</text>
+
+    <!-- grid -->
+    <g stroke="#E4DBCB" stroke-width="1">
+      <line x1="110" y1="350" x2="930" y2="350"/>
+      <line x1="110" y1="290" x2="930" y2="290"/>
+      <line x1="110" y1="230" x2="930" y2="230"/>
+      <line x1="110" y1="170" x2="930" y2="170"/>
+      <line x1="110" y1="110" x2="930" y2="110"/>
+    </g>
+    <line x1="110" y1="380" x2="930" y2="380" stroke="#5A5449" stroke-width="1.5"/>
+    <line x1="110" y1="100" x2="110" y2="380" stroke="#5A5449" stroke-width="1.5"/>
+    <g fill="#8A8578" font-size="11" text-anchor="end">
+      <text x="100" y="384">1×</text>
+      <text x="100" y="354">2×</text>
+      <text x="100" y="294">4×</text>
+      <text x="100" y="234">6×</text>
+      <text x="100" y="174">8×</text>
+      <text x="100" y="114">10×</text>
+    </g>
+    <g fill="#8A8578" font-size="11" text-anchor="middle">
+      <text x="110" y="400">0%</text>
+      <text x="315" y="400">25%</text>
+      <text x="520" y="400">50%</text>
+      <text x="725" y="400">75%</text>
+      <text x="930" y="400">100%</text>
+    </g>
+    <text x="520" y="422" fill="#5A5449" font-size="11.5" text-anchor="middle">share of the job that is writing code</text>
+
+    <!-- AI removes all the code-writing: 1/(1-p) -->
+    <path class="draw" pathLength="1" fill="none" stroke="#BF3B24" stroke-width="3" stroke-linejoin="round"
+      d="M110,380 L192,376.7 L274,372.5 L356,367.1 L438,360 L520,350 L602,335 L684,310 L725,290 L766,260 L786.5,238.6 L807,210 L827.5,170 L848,110"/>
+    <!-- AI writes 75%, people write the rest: 1/(1-0.75p) -->
+    <path class="draw d2" pathLength="1" fill="none" stroke="#E0A458" stroke-width="3" stroke-linejoin="round"
+      d="M110,380 L274,374.7 L438,367.1 L602,355.5 L766,335 L848,317.7 L930,290"/>
+
+    <text x="858" y="122" fill="#BF3B24" font-size="11.5">AI takes all</text>
+    <text x="858" y="138" fill="#BF3B24" font-size="11.5">the typing</text>
+    <line x1="930" y1="284" x2="930" y2="186" stroke="#E0A458" stroke-width="1" stroke-dasharray="2 3"/>
+    <text x="858" y="164" fill="#B07A2E" font-size="11.5">AI writes 75%:</text>
+    <text x="858" y="180" fill="#B07A2E" font-size="11.5">never past 4×</text>
+
+    <!-- typical month -->
+    <g class="m">
+      <circle cx="241.2" cy="374.3" r="6" fill="#BF3B24"/>
+      <line x1="241.2" y1="366" x2="241.2" y2="300" stroke="#5A5449" stroke-width="1"/>
+      <text x="130" y="276" fill="#1B1712" font-size="12">a typical month: 16% coding</text>
+      <text x="130" y="294" fill="#BF3B24" font-size="12">→ 1.19× at best</text>
+    </g>
+
+    <!-- Google's 6x migration -->
+    <g class="m m2">
+      <line x1="110" y1="230" x2="793.3" y2="230" stroke="#1B1712" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <line x1="793.3" y1="230" x2="793.3" y2="380" stroke="#1B1712" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <circle cx="793.3" cy="230" r="6" fill="#1B1712"/>
+      <text x="420" y="196" fill="#1B1712" font-size="12">Google's 6× code migration needs</text>
+      <text x="420" y="214" fill="#1B1712" font-size="12">at least 83% of that job to be work AI took</text>
+      <text x="786" y="372" fill="#1B1712" font-size="11" text-anchor="end">83%</text>
+    </g>
+
+    <text class="m m3" x="30" y="460" fill="#8A8578" font-size="11">Both stories are true. They are about different jobs.</text>
+  </g>
+</svg>

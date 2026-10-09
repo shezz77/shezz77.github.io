@@ -1,5 +1,123 @@
 export const POSTS = [
   {
+    slug: "ai-writes-75-percent-of-the-code", cat: "Leadership", date: "Oct 2026", minutes: 11,
+    tags: ["AI-assisted", "Engineering leadership", "Productivity", "Metrics", "Google", "Amdahl's law"],
+    title: "AI writes 75% of Google's code. Do the arithmetic before you cut the team.",
+    excerpt: "Google says 75% of its new code is AI-generated. Anthropic says more than 80%. Those numbers are true, and they are being read as a headcount plan. They are a share of keystrokes, not of work, and Amdahl's law puts a hard ceiling on what they can buy: on a typical month, about 1.2×. Here is the arithmetic, where the six-times stories are genuinely real, and what to measure instead.",
+    blocks: [
+      { t: "p", text: "In April, Sundar Pichai wrote that \"75% of all new code at Google is now AI-generated and approved by engineers, up from 50% last fall.\" Eighteen months earlier, on the October 2024 earnings call, the figure was \"more than a quarter\". Anthropic says that, as of May, more than 80% of the code it merges was authored by Claude, and its leadership has put the number above 90%." },
+      { t: "p", text: "Numbers like that do not stay in keynotes. They end up in board decks and planning spreadsheets, where somebody does the obvious sum: if AI writes three quarters of the code, we need about a quarter of the people who used to write it. The sum is wrong twice. It is wrong about what the number counts, and it is wrong about how much of an engineer's job the number touches." },
+      { t: "p", text: "It is worth noticing that Google did not do the sum either. Alphabet had 187,103 employees at the end of June 2025 and 198,933 at the end of June 2026, while the AI share went from roughly half to three quarters. That is six per cent more people, not fifty per cent fewer." },
+
+      { t: "h", text: "What the number actually counts" },
+      { t: "p", text: "Google published its definition in June 2024, on its research blog. The fraction of code created with AI assistance is the number of characters accepted from AI suggestions, divided by those characters plus the characters engineers typed by hand. Copy-pastes are excluded from the denominator. At the time, it stood at 50% of code characters, with engineers accepting 37% of the suggestions they were shown." },
+      { t: "p", text: "None of the CEO statements since then restate the unit. On the February earnings call, Alphabet's CFO described the same roughly-50% figure as code \"written by agents, coding agents\", which sounds like a different thing from accepted autocomplete. Maybe the method changed; maybe the words did. Either way, every version measures the same kind of quantity: how much of the text in a change came out of a model rather than out of a person's fingers." },
+      { t: "p", text: "We have been here before. In 1988 Edsger Dijkstra complained about measuring programmer productivity in lines of code produced per month, and said that if we wish to count lines of code, \"we should not regard them as 'lines produced' but as 'lines spent'\". The share of code written by AI is the lines-of-code metric with a new denominator. It is more interesting than the old one, but it inherits the old flaw: it counts typing." },
+
+      { t: "h", text: "A ratio with no term for output" },
+      { t: "p", text: "The share is a ratio of two inputs: text the model wrote and text people typed. Nothing in it describes what shipped, whether it worked, or how long it took. That means three teams with completely different years can report exactly the same headline." },
+      { t: "img", src: "/blog/img/ac-same-ratio.svg", w: 1000, h: 470,
+        alt: "Three teams, each shown with two bars: last year and this year, where dark grey is code typed by people and red is code written by AI. Team A quadrupled its output: last year one unit typed by people, this year the same one unit typed plus three units from AI. Team B kept its output flat: this year a quarter of a unit typed and three quarters from AI. Team C's output fell to 40 percent: a tenth of a unit typed and three tenths from AI. All three teams report the same headline figure: 75 percent of code written by AI. A footer gives the formula, AI-written divided by AI-written plus typed by people, and notes that the share rises whenever people type less, whatever happens to output.",
+        caption: "Team A quadrupled its output, Team B stood still, Team C went backwards. All three report 75%." },
+      { t: "p", text: "Team B is the interesting one, because it is the most common. Its engineers did not stop working. They spent the time they used to spend typing on reading diffs, prompting, re-prompting and reviewing each other's agent output. The share went up because the human term in the denominator went down. That is what the metric is built to detect, and it is all it is built to detect." },
+      { t: "p", text: "Anthropic, to its credit, says this out loud. Its own write-up reports that in the second quarter of 2026 the typical engineer was merging eight times as much code per day as in 2024, and then calls that figure \"almost certainly an overstatement of the true productivity gain\". When the company with the highest AI share in the industry tells you not to read the code volume as productivity, it is worth listening." },
+
+      { t: "h", text: "Amdahl's law, applied to a developer's month" },
+      { t: "p", text: "In 1967 Gene Amdahl pointed out something that every engineer learns the first time they profile a program. If you speed up one part of a job, the whole job can only get as fast as the part you did not touch allows. Make a step that takes 20% of the time infinitely fast, and the job is still 80% as long as before: 1.25× faster, and never more." },
+      { t: "code", label: "Amdahl's law, for people", lines: [
+        { text: "speed-up = 1 / (1 − share × saving)", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "share   the fraction of the job you are speeding up", color: "#9A8B70" },
+        { text: "saving  the fraction of that part's time that disappears", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "# coding is 16% of the month, AI removes 75% of it, for free", color: "#5E5344" },
+        { text: "1 / (1 − 0.16 × 0.75) = 1 / 0.88 = 1.14×", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "So the question that matters is not how much of the code the AI wrote. It is how much of an engineer's time was ever spent writing code. Two independent surveys give the same answer. IDC's 2024 study of how developers spend their time put \"developing applications\" at 16% of a typical month, up from 15% the year before. Atlassian's 2025 survey of 3,500 developers and managers put it plainly: developers spend 16% of their time coding." },
+      { t: "img", src: "/blog/img/ac-amdahl.svg", w: 1000, h: 470,
+        alt: "Three horizontal bars showing a developer's month, using IDC's 2024 survey. The first bar is the month as it is: 84 percent spent on requirements and tests, security, CI/CD, application performance, deploying code, infrastructure monitoring and user experience, and 16 percent spent developing applications, drawn in red at the end of the bar. In the second bar, AI writes 75 percent of the code at no cost, so the red coding segment shrinks to 4 percent and the month becomes 88 percent as long: 1.14 times faster. In the third bar, AI writes all of the code instantly, the red segment disappears, and the month is 84 percent as long: 1.19 times faster, which is the ceiling. A dashed line marks where the untouched 84 percent ends. A note says the bars assume AI-written code costs nothing to prompt, read or review, which it does not, so real numbers are lower.",
+        caption: "Make all of the coding free and the month gets 16% shorter. The other 84% was never in the number." },
+      { t: "p", text: "Put the two together. If AI wrote 75% of the code and that code cost nothing at all to prompt, read, review or fix, a typical team would get about 14% faster. If AI wrote every line, instantly and perfectly, about 19%. That is the ceiling, and it is set by the 84% of the month the headline number does not describe." },
+      { t: "table", label: "The best case, by how much of the job is writing code",
+        head: ["Share of the job that is coding", "AI writes 75%, for free", "AI writes all of it, instantly"],
+        rows: [
+          ["16%: a typical month (IDC, Atlassian)", "1.14×", "1.19×"],
+          ["30%: a team that codes twice as much", "1.29×", "1.43×"],
+          ["50%: half the job is typing", "1.60×", "2.00×"],
+          ["90%: a large mechanical migration", "3.08×", "10×"]
+        ] },
+      { t: "note", tone: "info", label: "If 16% looks low for your team",
+        text: "It might be. Both surveys are self-reported and both count \"developing applications\", not keystrokes. Use your own number. The shape of the answer does not change: until coding is most of the job, even a perfect code generator buys less than 2×." },
+      { t: "p", text: "These are generous numbers on purpose. They assume the AI's share of the work costs nothing, and it does not. Faros AI's telemetry from more than 10,000 developers found that teams with high AI adoption merged 98% more pull requests, but those pull requests were 154% larger and took 91% longer to review, and it found no significant correlation between AI adoption and improvement at the company level. The time did not vanish. Some of it moved." },
+
+      { t: "h", text: "Where the six-times stories are real" },
+      { t: "p", text: "None of this means the big numbers are made up. Pichai's own example was specific: \"a particularly complex code migration\", done by agents and engineers together, finished six times faster than engineers alone could have managed a year earlier. In July, Alphabet said a Chrome team was on track to deliver eight times faster by compressing a two-year timeline into three months through model-driven refactoring. I believe both." },
+      { t: "p", text: "Look at what those jobs are. Migrations and large refactors are the rare kind of work where typing really is most of the job. The specification is the old code. The test suite is the oracle. The review is largely mechanical: does it compile, do the tests pass, does the diff follow the pattern. There is very little of the 84% in them. Amdahl's law says they are exactly where a code generator should shine, and it also tells you how much of the job it must have taken over. A six-times speed-up needs at least 83% of the original effort to be work the AI absorbed, because 1 ÷ 6 of the time is all that is left." },
+      { t: "img", src: "/blog/img/ac-ceiling.svg", w: 1000, h: 480,
+        alt: "A chart of the best possible speed-up against the share of a job that is writing code, by Amdahl's law. The horizontal axis runs from 0 to 100 percent of the job being code-writing; the vertical axis runs from 1 times to 10 times faster. The red curve, AI removes all of the code-writing, stays nearly flat until about half the job is code and then climbs steeply, passing 2 times at 50 percent, 4 times at 75 percent and 10 times at 90 percent. A typical month, at 16 percent code-writing, is marked at 1.19 times. A dashed line at 6 times, the speed-up Google reported for one code migration, meets the curve at 83 percent, meaning at least 83 percent of that job had to be work the AI took over. A second, amber curve shows AI writing 75 percent of the code with people writing the rest: it never rises above 4 times, even when the whole job is code.",
+        caption: "The curve is flat for most real work and vertical for migrations. Both headlines are true; they are about different jobs." },
+      { t: "p", text: "So the six-times story and the fourteen-per-cent story are both correct. The mistake is taking the number from the migration and applying it to the month. A planning spreadsheet that does that is not optimistic. It is using a measurement from one kind of job to staff a different kind." },
+
+      { t: "h", text: "Speed up one stage, and the queue moves" },
+      { t: "p", text: "Amdahl's law is the polite version. The less polite version is that speeding up one stage of a pipeline does not make the pipeline faster; it moves the queue to the next stage. I wrote about this in August as [the review bottleneck](/blog/the-review-bottleneck/), and the data since has only sharpened it. LinearB's benchmark of 8.1 million pull requests found AI-generated pull requests wait 4.6 times longer before anyone picks them up for review, and are accepted far less often: 32.7% against 84.4% for manual ones." },
+      { t: "p", text: "Google's own DORA research team summarised it in March: higher AI adoption is associated with an increase in both delivery throughput and delivery instability. Atlassian's survey caught the same tension from the inside. 68% of developers said AI saves them more than ten hours a week, and 50% said they lose more than ten hours a week to organisational friction: finding information, adapting to new technology and switching context between tools. The saving was real, and it was spent." },
+      { t: "p", text: "The longer version of what this does to quality is in [the side-effects leaflet](/blog/vibe-coding-side-effects/), so I will not repeat it here. The short version is SmartBear's survey, published on 30 September: 46% of teams have shipped AI-generated code that failed in production, and 69% of those teams still say they are highly confident in it." },
+
+      { t: "quote", text: "The share of code written by AI tells you who typed. It has never told you what shipped." },
+
+      { t: "h", text: "Point the AI at the 84%" },
+      { t: "p", text: "This is the useful half of the arithmetic. If the ceiling is set by the part of the month that is not coding, then the way to raise it is to aim the tools at that part. Agents are now good enough to take real time out of it, and none of that time shows up in the share of code written by AI. Some of it makes the share go down: an agent that saves you a meeting writes no lines at all." },
+      { t: "list", items: [
+        "Finding information is the first time-waster on Atlassian's list. An agent with read access to your docs, tickets and services answers \"where is this handled and who owns it\" in seconds. [Scope its access properly](/blog/who-may-connect-to-your-mcp-server/) and it is the cheapest win on this list.",
+        "Review is where the queue went. An AI reviewer that takes the first pass, [tuned so that it is not noise](/blog/ai-reviewer-in-ci-without-noise/), shortens the wait without taking the decision away from a person.",
+        "Requirements and tests are 14% of the month in IDC's numbers. Let a model draft the test cases and [let mutation testing grade them](/blog/llm-tests-scored-by-mutation-testing/), so the speed does not come at the cost of tests that assert nothing.",
+        "CI, deployment and monitoring together are more than a third of the month. Diagnosing a red build, triaging a flaky test and turning a stack trace into a failing reproduction are bounded, checkable jobs, which is exactly where agents do best.",
+        "Migrations and refactors are where the code share genuinely is the work. If you have a backlog of them, this is the one place where the six-times number applies to you."
+      ] },
+
+      { t: "h", text: "What I would put on the slide instead" },
+      { t: "p", text: "If someone shows you the share of code written by AI as evidence of productivity, the honest response is not to dispute the number. It is to ask what happened to the numbers next to it. These are the ones I would want on the same slide." },
+      { t: "table", label: "Five numbers that measure the work, not the typing",
+        head: ["Measure", "What it tells you"],
+        rows: [
+          ["Lead time for changes", "How long a change takes from first commit to production. This is the number that should move if AI made you faster."],
+          ["Review wait time", "How long a pull request sits before a person opens it. This is where the queue usually moved."],
+          ["Change failure rate, or incidents per change", "What the extra speed cost. DORA and Faros both see it rising with adoption."],
+          ["Rework within 30 days", "Whether the code stayed written, or was rewritten next sprint by the same agent."],
+          ["Coding share of the month", "Your own Amdahl ceiling. Measure it once and every vendor claim becomes easy to check."]
+        ] },
+      { t: "p", text: "If lead time fell and failures did not rise, the AI made you faster, whatever its share of the code. If the share rose and lead time did not move, the AI changed who types, and that is all. Both outcomes are worth knowing. Only one of them is a reason to change the size of a team, and I would want to see it hold for a couple of quarters first. Headcount decisions are quick to make and slow to undo, as anyone [trying to rebuild a junior pipeline](/blog/we-stopped-hiring-juniors/) can tell you." },
+
+      { t: "h", text: "When the next number comes out" },
+      { t: "p", text: "Alphabet reports its third quarter later this month, and there is a good chance the share goes up again. When it does, it will be quoted as if it were a productivity figure, and it will end up in somebody's headcount plan. Before it does, do the arithmetic: what fraction of the work is the number about, and what did the rest of the month do? Eighty per cent of a sixth is still less than a sixth." },
+
+      { t: "links", label: "References", items: [
+        { label: "Sundar Pichai, Cloud Next '26 remarks", href: "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/cloud-next-2026-sundar-pichai/", note: "22 April 2026: 75% of new code AI-generated and approved by engineers, and the six-times migration." },
+        { label: "Alphabet Q3 2024 earnings remarks", href: "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q3-2024/", note: "29 October 2024: \"more than a quarter of all new code\"." },
+        { label: "Alphabet Q2 2026 earnings remarks", href: "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q2-2026/", note: "22 July 2026: the Chrome team's eight-times delivery target through model-driven refactoring." },
+        { label: "Alphabet Q2 2026 results, SEC exhibit 99.1", href: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/googexhibit991q22026.htm", note: "Headcount: 187,103 at 30 June 2025, 198,933 at 30 June 2026." },
+        { label: "Google Research, AI in software engineering at Google", href: "https://research.google/blog/ai-in-software-engineering-at-google-progress-and-the-path-ahead/", note: "6 June 2024: the character-based definition, the copy-paste exclusion, and the 37% acceptance rate." },
+        { label: "Anthropic, When AI builds itself", href: "https://www.anthropic.com/institute/recursive-self-improvement", note: "More than 80% of merged code authored by Claude; 8× code per engineer called an overstatement of the productivity gain." },
+        { label: "Edsger W. Dijkstra, EWD1036", href: "https://www.cs.utexas.edu/~EWD/transcriptions/EWD10xx/EWD1036.html", note: "1988: lines of code as \"lines spent\", booked on the wrong side of the ledger." },
+        { label: "InfoWorld on IDC, How do software developers spend their time?", href: "https://www.infoworld.com/article/3831759/developers-spend-most-of-their-time-not-coding-idc-report.html", note: "February 2025: developing applications was 16% of developer time in 2024." },
+        { label: "Atlassian, State of Developer Experience 2025", href: "https://www.atlassian.com/blog/developer/developer-experience-report-2025", note: "3,500 respondents: 16% of time coding, 68% save 10+ hours with AI, 50% lose 10+ hours to friction." },
+        { label: "Faros AI, The AI Productivity Paradox", href: "https://www.faros.ai/blog/ai-software-engineering", note: "July 2025, 10,000+ developers: PRs +98%, PR size +154%, review time +91%, no company-level correlation." },
+        { label: "LinearB, 2026 Software Engineering Benchmarks", href: "https://linearb.io/resources/engineering-benchmarks-report", note: "8.1M+ pull requests: AI PRs wait 4.6× longer for review; 32.7% vs 84.4% acceptance." },
+        { label: "DORA, Balancing AI tensions", href: "https://dora.dev/insights/balancing-ai-tensions/", note: "March 2026: AI adoption raises both throughput and instability." },
+        { label: "SmartBear, The AI code confidence paradox", href: "https://smartbear.com/blog/ai-code-confidence-paradox/", note: "30 September 2026: 46% of teams shipped AI code that failed in production." }
+      ] }
+    ],
+    takeaways: [
+      "\"75% of code is AI-generated\" is a share of text, not of work. Google's published definition counts accepted AI characters against characters typed by hand.",
+      "The share is a ratio of two inputs with no term for output. It rises whenever people type less, including when they spend the day reviewing instead.",
+      "Amdahl's law caps the gain by the part of the job the number does not touch. Coding is about 16% of a developer's month in both IDC's and Atlassian's surveys, so even free, perfect code generation buys about 1.19×.",
+      "The six-times stories are real, and they are migrations and refactors: jobs where typing is most of the work. A 6× speed-up needs at least 83% of the job to be work the AI absorbed.",
+      "Speeding up coding moves the queue to review. AI pull requests wait longer, are larger and are accepted less often, and DORA sees instability rise with throughput.",
+      "To raise the ceiling, point AI at the other 84%: finding information, review, tests, CI and incident triage. Most of that work never shows up in the code share.",
+      "Put lead time, review wait, change failure rate, rework and your own coding share on the slide next to the AI share, and wait for them to hold before changing the size of a team."
+    ]
+  },
+  {
     slug: "autonomous-dev-agents-in-production", cat: "AI", date: "Oct 2026", minutes: 16,
     tags: ["AI agents", "Cursor", "Claude Code", "Code review", "Engineering leadership", "Architecture"],
     title: "Autonomous dev agents in production: what breaks after the demo",

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="Three teams, each shown with two bars: last year and this year, where dark grey is code typed by people and red is code written by AI. Team A quadrupled its output: last year one unit typed by people, this year the same one unit typed plus three units from AI. Team B kept its output flat: this year a quarter of a unit typed and three quarters from AI. Team C's output fell to 40 percent: a tenth of a unit typed and three tenths from AI. All three teams report the same headline figure: 75 percent of code written by AI. A footer gives the formula, AI-written divided by AI-written plus typed by people, and notes that the share rises whenever people type less, whatever happens to output.">
+  <style>
+    .g { transform-box: fill-box; transform-origin: left center; animation: g 10s ease-out infinite; }
+    .gb { animation-delay: .9s; } .gc { animation-delay: 1.8s; }
+    @keyframes g { 0%, 6% { transform: scaleX(0); } 18%, 92% { transform: scaleX(1); } 99%, 100% { transform: scaleX(1); opacity: 0; } }
+    .b { animation: b 10s ease-out infinite; opacity: 0; }
+    .bb { animation-delay: .9s; } .bc { animation-delay: 1.8s; }
+    @keyframes b { 0%, 18% { opacity: 0; } 24%, 92% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .g { animation: none; transform: none; }
+      .b { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THREE TEAMS, ONE HEADLINE</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Code shipped last year and this year.</text>
+    <rect x="640" y="51" width="12" height="12" fill="#5A5449"/>
+    <text x="660" y="62" fill="#5A5449" font-size="11.5">typed by people</text>
+    <rect x="800" y="51" width="12" height="12" fill="#BF3B24"/>
+    <text x="820" y="62" fill="#5A5449" font-size="11.5">written by AI</text>
+
+    <!-- Team A -->
+    <text x="30" y="116" fill="#1B1712" font-size="13">TEAM A</text>
+    <text x="30" y="136" fill="#5A5449" font-size="11.5">output up 4×</text>
+    <text x="270" y="112" fill="#8A8578" font-size="10.5" text-anchor="end">last year</text>
+    <rect x="280" y="100" width="150" height="16" fill="#5A5449"/>
+    <text x="270" y="140" fill="#8A8578" font-size="10.5" text-anchor="end">this year</text>
+    <g class="g">
+      <rect x="280" y="128" width="150" height="16" fill="#5A5449"/>
+      <rect x="430" y="128" width="450" height="16" fill="#BF3B24"/>
+    </g>
+    <text class="b" x="970" y="132" fill="#BF3B24" font-size="22" text-anchor="end">75%</text>
+
+    <line x1="30" y1="172" x2="970" y2="172" stroke="#E4DBCB"/>
+
+    <!-- Team B -->
+    <text x="30" y="216" fill="#1B1712" font-size="13">TEAM B</text>
+    <text x="30" y="236" fill="#5A5449" font-size="11.5">output flat</text>
+    <text x="270" y="212" fill="#8A8578" font-size="10.5" text-anchor="end">last year</text>
+    <rect x="280" y="200" width="150" height="16" fill="#5A5449"/>
+    <text x="270" y="240" fill="#8A8578" font-size="10.5" text-anchor="end">this year</text>
+    <g class="g gb">
+      <rect x="280" y="228" width="37.5" height="16" fill="#5A5449"/>
+      <rect x="317.5" y="228" width="112.5" height="16" fill="#BF3B24"/>
+    </g>
+    <text class="b bb" x="970" y="232" fill="#BF3B24" font-size="22" text-anchor="end">75%</text>
+
+    <line x1="30" y1="272" x2="970" y2="272" stroke="#E4DBCB"/>
+
+    <!-- Team C -->
+    <text x="30" y="316" fill="#1B1712" font-size="13">TEAM C</text>
+    <text x="30" y="336" fill="#5A5449" font-size="11.5">output down 60%</text>
+    <text x="270" y="312" fill="#8A8578" font-size="10.5" text-anchor="end">last year</text>
+    <rect x="280" y="300" width="150" height="16" fill="#5A5449"/>
+    <text x="270" y="340" fill="#8A8578" font-size="10.5" text-anchor="end">this year</text>
+    <g class="g gc">
+      <rect x="280" y="328" width="15" height="16" fill="#5A5449"/>
+      <rect x="295" y="328" width="45" height="16" fill="#BF3B24"/>
+    </g>
+    <text class="b bc" x="970" y="332" fill="#BF3B24" font-size="22" text-anchor="end">75%</text>
+
+    <rect x="30" y="374" width="940" height="54" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="48" y="396" fill="#BF3B24" font-size="11" letter-spacing="2">AI SHARE = AI-WRITTEN ÷ (AI-WRITTEN + TYPED BY PEOPLE)</text>
+    <text x="48" y="416" fill="#1B1712" font-size="12">It goes up whenever people type less, whatever happens to what ships.</text>
+
+    <text x="30" y="454" fill="#8A8578" font-size="11">A share is a ratio of inputs. It has no term for output, quality or time.</text>
+  </g>
+</svg>

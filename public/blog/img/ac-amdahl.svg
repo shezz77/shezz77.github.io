@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="Three horizontal bars showing a developer's month, using IDC's 2024 survey. The first bar is the month as it is: 84 percent spent on requirements and tests, security, CI/CD, application performance, deploying code, infrastructure monitoring and user experience, and 16 percent spent developing applications, drawn in red at the end of the bar. In the second bar, AI writes 75 percent of the code at no cost, so the red coding segment shrinks to 4 percent and the month becomes 88 percent as long: 1.14 times faster. In the third bar, AI writes all of the code instantly, the red segment disappears, and the month is 84 percent as long: 1.19 times faster, which is the ceiling. A dashed line marks where the untouched 84 percent ends. A note says the bars assume AI-written code costs nothing to prompt, read or review, which it does not, so real numbers are lower.">
+  <style>
+    .shrink { transform-box: fill-box; transform-origin: left center; animation: s2 10s ease-in-out infinite; }
+    .s3 { animation-name: s3; }
+    @keyframes s2 { 0%, 12% { transform: scaleX(1); } 30%, 92% { transform: scaleX(.25); } 100% { transform: scaleX(1); } }
+    @keyframes s3 { 0%, 22% { transform: scaleX(1); } 42%, 92% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+    .r2 { animation: f 10s ease-out infinite; opacity: 0; }
+    .r3 { animation: f3 10s ease-out infinite; opacity: 0; }
+    @keyframes f { 0%, 28% { opacity: 0; } 34%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+    @keyframes f3 { 0%, 40% { opacity: 0; } 46%, 92% { opacity: 1; } 98%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .shrink { animation: none; transform: scaleX(.25); }
+      .s3 { transform: scaleX(0); }
+      .r2, .r3 { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">MAKE THE 16% FREE, AND THE 84% IS STILL THERE</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">A developer's month, from IDC's 2024 survey. "Developing applications" is 16% of it.</text>
+
+    <line x1="738.8" y1="84" x2="738.8" y2="352" stroke="#5A5449" stroke-width="1.2" stroke-dasharray="4 4"/>
+    <text x="732" y="96" fill="#8A8578" font-size="10.5" text-anchor="end">everything AI-written code does not touch →|</text>
+
+    <!-- Row 1: as it is -->
+    <text x="50" y="124" fill="#1B1712" font-size="12.5">the month as it is</text>
+    <g font-size="10" fill="#5A5449">
+      <rect x="50" y="134" width="114.8" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="57" y="160">reqs + tests</text>
+      <rect x="164.8" y="134" width="106.6" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="171.8" y="160">security</text>
+      <rect x="271.4" y="134" width="98.4" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="278.4" y="160">CI/CD</text>
+      <rect x="369.8" y="134" width="98.4" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="376.8" y="160">app perf</text>
+      <rect x="468.2" y="134" width="98.4" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="475.2" y="160">deploying</text>
+      <rect x="566.6" y="134" width="90.2" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="573.6" y="160">infra</text>
+      <rect x="656.8" y="134" width="82" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+      <text x="663.8" y="160">UX</text>
+    </g>
+    <rect x="738.8" y="134" width="131.2" height="44" fill="#BF3B24"/>
+    <text x="804.4" y="160" fill="#FCFAF4" font-size="11" text-anchor="middle">coding 16%</text>
+    <text x="970" y="161" fill="#5A5449" font-size="15" text-anchor="end">1.00×</text>
+
+    <!-- Row 2: AI writes 75% -->
+    <text x="50" y="214" fill="#1B1712" font-size="12.5">AI writes 75% of the code, and it costs nothing</text>
+    <rect x="50" y="224" width="688.8" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <text x="394.4" y="250" fill="#8A8578" font-size="11" text-anchor="middle">the same 84%, unchanged</text>
+    <rect class="shrink" x="738.8" y="224" width="131.2" height="44" fill="#BF3B24"/>
+    <g class="r2">
+      <text x="970" y="245" fill="#BF3B24" font-size="15" text-anchor="end">1.14×</text>
+      <text x="970" y="262" fill="#8A8578" font-size="10.5" text-anchor="end">88% of the month</text>
+    </g>
+
+    <!-- Row 3: AI writes all of it -->
+    <text x="50" y="304" fill="#1B1712" font-size="12.5">AI writes all of it, instantly</text>
+    <rect x="50" y="314" width="688.8" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <text x="394.4" y="340" fill="#8A8578" font-size="11" text-anchor="middle">the same 84%, unchanged</text>
+    <rect class="shrink s3" x="738.8" y="314" width="131.2" height="44" fill="#BF3B24"/>
+    <g class="r3">
+      <text x="970" y="335" fill="#BF3B24" font-size="15" text-anchor="end">1.19×</text>
+      <text x="970" y="352" fill="#8A8578" font-size="10.5" text-anchor="end">the ceiling</text>
+    </g>
+
+    <rect x="30" y="378" width="940" height="52" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="48" y="400" fill="#BF3B24" font-size="11" letter-spacing="2">GENEROUS ON PURPOSE</text>
+    <text x="48" y="419" fill="#1B1712" font-size="12">Both bars assume AI-written code costs nothing to prompt, read or review. It does.</text>
+
+    <text x="30" y="456" fill="#8A8578" font-size="11">Amdahl's law: the part you speed up caps the whole. speed-up = 1 / (1 − share × saving)</text>
+  </g>
+</svg>

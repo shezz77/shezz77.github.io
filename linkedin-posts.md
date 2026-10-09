@@ -316,3 +316,36 @@ The shift is what matters: stop asking the agent to be careful, and make what it
 The full breakdown, with the policy file and where I'd use it, is in the first comment.
 
 Which of your agents runs unattended with real credentials right now?
+
+---
+
+## Extra — AI writes 75% of Google's code (image post)
+
+Image: `social/linkedin-ai-code-share.png`. First comment: `shezz77.com/go/ai-writes-75-percent-of-the-code/`
+
+AI writes 75% of Google's new code. Here's the arithmetic nobody is putting in the board deck.
+
+That number is real. Pichai said it in April, up from "more than a quarter" in 2024. Anthropic says 80%+ of what it merges is written by Claude.
+
+It's also being read as a headcount plan: AI writes three quarters of the code, so we need a quarter of the engineers.
+
+Two problems.
+
+1. It counts typing, not work. Google's published definition: characters accepted from AI suggestions ÷ (those + characters typed by hand). A team that spends all day reviewing instead of typing hits 75% with zero extra output.
+
+2. Amdahl's law. Speed up one part of a job and the part you didn't touch caps the whole.
+
+IDC and Atlassian both put coding at 16% of a developer's month.
+
+So if AI wrote 75% of the code at zero cost: 1 / (1 − 0.16 × 0.75) = 1.14× faster.
+If AI wrote all of it, instantly and perfectly: 1.19×. That's the ceiling.
+
+The "6× faster" stories are real too. They're migrations and refactors, the rare jobs where typing is most of the work. A 6× speed-up needs at least 83% of the job to be work the AI took over.
+
+Google didn't do the headcount sum either. Alphabet grew from 187,103 to 198,933 people while its AI share went from half to three quarters.
+
+If you want a bigger number, point the AI at the other 84%: finding information, review, tests, CI, incidents. None of that shows up in "% of code written by AI".
+
+Full arithmetic, three charts and what I'd put on the slide instead — link in the first comment.
+
+What share of your team's week is actually writing code?
