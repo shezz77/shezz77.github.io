@@ -288,3 +288,31 @@ None of this says stop. It says dose. Measure lead time and incidents per change
 The full leaflet, with the dosage I actually use, is in the first comment.
 
 Which side effect is your team feeling most right now?
+
+---
+
+## Extra — NVIDIA OpenShell (image post)
+
+Image: `social/linkedin-openshell.png`. First comment: `shezz77.com/go/nvidia-openshell-agent-boundary/`
+
+Every AI agent safety control I relied on last year lived inside the agent.
+
+Permission prompts. Deny rules. The model's own refusals. One flag, --dangerously-skip-permissions, and they're all gone. That's exactly how the Nx supply-chain malware used Claude Code, Gemini CLI and Amazon Q to hunt for secrets.
+
+NVIDIA's OpenShell (Apache-2.0, Rust, 12k+ stars since February) does it differently. It moves the boundary outside the agent:
+
+— The agent runs with no network at all. Every connect and DNS lookup is intercepted by seccomp and handed to a separate supervisor process it can't reach.
+— Policy is per binary and per HTTP method. Not "this sandbox may reach GitHub" but "curl may GET api.github.com". A POST gets refused.
+— Credentials never enter the sandbox. The supervisor attaches them to outgoing requests, and only to approved hosts. What the agent can see isn't worth stealing.
+— If the supervisor drops, the agent is frozen. It fails closed.
+— A policy prover flags risky policy changes (new credentialed reach, new methods, cloud metadata access) before they ship. You can run it in CI.
+
+It works with Claude Code, Codex, OpenCode and Copilot CLI, on Docker, Podman, Kubernetes or a MicroVM.
+
+It's 0.1 software. Landlock enforcement depends on your kernel, your CNI has to enforce NetworkPolicy, and telemetry is on by default. I wouldn't put it on every laptop tomorrow. I'd put it under every agent that runs without a human watching.
+
+The shift is what matters: stop asking the agent to be careful, and make what it can reach someone else's decision.
+
+The full breakdown, with the policy file and where I'd use it, is in the first comment.
+
+Which of your agents runs unattended with real credentials right now?
