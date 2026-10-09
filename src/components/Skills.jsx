@@ -40,7 +40,7 @@ export default function Skills() {
   return (
     <section id="skills" className="section">
       <Reveal className="section__head">
-        <div className="kicker">04 — Stack &amp; depth</div>
+        <div className="kicker">05 — Stack &amp; depth</div>
         <h2 className="section__title">
           Deep across the modern PHP &amp; JavaScript stacks.
         </h2>

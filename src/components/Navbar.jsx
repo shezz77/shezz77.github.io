@@ -1,7 +1,8 @@
 import { useScrollNav } from '../hooks/useScrollNav'
 import { useScrollSpy } from '../hooks/useScrollSpy'
 
-const SECTIONS = ['services', 'work', 'process', 'contact']
+// Document order — useScrollSpy picks the last one scrolled past.
+const SECTIONS = ['services', 'process', 'work', 'book', 'contact']
 
 export default function Navbar() {
   const scrolled = useScrollNav()
@@ -20,6 +21,9 @@ export default function Navbar() {
         </a>
         <a href="#work" className={linkClass('work')}>
           Work
+        </a>
+        <a href="#book" className={linkClass('book')}>
+          Book
         </a>
         <a href="#process" className={linkClass('process')}>
           Process

@@ -7,7 +7,7 @@ export default function Why() {
     <section id="why" className="section">
       <Reveal className="why-grid">
         <div>
-          <div className="kicker">05 — Why work with me</div>
+          <div className="kicker">06 — Why work with me</div>
           <h2 className="why__title">
             Eleven years turning technical risk into shipped product.
           </h2>

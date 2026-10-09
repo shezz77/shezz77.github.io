@@ -56,6 +56,9 @@ export default function Hero() {
                 <span className="dot" />
                 available for new engagements
               </span>
+              <a href="#book" className="hero__book">
+                New book: Build an IT Company with AI Agents →
+              </a>
               <span>Lahore, PK · remote — global</span>
             </div>
           </div>

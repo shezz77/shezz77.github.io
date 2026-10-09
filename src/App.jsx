@@ -5,6 +5,7 @@ import Marquee from './components/Marquee'
 import Services from './components/Services'
 import Process from './components/Process'
 import Work from './components/Work'
+import Book from './components/Book'
 import Skills from './components/Skills'
 import Why from './components/Why'
 import Contact from './components/Contact'
@@ -19,6 +20,7 @@ export default function App() {
       <Services />
       <Process />
       <Work />
+      <Book />
       <Skills />
       <Why />
       <Contact />

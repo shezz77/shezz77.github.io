@@ -174,6 +174,27 @@ export const stats = [
   { value: 'Gold', label: 'Medalist — MSc Information Technology' },
 ]
 
+export const book = {
+  title: 'Build an IT Company with AI Agents',
+  subtitle: 'A Practical Guide to Building and Running a Software Agency',
+  cover: '/book/build-an-it-company-with-ai-agents.jpg',
+  href: 'https://www.amazon.com/dp/B0HMJNPPFB',
+  published: 'October 2026',
+  format: 'Kindle · 219 pages',
+  pitch:
+    'AI can draft requirements, write code, run tests and prepare handovers. None of that makes it a business. This is the playbook for the part that does: a useful offer, clear responsibilities, reliable review and an honest view of what delivery really costs.',
+  points: [
+    'Follow ClearNest, one small agency, from first customer problem to growth',
+    'Assign specialized agent roles across requirements, development, QA and operations',
+    'Account for human review, tool costs, rework, cash timing and capacity',
+  ],
+  facts: [
+    { value: '13', label: 'Chapters' },
+    { value: '8', label: 'Appendices' },
+    { value: '30', label: 'Day learning plan' },
+  ],
+}
+
 export const links = [
   { label: 'github.com/shezz77', href: 'https://github.com/shezz77' },
   { label: 'shezz77.github.io', href: 'https://shezz77.github.io' },
