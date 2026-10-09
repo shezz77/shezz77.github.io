@@ -1,5 +1,139 @@
 export const POSTS = [
   {
+    slug: "autonomous-dev-agents-in-production", cat: "AI", date: "Oct 2026", minutes: 16,
+    tags: ["AI agents", "Cursor", "Claude Code", "Code review", "Engineering leadership", "Architecture"],
+    title: "Autonomous dev agents in production: what breaks after the demo",
+    excerpt: "Inline autocomplete was a convenience: you hit Tab and read two lines. Autonomous agents—Cursor Composer, Claude Code, Copilot Workspace, and terminal loops—are delegation: they read the repo, edit eight files, run the tests, and hand you a pull request. Once five engineers run them daily, the bottleneck doesn't vanish; it moves into code review, architecture divergence, and hallucinated dependencies. Here is what actually happens in production, the four traps that follow, and how the SDLC has to change.",
+    blocks: [
+      { t: "p", text: "Over the last eighteen months, developer tooling crossed an invisible line. We stopped arguing about whether an LLM can autocomplete a ternary operator or scaffold a boilerplate controller. That was the autocomplete era: the developer held the keyboard, the model whispered suggestions into the editor buffer, and the cognitive center of gravity stayed firmly in the human's head." },
+      { t: "p", text: "The current era is not autocomplete. It is delegation. Tools like Cursor Composer, Claude Code, GitHub Copilot Workspace, and bespoke terminal agents running on the Model Context Protocol do not wait for you to type. You give them an issue ticket or a failing test, step away for coffee, and return to find an agent that has ripgrepped your codebase, modified six files, executed your test runner, fixed its own syntax errors, and staged a git commit." },
+      { t: "p", text: "In isolation, on a greenfield feature or an individual laptop, the demo feels like magic. But when a team of twenty engineers begins running autonomous agentic loops against the same production codebase every morning, the nature of software engineering changes in ways that vendor keynotes rarely mention. The bottlenecks do not disappear. They move." },
+
+      { t: "img", src: "/blog/img/agent-loop-bottleneck.svg", w: 1000, h: 500,
+        alt: "A diagram comparing the high-speed autonomous agent generation loop on the left with the human code review bottleneck on the right. On the left, an agent takes an issue, reads context, and cycles through edit, test, and auto-correct in 45 seconds until tests pass. It then emits a 600-line pull request. On the right, the pull request lands in the human review queue, where review time balloons to 45 minutes, review fatigue sets in, and silent regressions slip through. A caption notes that generation got cheap while verification remained human.",
+        caption: "Generation accelerated by 10x; human verification did not. The queue formed in front of whoever has to approve the pull request." },
+
+      { t: "h", text: "Where autonomous agents genuinely deliver" },
+      { t: "p", text: "It is worth being fair before diagnosing the pathology, because teams dismissive of agentic workflows are leaving immense leverage on the table. In three distinct areas, autonomous coding agents consistently outpace human typing speed by an order of magnitude:" },
+      { t: "list", items: [
+        "Repetitive migrations and systematic refactoring: upgrading an ORM across fifty model definitions, renaming an API signature across eighty call sites, or converting legacy styled-components to Tailwind. When the transformation rules are unambiguous and the compiler provides strict feedback, an agent handles in fifteen minutes what used to eat an entire sprint.",
+        "High-density test harness bootstrapping: writing the first thirty unit tests for an untested calculation module. Human engineers cut corners on boundary checks and null branches out of fatigue. An agent given a clear interface contract will churn through edge cases, invalid inputs, and unicode traps without losing patience.",
+        "Incident reproduction from telemetry: handing an agent a Sentry stack trace, a production log excerpt, and asking it to write a failing reproduction test. By searching symbol definitions and tracing call graphs with ripgrep, agents regularly pinpoint offending lines and recreate the bug scenario faster than an on-call engineer clicking through tabs."
+      ] },
+      { t: "p", text: "These wins are real. But notice what they share: they all operate within tightly bounded problem spaces with immediate, mechanical feedback loops. The trouble begins when agents are unleashed on open-ended feature work." },
+
+      { t: "h", text: "The four production traps" },
+      { t: "p", text: "After watching multiple teams integrate agentic workflows into production services over the past two quarters, four failure modes consistently appear once the initial excitement settles." },
+
+      { t: "h", text: "1. The review debt crisis and review fatigue" },
+      { t: "p", text: "I wrote previously about how [the bottleneck moved to review](/blog/the-review-bottleneck/). Autonomous agents turn that bottleneck into a full-blown crisis. Writing six hundred lines of syntactically valid, lint-passing code used to represent two days of focused thought. An agent emits it in forty-five seconds." },
+      { t: "p", text: "Reviewing that code—verifying security assumptions, checking for subtle race conditions, verifying that it aligns with domain boundaries—still takes a senior engineer thirty to forty minutes. When developers submit three agent-generated pull requests before lunch, the review queue drowns." },
+      { t: "quote", text: "Generation cost collapsed to zero. Verification cost remained stubbornly human. The predictable result is rubber-stamping." },
+      { t: "p", text: "Reviewers subconsciously adapt to the volume. They glance at the green CI badge, verify that unit tests pass, skim the diff, and click Approve. Subtly flawed logic, leaky abstractions, and redundant code enter the `main` branch at five times the historical rate. The team feels faster because tickets move to 'In Review' instantly, but the median time a PR sits in review jumps by 400%." },
+
+      { t: "h", text: "2. Architecture erosion and helper sprawl" },
+      { t: "p", text: "An autonomous agent has no long-term mental model of your architecture. It does not know that your team spent three months migrating away from an old caching layer, or that date calculations must flow through a centralized financial timezone helper. It sees only the tokens in its immediate context window." },
+      { t: "p", text: "When an agent needs to format a currency string, validate an email address, or parse an authorization header, it does not browse your shared internal libraries unless explicitly pointed to them. Instead, it hallucinates a clean, plausible private utility function right inside the file it is editing. Repeat this across thirty pull requests, and your codebase accumulates seven conflicting implementations of the exact same business logic." },
+      { t: "p", text: "Worse, agents treat existing code as canonical truth. If your repository contains five-year-old legacy code written before your team adopted current standards, the agent will faithfully imitate those outdated patterns in brand-new features, quietly undoing years of architectural hygiene." },
+
+      { t: "h", text: "3. The infinite local optimum trap" },
+      { t: "p", text: "Because agents run in a self-healing loop—editing code, running tests, reading error logs, and editing again—they are relentlessly focused on one goal: achieving an exit code of `0`. But passing tests does not mean correct design." },
+      { t: "p", text: "When a human engineer encounters a failing integration test, they pause. They consider whether the failure exposes a fundamental flaw in the design: *Is this boundary misplaced? Should this event be asynchronous instead?* An agent does not pause. It patches. If a test fails because a database record is missing, the agent will add a defensive `if (!record) return defaultValue;` fallback, or mock out a service, or monkey-patch a global state variable." },
+      { t: "p", text: "It converges on a mathematically local optimum: the test suite turns green, the compiler is happy, but the resulting design is an incoherent maze of defensive band-aids that no human architect would ever approve." },
+
+      { t: "h", text: "4. Supply chain blindspots and prompt injection" },
+      { t: "p", text: "The moment you grant an agent terminal access to run `npm test` or install tools, security boundaries become acute. As shown in [the s1ngularity malware analysis](/blog/malware-that-asked-your-ai-cli/), an agent that reads untrusted text can be steered into executing destructive actions or reading local environment files." },
+      { t: "p", text: "In production agent loops, two specific vulnerabilities emerge:" },
+      { t: "list", items: [
+        "Package hallucination and typosquatting: an agent attempting to solve an obscure cryptographic or encoding task will occasionally import a package name that sounds authentic but does not exist on npm or PyPI. Attackers actively monitor and register common model hallucinations, waiting for an automated agent to run `npm install <hallucinated-package>` during its build cycle.",
+        "Credential leakage via local shells: developers running terminal agents often leave their personal AWS credentials, database URLs, and GitHub personal access tokens loaded in ambient environment variables. When the agent is prompted to debug a network failure, it may dump process environment tables into prompt context or temporary logs."
+      ] },
+      { t: "p", text: "This is precisely why runtimes like [NVIDIA's OpenShell](/blog/nvidia-openshell-agent-boundary/) place the agent inside a kernel-enforced sandbox where credentials and network access are managed outside the agent's reach." },
+
+      { t: "img", src: "/blog/img/agent-sdlc-boundary.svg", w: 1000, h: 480,
+        alt: "A four-gate defensive architecture for running autonomous coding agents safely in production. Gate 1 is Spec as Code: interface contracts, OpenAPI schemas, and strict file allowlists. Gate 2 is the Hermetic Sandbox: containerized execution, stripped environment secrets, and strict egress filtering. Gate 3 is Structural Guardrails: dependency freeze, domain boundary linting, and diff caps under 250 lines. Gate 4 is Intent Review: reviewing prompts and design choices rather than just syntax, enforcing developer ownership. Sequential animations highlight each gate in order.",
+        caption: "When writing code costs nothing, safety cannot rely on developer willpower. Every gate must be mechanical and enforceable in CI." },
+
+      { t: "h", text: "How the SDLC must change: the four defensive gates" },
+      { t: "p", text: "If you treat an autonomous agent like an experienced senior colleague who understands nuance, you will suffer. If you treat it like an extraordinarily fast, tireless junior contractor who has no institutional memory and must be surrounded by rigorous boundaries, it will transform your team's velocity." },
+      { t: "p", text: "To make autonomous dev agents viable in production, engineering organizations must implement four non-negotiable defensive gates:" },
+
+      { t: "h", text: "Gate 1: Spec as Code (Input contracts)" },
+      { t: "p", text: "Prompting an agent with casual conversational English like *'Add webhook retries to billing'* invites disaster. Production agent tasks must begin with an explicit specification artifact checked into the repository or passed via a structured configuration file:" },
+      { t: "code", label: ".agent/specs/billing-webhook-retry.md", lines: [
+        { text: "# Task: Webhook Retry Pipeline", color: "#E0A458" },
+        { text: "## Allowed Files", color: "#5A5449" },
+        { text: "- src/billing/webhooks/dispatcher.ts", color: "#9A8B70" },
+        { text: "- src/billing/webhooks/retryQueue.ts", color: "#9A8B70" },
+        { text: "- tests/billing/webhooks/dispatcher.test.ts", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "## Invariants & Rules", color: "#5A5449" },
+        { text: "1. MUST use existing ExponentialBackoff helper in @infra/resilience.", color: "#BF6B4E" },
+        { text: "2. MUST NOT add new third-party dependencies to package.json.", color: "#BF6B4E" },
+        { text: "3. Maximum retry count is 5; dead-letter after exhaustion.", color: "#9A8B70" },
+        { text: "4. All database queries must run through the existing unit of work.", color: "#9A8B70" }
+      ] },
+      { t: "p", text: "Defining the interfaces, the allowed file paths, and the exact constraints before invoking the agent prevents 80% of context drift and architectural duplication." },
+
+      { t: "h", text: "Gate 2: Hermetic sandboxing" },
+      { t: "p", text: "Never run autonomous coding agents with unrestricted access to your host machine's root filesystem or ambient environment variables. Run agent loops inside an isolated Docker container, a devcontainer, or an OpenShell sandbox. Strip all live cloud API keys from the session, and restrict outbound network calls strictly to approved internal package registries and test dependencies." },
+
+      { t: "h", text: "Gate 3: Structural linting and diff budgets" },
+      { t: "p", text: "Because human reviewers cannot catch every subtle architectural divergence in large diffs, automate the boundaries:" },
+      { t: "list", items: [
+        "Dependency lockfile verification: CI must fail automatically if `package.json` or `go.mod` was modified without an explicit approved dependency label.",
+        "Architectural boundary linting: tools like ESLint plugin boundaries, ArchUnit, or TypeScript project references must mechanically enforce that domain modules do not import forbidden internals (e.g., billing code cannot reach directly into reporting tables).",
+        "Strict diff budgets: enforce a hard team rule that no agent-generated pull request may exceed 250 lines of changed code. If a task requires 600 lines, decompose it into three sequential, reviewable stages."
+      ] },
+
+      { t: "h", text: "Gate 4: Intent review and developer accountability" },
+      { t: "p", text: "The team's code review culture must adjust to a single golden rule:" },
+      { t: "quote", text: "The engineer who submits the pull request owns 100% of the diff. 'The agent wrote that' is never an acceptable response in a post-mortem." },
+      { t: "p", text: "Require pull request descriptions to include the original prompt, the reasoning chain or agent plan, and an explanation of why the agent's architectural approach was accepted. Reviewers should review the *intent and trade-offs* first before reading the syntax." },
+
+      { t: "h", text: "Comparing the three eras of dev assistance" },
+      { t: "table", label: "How developer assistance has evolved",
+        head: ["Attribute", "Inline Autocomplete (2022)", "Unbounded Agent Loops (2024)", "Defensive Agentic SDLC (2026)"],
+        rows: [
+          ["Unit of work", "Line or statement", "Whole pull request", "Scoped contract / module"],
+          ["Execution loop", "Human accepts / edits", "Agent loops on tests unattended", "Agent loops within sandboxed container"],
+          ["Primary bottleneck", "Human typing speed", "Human PR review queue", "Spec authoring & intent verification"],
+          ["Failure mode", "Minor syntax typos", "Helper sprawl & silent regressions", "Over-constrained specs"],
+          ["Accountability", "Clear human ownership", "Diffused ('the AI did it')", "Strict human submitter ownership"]
+        ] },
+
+      { t: "h", text: "The practical playbook for teams" },
+      { t: "p", text: "If your engineering organization is adopting tools like Cursor Composer or Claude Code today, enforce these four operational rules:" },
+      { t: "list", items: [
+        "1. Write the tests first, by hand: write the acceptance criteria and the failing test before calling the agent. Give the agent a clear target rather than asking it to invent both the implementation and its own verification.",
+        "2. Trash the branch after fifteen minutes: if an agent loops for fifteen minutes and starts producing convoluted monkey-patches, do not try to untangle its work. Delete the branch, refine your spec prompt, and run it again.",
+        "3. Ban raw PR dumps: forbid developers from opening PRs with raw agent commit messages like 'Fix tests and update types'. The author must write a coherent summary explaining what the agent changed and why.",
+        "4. Optimize codebases for readability: agents thrive in repositories with explicit type systems, small files under 300 lines, hermetic fast-running test suites, and clean directory hierarchies. Codebases that are pleasant for humans are 10x more effective for agents."
+      ] },
+
+      { t: "h", text: "The verdict" },
+      { t: "p", text: "Autonomous coding agents are not going to replace software engineers. What they are doing is stripping away the comforting illusion that software engineering was primarily about writing code." },
+      { t: "p", text: "Writing code was simply the manual labor of our craft. The real work has always been system decomposition, choosing trade-offs, defending architectural boundaries, and taking personal accountability for production correctness. Teams that treat autonomous dev agents as magic shortcut generators will drown in review paralysis and unmaintainable technical debt within six months. Teams that treat them as high-speed executors inside a disciplined, defensive SDLC will move faster than ever before." },
+
+      { t: "links", label: "References and further reading", items: [
+        { label: "NVIDIA/OpenShell: Safe runtime for autonomous AI agents", href: "https://github.com/NVIDIA/OpenShell", note: "The architecture behind running agents in isolated Linux namespaces with Landlock and seccomp." },
+        { label: "NVIDIA's OpenShell takes the permissions out of the agent", href: "/blog/nvidia-openshell-agent-boundary/", note: "My deep dive on boundary architecture and credential injection outside agent reach." },
+        { label: "The bottleneck moved to review and nobody staffed for it", href: "/blog/the-review-bottleneck/", note: "Why high generation throughput breaks downstream engineering review queues." },
+        { label: "The malware didn't search your laptop. It asked your AI to.", href: "/blog/malware-that-asked-your-ai-cli/", note: "How prompt injection and permission bypasses exploit local AI developer tools." },
+        { label: "Vibe coding works. Here's the side-effects leaflet nobody read.", href: "/blog/vibe-coding-side-effects/", note: "Telemetry and data on review time surges, regression rates, and maintainer fatigue." }
+      ] }
+    ],
+    takeaways: [
+      "Autonomous agents shift the paradigm from typing assistance to delegation, running self-healing loops until tests return exit code 0.",
+      "Passing tests does not mean correct design: agents often converge on local optimums, monkey-patching around flaws with defensive band-aids.",
+      "The primary bottleneck in agentic teams is review fatigue. Reviewing 600 lines of generated code takes just as long as reviewing human code.",
+      "Agents lack long-term architectural vision and will eagerly duplicate existing utilities or amplify outdated legacy patterns.",
+      "Adopt Spec-Driven Development (SDD): define TypeScript contracts, OpenAPI schemas, and target file allowlists before invoking the agent.",
+      "Run agents in hermetic sandboxes with ambient environment secrets stripped and outbound network access strictly controlled.",
+      "The human engineer who merges the pull request owns 100% of the diff. 'The agent wrote that' is never an acceptable post-mortem excuse."
+    ]
+  },
+  {
     slug: "nvidia-openshell-agent-boundary", cat: "AI", date: "Oct 2026", minutes: 14,
     tags: ["AI agents", "Security", "Sandboxing", "Claude Code", "Open source"],
     title: "NVIDIA's OpenShell takes the permissions out of the agent",

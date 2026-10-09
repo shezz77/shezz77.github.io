@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-label="A diagram comparing the high-speed autonomous agent generation loop on the left with the human code review bottleneck on the right. On the left, an agent takes an issue, reads context, and cycles through edit, test, and auto-correct in 45 seconds until tests pass. It then emits a 600-line pull request. On the right, the pull request lands in the human review queue, where review time balloons to 45 minutes, review fatigue sets in, and silent regressions slip through. A caption notes that generation got cheap while verification remained human.">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8A8578"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#BF3B24"/>
+    </marker>
+  </defs>
+  <style>
+    .flow { stroke-dasharray: 6 5; animation: flow 1.2s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -22; } }
+    .loop-dot { animation: cycle 4s ease-in-out infinite; }
+    @keyframes cycle {
+      0%   { transform: translate(0, 0); }
+      33%  { transform: translate(110px, 58px); }
+      66%  { transform: translate(-110px, 58px); }
+      100% { transform: translate(0, 0); }
+    }
+    .pulse-ring { animation: pulse 3s ease-out infinite; opacity: 0; }
+    @keyframes pulse {
+      0% { opacity: 0; transform: scale(0.98); }
+      30%, 60% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(1.02); }
+    }
+    .warn-flash { animation: flash 3s ease-in-out infinite; }
+    @keyframes flash {
+      0%, 100% { fill: #BF3B24; }
+      50% { fill: #8A2514; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .flow, .loop-dot, .pulse-ring { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="500" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <!-- Header -->
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THE AUTONOMOUS DEV AGENT MISMATCH</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Upstream generation accelerated by 10x. Downstream human verification did not.</text>
+
+    <!-- LEFT ZONE: Autonomous Agent Loop -->
+    <rect x="30" y="86" width="460" height="340" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="3"/>
+    <text x="48" y="112" fill="#5A5449" font-size="11" letter-spacing="2">UPSTREAM · AUTONOMOUS AGENT LOOP</text>
+    <text x="460" y="112" text-anchor="end" fill="#E0A458" font-size="11">~45 SECONDS</text>
+
+    <!-- Step 1: Input -->
+    <rect x="50" y="130" width="420" height="44" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" rx="3"/>
+    <text x="66" y="157" fill="#1B1712" font-size="12">1. Prompt / Issue ticket</text>
+    <text x="450" y="157" text-anchor="end" fill="#8A8578" font-size="11">natural language</text>
+
+    <!-- Step 2: Context Gathering -->
+    <rect x="50" y="190" width="420" height="44" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" rx="3"/>
+    <text x="66" y="217" fill="#1B1712" font-size="12">2. Context ingest</text>
+    <text x="450" y="217" text-anchor="end" fill="#8A8578" font-size="11">ripgrep, AST, open files</text>
+
+    <!-- Step 3: Fast Self-Healing Loop -->
+    <rect x="50" y="250" width="420" height="110" fill="#FCFAF4" stroke="#E0A458" stroke-width="1.6" rx="3"/>
+    <text x="66" y="274" fill="#E0A458" font-size="11" letter-spacing="1">3. THE SELF-HEALING LOOP</text>
+
+    <!-- Loop sub-boxes -->
+    <rect x="66" y="286" width="110" height="34" fill="#F1EEE1" stroke="#D6CBB6" stroke-width="1" rx="2"/>
+    <text x="121" y="307" text-anchor="middle" fill="#1B1712" font-size="11">Synthesize</text>
+
+    <rect x="206" y="286" width="110" height="34" fill="#F1EEE1" stroke="#D6CBB6" stroke-width="1" rx="2"/>
+    <text x="261" y="307" text-anchor="middle" fill="#1B1712" font-size="11">Run Tests</text>
+
+    <rect x="344" y="286" width="110" height="34" fill="#F1EEE1" stroke="#D6CBB6" stroke-width="1" rx="2"/>
+    <text x="399" y="307" text-anchor="middle" fill="#1B1712" font-size="11">Self-Heal</text>
+
+    <!-- Flow line inside loop -->
+    <path d="M176 303 L204 303 M316 303 L342 303" fill="none" stroke="#E0A458" stroke-width="1.5" class="flow"/>
+    <path d="M399 320 C 399 346 121 346 121 320" fill="none" stroke="#E0A458" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+    <text x="261" y="348" text-anchor="middle" fill="#5A7A3F" font-size="11.5">✓ exit 0 (tests pass!)</text>
+
+    <!-- Loop dot -->
+    <circle class="loop-dot" cx="261" cy="280" r="4.5" fill="#E0A458"/>
+
+    <!-- Output badge -->
+    <rect x="50" y="376" width="420" height="34" fill="#1B1712" rx="2"/>
+    <text x="260" y="398" text-anchor="middle" fill="#F5F1E8" font-size="11.5">Emits PR: +580 lines, 7 files in 45s</text>
+
+    <!-- Mid-arrow: from agent to review -->
+    <line x1="490" y1="260" x2="528" y2="260" stroke="#BF3B24" stroke-width="2.5" class="flow" marker-end="url(#arr-red)"/>
+
+    <!-- RIGHT ZONE: The Human Review Bottleneck -->
+    <rect x="530" y="86" width="440" height="340" fill="#F5F1E8" stroke="#BF3B24" stroke-width="1.8" rx="3"/>
+    <text x="548" y="112" fill="#BF3B24" font-size="11" letter-spacing="2">DOWNSTREAM · HUMAN AUDIT WALL</text>
+    <text x="950" y="112" text-anchor="end" fill="#BF3B24" font-size="11">~35-50 MINS / PR</text>
+
+    <!-- Stack of queued PRs -->
+    <rect x="548" y="130" width="404" height="42" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" rx="3"/>
+    <text x="564" y="156" fill="#1B1712" font-size="11.5">PR #412 · +480 lines (Agent A)</text>
+    <text x="934" y="156" text-anchor="end" fill="#BF3B24" font-size="11">Waiting 6h</text>
+
+    <rect x="548" y="180" width="404" height="42" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" rx="3"/>
+    <text x="564" y="206" fill="#1B1712" font-size="11.5">PR #413 · +620 lines (Agent B)</text>
+    <text x="934" y="206" text-anchor="end" fill="#BF3B24" font-size="11">Waiting 4h</text>
+
+    <rect x="548" y="230" width="404" height="42" fill="#FCFAF4" stroke="#D6CBB6" stroke-width="1.2" rx="3"/>
+    <text x="564" y="256" fill="#1B1712" font-size="11.5">PR #414 · +310 lines (Agent C)</text>
+    <text x="934" y="256" text-anchor="end" fill="#BF3B24" font-size="11">Waiting 2h</text>
+
+    <!-- The Breakdown Box -->
+    <g class="pulse-ring">
+      <rect x="544" y="286" width="412" height="124" fill="none" stroke="#BF3B24" stroke-width="2.5" rx="3"/>
+    </g>
+    <rect x="548" y="290" width="404" height="116" fill="#EFE9DB" stroke="#BF3B24" stroke-width="1.2" rx="3"/>
+    <text x="564" y="316" class="warn-flash" font-size="11.5" letter-spacing="1.5">WHERE THE SYSTEM CRACKS</text>
+    <text x="564" y="338" fill="#1B1712" font-size="11.5">1. Review fatigue: rubber-stamp green CI</text>
+    <text x="564" y="358" fill="#1B1712" font-size="11.5">2. Architecture erosion: duplicated helpers</text>
+    <text x="564" y="378" fill="#1B1712" font-size="11.5">3. Local optimum: pass tests with monkey-patches</text>
+    <text x="564" y="396" fill="#BF3B24" font-size="11.5">→ Regression rate jumps +240%</text>
+
+    <!-- Bottom summary text -->
+    <line x1="30" y1="444" x2="970" y2="444" stroke="#E4DBCB" stroke-width="1"/>
+    <text x="30" y="474" fill="#1B1712" font-size="12.5">Passing tests does not mean correct software. Generation got free; verification did not.</text>
+  </g>
+</svg>
