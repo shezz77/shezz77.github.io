@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-label="A table-like diagram pairing three headline numbers with the outcome number each one turns into. Row one: AI writes 75 percent of Google's new code, which is a capability number; multiplied by the 16 percent of a developer's month spent coding, it becomes at most 1.14 times faster delivery. Row two: AI can technically do about 20 percent of US work; multiplied by the quarter of it organisations adopt in ten years, it becomes about 5 percent of work replaced. Row three: most white-collar tasks fully automatable within 12 to 18 months; the multiplier is your organisation's adoption rate, which is not yet known, and the outcome is to be measured when the deadline arrives between February and August 2027. Footer: the headline is always the left column; the decision belongs to the right column.">
+  <style>
+    .row { opacity: 0; animation: r 12s ease-out infinite; }
+    .r2 { animation-name: r2; }
+    .r3 { animation-name: r3; }
+    @keyframes r { 0% { opacity: 0; } 6%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes r2 { 0%, 22% { opacity: 0; } 28%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes r3 { 0%, 44% { opacity: 0; } 50%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .row { animation: none; opacity: 1; } }
+  </style>
+  <rect width="1000" height="430" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">EVERY AI HEADLINE NEEDS A SECOND NUMBER</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">The headline is what the model can do. Multiply by how much of the work it touches to get what changes.</text>
+
+    <g font-size="10.5" fill="#8A8578" letter-spacing="2">
+      <text x="50" y="98">THE HEADLINE</text>
+      <text x="440" y="98">× MULTIPLY BY</text>
+      <text x="720" y="98">= WHAT CHANGES</text>
+    </g>
+    <line x1="30" y1="108" x2="970" y2="108" stroke="#D6CBB6"/>
+
+    <g class="row">
+      <rect x="40" y="122" width="370" height="64" fill="#F5F1E8" stroke="#D6CBB6" rx="3"/>
+      <text x="56" y="149" fill="#1B1712" font-size="13">AI writes 75% of new code</text>
+      <text x="56" y="170" fill="#8A8578" font-size="10.5">Google, April 2026</text>
+      <text x="440" y="149" fill="#B07A2E" font-size="13">coding share of the month</text>
+      <text x="440" y="170" fill="#8A8578" font-size="10.5">16% (IDC, Atlassian)</text>
+      <rect x="710" y="122" width="250" height="64" fill="#BF3B24" rx="3"/>
+      <text x="726" y="149" fill="#FCFAF4" font-size="13">≤ 1.14× faster</text>
+      <text x="726" y="170" fill="#F5D9CF" font-size="10.5">Amdahl's law</text>
+    </g>
+
+    <g class="row r2">
+      <rect x="40" y="200" width="370" height="64" fill="#F5F1E8" stroke="#D6CBB6" rx="3"/>
+      <text x="56" y="227" fill="#1B1712" font-size="13">AI can do ~20% of US work</text>
+      <text x="56" y="248" fill="#8A8578" font-size="10.5">Acemoglu, from exposure studies</text>
+      <text x="440" y="227" fill="#B07A2E" font-size="13">share adopted in 10 years</text>
+      <text x="440" y="248" fill="#8A8578" font-size="10.5">about a quarter</text>
+      <rect x="710" y="200" width="250" height="64" fill="#BF3B24" rx="3"/>
+      <text x="726" y="227" fill="#FCFAF4" font-size="13">≈ 5% of work replaced</text>
+      <text x="726" y="248" fill="#F5D9CF" font-size="10.5">over a decade</text>
+    </g>
+
+    <g class="row r3">
+      <rect x="40" y="278" width="370" height="64" fill="#F5F1E8" stroke="#D6CBB6" rx="3"/>
+      <text x="56" y="305" fill="#1B1712" font-size="13">Most white-collar tasks, 18 mo</text>
+      <text x="56" y="326" fill="#8A8578" font-size="10.5">Suleyman to the FT, February 2026</text>
+      <text x="440" y="305" fill="#B07A2E" font-size="13">your adoption rate</text>
+      <text x="440" y="326" fill="#8A8578" font-size="10.5">the part you control</text>
+      <rect x="710" y="278" width="250" height="64" fill="none" stroke="#BF3B24" stroke-width="1.5" stroke-dasharray="5 4" rx="3"/>
+      <text x="726" y="305" fill="#BF3B24" font-size="13">measure it in 2027</text>
+      <text x="726" y="326" fill="#8A8578" font-size="10.5">deadline: Feb to Aug 2027</text>
+    </g>
+
+    <line x1="30" y1="374" x2="970" y2="374" stroke="#D6CBB6"/>
+    <text x="30" y="402" fill="#8A8578" font-size="11">The left column makes the news. The right column is the one to plan a team around.</text>
+  </g>
+</svg>

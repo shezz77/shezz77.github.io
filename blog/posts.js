@@ -1,5 +1,97 @@
 export const POSTS = [
   {
+    slug: "eighteen-months-or-five-percent", cat: "Leadership", date: "Oct 2026", minutes: 9,
+    tags: ["AI-assisted", "Engineering leadership", "Jobs", "Microsoft", "Acemoglu", "Adoption"],
+    title: "18 months, or 5% in ten years? Microsoft's AI chief has now backed both.",
+    excerpt: "In February, Microsoft's AI CEO said most white-collar tasks would be fully automated within 12 to 18 months. This week he shared a forecast that AI will replace about 5% of human work in a decade. It reads like a U-turn. It is two different numbers, and the gap between them is the part of the job you control.",
+    blocks: [
+      { t: "p", text: "In February, Mustafa Suleyman, the CEO of Microsoft AI, told the Financial Times that for white-collar work, \"where you're sitting down at a computer, either being a lawyer or an accountant or a project manager or a marketing person\", most of those tasks \"will be fully automated by an AI within the next 12 to 18 months.\" His evidence was software engineering, where people were already using AI-assisted coding for the vast majority of their code production." },
+      { t: "p", text: "This week, announcing The Humanist Review, a magazine published by Microsoft AI, he shared Daron Acemoglu's forecast that AI will replace about 5% of what humans do within ten years. Acemoglu won the Nobel prize in economics in 2024. The coverage has mostly framed it as a change of heart: the grimmest prediction in the industry in February, \"the fear is overblown\" by October." },
+      { t: "p", text: "I don't think it is a U-turn, and I don't think either number is wrong. They answer different questions. Once you see which question each one answers, you also see which of the two you can do something about." },
+
+      { t: "h", text: "Where the 5% comes from" },
+      { t: "p", text: "Acemoglu first made the estimate in 2024, in a paper called The Simple Macroeconomics of AI, and restated it in his essay for the magazine's first issue in July. It is two numbers multiplied. The first is how much of the work in the US economy is made of tasks that AI can technically do: about 20%, from the exposure studies that map what models can do onto occupational task lists. The second is how much of that exposed work will actually be automated within ten years: about a quarter. In the 2024 paper that quarter came from MIT research on computer vision, which found that only 23% of the wages paid for vision-exposed tasks went to work that would be cheaper to automate than to keep paying a person for." },
+      { t: "code", label: "The whole forecast", lines: [
+        { text: "exposed   = 0.20   # tasks AI can technically do", color: "#9A8B70" },
+        { text: "adopted   = 0.25   # share of those automated within 10 years", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "replaced  = exposed × adopted", color: "#E0A458" },
+        { text: "          = 0.20 × 0.25 = 0.05   # about 5% of all work", color: "#BF6B4E" }
+      ] },
+      { t: "img", src: "/blog/img/fp-multiply.svg", w: 1000, h: 440,
+        alt: "Three horizontal bars showing where Acemoglu's 5 percent comes from. All of the work in the economy is 100 percent. The part AI can technically do is about 20 percent, which is what the February prediction was about. Multiplied by one quarter, for cost, reorganisation, retraining and sign-off, the part actually automated within ten years is about 5 percent, which is what this week's forecast was about.",
+        caption: "February's prediction is about the amber bar. This week's forecast is about the red one." },
+      { t: "p", text: "Now read the February quote again. \"Most of those tasks\" can be automated: that is a statement about the amber bar. It says what a model will be able to do for a lawyer, an accountant or a project manager. It says nothing about how many of those firms will rebuild their work around it, how fast, or whether it will be cheaper than the person once you count the review. Suleyman made the distinction himself in June, on The Verge's Decoder podcast, when he said the prediction does not necessarily mean the role goes away, only that the work can be done faster." },
+      { t: "p", text: "So both statements can be true at once. The model can do most of the task, and the economy replaces a twentieth of the work. The difference between them is the multiplier, and the multiplier is not a property of the model." },
+
+      { t: "h", text: "Why the quarter is so small" },
+      { t: "p", text: "The quarter is where every general-purpose technology slows down, and it has nothing to do with how clever the technology is. Acemoglu's essay uses electricity as the example. Central generating stations opened in New York and London in 1881, and by the 1920s only about half of factories and homes used electricity. The economic historian Paul David showed in 1990 that the productivity gain did not arrive when factories bought electric motors. It arrived decades later, when factories were redesigned around them: single-storey buildings, a motor on every machine, work laid out by the flow of materials instead of the line of a steam shaft." },
+      { t: "p", text: "Robert Solow made the same complaint about computers in 1987: you could see them everywhere except in the productivity statistics. The gains came in the late 1990s, after companies changed the work, not when they bought the machines. The pattern is the same each time. Capability arrives fast. Adoption is a reorganisation, and reorganisations are slow." },
+      { t: "p", text: "Acemoglu's essay names a second brake, and anyone who has shipped an AI feature will recognise it. Speech recognition was around 95% accurate in 1997 and claims around 99% now, and most people still do not dictate their email. The last 1% is where the problems live, so somebody has to check the output, and checking is work. A task that a model does 99% correctly is not automated until someone has decided who is accountable for the other 1%." },
+      { t: "list", items: [
+        "Cost: the task has to be cheaper to automate than to keep doing, including the time spent prompting, checking and fixing.",
+        "Reorganisation: the work around the task has to be redesigned, the way factories had to be rebuilt around the electric motor.",
+        "Retraining: the people who keep the remaining tasks have to learn the new workflow, and the managers have to learn to run it.",
+        "Sign-off: someone has to own the output. In law, accounting and medicine, that owner carries real liability, and the rules have not caught up."
+      ] },
+
+      { t: "h", text: "His evidence was coding, and we already know that multiplier" },
+      { t: "p", text: "The part of the February interview worth dwelling on is the evidence. Suleyman pointed to software engineering, where most code is now written with AI assistance. That is the one domain where the multiplication has already been done in public. Google says 75% of its new code is AI-generated. Coding is about 16% of a developer's month in both IDC's and Atlassian's surveys. By Amdahl's law, that buys at most 1.14× faster delivery, and Alphabet's headcount grew by six per cent over the year the share went from half to three quarters. I worked through the full arithmetic in [AI writes 75% of Google's code](/blog/ai-writes-75-percent-of-the-code/)." },
+      { t: "img", src: "/blog/img/fp-two-numbers.svg", w: 1000, h: 430,
+        alt: "Three headline numbers paired with their outcomes. AI writes 75 percent of Google's new code, times the 16 percent of a month spent coding, gives at most 1.14 times faster. AI can do about 20 percent of US work, times the quarter adopted in ten years, gives about 5 percent of work replaced. Most white-collar tasks automatable in 18 months, times your organisation's adoption rate, gives an outcome to be measured when the deadline arrives in 2027.",
+        caption: "The left column makes the news. The right column is the one to plan a team around." },
+      { t: "p", text: "So the industry's best evidence for the 18-month prediction is a capability number whose measured effect on delivery is modest. That does not make the prediction wrong about capability. It makes it the wrong number to plan with. The models really can write most of the code. The team still spends most of its month on everything else, and that is the part the headline does not describe." },
+
+      { t: "h", text: "Where I would push back on Acemoglu" },
+      { t: "p", text: "The 5% is not gospel, and he says so himself: he calls it \"admittedly no more than a guesstimate\". The cost-effectiveness numbers behind the quarter come from studies of computer vision and from experiments with models from 2023. In the essay he concedes that models have improved faster than he, and many others, predicted. He also notes that few applications have yet been adopted widely enough to change how things are produced, which is why he thinks the forecast holds up." },
+      { t: "p", text: "Software is the place I would expect the quarter to be beaten first. It has none of the brakes that slow law or medicine down. There is no regulator signing off on a pull request. The work is already digital end to end. And it has something most professions lack: a test suite, a compiler and a CI pipeline that check the output automatically. That is the cheapest possible version of the sign-off problem, and it is why migrations and refactors, where those checks do most of the reviewing, are where the six-times speed-ups have actually happened." },
+      { t: "p", text: "That cuts both ways for a software team. It means the multiplier in your organisation can be much higher than a quarter. It also means that whether it is higher is a decision your organisation makes, not something the model decides for you." },
+
+      { t: "quote", text: "The capability number makes the news. The adoption number is the one you control." },
+
+      { t: "h", text: "The quarter is yours" },
+      { t: "p", text: "If you run an engineering team, here is how I would use the two numbers. Stop arguing about the first one. Whether a model can do 60% or 90% of a task is going to be settled by next year's models, not by you. Spend the effort on the second: of the tasks your team does that AI can already do, how many have you actually handed over, and what is stopping the rest?" },
+      { t: "table", label: "The capability question and the adoption question",
+        head: ["Capability question (makes the news)", "Adoption question (changes your team)"],
+        rows: [
+          ["Can the model write this code?", "Who reviews it, and does the review take less time than writing it?"],
+          ["Can an agent triage this incident?", "Is anyone accountable for acting on its triage at 3 a.m.?"],
+          ["Can AI draft the test cases?", "Do we grade the tests, or do we merge whatever it writes?"],
+          ["Can AI answer questions about our systems?", "Have we given it scoped access to the docs and tickets it needs?"],
+          ["What share of our code is AI-written?", "What happened to lead time and change failure rate since?"]
+        ] },
+      { t: "list", items: [
+        "List the recurring tasks on your team and mark which ones a current model can do well. That is your amber bar, and it is probably bigger than you think.",
+        "Mark which of those have actually been handed over, with a named owner for the output. That is your red bar, and it is probably much smaller.",
+        "For each task in between, name the brake: cost, workflow, skills or sign-off. Most of them will be workflow and sign-off. [Review is usually the first queue](/blog/the-review-bottleneck/).",
+        "Rebuild the workflow, not the tool. The factories that bought electric motors and kept the steam-shaft layout got nothing. A team that adds an agent and keeps the same review process gets a longer review queue.",
+        "Do not change the size of a team based on the amber bar. Plan around the red one, and only after it has held for a couple of quarters."
+      ] },
+
+      { t: "h", text: "The checkpoint is August 2027" },
+      { t: "p", text: "The February deadline lands between February and August 2027. When it arrives, someone will ask whether the prediction came true, and both answers will be available. The models will be able to do most of the tasks. Most of the work will still be done the way it is today. If you want to be on the right side of that, the number to watch is not what the model can do. It is how much of what it can do your team has actually changed its work around." },
+
+      { t: "links", label: "References", items: [
+        { label: "Fortune via Yahoo Finance, Microsoft AI CEO predicts white-collar automation within 18 months", href: "https://finance.yahoo.com/news/microsoft-ai-ceo-predicts-most-221645947.html", note: "13 February 2026: the Financial Times interview quotes, and coding as the evidence." },
+        { label: "Windows Latest, Microsoft's AI boss shares the 5% forecast", href: "https://www.windowslatest.com/2026/10/07/ai-wont-take-your-job-anytime-soon-microsofts-ai-boss-says-only-5-of-human-work-will-be-replaced-in-10-years/", note: "7 October 2026: the post sharing Acemoglu's estimate, and the June clarification on tasks versus jobs." },
+        { label: "Daron Acemoglu, Will AI replace workers? Not if we build it right", href: "https://humanistreview.ai/issue-1/acemoglu-ai-replace-workers/", note: "The Humanist Review, July 2026: 20% of work, a quarter of it in ten years, about 5%; electricity and speech recognition." },
+        { label: "Daron Acemoglu, The Simple Macroeconomics of AI", href: "https://economics.mit.edu/sites/default/files/2024-05/The%20Simple%20Macroeconomics%20of%20AI.pdf", note: "May 2024: the exposure and cost-effectiveness inputs, and a total factor productivity gain of at most 0.66% over ten years." },
+        { label: "Svanberg et al., Beyond AI Exposure", href: "https://futuretech.mit.edu/publication/beyond-ai-exposure-which-tasks-are-cost-effective-to-automate-with-computer-vision", note: "MIT FutureTech, February 2024: only 23% of wages for vision-exposed tasks are cost-effective to automate." },
+        { label: "Paul A. David, Computer and Dynamo: the modern productivity paradox in a not-too-distant mirror", href: "https://econpapers.repec.org/RePEc:wrk:warwec:339", note: "1989 working paper, published as The Dynamo and the Computer, American Economic Review, 1990: why electricity took decades to show up in factory productivity." },
+        { label: "AI writes 75% of Google's code. Do the arithmetic before you cut the team.", href: "/blog/ai-writes-75-percent-of-the-code/", note: "The coding multiplier: 16% of the month, 1.14× at best." }
+      ] }
+    ],
+    takeaways: [
+      "Microsoft's AI CEO said in February that most white-collar tasks would be fully automated within 12 to 18 months, and this week shared a forecast that AI will replace about 5% of work in ten years. They are not contradictory.",
+      "The 5% is two numbers multiplied: about 20% of work is technically doable by AI, and about a quarter of that is actually automated within a decade.",
+      "The February prediction is about the first number, what models can do. The second number, what organisations change, is set by cost, reorganisation, retraining and sign-off.",
+      "Every general-purpose technology has had the same gap. Electricity took decades to show up in productivity, because factories had to be rebuilt around it.",
+      "The evidence offered for the 18 months was coding, and the coding multiplier is already known: 75% of the code buys at most 1.14× on a typical month.",
+      "Software is where the quarter is most likely to be beaten, because tests and CI make sign-off cheap. Whether it is beaten on your team is an organisational decision.",
+      "Plan around what your team has actually handed over, not what the model can do, and measure it before changing the size of a team."
+    ]
+  },
+  {
     slug: "ai-writes-75-percent-of-the-code", cat: "Leadership", date: "Oct 2026", minutes: 11,
     tags: ["AI-assisted", "Engineering leadership", "Productivity", "Metrics", "Google", "Amdahl's law"],
     title: "AI writes 75% of Google's code. Do the arithmetic before you cut the team.",

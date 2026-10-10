@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="Three horizontal bars showing where Acemoglu's 5 percent comes from. The first bar is all of the work done in the US economy, 100 percent, drawn in light grey. The second bar is the part AI can technically do, about 20 percent, drawn in amber; this is the number the February prediction was about. The third bar is the part that actually gets automated within ten years, about a quarter of the 20 percent, which is 5 percent of all work, drawn in red. Between the second and third bars a label reads: times one quarter, cost, reorganisation, retraining, sign-off. A footer says the two numbers answer different questions: what the model can do, and what organisations will change.">
+  <style>
+    .grow { transform-box: fill-box; transform-origin: left center; transform: scaleX(0); animation: g 10s ease-out infinite; }
+    .g2 { animation-name: g2; }
+    .g3 { animation-name: g3; }
+    @keyframes g { 0% { transform: scaleX(0); } 10%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+    @keyframes g2 { 0%, 14% { transform: scaleX(0); } 26%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+    @keyframes g3 { 0%, 36% { transform: scaleX(0); } 48%, 94% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+    .l2 { opacity: 0; animation: f2 10s ease-out infinite; }
+    .l3 { opacity: 0; animation: f3 10s ease-out infinite; }
+    @keyframes f2 { 0%, 24% { opacity: 0; } 30%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes f3 { 0%, 46% { opacity: 0; } 52%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .grow { animation: none; transform: scaleX(1); }
+      .l2, .l3 { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="440" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THE 5% IS TWO NUMBERS MULTIPLIED</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Acemoglu's ten-year estimate, from his 2024 paper and his July 2026 essay. Bars to scale.</text>
+
+    <!-- Row 1 -->
+    <text x="50" y="104" fill="#1B1712" font-size="12.5">all of the work in the economy</text>
+    <rect class="grow" x="50" y="114" width="800" height="44" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <text x="970" y="142" fill="#5A5449" font-size="15" text-anchor="end">100%</text>
+
+    <!-- Row 2 -->
+    <text x="50" y="194" fill="#1B1712" font-size="12.5">tasks AI can technically do</text>
+    <rect class="grow g2" x="50" y="204" width="160" height="44" fill="#E0A458"/>
+    <g class="l2">
+      <text x="226" y="231" fill="#5A5449" font-size="11.5">← February's "12 to 18 months" is about this bar</text>
+      <text x="970" y="232" fill="#B07A2E" font-size="15" text-anchor="end">≈20%</text>
+    </g>
+
+    <!-- multiplier -->
+    <g class="l3">
+      <text x="50" y="280" fill="#BF3B24" font-size="12.5">× ¼</text>
+      <text x="90" y="280" fill="#8A8578" font-size="11.5">cost-effective to automate · firms reorganise · people retrain · someone signs off</text>
+    </g>
+
+    <!-- Row 3 -->
+    <text x="50" y="316" fill="#1B1712" font-size="12.5">work actually automated within ten years</text>
+    <rect class="grow g3" x="50" y="326" width="40" height="44" fill="#BF3B24"/>
+    <g class="l3">
+      <text x="106" y="353" fill="#5A5449" font-size="11.5">← this week's "5% in ten years" is about this bar</text>
+      <text x="970" y="354" fill="#BF3B24" font-size="15" text-anchor="end">≈5%</text>
+    </g>
+
+    <line x1="30" y1="394" x2="970" y2="394" stroke="#D6CBB6"/>
+    <text x="30" y="420" fill="#8A8578" font-size="11">One number is what the model can do. The other is what organisations change. Neither contradicts the other.</text>
+  </g>
+</svg>

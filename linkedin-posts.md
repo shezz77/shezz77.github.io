@@ -349,3 +349,37 @@ If you want a bigger number, point the AI at the other 84%: finding information,
 Full arithmetic, three charts and what I'd put on the slide instead — link in the first comment.
 
 What share of your team's week is actually writing code?
+
+---
+
+## Extra — Microsoft's AI CEO: 18 months vs 5% in 10 years (image post)
+
+Image: `social/linkedin-eighteen-months.png`. First comment: `shezz77.com/go/eighteen-months-or-five-percent/`
+
+Microsoft's AI CEO said in February that most white-collar tasks would be fully automated within 18 months. This week he shared a forecast that AI will replace 5% of human work in 10 years.
+
+Both can be true. Here's the arithmetic.
+
+February, to the Financial Times: for lawyers, accountants, project managers and marketers, most tasks "will be fully automated by an AI within the next 12 to 18 months." That deadline lands between February and August 2027.
+
+This week, Mustafa Suleyman shared Daron Acemoglu's estimate: about 5% of what humans do replaced by AI within a decade.
+
+That 5% is two numbers multiplied:
+20% of US work is tasks AI can technically do.
+× ¼ of those actually get automated within 10 years.
+= 5%.
+
+The February quote is only the first number. What the model can do.
+
+The second number is what organisations actually change. Processes, approvals, liability, retraining, someone willing to sign off on the output. That's where every general-purpose technology slows down. Electricity took decades to show up in factory productivity, because factories had to be rebuilt around it.
+
+It's the same gap as Google's "AI writes 75% of our code". Capability: 75%. Effect on delivery: about 1.14×.
+
+If you run a team:
+— Don't plan headcount off the capability number. Plan it off what you've actually handed over.
+— The bottleneck is rarely the model. It's review, ownership and who signs off.
+— The ¼ isn't a law. It's how fast your org reorganises. That's the part you control.
+
+The full breakdown, with where both numbers come from and a checklist for engineering teams, is in the first comment.
+
+What share of the tasks AI can already do on your team has actually been handed over?
