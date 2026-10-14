@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-label="Grouped bar chart of seven vendor-reported benchmarks comparing Gemini 4 Argon, Claude Opus 5.5 and GPT-6 Astra. Where Argon leads: DeepSWE v1.1, Argon 77.9 percent, Opus 5.5 74.2, Astra 74.1. Vals Index, 68.9, 67.0 and 63.1. AutomationBench, 51.3, 42.5 and 41.4. GraphWalks from 256 thousand to 1 million tokens, 84.2, 66.8 and 71.8. Where Argon trails: FrontierSWE v2, Argon 55.0, Opus 62.3, Astra 65.5. Terminal-Bench 4.0, 57.4, 66.4 and 58.2. Terminal-Bench Science, 57.6, 63.3 and 68.1. Argon wins long-context and knowledge work and loses the hard, novel and shell-heavy coding tasks. Source: the Gemini 4 Argon model card. Independently, Artificial Analysis puts Argon at 53, tied with GPT-6 Astra, with Opus 5.5 ahead at 58.">
+  <style>
+    .b { transform-box: fill-box; transform-origin: left center; animation: grow 1.4s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .v { animation: fade .6s ease-out both; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .b, .v { animation: none; } }
+  </style>
+  <rect width="1000" height="650" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">ARGON WINS THE LONG JOBS, LOSES THE HARD SHELL ONES</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Seven of the model card's 19 rows. Pick the model by the shape of the task, not by the headline.</text>
+
+    <rect x="30" y="86" width="14" height="11" rx="3" fill="#BF3B24"/>
+    <text x="52" y="96" fill="#1B1712" font-size="12">Gemini 4 Argon</text>
+    <rect x="210" y="86" width="14" height="11" rx="3" fill="#C98A2E"/>
+    <text x="232" y="96" fill="#1B1712" font-size="12">Claude Opus 5.5</text>
+    <rect x="400" y="86" width="14" height="11" rx="3" fill="#2F6F9F"/>
+    <text x="422" y="96" fill="#1B1712" font-size="12">GPT-6 Astra</text>
+    <line x1="30" y1="114" x2="970" y2="114" stroke="#E2DACA" stroke-width="1"/>
+
+    <line x1="300" y1="146" x2="300" y2="582" stroke="#D6CBB6" stroke-width="1.5"/>
+    <text x="30" y="136" fill="#5A5449" font-size="10.5" letter-spacing="2.5">WHERE ARGON LEADS</text>
+    <text x="30" y="165" fill="#1B1712" font-size="12.5">DeepSWE v1.1</text>
+    <text x="30" y="183" fill="#8A8578" font-size="10.5">long-horizon repo engineering</text>
+    <rect class="b" style="animation-delay:0.00s" x="300" y="152" width="436.2" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:0.90s" x="744.2" y="162" fill="#1B1712" font-size="11">77.9%</text>
+    <rect class="b" style="animation-delay:0.06s" x="300" y="166" width="415.5" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:0.96s" x="723.5" y="176" fill="#5A5449" font-size="11">74.2%</text>
+    <rect class="b" style="animation-delay:0.12s" x="300" y="180" width="415" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:1.02s" x="723.0" y="190" fill="#5A5449" font-size="11">74.1%</text>
+    <text x="30" y="223" fill="#1B1712" font-size="12.5">Vals Index</text>
+    <text x="30" y="241" fill="#8A8578" font-size="10.5">finance, legal, tax, coding</text>
+    <rect class="b" style="animation-delay:0.18s" x="300" y="210" width="385.8" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:1.08s" x="693.8" y="220" fill="#1B1712" font-size="11">68.9%</text>
+    <rect class="b" style="animation-delay:0.24s" x="300" y="224" width="375.2" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:1.14s" x="683.2" y="234" fill="#5A5449" font-size="11">67.0%</text>
+    <rect class="b" style="animation-delay:0.30s" x="300" y="238" width="353.4" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:1.20s" x="661.4" y="248" fill="#5A5449" font-size="11">63.1%</text>
+    <text x="30" y="281" fill="#1B1712" font-size="12.5">AutomationBench</text>
+    <text x="30" y="299" fill="#8A8578" font-size="10.5">multi-step business automation</text>
+    <rect class="b" style="animation-delay:0.36s" x="300" y="268" width="287.3" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:1.26s" x="595.3" y="278" fill="#1B1712" font-size="11">51.3%</text>
+    <rect class="b" style="animation-delay:0.42s" x="300" y="282" width="238" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:1.32s" x="546.0" y="292" fill="#5A5449" font-size="11">42.5%</text>
+    <rect class="b" style="animation-delay:0.48s" x="300" y="296" width="231.8" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:1.38s" x="539.8" y="306" fill="#5A5449" font-size="11">41.4%</text>
+    <text x="30" y="339" fill="#1B1712" font-size="12.5">GraphWalks 256K-1M</text>
+    <text x="30" y="357" fill="#8A8578" font-size="10.5">reasoning across 1M tokens</text>
+    <rect class="b" style="animation-delay:0.54s" x="300" y="326" width="471.5" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:1.44s" x="779.5" y="336" fill="#1B1712" font-size="11">84.2%</text>
+    <rect class="b" style="animation-delay:0.60s" x="300" y="340" width="374.1" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:1.50s" x="682.1" y="350" fill="#5A5449" font-size="11">66.8%</text>
+    <rect class="b" style="animation-delay:0.66s" x="300" y="354" width="402.1" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:1.56s" x="710.1" y="364" fill="#5A5449" font-size="11">71.8%</text>
+    <text x="30" y="406" fill="#5A5449" font-size="10.5" letter-spacing="2.5">WHERE ARGON TRAILS</text>
+    <text x="30" y="435" fill="#1B1712" font-size="12.5">FrontierSWE v2</text>
+    <text x="30" y="453" fill="#8A8578" font-size="10.5">hard, novel software problems</text>
+    <rect class="b" style="animation-delay:0.72s" x="300" y="422" width="308" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:1.62s" x="616.0" y="432" fill="#1B1712" font-size="11">55.0%</text>
+    <rect class="b" style="animation-delay:0.78s" x="300" y="436" width="348.9" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:1.68s" x="656.9" y="446" fill="#5A5449" font-size="11">62.3%</text>
+    <rect class="b" style="animation-delay:0.84s" x="300" y="450" width="366.8" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:1.74s" x="674.8" y="460" fill="#5A5449" font-size="11">65.5%</text>
+    <text x="30" y="493" fill="#1B1712" font-size="12.5">Terminal-Bench 4.0</text>
+    <text x="30" y="511" fill="#8A8578" font-size="10.5">shell and command-line work</text>
+    <rect class="b" style="animation-delay:0.90s" x="300" y="480" width="321.4" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:1.80s" x="629.4" y="490" fill="#1B1712" font-size="11">57.4%</text>
+    <rect class="b" style="animation-delay:0.96s" x="300" y="494" width="371.8" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:1.86s" x="679.8" y="504" fill="#5A5449" font-size="11">66.4%</text>
+    <rect class="b" style="animation-delay:1.02s" x="300" y="508" width="325.9" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:1.92s" x="633.9" y="518" fill="#5A5449" font-size="11">58.2%</text>
+    <text x="30" y="551" fill="#1B1712" font-size="12.5">Terminal-Bench Science</text>
+    <text x="30" y="569" fill="#8A8578" font-size="10.5">scientific terminal tasks</text>
+    <rect class="b" style="animation-delay:1.08s" x="300" y="538" width="322.6" height="11" rx="3" fill="#BF3B24"/>
+    <text class="v" style="animation-delay:1.98s" x="630.6" y="548" fill="#1B1712" font-size="11">57.6%</text>
+    <rect class="b" style="animation-delay:1.14s" x="300" y="552" width="354.5" height="11" rx="3" fill="#C98A2E"/>
+    <text class="v" style="animation-delay:2.04s" x="662.5" y="562" fill="#5A5449" font-size="11">63.3%</text>
+    <rect class="b" style="animation-delay:1.20s" x="300" y="566" width="381.4" height="11" rx="3" fill="#2F6F9F"/>
+    <text class="v" style="animation-delay:2.10s" x="689.4" y="576" fill="#5A5449" font-size="11">68.1%</text>
+
+    <text x="30" y="616" fill="#5A5449" font-size="11.5">Vendor-reported, Gemini 4 Argon model card, October 2026. Higher is better on every row.</text>
+    <text x="30" y="636" fill="#5A5449" font-size="11.5">Independent: Artificial Analysis puts Argon at 53, tied with GPT-6 Astra. Opus 5.5 leads at 58.</text>
+  </g>
+</svg>

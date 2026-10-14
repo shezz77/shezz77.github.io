@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="Three steps to use Gemini 4 Argon on the Pro plan. Step one, open Gemini: gemini.google.com on the web, Option plus Space on a Mac, or Alt plus Space on Windows, signed in with the Google account that pays for Pro. Step two, pick 4 Argon in the model picker: a highlight moves down a list of 3.5 Flash-Lite, 3.8 Flash, 3.1 Pro and 4 Argon and stops on 4 Argon. Step three, choose chat or tasks: a toggle slides from Chat to Tasks. Chat is for asking and iterating, with Canvas for code. Tasks hands Gemini multi-step work that keeps running while you are away. A footnote says the rollout is staged, so if Argon is missing, check the account, reload or update the app, and try again later.">
+  <style>
+    .hl { animation: hl 9s ease-in-out infinite; }
+    @keyframes hl {
+      0%, 6%   { transform: translateY(0); }
+      14%, 18% { transform: translateY(40px); }
+      26%, 30% { transform: translateY(80px); }
+      38%, 94% { transform: translateY(120px); }
+      100%     { transform: translateY(0); }
+    }
+    .pick { animation: pick 9s ease-in-out infinite; }
+    @keyframes pick { 0%, 38% { fill: #1B1712; } 42%, 94% { fill: #BF3B24; } 100% { fill: #1B1712; } }
+    .knob { animation: knob 9s ease-in-out infinite; }
+    @keyframes knob { 0%, 54% { transform: translateX(0); } 62%, 94% { transform: translateX(96px); } 100% { transform: translateX(0); } }
+    .tasks { animation: tasks 9s ease-in-out infinite; }
+    @keyframes tasks { 0%, 56% { opacity: .35; } 62%, 94% { opacity: 1; } 100% { opacity: .35; } }
+    .chat { animation: chat 9s ease-in-out infinite; }
+    @keyframes chat { 0%, 56% { opacity: 1; } 62%, 94% { opacity: .35; } 100% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      .hl { animation: none; transform: translateY(120px); }
+      .pick { animation: none; fill: #BF3B24; }
+      .knob, .tasks, .chat { animation: none; }
+    }
+  </style>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">THREE STEPS, SAME ON THE WEB AND THE DESKTOP APP</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">One subscription, one Google account. The web and both desktop apps read the same plan.</text>
+
+    <rect x="30" y="86" width="290" height="320" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <rect x="355" y="86" width="290" height="320" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <rect x="680" y="86" width="290" height="320" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+
+    <g font-size="11.5" letter-spacing="2.5" fill="#BF3B24">
+      <text x="52" y="116">1  OPEN GEMINI</text>
+      <text x="377" y="116">2  PICK 4 ARGON</text>
+      <text x="702" y="116">3  CHAT OR TASKS</text>
+    </g>
+
+    <g font-size="10.5" fill="#8A8578" letter-spacing="1.5">
+      <text x="52" y="154">WEB</text>
+      <text x="52" y="210">MAC  (macOS 15+)</text>
+      <text x="52" y="266">WINDOWS  (10+)</text>
+    </g>
+    <g font-size="14" fill="#1B1712">
+      <text x="52" y="176">gemini.google.com</text>
+    </g>
+    <g font-size="12.5" fill="#1B1712">
+      <rect x="52" y="218" width="76" height="26" rx="4" fill="#FCFAF4" stroke="#BEB4A2"/>
+      <text x="90" y="236" text-anchor="middle">Option</text>
+      <text x="139" y="236" text-anchor="middle">+</text>
+      <rect x="150" y="218" width="68" height="26" rx="4" fill="#FCFAF4" stroke="#BEB4A2"/>
+      <text x="184" y="236" text-anchor="middle">Space</text>
+      <rect x="52" y="274" width="52" height="26" rx="4" fill="#FCFAF4" stroke="#BEB4A2"/>
+      <text x="78" y="292" text-anchor="middle">Alt</text>
+      <text x="115" y="292" text-anchor="middle">+</text>
+      <rect x="126" y="274" width="68" height="26" rx="4" fill="#FCFAF4" stroke="#BEB4A2"/>
+      <text x="160" y="292" text-anchor="middle">Space</text>
+    </g>
+    <g font-size="11.5" fill="#5A5449">
+      <text x="52" y="342">Sign in with the Google</text>
+      <text x="52" y="360">account that pays for Pro.</text>
+      <text x="52" y="384">Account holder 18+.</text>
+    </g>
+
+    <rect x="377" y="138" width="246" height="170" rx="5" fill="#FCFAF4" stroke="#BEB4A2"/>
+    <rect class="hl" x="383" y="146" width="234" height="34" rx="4" fill="#BF3B24" fill-opacity=".13"/>
+    <g font-size="13" fill="#5A5449">
+      <text x="397" y="168">3.5 Flash-Lite</text>
+      <text x="397" y="208">3.8 Flash</text>
+      <text x="397" y="248">3.1 Pro</text>
+    </g>
+    <text class="pick" x="397" y="288" font-size="13" fill="#1B1712">4 Argon</text>
+    <g font-size="11.5" fill="#5A5449">
+      <text x="377" y="342">Open the model drop-down.</text>
+      <text x="377" y="360">Pro and Ultra see all four.</text>
+      <text x="377" y="384">Without them, no 4 Argon.</text>
+    </g>
+
+    <rect x="702" y="150" width="200" height="40" rx="20" fill="#FCFAF4" stroke="#BEB4A2"/>
+    <rect class="knob" x="706" y="154" width="96" height="32" rx="16" fill="#BF3B24" fill-opacity=".15" stroke="#BF3B24"/>
+    <text class="chat" x="754" y="175" font-size="12.5" fill="#1B1712" text-anchor="middle">Chat</text>
+    <text class="tasks" x="850" y="175" font-size="12.5" fill="#1B1712" text-anchor="middle">Tasks</text>
+    <g font-size="11.5" fill="#5A5449">
+      <text x="702" y="230"><tspan fill="#1B1712">Chat:</tspan> ask, iterate, and use</text>
+      <text x="702" y="248">Canvas to write and preview code.</text>
+      <text x="702" y="282"><tspan fill="#1B1712">Tasks:</tspan> hand over multi-step</text>
+      <text x="702" y="300">work. Gemini keeps going across</text>
+      <text x="702" y="318">your Google apps while you are</text>
+      <text x="702" y="336">away from the computer.</text>
+    </g>
+
+    <text x="30" y="438" fill="#5A5449" font-size="11.5">Argon missing from the list? The rollout is staged. Check the account, reload or update the app, try again later.</text>
+  </g>
+</svg>

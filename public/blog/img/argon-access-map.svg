@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-label="A grid of where Gemini 4 Argon is available, by Google plan. Rows are surfaces, columns are the Free, Plus, Pro and Ultra plans. Gemini on the web, the Gemini desktop app for Mac and Windows, AI Mode in Search and Canvas inside Gemini are all ticked for Pro at 19.99 dollars a month and for Ultra. The Antigravity IDE and CLI, and AI Studio with Android Studio Canary, need Ultra. Free has none of them, and Google does not list Argon for Plus. The Pro column is highlighted and its ticks draw in one by one. A footnote says Google has not said which plans get Antigravity inside the Mac Gemini app, and that the Gemini API is pay per token for any account with billing.">
+  <style>
+    .band { animation: band 8s ease-in-out infinite; }
+    @keyframes band { 0%, 100% { opacity: .07; } 50% { opacity: .16; } }
+    .tick { stroke-dasharray: 32; stroke-dashoffset: 32; animation: draw 8s ease-out infinite; }
+    .t2 { animation-delay: .5s; } .t3 { animation-delay: 1s; } .t4 { animation-delay: 1.5s; }
+    @keyframes draw { 0% { stroke-dashoffset: 32; } 8%, 88% { stroke-dashoffset: 0; } 96%, 100% { stroke-dashoffset: 32; } }
+    @media (prefers-reduced-motion: reduce) {
+      .band { animation: none; opacity: .12; }
+      .tick { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+  <rect width="1000" height="500" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHERE GEMINI 4 ARGON IS, BY PLAN</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">The coding tools need Ultra. The model itself does not: it is in the $19.99 Pro plan, on the web and the desktop app.</text>
+
+    <rect class="band" x="666" y="84" width="128" height="334" rx="6" fill="#BF3B24"/>
+
+    <g text-anchor="middle">
+      <text x="480" y="108" fill="#1B1712" font-size="12.5" letter-spacing="2">FREE</text>
+      <text x="480" y="126" fill="#8A8578" font-size="11">$0</text>
+      <text x="600" y="108" fill="#1B1712" font-size="12.5" letter-spacing="2">PLUS</text>
+      <text x="600" y="126" fill="#8A8578" font-size="11">$4.99/mo</text>
+      <text x="730" y="108" fill="#BF3B24" font-size="12.5" letter-spacing="2">PRO</text>
+      <text x="730" y="126" fill="#BF3B24" font-size="11">$19.99/mo</text>
+      <text x="870" y="108" fill="#1B1712" font-size="12.5" letter-spacing="2">ULTRA</text>
+      <text x="870" y="126" fill="#8A8578" font-size="11">from $99.99/mo</text>
+    </g>
+    <line x1="30" y1="140" x2="960" y2="140" stroke="#D6CBB6" stroke-width="1.5"/>
+
+    <g font-size="12.5" fill="#1B1712">
+      <text x="30" y="170">Gemini on the web</text>
+      <text x="30" y="214">Gemini desktop app</text>
+      <text x="30" y="258">AI Mode in Search</text>
+      <text x="30" y="302">Canvas inside Gemini</text>
+      <text x="30" y="346">Antigravity IDE and CLI</text>
+      <text x="30" y="390">AI Studio, Android Studio Canary</text>
+    </g>
+    <g font-size="10.5" fill="#8A8578">
+      <text x="30" y="186">gemini.google.com</text>
+      <text x="30" y="230">macOS 15+ and Windows 10+</text>
+      <text x="30" y="274">google.com, AI Mode tab</text>
+      <text x="30" y="318">write and preview code in chat</text>
+      <text x="30" y="362">standalone coding agent</text>
+      <text x="30" y="406">developer tools</text>
+    </g>
+    <g stroke="#E2DACA" stroke-width="1">
+      <line x1="30" y1="196" x2="960" y2="196"/>
+      <line x1="30" y1="240" x2="960" y2="240"/>
+      <line x1="30" y1="284" x2="960" y2="284"/>
+      <line x1="30" y1="328" x2="960" y2="328"/>
+      <line x1="30" y1="372" x2="960" y2="372"/>
+      <line x1="30" y1="416" x2="960" y2="416"/>
+    </g>
+
+    <g stroke="#BEB4A2" stroke-width="2" stroke-linecap="round">
+      <line x1="472" y1="174" x2="488" y2="174"/>
+      <line x1="472" y1="218" x2="488" y2="218"/>
+      <line x1="472" y1="262" x2="488" y2="262"/>
+      <line x1="472" y1="306" x2="488" y2="306"/>
+      <line x1="472" y1="350" x2="488" y2="350"/>
+      <line x1="472" y1="394" x2="488" y2="394"/>
+      <line x1="592" y1="350" x2="608" y2="350"/>
+      <line x1="592" y1="394" x2="608" y2="394"/>
+    </g>
+    <g font-size="10.5" fill="#8A8578" text-anchor="middle">
+      <text x="600" y="178">not listed</text>
+      <text x="600" y="222">not listed</text>
+      <text x="600" y="266">not listed</text>
+      <text x="600" y="310">not listed</text>
+    </g>
+
+    <g fill="none" stroke="#BF3B24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path class="tick" d="M720,173 l7,7 l14,-15"/>
+      <path class="tick t2" d="M720,217 l7,7 l14,-15"/>
+      <path class="tick t3" d="M720,261 l7,7 l14,-15"/>
+      <path class="tick t4" d="M720,305 l7,7 l14,-15"/>
+    </g>
+    <g font-size="10.5" fill="#5A5449" text-anchor="middle">
+      <text x="730" y="354">needs Ultra</text>
+      <text x="730" y="398">needs Ultra</text>
+    </g>
+
+    <g fill="none" stroke="#1B1712" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M860,173 l7,7 l14,-15"/>
+      <path d="M860,217 l7,7 l14,-15"/>
+      <path d="M860,261 l7,7 l14,-15"/>
+      <path d="M860,305 l7,7 l14,-15"/>
+      <path d="M860,349 l7,7 l14,-15"/>
+      <path d="M860,393 l7,7 l14,-15"/>
+    </g>
+
+    <text x="30" y="448" fill="#5A5449" font-size="11.5">Antigravity inside the Mac Gemini app: Google has not said which plans get it.</text>
+    <text x="30" y="470" fill="#5A5449" font-size="11.5">Gemini API: any account with billing, $2 / $10 per 1M tokens until 30 Nov, then $4 / $20.</text>
+  </g>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="450" viewBox="0 0 1000 450" role="img" aria-label="Bar chart of API prices in dollars per million tokens. Gemini 4 Argon at the introductory price, until 30 November 2026: 2 dollars input, 10 dollars output. Gemini 4 Argon from 1 December: 4 dollars input, 20 dollars output, the same as Claude Opus 5.5 at 4 and 20. GPT-6 Astra: 10 dollars input, 50 dollars output. The introductory price halves the standard price, and the discount ends on 1 December. Cached input is 95 percent off, about 10 cents per million during the introductory period.">
+  <style>
+    .b { transform-box: fill-box; transform-origin: left center; animation: grow 1.4s cubic-bezier(.2,.7,.2,1) both; }
+    .d2 { animation-delay: .1s; } .d3 { animation-delay: .2s; } .d4 { animation-delay: .3s; }
+    @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .cliff { animation: cliff 4s ease-in-out infinite; }
+    @keyframes cliff { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .b, .cliff { animation: none; opacity: 1; } }
+  </style>
+  <rect width="1000" height="450" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">IF YOU OUTGROW THE APP: THE API PRICE CLIFF ON 1 DECEMBER</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Dollars per 1M tokens. The launch price is half the list price, and it ends on 30 November.</text>
+
+    <rect x="30" y="86" width="14" height="11" rx="3" fill="#2F6F9F"/>
+    <text x="52" y="96" fill="#1B1712" font-size="12">input</text>
+    <rect x="130" y="86" width="14" height="11" rx="3" fill="#C98A2E"/>
+    <text x="152" y="96" fill="#1B1712" font-size="12">output</text>
+    <line x1="30" y1="114" x2="970" y2="114" stroke="#E2DACA" stroke-width="1"/>
+
+    <rect x="24" y="126" width="946" height="54" rx="6" fill="#BF3B24" fill-opacity=".07"/>
+
+    <g font-size="12.5" fill="#1B1712">
+      <text x="30" y="148">Gemini 4 Argon</text>
+      <text x="30" y="218">Gemini 4 Argon</text>
+      <text x="30" y="288">Claude Opus 5.5</text>
+      <text x="30" y="358">GPT-6 Astra</text>
+    </g>
+    <g font-size="10.5" fill="#8A8578">
+      <text x="30" y="166">launch price, to 30 Nov</text>
+      <text x="30" y="236">list price, from 1 Dec</text>
+      <text x="30" y="306">list price</text>
+      <text x="30" y="376">list price</text>
+    </g>
+
+    <line x1="300" y1="128" x2="300" y2="384" stroke="#D6CBB6" stroke-width="1.5"/>
+
+    <rect class="b" x="300" y="136" width="22.4" height="12" rx="3" fill="#2F6F9F"/>
+    <rect class="b" x="300" y="152" width="112" height="12" rx="3" fill="#C98A2E"/>
+    <rect class="b d2" x="300" y="206" width="44.8" height="12" rx="3" fill="#2F6F9F"/>
+    <rect class="b d2" x="300" y="222" width="224" height="12" rx="3" fill="#C98A2E"/>
+    <rect class="b d3" x="300" y="276" width="44.8" height="12" rx="3" fill="#2F6F9F"/>
+    <rect class="b d3" x="300" y="292" width="224" height="12" rx="3" fill="#C98A2E"/>
+    <rect class="b d4" x="300" y="346" width="112" height="12" rx="3" fill="#2F6F9F"/>
+    <rect class="b d4" x="300" y="362" width="560" height="12" rx="3" fill="#C98A2E"/>
+
+    <g font-size="11" fill="#1B1712">
+      <text x="331" y="146">$2</text>
+      <text x="420" y="162">$10</text>
+      <text x="353" y="216">$4</text>
+      <text x="532" y="232">$20</text>
+      <text x="353" y="286">$4</text>
+      <text x="532" y="302">$20</text>
+      <text x="420" y="356">$10</text>
+      <text x="868" y="372">$50</text>
+    </g>
+
+    <g class="cliff">
+      <path d="M600,160 C 640,160 650,200 610,212" fill="none" stroke="#BF3B24" stroke-width="1.8"/>
+      <path d="M612,203 l-4,10 l10,-1" fill="none" stroke="#BF3B24" stroke-width="1.8" stroke-linejoin="round"/>
+      <text x="652" y="186" fill="#BF3B24" font-size="12">doubles on 1 Dec, level with Opus 5.5</text>
+    </g>
+
+    <text x="30" y="414" fill="#5A5449" font-size="11.5">Cached input is 95% off: about $0.10 per 1M during the launch price. The app subscription is a flat fee.</text>
+    <text x="30" y="434" fill="#5A5449" font-size="11.5">Sources: Google Cloud blog, Anthropic API pricing, Trending Topics for GPT-6 Astra.</text>
+  </g>
+</svg>
