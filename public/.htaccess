@@ -1,0 +1,3 @@
+# Serve résumé downloads with correct MIME types (Hostinger defaults .docx to text/plain)
+AddType application/vnd.openxmlformats-officedocument.wordprocessingml.document .docx
+AddType application/pdf .pdf
