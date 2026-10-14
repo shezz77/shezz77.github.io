@@ -23,6 +23,16 @@ export default function Contact() {
               shezz77.se@gmail.com
             </a>
           </div>
+          <div className="resume-dl contact__resume">
+            Download résumé:
+            <a href="/Shehzad_Aslam_Software_Architect_Resume.pdf" download>
+              PDF
+            </a>
+            ·
+            <a href="/Shehzad_Aslam_Software_Architect_Resume.docx" download>
+              DOCX
+            </a>
+          </div>
         </Reveal>
 
         <div className="contact__links">

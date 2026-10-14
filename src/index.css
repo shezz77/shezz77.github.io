@@ -1068,6 +1068,24 @@ h3 {
 .hero__book:hover {
   border-bottom-color: var(--rust-dark);
 }
+.resume-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+}
+.resume-dl a {
+  border-bottom: 1px solid currentColor;
+}
+.resume-dl a:hover {
+  color: var(--amber);
+}
+.contact__resume {
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--bg);
+  opacity: 0.85;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 940px) {

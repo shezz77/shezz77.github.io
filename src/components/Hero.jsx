@@ -59,6 +59,16 @@ export default function Hero() {
               <a href="#book" className="hero__book">
                 New book: Build an IT Company with AI Agents →
               </a>
+              <span className="resume-dl">
+                Résumé:
+                <a href="/Shehzad_Aslam_Software_Architect_Resume.pdf" download>
+                  PDF
+                </a>
+                ·
+                <a href="/Shehzad_Aslam_Software_Architect_Resume.docx" download>
+                  DOCX
+                </a>
+              </span>
               <span>Lahore, PK · remote — global</span>
             </div>
           </div>
