@@ -1,4 +1,415 @@
 export const POSTS = [
+{
+  "slug": "ai-tips-stop-prompting-start-briefing",
+  "cat": "AI",
+  "date": "Oct 2026",
+  "minutes": 8,
+  "tags": [
+    "AI tips",
+    "Prompting",
+    "Productivity",
+    "Writing",
+    "Verification"
+  ],
+  "title": "Stop collecting AI prompts. Give it a better brief.",
+  "excerpt": "Seven practical AI tips for work you actually need to finish. Better context, useful examples, targeted revisions and a verification loop—with copyable prompts and animated graphs that show what to measure.",
+  "blocks": [
+    {
+      "t": "p",
+      "text": "“Make it better” is a perfectly reasonable thing to say when the other person knows what better means. A model usually needs you to spell that out. Better for whom? Shorter, more accurate, easier to act on, or more like the way you actually write?"
+    },
+    {
+      "t": "p",
+      "text": "A long prompt can still leave all of those questions unanswered. A short brief can answer them in a few lines. The useful trick is to make the task easy to judge before you ask the model to do it."
+    },
+    {
+      "t": "p",
+      "text": "Here are seven habits to try on your next email, report, plan or piece of code. The examples are deliberately ordinary. You should be able to use them before your next meeting, without buying a course or switching tools."
+    },
+    {
+      "t": "quote",
+      "text": "The useful unit of AI productivity is a finished task you can trust."
+    },
+    {
+      "t": "h",
+      "text": "1. Give it a finish line"
+    },
+    {
+      "t": "p",
+      "text": "Start with the result someone will use. “Help me with a project update” describes a topic. “Write a 150-word update that tells the client what shipped, what is blocked, and what we need from them” describes a deliverable. Add the audience, relevant facts and a few boundaries."
+    },
+    {
+      "t": "p",
+      "text": "Google’s [prompt design guidance](https://ai.google.dev/gemini-api/docs/prompting-strategies) recommends clear instructions, context and examples. The brief below is one practical way to apply that advice. It is a starting point, not a special formula."
+    },
+    {
+      "t": "code",
+      "label": "Copy this: a compact brief",
+      "lines": [
+        {
+          "text": "Outcome: Write a client update, under 150 words.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Audience: A busy, nontechnical operations manager.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Facts: [paste completed work, blockers and dates].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Rules: End with one decision we need from the client.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Do not invent dates, progress or commitments.",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Notice what is missing: a paragraph telling the model it is the world’s greatest communicator. You can use a role when it supplies a useful perspective, but it cannot substitute for the facts of the job."
+    },
+    {
+      "t": "img",
+      "src": "/blog/img/ai-brief-coverage.svg",
+      "w": 800,
+      "h": 480,
+      "alt": "Bar chart counting five brief elements: the vague request contains one, and the expanded request contains all five: deliverable, audience, facts, limits and acceptance check.",
+      "caption": "A count of information supplied in these examples. This is not a model-quality benchmark."
+    },
+    {
+      "t": "h",
+      "text": "2. Let it ask when the answer would change"
+    },
+    {
+      "t": "p",
+      "text": "“Ask me three questions first” is a useful rescue for an unclear task. It is also unnecessary friction when you only want a sentence shortened. Make clarification conditional: ask about missing information that changes the result, then proceed."
+    },
+    {
+      "t": "code",
+      "label": "Copy this: useful clarification",
+      "lines": [
+        {
+          "text": "Before drafting, check whether anything essential",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "is missing. Ask up to 3 questions only if the answers",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "would materially change the result.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Otherwise, state your assumptions and write a draft.",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "p",
+      "text": "For a launch plan, audience and deadline can change almost everything. For a spelling correction, they usually do not. Answer the meaningful questions once and keep those answers in your reusable brief."
+    },
+    {
+      "t": "h",
+      "text": "3. Show it what good looks like"
+    },
+    {
+      "t": "p",
+      "text": "“Write in my voice” leaves the model guessing. Give it a short sample you are comfortable sharing, then say what to preserve: sentence length, directness, vocabulary or structure. Separate the sample’s style from its facts so yesterday’s project details do not leak into today’s update."
+    },
+    {
+      "t": "code",
+      "label": "Copy this: style without borrowed facts",
+      "lines": [
+        {
+          "text": "STYLE SAMPLE: [paste a short example]",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "NEW FACTS: [paste the facts for this task]",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Write using the sample’s tone and sentence length.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Use only NEW FACTS for factual claims.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Do not reuse the sample’s names, numbers or promises.",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Read the result beside your sample. If the structure fits but the tone does not, name the difference: “Use shorter sentences; remove the sales language.” That is more useful feedback than asking it to sound more human."
+    },
+    {
+      "t": "h",
+      "text": "4. Separate evidence from inference"
+    },
+    {
+      "t": "p",
+      "text": "A fluent summary can hide the boundary between what a source actually says and what the model concludes. Ask for that boundary explicitly. When working from documents, request a supporting passage and a page or section for each important claim. Then check those locations yourself."
+    },
+    {
+      "t": "code",
+      "label": "Copy this: a source-grounded answer",
+      "lines": [
+        {
+          "text": "Use the supplied documents to answer [question].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "For each key claim, give the document and section",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "plus a short supporting passage.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Separate direct evidence from your interpretation.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "If the documents do not answer it, say so.",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "note",
+      "tone": "warn",
+      "label": "A citation is a pointer, not proof",
+      "text": "Check that the source exists, that the passage supports the claim, and that it is current enough for your task. Asking the same model whether it is correct is not independent verification."
+    },
+    {
+      "t": "h",
+      "text": "5. Revise one dimension at a time"
+    },
+    {
+      "t": "p",
+      "text": "If a draft has the right facts but a weak opening, ask for a better opening. A complete rewrite creates more material to check and may lose something you already liked. Keep a good version, identify the specific defect, and make a narrow request."
+    },
+    {
+      "t": "code",
+      "label": "Copy this: a controlled revision",
+      "lines": [
+        {
+          "text": "Keep the facts, numbers and final request unchanged.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Rewrite only the opening two sentences.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Lead with the customer’s problem.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Give me 2 alternatives, each under 35 words.",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Afterward, compare the revision with the original. “Keep the numbers unchanged” is an instruction, not a guarantee. For code, the equivalent is a focused change with a test that exercises the behavior you care about."
+    },
+    {
+      "t": "img",
+      "src": "/blog/img/ai-review-loop.svg",
+      "w": 800,
+      "h": 480,
+      "alt": "A four-step workflow graph: brief, draft, check, revise. A return arrow connects revision to checking. The check step asks whether the result matches the brief and whether the facts are supported.",
+      "caption": "Animation follows the work once, then stops. A revision returns to checking before you use it."
+    },
+    {
+      "t": "h",
+      "text": "6. Keep the context relevant"
+    },
+    {
+      "t": "p",
+      "text": "If you have changed the audience, the deadline and the deliverable several times, write a fresh brief containing the decisions that still apply. A new conversation can help when the old one is full of obsolete instructions. Keep the useful source material; do not make the model reconstruct your task from a history of abandoned ideas."
+    },
+    {
+      "t": "p",
+      "text": "Anthropic’s [context engineering guide](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) treats context as a limited resource and recommends adding instructions and examples in response to observed failures. The everyday application is simple: include what the job needs, then adjust when you see a specific problem."
+    },
+    {
+      "t": "code",
+      "label": "Copy this: a handoff brief",
+      "lines": [
+        {
+          "text": "Summarize the current task for a fresh conversation.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Include: outcome, confirmed facts, constraints,",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "decisions, source references and open questions.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Exclude abandoned approaches.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Clearly label anything that remains unverified.",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Review that handoff before reusing it. A summary can drop a constraint or turn an assumption into a fact. Reattach any source files the next conversation needs; a reference to a file is not the file itself."
+    },
+    {
+      "t": "h",
+      "text": "7. Measure finished work, not the first reply"
+    },
+    {
+      "t": "p",
+      "text": "A reply that arrives quickly is useful only if the checking and fixing do not swallow the saving. Track the whole task: preparing the brief, drafting, checking and revising. Keep your usual quality standard fixed."
+    },
+    {
+      "t": "img",
+      "src": "/blog/img/ai-total-time.svg",
+      "w": 800,
+      "h": 480,
+      "alt": "Illustrative stacked bar graph of minutes per task. Vague request: brief 1, draft 1, check and fix 18, total 20. Clear brief: brief 4, draft 1, check and fix 7, total 12. These are invented example values, not measured results.",
+      "caption": "Illustrative arithmetic only: 1 + 1 + 18 = 20 minutes; 4 + 1 + 7 = 12. Replace these values with your own observations."
+    },
+    {
+      "t": "p",
+      "text": "The chart is a hypothetical scenario, not evidence that a better prompt saves eight minutes. It shows why you should count review time. A more detailed brief could save time, make no difference, or cost more than it returns on a simple task."
+    },
+    {
+      "t": "table",
+      "label": "A small experiment for your next week",
+      "head": [
+        "Record",
+        "What to write down"
+      ],
+      "rows": [
+        [
+          "Task",
+          "A recurring job with a comparable scope"
+        ],
+        [
+          "Brief",
+          "The prompt and source material you supplied"
+        ],
+        [
+          "Total time",
+          "Preparation + drafting + checking + revision"
+        ],
+        [
+          "Quality",
+          "Did it pass the same acceptance checks?"
+        ],
+        [
+          "Rework",
+          "What still needed correction?"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Try both approaches across a few comparable tasks. Record failures as well as successes. Keep a prompt because it repeatedly helps you finish acceptable work, not because one output sounded impressive."
+    },
+    {
+      "t": "h",
+      "text": "A reusable prompt you can actually keep"
+    },
+    {
+      "t": "p",
+      "text": "If you save one thing from this article, save a brief you can fill in. Keep it short for simple jobs and expand it when the cost of a misunderstanding is higher."
+    },
+    {
+      "t": "code",
+      "label": "The working brief",
+      "lines": [
+        {
+          "text": "I need [deliverable] for [audience].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "The outcome is [what someone should understand/do].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Use these facts and sources: [material].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Follow these constraints: [length, tone, boundaries].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Here is a good example: [optional sample].",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Ask only about missing details that change the work.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Label assumptions and unsupported claims.",
+          "color": "#F7F3EA"
+        },
+        {
+          "text": "Before finishing, check against [acceptance criteria].",
+          "color": "#F7F3EA"
+        }
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Then do the part the prompt cannot do for you: read the output, verify the important facts, and decide whether it serves the person who will use it. The best prompt in your collection is the one attached to work you actually finished."
+    },
+    {
+      "t": "links",
+      "label": "Sources and further reading",
+      "items": [
+        {
+          "label": "Google: Prompt design strategies",
+          "href": "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+          "note": "Clear instructions, examples and context; the practical prompts here are original examples."
+        },
+        {
+          "label": "Anthropic: Effective context engineering for AI agents",
+          "href": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+          "note": "Keeping context relevant and improving prompts based on observed failures."
+        },
+        {
+          "label": "The ten prompts that replace a course, and the two jobs they leave open",
+          "href": "/blog/ten-prompts-that-replace-a-course/",
+          "note": "Related Field Notes: applying AI to learning without skipping the work."
+        }
+      ]
+    }
+  ],
+  "takeaways": [
+    "Specify the deliverable, audience, facts and acceptance criteria.",
+    "Ask clarifying questions when the answers would change the result.",
+    "Use examples for style and supplied evidence for facts.",
+    "Make focused revisions, then check what changed.",
+    "Measure total time to acceptable work, including verification."
+  ]
+},
   {
     slug: "gemini-4-argon-on-ai-pro", cat: "AI", date: "Oct 2026", minutes: 13,
     tags: ["Gemini 4 Argon", "Google AI Pro", "Gemini desktop app", "How-to", "Benchmarks", "Agentic coding"],
