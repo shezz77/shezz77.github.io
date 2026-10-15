@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#17130E"/>
+  <rect width="1200" height="12" fill="#BF3B24"/>
+
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="80" y="118" fill="#E8663C" font-size="26" letter-spacing="7">FIELD NOTES  ·  AI  ·  HOW-TO</text>
+  </g>
+
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="100" letter-spacing="-3" fill="#F7F3EA">
+    <text x="80" y="262">STOP COLLECTING</text>
+    <text x="80" y="372">AI PROMPTS.</text>
+    <text x="80" y="482"><tspan fill="#E8663C">WRITE A BRIEF.</tspan></text>
+  </g>
+
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="66" letter-spacing="-2" fill="#E0A458">
+    <text x="80" y="584">"MAKE IT BETTER" ISN'T</text>
+    <text x="80" y="660">A FINISH LINE.</text>
+  </g>
+
+  <rect x="80" y="716" width="1040" height="320" fill="#221C15" stroke="#3A332A" stroke-width="2" rx="6"/>
+  <circle cx="118" cy="758" r="8" fill="#BF3B24"/>
+  <circle cx="148" cy="758" r="8" fill="#E0A458"/>
+  <circle cx="178" cy="758" r="8" fill="#5A5449"/>
+  <text x="1090" y="766" fill="#5A5449" font-family="IBM Plex Mono, Menlo, monospace" font-size="22" text-anchor="end">brief.txt · copy this</text>
+  <line x1="80" y1="786" x2="1120" y2="786" stroke="#3A332A" stroke-width="2"/>
+
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="27">
+    <text x="118" y="840" fill="#E0A458">Outcome:<tspan fill="#9A8B70">  client update, under 150 words</tspan></text>
+    <text x="118" y="880" fill="#E0A458">Audience:<tspan fill="#9A8B70"> busy, nontechnical ops manager</tspan></text>
+    <text x="118" y="920" fill="#E0A458">Facts:<tspan fill="#9A8B70">    [what shipped, blockers, dates]</tspan></text>
+    <text x="118" y="960" fill="#E0A458">Rules:<tspan fill="#9A8B70">    end with one decision we need</tspan></text>
+    <text x="118" y="1012" fill="#E8663C">→ don't invent dates, progress or promises</text>
+  </g>
+
+  <line x1="80" y1="1078" x2="1120" y2="1078" stroke="#3A332A" stroke-width="2"/>
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="800" font-size="30">
+    <text x="80" y="1130" fill="#F7F3EA" letter-spacing="1">SHEHZAD ASLAM</text>
+  </g>
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="28">
+    <text x="1120" y="1130" fill="#9A8B70" text-anchor="end">shezz77.com</text>
+  </g>
+</svg>
