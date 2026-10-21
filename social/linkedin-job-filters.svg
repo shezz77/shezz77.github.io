@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#17130E"/>
+  <rect width="1200" height="12" fill="#BF3B24"/>
+
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="80" y="118" fill="#E8663C" font-size="26" letter-spacing="7">FIELD NOTES  ·  AI  ·  CAREERS</text>
+  </g>
+
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="100" letter-spacing="-3" fill="#F7F3EA">
+    <text x="80" y="262">LINKEDIN DELETED</text>
+    <text x="80" y="372">YOUR JOB SEARCH</text>
+    <text x="80" y="482"><tspan fill="#E8663C">FILTERS.</tspan></text>
+  </g>
+
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="66" letter-spacing="-2" fill="#E0A458">
+    <text x="80" y="584">A FILTER WAS A PROMISE.</text>
+    <text x="80" y="660">A SENTENCE IS A HINT.</text>
+  </g>
+
+  <rect x="80" y="716" width="1040" height="320" fill="#221C15" stroke="#3A332A" stroke-width="2" rx="6"/>
+  <circle cx="118" cy="758" r="8" fill="#BF3B24"/>
+  <circle cx="148" cy="758" r="8" fill="#E0A458"/>
+  <circle cx="178" cy="758" r="8" fill="#5A5449"/>
+  <text x="1090" y="766" fill="#5A5449" font-family="IBM Plex Mono, Menlo, monospace" font-size="22" text-anchor="end">linkedin.com/jobs · oct 2026</text>
+  <line x1="80" y1="786" x2="1120" y2="786" stroke="#3A332A" stroke-width="2"/>
+
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="118" y="834" fill="#9A8B70" font-size="20" letter-spacing="4">BEFORE</text>
+
+    <g font-size="24" fill="#9A8B70">
+      <rect x="118" y="852" width="155" height="52" rx="26" fill="none" stroke="#5A5449" stroke-width="2"/>
+      <text x="195" y="886" text-anchor="middle">✓ Remote</text>
+      <rect x="289" y="852" width="227" height="52" rx="26" fill="none" stroke="#5A5449" stroke-width="2"/>
+      <text x="402" y="886" text-anchor="middle">Past 24 hours</text>
+      <rect x="532" y="852" width="184" height="52" rx="26" fill="none" stroke="#5A5449" stroke-width="2"/>
+      <text x="624" y="886" text-anchor="middle">Mid-Senior</text>
+      <rect x="732" y="852" width="213" height="52" rx="26" fill="none" stroke="#5A5449" stroke-width="2"/>
+      <text x="838" y="886" text-anchor="middle">25 mi radius</text>
+    </g>
+    <g stroke="#E8663C" stroke-width="3">
+      <line x1="128" y1="878" x2="263" y2="878"/>
+      <line x1="299" y1="878" x2="506" y2="878"/>
+      <line x1="542" y1="878" x2="706" y2="878"/>
+      <line x1="742" y1="878" x2="935" y2="878"/>
+    </g>
+
+    <text x="118" y="950" fill="#E0A458" font-size="20" letter-spacing="4">NOW</text>
+    <rect x="118" y="964" width="964" height="52" rx="6" fill="#17130E" stroke="#E0A458" stroke-width="2"/>
+    <text x="140" y="998" font-size="24" fill="#F7F3EA">Describe the job you want<tspan fill="#E8663C">▍</tspan></text>
+  </g>
+
+  <line x1="80" y1="1078" x2="1120" y2="1078" stroke="#3A332A" stroke-width="2"/>
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="800" font-size="30">
+    <text x="80" y="1130" fill="#F7F3EA" letter-spacing="1">SHEHZAD ASLAM</text>
+  </g>
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="28">
+    <text x="1120" y="1130" fill="#9A8B70" text-anchor="end">shezz77.com</text>
+  </g>
+</svg>
