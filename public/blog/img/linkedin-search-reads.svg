@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="520" viewBox="0 0 1000 520" role="img" aria-label="What LinkedIn's AI job search reads, according to LinkedIn's own paper, Semantic Search at LinkedIn. Four inputs on the left: your words, the query you type; your profile, meaning headline, past positions and location; your recent behaviour, such as the last ten job titles you interacted with; and the job, reduced to title, company, location, seniority and a summary of the description. They flow into three stages. Query understanding turns your words into normalised attributes and rewrites. Embedding retrieval finds jobs by meaning, mixed with signals such as network proximity. A small language model ranks them, trained on two teachers: an LLM relevance judge that scores 0 to 4, and an engagement model that predicts click, apply, shortlist, dismiss and bad fit. The output is your results list, and what you do with it feeds the engagement signal on the next search.">
+  <style>
+    .dot { animation: flow 4.5s linear infinite; }
+    .d2 { animation-delay: -1.5s; }
+    .d3 { animation-delay: -3s; }
+    @keyframes flow { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(64px); opacity: 0; } }
+    .loop { stroke-dasharray: 6 6; animation: dash 1.6s linear infinite; }
+    @keyframes dash { to { stroke-dashoffset: -24; } }
+    .glow { animation: glow 4.5s ease-in-out infinite; }
+    @keyframes glow { 0%, 100% { fill-opacity: .06; } 50% { fill-opacity: .2; } }
+    @media (prefers-reduced-motion: reduce) {
+      .dot, .loop, .glow { animation: none; }
+    }
+  </style>
+  <rect width="1000" height="520" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHAT THE NEW JOB SEARCH READS</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">From LinkedIn's own paper, "Semantic Search at LinkedIn" (arXiv 2602.07309). Simplified.</text>
+
+    <!-- inputs -->
+    <g fill="#F5F1E8" stroke="#D6CBB6">
+      <rect x="30" y="86" width="230" height="72" rx="6"/>
+      <rect x="30" y="172" width="230" height="72" rx="6"/>
+      <rect class="glow" x="30" y="258" width="230" height="72" rx="6" fill="#BF3B24" stroke="#BF3B24"/>
+      <rect x="30" y="344" width="230" height="72" rx="6"/>
+    </g>
+    <g font-size="10.5" letter-spacing="1.5" fill="#BF3B24">
+      <text x="42" y="108">YOUR WORDS</text>
+      <text x="42" y="194">YOUR PROFILE</text>
+      <text x="42" y="280">YOUR BEHAVIOUR</text>
+      <text x="42" y="366">THE JOB</text>
+    </g>
+    <g font-size="11.5" fill="#1B1712">
+      <text x="42" y="128">the sentence you type</text>
+      <text x="42" y="146" fill="#5A5449">in the search box</text>
+      <text x="42" y="214">headline, past positions,</text>
+      <text x="42" y="232" fill="#5A5449">location, an AI summary of you</text>
+      <text x="42" y="300">e.g. last 10 job titles</text>
+      <text x="42" y="318" fill="#5A5449">you interacted with</text>
+      <text x="42" y="386">title, company, location,</text>
+      <text x="42" y="404" fill="#5A5449">seniority, summarised text</text>
+    </g>
+
+    <!-- arrows in -->
+    <g stroke="#BEB4A2" stroke-width="1.5" fill="none">
+      <path d="M260 122 L300 122 L300 250 L330 250"/>
+      <path d="M260 208 L300 208"/>
+      <path d="M260 294 L300 294 L300 250"/>
+      <path d="M260 380 L300 380 L300 294"/>
+    </g>
+
+    <!-- stages -->
+    <g fill="#F5F1E8" stroke="#D6CBB6">
+      <rect x="330" y="150" width="170" height="200" rx="6"/>
+      <rect x="560" y="150" width="170" height="200" rx="6"/>
+      <rect x="790" y="150" width="180" height="200" rx="6"/>
+    </g>
+    <g font-size="11" letter-spacing="2" fill="#BF3B24">
+      <text x="344" y="178">1 UNDERSTAND</text>
+      <text x="574" y="178">2 RETRIEVE</text>
+      <text x="804" y="178">3 RANK</text>
+    </g>
+    <g font-size="11.5" fill="#1B1712">
+      <text x="344" y="210">Your words become</text>
+      <text x="344" y="228">"normalized</text>
+      <text x="344" y="246">attributes" and</text>
+      <text x="344" y="264">rewritten queries.</text>
+      <text x="344" y="300" fill="#5A5449">Which words become</text>
+      <text x="344" y="318" fill="#5A5449">hard rules is not</text>
+      <text x="344" y="336" fill="#5A5449">shown to you.</text>
+
+      <text x="574" y="210">Jobs matched by</text>
+      <text x="574" y="228">meaning, not exact</text>
+      <text x="574" y="246">keywords.</text>
+      <text x="574" y="282" fill="#5A5449">Mixed with signals</text>
+      <text x="574" y="300" fill="#5A5449">like network</text>
+      <text x="574" y="318" fill="#5A5449">proximity.</text>
+
+      <text x="804" y="210">A small model taught</text>
+      <text x="804" y="228">by two teachers:</text>
+      <text x="804" y="258" fill="#BF3B24">relevance</text>
+      <text x="804" y="276" fill="#5A5449">an LLM judge, 0 to 4</text>
+      <text x="804" y="306" fill="#BF3B24">engagement</text>
+      <text x="804" y="324" fill="#5A5449">click, apply, dismiss</text>
+    </g>
+
+    <!-- flow dots between stages -->
+    <g stroke="#BEB4A2" stroke-width="1.5">
+      <line x1="500" y1="250" x2="560" y2="250"/>
+      <line x1="730" y1="250" x2="790" y2="250"/>
+    </g>
+    <g fill="#BF3B24">
+      <circle class="dot" cx="498" cy="250" r="4"/>
+      <circle class="dot d2" cx="498" cy="250" r="4"/>
+      <circle class="dot" cx="728" cy="250" r="4"/>
+      <circle class="dot d3" cx="728" cy="250" r="4"/>
+    </g>
+
+    <!-- results and feedback loop -->
+    <rect x="790" y="380" width="180" height="40" rx="6" fill="#1B1712"/>
+    <text x="880" y="405" text-anchor="middle" font-size="12" fill="#FCFAF4">your results list</text>
+    <line x1="880" y1="350" x2="880" y2="380" stroke="#BEB4A2" stroke-width="1.5"/>
+    <path class="loop" d="M880 420 L880 440 L16 440 L16 294 L28 294" stroke="#BF3B24" stroke-width="1.5" fill="none"/>
+    <path d="M21 288 L29 294 L21 300" stroke="#BF3B24" stroke-width="1.5" fill="none"/>
+    <text x="30" y="464" font-size="11.5" fill="#BF3B24">What you click, apply to and dismiss becomes input to the next search.</text>
+
+    <text x="30" y="490" font-size="11" fill="#8A8578">Inputs and stages named in the paper. The loop is how engagement training works; exact weights are unpublished.</text>
+  </g>
+</svg>

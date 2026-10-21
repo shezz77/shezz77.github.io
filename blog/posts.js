@@ -1,4 +1,97 @@
 export const POSTS = [
+  {
+    slug: "linkedin-ai-job-search-what-it-reads", cat: "AI", date: "Oct 2026", minutes: 11,
+    tags: ["LinkedIn", "Job search", "Semantic search", "LLMs", "Careers", "Search design"],
+    title: "LinkedIn deleted your job search filters. Here's what the new search reads instead.",
+    excerpt: "LinkedIn is retiring classic job search, and support says you can't switch back. The filters were a promise; the sentence you type now is a hint. I read LinkedIn's own 74-author paper on how the AI search works: what it reads about you, why your clicks are now part of your query, and how to search so your hard constraints stay hard.",
+    blocks: [
+      { t: "p", text: "If you opened LinkedIn Jobs this month and couldn't find \"Past 24 hours\", you weren't imagining it. LinkedIn is \"gradually retiring classic job search starting in September\", and the notice tells you to describe the role you want in your own words ([Influent's October recap](https://influent.co/blog/linkedin-updates-october-2026)). The location radius, the seniority checkboxes and the date toggle are giving way to a single sentence." },
+      { t: "p", text: "Some people asked to go back. One got this from LinkedIn support: \"The ability to switch from AI Search (Beta) back to Classic Search is no longer available\" ([quoted by McCoy](https://blog.mccoy.io/linkedin-ai-job-search-tradeoff), from a [Reddit thread](https://www.reddit.com/r/linkedin/comments/1vnem6s/response_from_linkedin_case_report_regarding_ai/)). Others describe paralegal searches returning attorney roles, \"remote\" searches returning hybrid jobs in distant time zones, and saved alerts that stopped honouring their filters." },
+      { t: "p", text: "Most of the debate is about whether the change is good. I think a more useful question is how the thing works, because LinkedIn has told us. In February it published [Semantic Search at LinkedIn](https://arxiv.org/abs/2602.07309), a 74-author paper on the system behind AI Job Search. I design LLM systems for a living, and reading it changed how I'd search and what I'd click." },
+      { t: "quote", text: "A filter was a promise. The sentence you type now is a hint, and your clicks are part of the query." },
+
+      { t: "h", text: "What actually changed" },
+      { t: "list", items: [
+        "Classic, filter-based job search is being retired gradually, starting September 2026. In its place: a box where you describe the job in plain language ([Influent](https://influent.co/blog/linkedin-updates-october-2026)).",
+        "It isn't new technology for LinkedIn. AI job search launched for Premium members in mid-2025, and natural-language people search followed in November 2025 ([TechCrunch](https://techcrunch.com/2025/11/13/linkedin-adds-ai-powered-search-to-help-users-find-people)). What's new is that it's now the only option.",
+        "LinkedIn says the AI search handles around 25 million job searches a week, and that job seekers without a four-year degree are 10% more likely to get hired with it (figures [cited by McCoy](https://blog.mccoy.io/linkedin-ai-job-search-tradeoff) from Fast Company's coverage).",
+        "Support has told at least one member there is no way back to classic search."
+      ] },
+
+      { t: "h", text: "What the new search reads" },
+      { t: "p", text: "The paper describes three stages. First, query understanding turns your sentence into what it calls \"deterministic, machine-interpretable signals, including routing decisions, normalized attributes, and query reformulations\". Then embedding-based retrieval finds jobs by meaning instead of keyword overlap, mixed with signals such as network proximity. Finally, a compact language model ranks the candidates." },
+      { t: "p", text: "The part that matters to you is what goes into that ranker. On the job side it's a short representation: title, company, location, seniority and a summary of the description, made offline. On your side it's your searcher context: headline, past positions, locations, an AI-written summary of you, and your recent activity, with \"the last 10 job titles the member interacted with\" given as an example." },
+      { t: "img", src: "/blog/img/linkedin-search-reads.svg", w: 1000, h: 520,
+        alt: "Diagram of LinkedIn's AI job search. Four inputs, your words, your profile, your recent behaviour and the job, flow into three stages: understand, retrieve and rank. The ranker is taught by an LLM relevance judge and an engagement model. Your results feed back into the next search through what you click, apply to and dismiss.",
+        caption: "Inputs and stages as the paper names them. The weights are not published." },
+      { t: "table", label: "What the paper says, and what it means when you search",
+        head: ["Input", "What the paper says it uses", "What that means for you"],
+        rows: [
+          ["Your query", "Converted into normalised attributes and reformulated queries", "Some words become hard rules, some become hints. You can't see which."],
+          ["Your profile", "Headline, past positions, locations, an RL-trained summary of you", "Your headline is read as context on every search, not only by recruiters."],
+          ["Your activity", "Recent interactions, such as the last 10 job titles you engaged with", "Browsing jobs you don't want nudges the next search toward them."],
+          ["The job", "Title, company, location, seniority, summarised description", "A posting with a vague title or a buried location is harder to match for everyone."],
+          ["The training", "An LLM judge grading relevance 0 to 4, plus a model predicting click, apply, shortlist, dismiss and bad fit", "It's optimising for what is relevant and what you're likely to act on. Those aren't always the same."]
+        ] },
+
+      { t: "h", text: "A filter was a promise. A sentence is a hint." },
+      { t: "p", text: "The old Remote checkbox was a contract. Behind it sat something like `WHERE workplace = 'remote'`, and a hybrid role was removed before ranking began. You never saw it. That's why people who search for a living, like recruiters, sourcers and anyone applying to 30 jobs a week, loved filters: the same search on Monday and Friday returned the same kind of list." },
+      { t: "p", text: "In the new system, \"remote\" is something the model interprets. It may become a normalised attribute that acts like the old filter. Or it may become one signal among many, which pushes the hybrid role down the list without removing it. The paper doesn't publish which attributes are enforced, and the interface doesn't tell you. That's where the complaints come from: the system isn't necessarily wrong, but it no longer tells you what it promised." },
+      { t: "img", src: "/blog/img/linkedin-filter-vs-hint.svg", w: 1000, h: 440,
+        alt: "Two lanes. In classic search, ticking Remote becomes a hard rule and a hybrid role is removed before ranking. In AI search, typing remote may become a rule or only a signal, and the same hybrid role can remain in the list at position three.",
+        caption: "The same job, two kinds of search. The difference is whether your constraint is enforced or weighed." },
+      { t: "note", tone: "info", label: "This is a trade-off, not a blunder",
+        text: "Filters only work when you already know the terms the system indexes. Natural language helps people who don't, such as career changers, new graduates and anyone without the jargon. That's a plausible reading of the 10% figure for candidates without a degree. The cost falls on power users who need a repeatable search, and in a tough market that's a lot of people." },
+
+      { t: "h", text: "Your clicks are part of your query now" },
+      { t: "p", text: "This is the part most people miss. The ranker is distilled from two teachers: an LLM judge that scores relevance, and an engagement model trained to predict clicks, applications, shortlists, dismissals and bad fits. Your recent interactions are among its inputs. So the list you see is shaped by what you typed and also by what you did last week." },
+      { t: "p", text: "The paper doesn't say how fast your activity moves your results, or how much weight one click carries. But the direction is clear from the design. If you spend an evening opening jobs you'd never take, out of curiosity or frustration, you're teaching your next search what you look at. Treat browsing as input." },
+
+      { t: "h", text: "How to search now" },
+      { t: "p", text: "Write the query like a brief, not a keyword string. I made the same argument about prompting [in the last post](/blog/ai-tips-stop-prompting-start-briefing/): role, level, context, then the things that must not be broken." },
+      { t: "code", label: "Copy this: a job search written as a brief",
+        lines: [
+          { text: "Senior backend engineer, Laravel or Go,", color: "#F7F3EA" },
+          { text: "fully remote, open to candidates in Pakistan,", color: "#F7F3EA" },
+          { text: "at a product company, not an agency,", color: "#F7F3EA" },
+          { text: "posted in the last week", color: "#F7F3EA" }
+        ] },
+      { t: "list", items: [
+        "Say your hard constraints in plain words: \"fully remote\", a named city, \"senior\", \"posted this week\". Those are the most likely to be turned into normalised attributes.",
+        "Check the first 20 results against each constraint. If hybrid roles keep appearing, your constraint is being treated as a hint. Rephrase it (\"fully remote, no office days\") rather than scrolling past.",
+        "Use the negative actions. Dismissing a bad match gives the engagement model a signal; ignoring it gives it nothing. (This is an inference from the training targets, not a documented feature.)",
+        "Don't window-shop in your job search account. Your recent job titles are an input.",
+        "Fix your headline and past titles. They're read as context on every search you run, so \"Engineer at Acme\" tells the system much less than \"Senior Backend Engineer, Laravel and AWS\".",
+        "Rebuild your saved alerts as sentences and check what they return. Members report that old alerts stopped honouring their original filters.",
+        "Keep your own list. The search isn't repeatable any more, so a job you saw on Tuesday may not come back on Thursday. Save it when you see it."
+      ] },
+
+      { t: "h", text: "For anyone building search" },
+      { t: "p", text: "The paper's numbers are good. Against the previous ranking model, it reports a 7.73% improvement in NDCG@10 and a 46.88% reduction in Poor Match Rate@10. The distilled 8B relevance judge agrees with human labels at a kappa of 0.77, close to its teacher's 0.81. Ranking throughput rose more than 75x at fixed latency. On average, it's a better search." },
+      { t: "p", text: "Averages are where the trouble starts. A ranking metric over all searches rewards a system that does well on the median query, and the median user types three vague words. The power user with a precise, repeated query is in the tail, and that's who lost the most. If you build this kind of system, three rules would have avoided most of the backlash:" },
+      { t: "list", items: [
+        "Keep hard constraints hard. Let the model rank inside them, not decide whether to honour them.",
+        "Show users how you read their query. A row of chips such as Remote · Senior · Last 7 days, each removable, turns a hidden guess into something they can check.",
+        "Keep an escape hatch until the new path wins for your heaviest users, not just on average. Removing the old option is a product decision, not a model one."
+      ] },
+      { t: "p", text: "None of that requires a better model. It requires treating the user's words as a contract wherever they were meant as one. That's the same problem I keep writing about with agents: the model is rarely the weak part. The weak part is the boundary between what someone asked for and what the system decided to do." },
+
+      { t: "links", label: "References", items: [
+        { label: "Semantic Search at LinkedIn (arXiv 2602.07309)", href: "https://arxiv.org/abs/2602.07309", note: "LinkedIn's paper on the AI Job Search and People Search stack. Source for every architecture detail and metric here." },
+        { label: "LinkedIn Product Updates: October 2026 Recap (Influent)", href: "https://influent.co/blog/linkedin-updates-october-2026", note: "The retirement notice shown to job seekers." },
+        { label: "The Tradeoff Behind LinkedIn's New AI Job Search (McCoy)", href: "https://blog.mccoy.io/linkedin-ai-job-search-tradeoff", note: "Support's reply, member complaints, and the 25M searches and degree figures." },
+        { label: "LinkedIn adds AI-powered search to help users find people (TechCrunch)", href: "https://techcrunch.com/2025/11/13/linkedin-adds-ai-powered-search-to-help-users-find-people", note: "The earlier people-search rollout." },
+        { label: "Stop collecting AI prompts. Give it a better brief.", href: "/blog/ai-tips-stop-prompting-start-briefing/", note: "Related Field Notes: the same briefing habit, applied to prompts." }
+      ] }
+    ],
+    takeaways: [
+      "LinkedIn's classic, filter-based job search is being retired, and support says you can't switch back.",
+      "The new search reads your words, your profile and your recent activity, then ranks with a model trained on relevance and on what you're likely to act on.",
+      "A checkbox was enforced. A word in a sentence may only be weighed, and you can't see which.",
+      "Write searches as briefs, check the first 20 results against your constraints, and treat browsing as input.",
+      "If you build search: keep hard constraints hard, show users how you read them, and keep an escape hatch."
+    ]
+  },
 {
   "slug": "ai-tips-stop-prompting-start-briefing",
   "cat": "AI",

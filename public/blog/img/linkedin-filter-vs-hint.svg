@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440" role="img" aria-label="A filter was a promise; a sentence is a hint. Top lane, classic search: you tick the Remote checkbox, it becomes a hard rule, and a hybrid role in another city is removed from the results before ranking. Bottom lane, AI search: you type remote in a sentence, the system interprets it, and the same hybrid role can stay in the list, ranked lower but still shown. Whether a given word becomes a hard rule or only a ranking signal is not visible to the person searching. The fix is to check the first twenty results and rephrase when a constraint is being ignored.">
+  <style>
+    .card { animation: drop 6s ease-in-out infinite; }
+    @keyframes drop { 0%, 30% { transform: translateY(0); opacity: 1; } 45%, 90% { transform: translateY(26px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    .card2 { animation: pulse 6s ease-in-out infinite; }
+    @keyframes pulse { 0%, 30% { fill-opacity: .05; } 45%, 90% { fill-opacity: .35; } 100% { fill-opacity: .05; } }
+    @media (prefers-reduced-motion: reduce) {
+      .card { animation: none; opacity: .25; }
+      .card2 { animation: none; fill-opacity: .3; }
+    }
+  </style>
+  <rect width="1000" height="440" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">A FILTER WAS A PROMISE. A SENTENCE IS A HINT.</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">The same hybrid role, "3 days a week in office", meets two kinds of search.</text>
+
+    <!-- lane labels -->
+    <g font-size="10.5" letter-spacing="1.5" fill="#5A5449">
+      <text x="30" y="104">CLASSIC SEARCH</text>
+      <text x="30" y="264">AI SEARCH</text>
+    </g>
+
+    <!-- classic lane -->
+    <rect x="30" y="116" width="200" height="56" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <rect x="46" y="134" width="18" height="18" rx="3" fill="#BF3B24"/>
+    <path d="M50 143 L54 148 L61 138" stroke="#FCFAF4" stroke-width="2.2" fill="none"/>
+    <text x="76" y="148" font-size="13" fill="#1B1712">Remote</text>
+    <line x1="230" y1="144" x2="300" y2="144" stroke="#BEB4A2" stroke-width="1.5"/>
+    <rect x="300" y="116" width="240" height="56" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <text x="316" y="140" font-size="12" fill="#1B1712">hard rule</text>
+    <text x="316" y="158" font-size="11" fill="#5A5449">WHERE workplace = remote</text>
+    <line x1="540" y1="144" x2="610" y2="144" stroke="#BEB4A2" stroke-width="1.5"/>
+    <rect x="610" y="96" width="360" height="130" rx="6" fill="#FCFAF4" stroke="#BEB4A2"/>
+    <g font-size="11.5" fill="#1B1712">
+      <text x="626" y="120">1  Remote, backend</text>
+      <text x="626" y="144">2  Remote, platform</text>
+    </g>
+    <g class="card">
+      <rect x="622" y="156" width="336" height="26" rx="4" fill="#BF3B24" fill-opacity=".1" stroke="#BF3B24" stroke-dasharray="4 3"/>
+      <text x="632" y="174" font-size="11.5" fill="#BF3B24">Hybrid, 3 days in office</text>
+    </g>
+    <text x="626" y="214" font-size="11" fill="#5A5449">Removed before ranking. You never see it.</text>
+
+    <!-- AI lane -->
+    <rect x="30" y="276" width="200" height="56" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <text x="46" y="299" font-size="12" fill="#1B1712">"remote backend</text>
+    <text x="46" y="318" font-size="12" fill="#1B1712"> roles, Laravel"</text>
+    <line x1="230" y1="304" x2="300" y2="304" stroke="#BEB4A2" stroke-width="1.5"/>
+    <rect x="300" y="276" width="240" height="56" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+    <text x="316" y="300" font-size="12" fill="#1B1712">rule, or just a signal?</text>
+    <text x="316" y="318" font-size="11" fill="#5A5449">the model decides, quietly</text>
+    <line x1="540" y1="304" x2="610" y2="304" stroke="#BEB4A2" stroke-width="1.5"/>
+    <rect x="610" y="256" width="360" height="130" rx="6" fill="#FCFAF4" stroke="#BEB4A2"/>
+    <g font-size="11.5" fill="#1B1712">
+      <text x="626" y="280">1  Remote, backend</text>
+      <text x="626" y="304">2  Remote, platform</text>
+    </g>
+    <rect class="card2" x="622" y="316" width="336" height="26" rx="4" fill="#E0A458" fill-opacity=".2" stroke="#E0A458"/>
+    <text x="626" y="334" font-size="11.5" fill="#1B1712">3  Hybrid, 3 days in office</text>
+    <text x="626" y="374" font-size="11" fill="#5A5449">Ranked lower. Still in your list.</text>
+
+    <text x="30" y="420" font-size="11" fill="#8A8578">Check the first 20 results. If a constraint is being ignored, it was read as a hint: say it more plainly.</text>
+  </g>
+</svg>
