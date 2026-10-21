@@ -8,6 +8,7 @@ import Work from './components/Work'
 import Book from './components/Book'
 import Skills from './components/Skills'
 import Why from './components/Why'
+import Scope from './components/Scope'
 import Contact from './components/Contact'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
       <Book />
       <Skills />
       <Why />
+      <Scope />
       <Contact />
     </div>
   )

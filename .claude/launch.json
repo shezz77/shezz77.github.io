@@ -20,6 +20,17 @@
         "4173"
       ],
       "port": 4173
+    },
+    {
+      "name": "php",
+      "runtimeExecutable": "/opt/homebrew/opt/php@8.2/bin/php",
+      "runtimeArgs": [
+        "-S",
+        "127.0.0.1:8090",
+        "-t",
+        "dist"
+      ],
+      "port": 8090
     }
   ]
 }

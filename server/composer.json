@@ -1,0 +1,12 @@
+{
+  "name": "shezz77/scope-api",
+  "description": "Backend for the project-scoping agent on shezz77.com",
+  "type": "project",
+  "require": {
+    "php": "^8.1",
+    "anthropic-ai/sdk": "^1.1"
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}

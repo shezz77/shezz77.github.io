@@ -6,7 +6,7 @@ export default function Contact() {
     <section id="contact" className="contact">
       <div className="contact__inner">
         <Reveal className="contact__head">
-          <div className="kicker">07 — Let's talk</div>
+          <div className="kicker">08 — Let's talk</div>
           <h2 className="contact__title">Have a system worth getting right?</h2>
           <p className="contact__lead">
             Book a free 30-minute architecture call. We'll pressure-test your plan, surface the

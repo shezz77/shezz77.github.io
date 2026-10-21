@@ -1,0 +1,5 @@
+# Only scope.php is meant to be reachable here.
+Options -Indexes
+<FilesMatch "^composer\.(json|lock)$">
+  Require all denied
+</FilesMatch>

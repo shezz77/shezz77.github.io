@@ -11,6 +11,7 @@
     "dev": "vite",
     "prebuild": "node scripts/build-blog.mjs",
     "build": "vite build",
+    "postbuild": "node scripts/build-api.mjs",
     "preview": "vite preview",
     "build:blog": "node scripts/build-blog.mjs"
   },
