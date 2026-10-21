@@ -30,7 +30,6 @@ public/blog/og/
 public/go/
 campaign-links.txt
 
-# Scoping agent: Composer dependencies and local secrets/data
-server/vendor/
+# Scope builder: local config and lead data
 scope-config.php
 scope-data/

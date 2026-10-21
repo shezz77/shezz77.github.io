@@ -1191,7 +1191,7 @@ h3 {
   }
 }
 
-/* ---------- Scope (scoping agent) ---------- */
+/* ---------- Scope (scope builder) ---------- */
 .scope {
   background: var(--cream-card);
   border: 1px solid var(--line);
@@ -1200,40 +1200,74 @@ h3 {
 .scope__form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 26px;
 }
-.scope__label {
+.scope__q {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.scope__q legend {
   font-family: var(--font-head);
   font-weight: 700;
   font-size: 18px;
-  margin: 0;
+  padding: 0;
+  margin-bottom: 10px;
 }
-.scope__textarea,
+.scope__q legend + .scope__small {
+  margin-top: -6px;
+}
+.scope__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.scope__chip {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 10px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.scope__chip:hover {
+  border-color: var(--rust);
+}
+.scope__chip.is-on {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--cream-hi);
+}
+.scope__chip:focus-visible,
+.scope__ghost:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
 .scope__input {
   width: 100%;
   box-sizing: border-box;
   font: inherit;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--ink);
   background: #fff;
   border: 1px solid var(--line);
-  padding: 14px 16px;
+  padding: 13px 15px;
   border-radius: 0;
-}
-.scope__textarea {
   resize: vertical;
-  min-height: 150px;
 }
-.scope__textarea:focus,
 .scope__input:focus {
-  outline: 2px solid var(--rust);
+  outline: 2px solid var(--amber);
   outline-offset: -1px;
-}
-.scope__textarea:disabled,
-.scope__input:disabled {
-  background: var(--bg);
-  color: var(--muted);
 }
 .scope__hp {
   position: absolute;
@@ -1242,37 +1276,30 @@ h3 {
   height: 1px;
   opacity: 0;
 }
-.scope__examples {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-.scope__chip {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: var(--muted-2);
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 7px 12px;
-  cursor: pointer;
-  text-align: left;
-}
-.scope__chip:hover {
-  border-color: var(--rust);
-  color: var(--rust);
-}
 .scope__row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 16px;
-  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--line-2);
 }
 .scope__row .btn-primary,
 .scope__actions .btn-primary {
   border: 0;
   cursor: pointer;
+}
+.scope .btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.scope__row .btn-primary {
+  margin-top: 20px;
+}
+.scope__row .scope__small {
+  margin-top: 20px;
 }
 .scope__small {
   font-family: var(--font-mono);
@@ -1292,56 +1319,17 @@ h3 {
 .scope__ghost:hover {
   border-color: var(--ink);
 }
-.scope__clarify {
-  margin-top: 28px;
-  padding-top: 28px;
-  border-top: 1px solid var(--line-2);
-}
-.scope__q {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.scope__q label {
-  font-weight: 600;
-}
 .scope__contact {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 6px;
-}
-.scope__working {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 24px;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  color: var(--rust);
-}
-.scope__spinner {
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--line);
-  border-top-color: var(--rust);
-  border-radius: 50%;
-  animation: scope-spin 0.8s linear infinite;
-}
-@keyframes scope-spin {
-  to {
-    transform: rotate(360deg);
-  }
+  gap: 10px;
 }
 .scope__error {
-  margin: 20px 0 0;
-  padding: 14px 16px;
+  margin: 0;
+  padding: 12px 14px;
   background: var(--cream-hi);
   border-left: 3px solid var(--rust);
   color: var(--ink);
-}
-.scope__privacy {
-  margin-top: 22px;
 }
 
 .scope__result {
@@ -1360,13 +1348,6 @@ h3 {
   color: var(--cream-hi);
   background: var(--rust);
 }
-.scope__fit--partial {
-  background: var(--amber);
-  color: var(--ink);
-}
-.scope__fit--outside {
-  background: var(--muted);
-}
 .scope__result-title {
   font-family: var(--font-head);
   font-weight: 800;
@@ -1378,10 +1359,6 @@ h3 {
 .scope__summary {
   font-size: 18px;
   line-height: 1.65;
-  margin: 0 0 8px;
-}
-.scope__fit-note {
-  color: var(--muted);
   margin: 0;
 }
 .scope__cols {
@@ -1435,10 +1412,22 @@ h3 {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 20px;
-  padding: 24px;
+  gap: 24px;
+  margin-top: 30px;
+  padding: 28px;
   background: var(--dark);
   color: var(--bg);
+}
+.scope__send {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: start;
+  gap: 32px;
+}
+.scope__send-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .scope__next .scope__h {
   color: var(--amber);
@@ -1447,6 +1436,11 @@ h3 {
   margin: 0;
   max-width: 560px;
   font-size: 17px;
+  line-height: 1.6;
+}
+.scope__first-note {
+  margin: 16px 0 0;
+  color: #c7beac;
   line-height: 1.6;
 }
 .scope__actions {
@@ -1462,11 +1456,8 @@ h3 {
 .scope__next .scope__ghost:hover {
   border-color: var(--amber);
 }
-.scope__sent {
-  margin: 0;
-  color: var(--amber);
-  font-family: var(--font-mono);
-  font-size: 13px;
+.scope__next .scope__error a {
+  color: var(--rust);
 }
 
 @media (max-width: 720px) {
@@ -1474,12 +1465,11 @@ h3 {
     padding: 22px 18px;
   }
   .scope__cols,
-  .scope__contact {
+  .scope__contact,
+  .scope__send {
     grid-template-columns: 1fr;
   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .scope__spinner {
-    animation: none;
+  .scope__next {
+    padding: 22px 18px;
   }
 }
