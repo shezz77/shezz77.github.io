@@ -383,3 +383,221 @@ If you run a team:
 The full breakdown, with where both numbers come from and a checklist for engineering teams, is in the first comment.
 
 What share of the tasks AI can already do on your team has actually been handed over?
+
+---
+
+## Extra — AI took the first rung (DRAFT for Wed 14 Oct 2026, not posted)
+
+Image: `social/linkedin-first-rung.png`.
+
+Peg: CNBC 11 Oct 2026 on Indeed Hiring Lab data (Guillermo Gallacher, 8 Jul 2026): US software dev postings +~15% since Claude Code launched (24 Feb 2025) while total postings −7%; senior roles = 71% of the net increase May 2025→May 2026. Stanford Digital Economy Lab (Brynjolfsson, Chandar, Chen, "Canaries in the Coal Mine", ADP payroll): software developers aged 22–25 down nearly 20% from the late-2022 peak while older developers grew. No blog post; first comment carries the sources.
+
+Since Claude Code launched, US software developer job postings went up 15%. Total job postings fell 7%.
+
+That's Indeed's data. It's the opposite of the headline everyone expected.
+
+Now look at who's getting hired.
+
+71% of the increase was senior roles (Indeed, May 2025 to May 2026).
+Stanford's payroll data: software developers aged 22–25 are down nearly 20% from their late-2022 peak. Older developers grew.
+
+AI didn't take developer jobs. It took the first rung of the ladder.
+
+From inside a team, that's a rational decision. An agent now writes the code a junior used to write. What it can't do is decide whether that code is right. Review, architecture, owning the incident at 3 a.m. is senior work, and that's where the bottleneck moved.
+
+So every team makes the same call: hire one senior, give them agents, skip the junior.
+
+Here's the arithmetic nobody is doing.
+
+Every senior engineer in 2031 is a junior someone hired around 2026. A senior takes five-plus years to make. You can't hire one who was never trained.
+
+If every company only hires seniors, the industry isn't saving money. It's eating its seed corn. In five years the scarce, expensive thing won't be code. It'll be people who can judge it.
+
+If I ran a team:
+— Keep hiring juniors, but change the job. Less typing, more reviewing agent output next to a senior.
+— Make review the training ground. A junior who reviews 20 agent PRs a week learns faster than one who writes 2.
+— Book it as an investment, not a cost. The team that trains in 2026 has the seniors in 2031.
+
+Are you still hiring juniors? If not, where will your seniors come from?
+
+---
+
+## Extra — Gemini 4 Argon is in the $20 plan (image post, posted Wed 14 Oct 2026 ~14:05 PKT, activity 7516060702445490176)
+
+Image: `social/linkedin-argon.png`. First comment: `shezz77.com/go/gemini-4-argon-on-ai-pro/`
+
+Peg: Gemini 4 Argon went public 13 Oct 2026. The launch-day story was "coding tools stay behind the $100 Ultra plan". That's true for Antigravity/AI Studio, not for the model: Google's release notes put Argon in the Gemini app for AI Pro ($19.99) and Ultra. Post this one before the first-rung draft; it's news-pegged and decays fast. Leave ~48h before the next post.
+
+Google's new flagship, Gemini 4 Argon, went public yesterday.
+
+The headline everyone ran: Google keeps it behind the $100 Ultra plan.
+
+That's only half true. The coding tools need Ultra: the Antigravity IDE, AI Studio, Android Studio.
+
+The model doesn't. It's in the $20 Google AI Pro plan, on the web and in the Gemini desktop app.
+
+How to get it:
+→ Open Gemini in your browser, or the desktop app (Option + Space on Mac, Alt + Space on Windows)
+→ Sign in with the account that pays for Pro
+→ Pick "4 Argon" from the model drop-down
+
+Not there yet? The rollout is staged. Reload and check again later.
+
+What the $20 actually buys:
+— a 1M-token context window. Free gets 32K, about 30x less
+— 4x the free usage, refilled every 5 hours, up to a weekly cap
+— Canvas for code, and a Tasks mode that keeps working while you're away
+
+Is it worth switching? Read both halves of Google's own table.
+
+Argon leads on 13 of 19 benchmarks. Long-horizon repo work: 77.9% on DeepSWE, ahead of Claude Opus 5.5 and GPT-6 Astra. Reasoning across 1M tokens: 84.2% against Opus 5.5's 66.8%.
+
+It loses the hard ones. Terminal-Bench: 57.4% against Opus 5.5's 66.4%. Novel software problems: 55.0% against Astra's 65.5%.
+
+Independent testing agrees. Artificial Analysis has Argon tied with GPT-6 Astra at 53, with Opus 5.5 still ahead at 58.
+
+My rule: Argon for big context and long jobs. A whole repo, a stack of contracts, an hour of video.
+Claude or GPT for terminal-heavy agent work and genuinely new problems.
+
+One date to remember if you use the API: the launch price, $2 / $10 per million tokens, doubles on 1 December.
+
+The full guide is in the first comment: web and desktop steps, the limits, and all 19 benchmark rows.
+
+Have you switched your model picker yet? What did you give it first?
+
+**First comment** (keep the real text around the link, or LinkedIn hides it under "Most relevant"):
+
+The full guide: where Argon is on each Google plan, the exact steps on gemini.google.com and in the Mac and Windows desktop apps, what the Pro limits really are, and all 19 rows of Google's benchmark table, with five animated diagrams.
+
+https://shezz77.com/go/gemini-4-argon-on-ai-pro/
+
+I checked every claim against Google's own pages. Where Google hasn't said something, like which plans get Antigravity inside the Mac app, the post says so.
+
+---
+
+## Extra — Stop collecting AI prompts, write a brief (image post, posted Thu 15 Oct 2026 ~22:35 PKT, activity 7516552319686041600)
+
+Image: `social/linkedin-better-brief.png`. First comment: `shezz77.com/go/ai-tips-stop-prompting-start-briefing/`
+
+Blog: `/blog/ai-tips-stop-prompting-start-briefing/` (deployed Thu 15 Oct 2026). Evergreen, no news peg, so it can wait for a clean slot after the 48h gap.
+
+"Make it better" is what most of us type into ChatGPT, Claude or Gemini when a draft feels off.
+
+It works when the other person knows what better means. The model doesn't.
+
+Better for whom? Shorter? More accurate? Easier to act on? More like the way you write?
+
+A 500-word "ultimate prompt" from a saved collection usually leaves all of those questions open. A five-line brief can close them.
+
+Outcome: a client update, under 150 words.
+Audience: a busy, nontechnical operations manager.
+Facts: what shipped, what's blocked, the dates.
+Rules: end with one decision we need from the client.
+Don't invent dates, progress or commitments.
+
+No "you are a world-class communicator." That isn't a fact the job needs.
+
+Six more habits I use every day:
+— Let it ask questions only when the answer would change the result
+— Give it a sample for style, and your sources for the facts
+— Ask it to separate what the source says from what it concludes
+— Fix one thing at a time, not "rewrite the whole thing"
+— Start a fresh chat with a clean brief when the old one is full of abandoned ideas
+— Time the whole task, checking included, not just the first reply
+
+The last one matters most. A fast first draft is worthless if you spend 20 minutes fixing it.
+
+The best prompt in your collection is the one attached to work you actually finished.
+
+All seven habits, with copy-paste prompts, are in the first comment.
+
+What's the prompt you actually reuse every week?
+
+**First comment** (keep the real text around the link, or LinkedIn hides it under "Most relevant"):
+
+The full guide: seven habits with copy-paste briefs for emails, reports and code, plus a one-week experiment to see whether a better brief actually saves you time on your own work.
+
+https://shezz77.com/go/ai-tips-stop-prompting-start-briefing/
+
+It ends with a fill-in-the-blanks brief you can keep and reuse. No course, no new tool.
+
+---
+
+## LinkedIn deleted your job search filters (image post, posted Thu 22 Oct 2026 ~03:40 PKT)
+
+Image: `social/linkedin-job-filters.png`. First comment: `shezz77.com/go/linkedin-ai-job-search-what-it-reads/`
+
+Blog: `/blog/linkedin-ai-job-search-what-it-reads/` (deployed Thu 22 Oct 2026). News-pegged: LinkedIn began retiring classic job search in September 2026.
+
+LinkedIn quietly deleted the job search filters you relied on.
+
+No more "Past 24 hours" toggle. No location radius. No seniority checkboxes. Just a box asking you to describe the job in your own words.
+
+One member asked support to switch back. The answer: that option "is no longer available."
+
+So I read the 74-author paper LinkedIn published on how the new search works. Three things every job seeker should know:
+
+1. Your words are a hint, not a filter.
+The old Remote checkbox removed hybrid jobs before ranking. Now "remote" is interpreted. It might be enforced. It might just push hybrid roles a few places down. You can't see which.
+
+2. Your profile is read on every search.
+Headline, past positions, location and an AI-written summary of you all go into the ranker. "Engineer at Acme" tells it far less than "Senior Backend Engineer, Laravel and AWS."
+
+3. Your clicks are part of your query.
+The ranker is trained to predict what you'll click, apply to and dismiss, and your recent activity is an input. Spend an evening browsing jobs you'd never take, and you're teaching your next search.
+
+What I'd do now:
+— Write the search like a brief: role, level, stack, hard constraints
+— Check the first 20 results against each constraint, and rephrase if one is ignored
+— Rebuild saved alerts; members say old ones stopped honouring their filters
+— Save good postings when you see them. The same search won't return the same list on Thursday.
+
+By LinkedIn's own numbers the new search is better on average. The people who lost are the ones who searched with precision every day, and in this market that's a lot of us.
+
+Have you noticed the difference in your results?
+
+**First comment** (keep the real text around the link, or LinkedIn hides it under "Most relevant"):
+
+The full breakdown: what the new search reads about you, why a sentence isn't a filter, a copy-paste search template, and what anyone building search should learn from it. Two diagrams, all from LinkedIn's own paper.
+
+https://shezz77.com/go/linkedin-ai-job-search-what-it-reads/
+
+---
+
+## Barclays is cutting developers for AI (DRAFT, not posted)
+
+Image: `social/linkedin-more-code.png`. First comment: `shezz77.com/go/more-code-same-output/`
+
+Blog: `/blog/more-code-same-output/` (not deployed yet). News-pegged: Barclays Q3 results, 22 Oct 2026. Study: Chen & Stratton (Harvard), "Artificial Intelligence in the Firm: Bottlenecks in Software Production", 718 firms, Jellyfish data. Weekday afternoon PKT, at least 48h clear of any other post; it overlaps the unposted "first rung" draft (both about dev jobs), so post one or the other this week.
+
+Barclays is cutting 5,000 jobs, developers included, because "AI makes our people more productive."
+
+Two Harvard economists measured what actually happens when a company gives its engineers AI coding agents. 718 companies. 725,000 workers. Five years of GitHub and Jira data.
+
+After adopting agents, per engineer:
+— Lines of code: +30%
+— Pull requests: +23%
+— Time from PR to merge: +49% (7 days → 10.5)
+— PRs sent back for changes: nearly doubled
+— Issues actually shipped to production: +3%. Not statistically significant.
+— Headcount: no change.
+
+30% more code. No more finished work. The productivity is real. It's stuck in review.
+
+The arithmetic says it had to be. Engineers in the study spent 30–42% of their week writing code. Make that part 30% faster and the best case for the whole team is 7–11%. Before review gets any slower.
+
+Here's what worries me about the Barclays plan. In most teams the people who write the code are the people who review it. After agents arrived, firms didn't free up engineers. They pulled 14% more of them into review.
+
+Cut developers and you cut review capacity. The one thing that was already short.
+
+To be fair: a bank isn't a software company, the cuts go wider than developers, and the CEO called AI the icing, not the cake. But if your plan says "AI makes engineers more productive" on one slide and "cut engineering" on the next, add one in between:
+
+How long does a pull request wait for review, and who reviews it?
+
+What happened to review time on your team after agents arrived?
+
+**First comment** (keep the real text around the link, or LinkedIn hides it under "Most relevant"):
+
+The full breakdown: every number from the Harvard paper, the Amdahl arithmetic, why the bottleneck moved to review, and a copy-paste GitHub command that measures your own review time and rework before and after your agent rollout. Two animated charts.
+
+https://shezz77.com/go/more-code-same-output/
