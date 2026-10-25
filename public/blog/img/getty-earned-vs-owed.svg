@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="540" viewBox="0 0 1000 540" role="img" aria-label="Horizontal bars in millions of US dollars on one linear scale, from Getty Images' Chapter 11 disclosure statement. Every year: adjusted EBITDA for the twelve months to June 2026 was 307 million dollars; annual debt service, interest plus required repayments, was 239 million; leaving about 68 million before tax, capital spending and anything else. On top of that, between January 2025 and October 2026: warrant lawsuit judgments and interest of more than 200 million, fees on the failed Shutterstock merger of more than 100 million, 44 million of net interest and fees on the merger loan, and 35 million in legal costs for the warrant cases. Together more than 375 million, with over 275 million more in warrant claims not yet filed. Cash fell from 90.2 million at the end of 2025 to about 50 million at the filing.">
+  <style>
+    .bar { transform-box: fill-box; transform-origin: left center; animation: grow 11s ease-out infinite; }
+    @keyframes grow { 0%, 3% { transform: scaleX(0); } 12%, 93% { transform: scaleX(1); } 99%, 100% { transform: scaleX(1); opacity: 0; } }
+    .d1 { animation-delay: .3s; } .d2 { animation-delay: .6s; }
+    .d3 { animation-delay: 2s; } .d4 { animation-delay: 2.3s; } .d5 { animation-delay: 2.6s; } .d6 { animation-delay: 2.9s; }
+    .fade { opacity: 0; animation: fade 11s ease-out infinite; animation-delay: 3.6s; }
+    @keyframes fade { 0%, 8% { opacity: 0; } 14%, 92% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .bar { animation: none; transform: none; }
+      .fade { animation: none; opacity: 1; }
+    }
+  </style>
+  <rect width="1000" height="540" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">WHAT GETTY EARNED, AND WHAT HIT IT</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">From Getty's Chapter 11 disclosure statement, October 2026. Millions of US dollars, one scale.</text>
+
+    <text x="30" y="100" fill="#5A5449" font-size="11" letter-spacing="2">EVERY YEAR</text>
+    <text x="30" y="131" fill="#1B1712" font-size="12.5">adjusted EBITDA, 12 months to June 2026</text>
+    <rect class="bar" x="420" y="118" width="429.8" height="18" fill="#1B1712"/>
+    <text x="858" y="131" fill="#1B1712" font-size="12">$307m</text>
+    <text x="30" y="163" fill="#1B1712" font-size="12.5">debt service: interest + repayments</text>
+    <rect class="bar d1" x="420" y="150" width="334.6" height="18" fill="#BF3B24"/>
+    <text x="763" y="163" fill="#5A5449" font-size="12">$239m</text>
+    <text x="30" y="195" fill="#1B1712" font-size="12.5">left over, before tax and capex</text>
+    <rect class="bar d2" x="420" y="182" width="95.2" height="18" fill="#D6CBB6"/>
+    <text x="524" y="195" fill="#5A5449" font-size="12">$68m</text>
+
+    <line x1="30" y1="222" x2="970" y2="222" stroke="#D6CBB6" stroke-width="1.2"/>
+
+    <text x="30" y="252" fill="#BF3B24" font-size="11" letter-spacing="2">ON TOP · JANUARY 2025 TO OCTOBER 2026</text>
+    <text x="30" y="283" fill="#1B1712" font-size="12.5">warrant lawsuits: judgments + interest</text>
+    <rect class="bar d3" x="420" y="270" width="280" height="18" fill="#BF3B24"/>
+    <text x="709" y="283" fill="#5A5449" font-size="12">$200m+</text>
+    <text x="30" y="315" fill="#1B1712" font-size="12.5">failed Shutterstock merger: fees</text>
+    <rect class="bar d4" x="420" y="302" width="140" height="18" fill="#BF3B24"/>
+    <text x="569" y="315" fill="#5A5449" font-size="12">$100m+</text>
+    <text x="30" y="347" fill="#1B1712" font-size="12.5">merger loan: net interest + fees</text>
+    <rect class="bar d5" x="420" y="334" width="61" height="18" fill="#BF3B24"/>
+    <text x="490" y="347" fill="#5A5449" font-size="12">$44m</text>
+    <text x="30" y="379" fill="#1B1712" font-size="12.5">lawyers for the warrant cases</text>
+    <rect class="bar d6" x="420" y="366" width="49" height="18" fill="#BF3B24"/>
+    <text x="478" y="379" fill="#5A5449" font-size="12">$35m</text>
+    <text class="fade" x="420" y="410" fill="#BF3B24" font-size="11.5">together: more than $375m, plus $275m+ in warrant claims not yet filed</text>
+
+    <line x1="420" y1="110" x2="420" y2="392" stroke="#5A5449" stroke-width="1.2"/>
+    <line x1="30" y1="432" x2="970" y2="432" stroke="#D6CBB6" stroke-width="1.2"/>
+
+    <text x="30" y="463" fill="#5A5449" font-size="11" letter-spacing="2">CASH</text>
+    <text x="30" y="490" fill="#1B1712" font-size="12.5">31 December 2025 → at filing, 21 October 2026</text>
+    <text x="420" y="490" fill="#1B1712" font-size="12.5">$90.2m <tspan fill="#BF3B24">→ about $50m</tspan></text>
+
+    <text x="30" y="526" fill="#8A8578" font-size="11">A business earning $307m a year can carry $239m of debt service. It can't also absorb $375m of shocks.</text>
+  </g>
+</svg>

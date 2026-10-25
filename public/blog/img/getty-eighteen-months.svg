@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="630" viewBox="0 0 1000 630" role="img" aria-label="A ledger-style timeline of Getty Images from January 2025 to October 2026, one row per event, colour-coded. Red rows are the merger, lawsuits and debt; amber rows are about AI; black rows are the business itself. January 2025: agrees a 3.7 billion dollar merger with Shutterstock. October 2025: borrows 628 million at 10.5 percent to fund it, held in escrow, costing 44 million in interest and fees. November 2025, amber: loses most of its UK copyright case against Stability AI. December 2025, black: best year in its history, 981 million revenue, up 4.5 percent. January 2026: appeals court upholds a 2023 warrant judgment. April 2026: pays two warrant holders 110.9 million, borrowing 120 million to do it. May 2026: UK regulator allows the merger only if Shutterstock sells its editorial arm. June 2026, amber: OpenAI display deal, shares jump as much as 145 percent in a day. July 2026: merger called off after more than 100 million in fees; a court directs a further 67.8 million warrant judgment plus 9 percent interest, about 92 million owed. August 2026, black: second-quarter revenue down 2.5 percent, subscribers down 25 percent, going-concern warning. September 2026: uses the grace period on its 14 percent notes; the NYSE suspends the shares at 12 cents. October 2026: prepackaged Chapter 11, the Getty family and Koch take it private and more than 500 million of debt is cut. Only the two amber rows are about AI.">
+  <style>
+    .row { opacity: 0; animation: show 16s ease-out infinite; }
+    @keyframes show { 0%, 2% { opacity: 0; } 5%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    .r2 { animation-delay: .5s; } .r3 { animation-delay: 1s; } .r4 { animation-delay: 1.5s; } .r5 { animation-delay: 2s; }
+    .r6 { animation-delay: 2.5s; } .r7 { animation-delay: 3s; } .r8 { animation-delay: 3.5s; } .r9 { animation-delay: 4s; }
+    .r10 { animation-delay: 4.5s; } .r11 { animation-delay: 5s; } .r12 { animation-delay: 5.5s; } .r13 { animation-delay: 6s; }
+    .r14 { animation-delay: 6.8s; }
+    @media (prefers-reduced-motion: reduce) { .row { animation: none; opacity: 1; } }
+  </style>
+  <rect width="1000" height="630" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">EIGHTEEN MONTHS, FROM MERGER TO CHAPTER 11</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Red: the merger, the lawsuits and the debt. Amber: AI. Black: the business itself.</text>
+
+    <line x1="150" y1="92" x2="150" y2="552" stroke="#D6CBB6" stroke-width="2"/>
+
+    <g font-size="12.5">
+      <g class="row">
+        <text x="30" y="108" fill="#8A8578" font-size="12">JAN 2025</text>
+        <circle cx="150" cy="104" r="6" fill="#BF3B24"/>
+        <text x="172" y="108" fill="#1B1712">Agrees a $3.7bn merger with Shutterstock</text>
+      </g>
+      <g class="row r2">
+        <text x="30" y="144" fill="#8A8578" font-size="12">OCT 2025</text>
+        <circle cx="150" cy="140" r="6" fill="#BF3B24"/>
+        <text x="172" y="144" fill="#1B1712">Borrows $628m at 10.5% to fund it, held in escrow</text>
+        <text x="970" y="144" fill="#BF3B24" font-size="12" text-anchor="end">−$44m</text>
+      </g>
+      <g class="row r3">
+        <text x="30" y="180" fill="#8A8578" font-size="12">NOV 2025</text>
+        <circle cx="150" cy="176" r="6" fill="#E0A458"/>
+        <text x="172" y="180" fill="#1B1712">Loses most of its UK copyright case against Stability AI</text>
+      </g>
+      <g class="row r4">
+        <text x="30" y="216" fill="#8A8578" font-size="12">DEC 2025</text>
+        <circle cx="150" cy="212" r="6" fill="#1B1712"/>
+        <text x="172" y="216" fill="#1B1712">Best year in its history: $981m revenue, up 4.5%</text>
+      </g>
+      <g class="row r5">
+        <text x="30" y="252" fill="#8A8578" font-size="12">JAN 2026</text>
+        <circle cx="150" cy="248" r="6" fill="#BF3B24"/>
+        <text x="172" y="252" fill="#1B1712">Appeals court upholds a 2023 warrant judgment</text>
+      </g>
+      <g class="row r6">
+        <text x="30" y="288" fill="#8A8578" font-size="12">APR 2026</text>
+        <circle cx="150" cy="284" r="6" fill="#BF3B24"/>
+        <text x="172" y="288" fill="#1B1712">Pays two warrant holders, borrowing $120m to do it</text>
+        <text x="970" y="288" fill="#BF3B24" font-size="12" text-anchor="end">−$110.9m</text>
+      </g>
+      <g class="row r7">
+        <text x="30" y="324" fill="#8A8578" font-size="12">MAY 2026</text>
+        <circle cx="150" cy="320" r="6" fill="#BF3B24"/>
+        <text x="172" y="324" fill="#1B1712">UK regulator: only if Shutterstock sells its editorial arm</text>
+      </g>
+      <g class="row r8">
+        <text x="30" y="360" fill="#8A8578" font-size="12">JUN 2026</text>
+        <circle cx="150" cy="356" r="6" fill="#E0A458"/>
+        <text x="172" y="360" fill="#1B1712">OpenAI display deal; shares jump as much as 145% in a day</text>
+      </g>
+      <g class="row r9">
+        <text x="30" y="396" fill="#8A8578" font-size="12">JUL 2026</text>
+        <circle cx="150" cy="392" r="6" fill="#BF3B24"/>
+        <text x="172" y="396" fill="#1B1712">Merger called off after more than $100m in fees</text>
+        <text x="970" y="396" fill="#BF3B24" font-size="12" text-anchor="end">−$100m+</text>
+      </g>
+      <g class="row r10">
+        <text x="30" y="432" fill="#8A8578" font-size="12">JUL 2026</text>
+        <circle cx="150" cy="428" r="6" fill="#BF3B24"/>
+        <text x="172" y="432" fill="#1B1712">Court directs a further $67.8m warrant judgment, plus 9%</text>
+        <text x="970" y="432" fill="#BF3B24" font-size="12" text-anchor="end">≈ −$92m owed</text>
+      </g>
+      <g class="row r11">
+        <text x="30" y="468" fill="#8A8578" font-size="12">AUG 2026</text>
+        <circle cx="150" cy="464" r="6" fill="#1B1712"/>
+        <text x="172" y="468" fill="#1B1712">Q2 revenue −2.5%, subscribers −25%; going-concern warning</text>
+      </g>
+      <g class="row r12">
+        <text x="30" y="504" fill="#8A8578" font-size="12">SEP 2026</text>
+        <circle cx="150" cy="500" r="6" fill="#BF3B24"/>
+        <text x="172" y="504" fill="#1B1712">Uses the grace period on its 14% notes; NYSE suspends at 12¢</text>
+      </g>
+      <g class="row r13">
+        <text x="30" y="540" fill="#8A8578" font-size="12">OCT 2026</text>
+        <circle cx="150" cy="536" r="6" fill="#BF3B24"/>
+        <text x="172" y="540" fill="#1B1712">Prepackaged Chapter 11; Getty family and Koch take it private</text>
+        <text x="970" y="540" fill="#1B1712" font-size="12" text-anchor="end">$500m+ debt cut</text>
+      </g>
+    </g>
+
+    <text class="row r14" x="30" y="596" fill="#8A8578" font-size="11">Two amber rows are about AI. Getty's own filing says AI pressure alone would not have forced Chapter 11.</text>
+  </g>
+</svg>

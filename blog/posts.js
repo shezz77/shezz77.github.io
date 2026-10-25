@@ -1,5 +1,110 @@
 export const POSTS = [
   {
+    slug: "getty-images-bankruptcy-not-ai", cat: "AI", date: "Oct 2026", minutes: 11,
+    tags: ["Getty Images", "Bankruptcy", "Generative AI", "Debt", "Fact check", "Business"],
+    title: "Getty Images had its best year ever in 2025, then filed for bankruptcy. Its own filing says AI isn't why.",
+    excerpt: "A card going round says Getty Images filed for Chapter 11 because of growing competition from AI-generated images. Getty's revenue hit a 30-year high in 2025, and its court filing says AI pressure \"would not alone have necessitated\" the bankruptcy. What did: a merger the UK blocked, $200m+ in judgments from a 2022 meme-stock warrant dispute, and $239m a year of debt payments. Here's the whole case, from the filings.",
+    blocks: [
+      { t: "p", text: "A card has been all over my feed this week: a photo of Getty Images' chief executive, Craig Peters, under a headline saying Getty \"files for Chapter 11 bankruptcy after struggling with mounting debt and growing competition from AI-generated images\". It's the perfect story for 2026. The company that sold photographs for thirty years, finished off by machines that make them for free." },
+      { t: "p", text: "Half of it is true. Getty did file for Chapter 11, in Delaware, on 21 October, and the debt was very real. The AI half doesn't survive Getty's own numbers. In 2025 its revenue was $981.3 million, the highest in the company's 30-year history ([Q4 2025 results](https://www.sec.gov/Archives/edgar/data/1898496/000162828026018164/gety-2025x12x31ex991.htm)). And in the disclosure statement it filed for the bankruptcy, Getty says the pressure from AI \"would not alone have necessitated\" the case ([disclosure statement](https://www.sec.gov/Archives/edgar/data/1898496/000121390026111193/ea030922501ex99-1.htm))." },
+      { t: "p", text: "So I read the filings: the restructuring agreement, the disclosure statement, the court judgments and two years of results. Here's what actually happened, in order, with the numbers." },
+      { t: "quote", text: "AI didn't bankrupt Getty Images. A blocked merger, a lost lawsuit and $239 million a year of debt payments did." },
+
+      { t: "h", text: "What happened on 21 October" },
+      { t: "p", text: "Getty filed a prepackaged Chapter 11 for seven of its US companies. Prepackaged means the deal was agreed with the creditors before the filing: the restructuring support agreement was signed on 12 October ([press release](https://www.sec.gov/Archives/edgar/data/1898496/000121390026108700/ea030834301ex99-1.htm)). The court's job is mostly to approve it. Getty keeps operating, its non-US subsidiaries aren't part of the case, and it says contributors, customers and suppliers are paid as normal." },
+      { t: "table", label: "Who gets what under Getty's plan",
+        head: ["Who", "What they get"],
+        rows: [
+          ["Getty family and Koch Equity Development", "Put in up to $533m, about $433m of it new equity, and own 100% of the company"],
+          ["A Koch affiliate", "Lends up to $143m to fund Getty through the case"],
+          ["Secured lenders and the credit line", "Paid in full, at lower interest and with later maturities"],
+          ["Holders of $270m of unsecured notes", "$170.2m in cash, about 63 cents on the dollar"],
+          ["Contributors, customers, suppliers", "Paid in the ordinary course, Getty says"],
+          ["Shareholders", "Nothing. Every share is cancelled"],
+          ["Warrant holders with court claims", "Nothing"]
+        ] },
+      { t: "p", text: "By Getty's numbers, the plan cuts more than $500 million of debt, about $65 million a year of interest, and $133 million a year of debt service. Voting closes on 30 November, the court hearing is on 14 December, and Getty expects to come out as a private company by the end of the year. Peters called the filing \"a procedural step\" and said it \"addresses our capital structure and certain non-operating liabilities\" ([press release](https://www.sec.gov/Archives/edgar/data/1898496/000121390026111193/ea030922501ex99-2.htm)). Keep that phrase in mind. It's doing a lot of work." },
+
+      { t: "h", text: "The business wasn't the problem" },
+      { t: "p", text: "Start with what the card leaves out. In 2025 Getty grew revenue 4.5%, to $981.3 million, and adjusted EBITDA 6.9%, to $320.9 million. Editorial, the news, sport and entertainment side, grew 6.9%. Creative, the stock photography that AI is supposed to be eating, grew 0.7%. In the twelve months to June 2026, revenue was still about $978 million and adjusted EBITDA about $307 million." },
+      { t: "p", text: "That's a business earning around $300 million a year before interest. It went bankrupt because of what it owed. Getty's filing puts its annual debt service at about $239 million: roughly $154 million of interest plus required repayments, including $60 million a year on notes paying 14%. In the second quarter of 2026, operating income was $32.4 million and interest expense was $57.3 million ([Q2 2026 results](https://www.sec.gov/Archives/edgar/data/1898496/000162828026055270/gety-20260630xex991.htm)). The business earned less than its interest bill." },
+      { t: "img", src: "/blog/img/getty-earned-vs-owed.svg", w: 1000, h: 540,
+        alt: "Horizontal bars in millions of dollars on one scale. Every year: adjusted EBITDA 307, debt service 239, leaving about 68 before tax and capital spending. On top, between January 2025 and October 2026: warrant lawsuit judgments and interest over 200, failed merger fees over 100, merger loan interest and fees 44, legal costs for the warrant cases 35; together more than 375, with over 275 more in warrant claims not yet filed. Cash fell from 90.2 at the end of 2025 to about 50 at the filing.",
+        caption: "The yearly numbers were tight but survivable. The bars underneath are what broke it." },
+      { t: "p", text: "A company like that has no slack. It can ride out a bad quarter. It can't ride out a large bill it didn't plan for, and between January 2025 and October 2026 Getty got three. Its filing calls them \"non-operational events that depleted the Company's liquidity over an eighteen-month period\". None of the three is about AI." },
+
+      { t: "h", text: "Shock one: the merger the UK wouldn't wave through" },
+      { t: "p", text: "In January 2025 Getty agreed to merge with Shutterstock, at a combined value of about $3.7 billion, with projected savings of $150 million to $200 million a year ([IBTimes](https://www.ibtimes.co.uk/getty-images-bankruptcy-ai-competition-investor-litigation-1827335)). For a company carrying Getty's debt, that merger was the plan: a bigger business, with more earnings to carry the same borrowing." },
+      { t: "p", text: "The US Department of Justice cleared it without conditions. The UK's Competition and Markets Authority didn't. It opened an in-depth review in November 2025, and on 15 May 2026 its final report said the deal could go ahead only if Shutterstock sold its entire editorial business. On 30 June Getty's board decided not to proceed, and it sent the termination notice on 7 July." },
+      { t: "p", text: "The attempt cost more than $100 million in fees, plus about $43.6 million of net interest and fees on $628.4 million of 10.5% notes Getty had borrowed in October 2025 and held in escrow for the deal. The notes were repaid when it collapsed. The interest wasn't coming back. By 22 July the shares had fallen from 94 cents to 48 cents." },
+
+      { t: "h", text: "Shock two: a lawsuit from a meme-stock week in 2022" },
+      { t: "p", text: "This is the strangest part, and the one the AI story hides completely. Getty went public in July 2022 by merging with a SPAC, CC Neuberger Principal Holdings II. Almost all of the SPAC's investors took their cash back instead of shares, which left very few shares to trade. The stock was squeezed, and within weeks it had more than tripled ([InvestorPlace](https://investorplace.com/2022/08/gety-stock-an-exception-among-spac-stocks/))." },
+      { t: "p", text: "The SPAC had issued 20.7 million public warrants, each a right to buy a share at $11.50. With the shares far above that, holders tried to exercise them. Getty refused, arguing the conditions for exercise hadn't been met, and later redeemed the warrants. Two holders, Alta Partners and CRCM, sued. In October 2023 a New York federal court found that Getty had breached the warrant agreement and awarded them $36.9 million and $51.0 million, plus 9% interest a year. The court measured damages from the share price at the time, and the awards work out at about $17 to $18 a warrant: a share price near $29. The appeals court upheld the judgment on 15 January 2026 ([Second Circuit opinion](https://law.justia.com/cases/federal/appellate-courts/ca2/23-7876/23-7876-2026-01-15.html))." },
+      { t: "p", text: "In April Getty paid $110.9 million, borrowing $120 million on its credit line to do it. Insurance later covered $31.5 million. In July a New York state court directed a further $67.8 million judgment for other former warrant holders, plus 9% interest from August 2022, about $92 million in all, and Getty couldn't post a bond to pause it during the appeal. The filing counts more than $200 million in judgments and interest, about $35 million in legal costs, and an estimated $275 million more in claims nobody had filed yet." },
+      { t: "p", text: "Under the plan, those warrant claims get nothing. Section 510(b) of the US Bankruptcy Code pushes claims like these down to the level of shareholders, and shareholders get nothing too. That's a large part of what \"non-operating liabilities\" means. A few weeks of meme trading in 2022 became one of the main reasons a 30-year-old company filed for bankruptcy." },
+
+      { t: "h", text: "Shock three: debt at 11% and 14%" },
+      { t: "p", text: "The debt is older than any of this. Hellman & Friedman bought Getty in a leveraged buyout in 2008. Carlyle bought control in 2012. The Getty family bought Carlyle out in 2018, with Koch as a minority investor. By the filing, Getty owed about $1.46 billion of funded debt, with secured notes at 11.25% and unsecured notes at 14%. Its interest expense in the first half of 2026 was $111.5 million, up 61% on a year earlier." },
+      { t: "p", text: "With the merger gone and the judgments due, the cash ran out. It had $90.2 million at the end of 2025 and about $50 million at the filing, and the credit line was fully drawn by July. In August Getty warned of substantial doubt about its ability to continue as a going concern. On 1 September it took a 30-day grace period instead of paying interest on its unsecured notes. Moody's cut it to Caa3 and S&P to CCC. On 29 September the New York Stock Exchange suspended the shares, which had closed at 12 cents, valuing all of them at about $59 million ([PPC Land](https://ppc.land/nyse-halts-getty-images-trading-after-shares-fall-to-12-cents/))." },
+      { t: "img", src: "/blog/img/getty-eighteen-months.svg", w: 1000, h: 630,
+        alt: "A timeline from January 2025 to October 2026, one row per event, colour-coded red for the merger, lawsuits and debt, amber for AI, and black for the business. Merger agreed; 628 million borrowed at 10.5 percent; UK copyright case against Stability AI mostly lost; record revenue of 981 million; warrant judgment upheld; 110.9 million paid to warrant holders; UK regulator demands Shutterstock sell its editorial arm; OpenAI deal sends shares up as much as 145 percent; merger called off after more than 100 million in fees; a further warrant judgment of about 92 million; second-quarter revenue down 2.5 percent and a going-concern warning; grace period on the 14 percent notes and NYSE suspension at 12 cents; prepackaged Chapter 11 cutting more than 500 million of debt. Only two rows are about AI.",
+        caption: "Eighteen months, thirteen events. Two are about AI, and one of those was good news." },
+
+      { t: "h", text: "So where does AI actually fit?" },
+      { t: "p", text: "AI isn't absent from this story. It just isn't the cause. Getty's filing says the \"rapid emergence of artificial intelligence presents both challenges and opportunities\", and it's specific about where the challenge is. Generative AI has put pressure on the \"budget-conscious microstock image market\", which the filing describes as a small part of the business, felt mostly through iStock and advertising-agency customers." },
+      { t: "p", text: "You can see it in the numbers. In the year to June 2026, active annual subscribers fell 25%, from 321,000 to 240,000, and purchasing customers fell 10%. Subscriber revenue retention dropped from 93.4% to 88.4%. Creative revenue was down 2.6% in the second quarter, and Peters described \"continued pressure in Agency and iStock e-commerce\". That's a real, slow leak at the cheap end of the market." },
+      { t: "p", text: "AI is also paying Getty. It licenses images to AI companies for training and to AI search tools for display, which the filing calls \"a growing new revenue stream\". Two licensing deals, one covering the use of Getty's data and creative content, added about $40 million of revenue at the end of 2025, part of why that year was a record. Perplexity signed a display deal in October 2025. When OpenAI signed one for ChatGPT search in June 2026, Getty's shares rose as much as 145% in a day ([Bloomberg Law](https://news.bloomberglaw.com/tech-and-telecom-law/getty-images-surges-145-after-announcing-openai-licensing-deal)). Getty also sells its own image generator, trained only on its licensed library. And in November 2025 it lost most of its UK copyright case against Stability AI, which it's appealing ([Bird & Bird](https://cm.twobirds.com/en/insights/2025/uk/stability-ai-defeats-getty-images-copyright-claims-in-first-of-its-kind-dispute-before-the-high-cour))." },
+      { t: "p", text: "Put that together and AI is a headwind in one segment, a paying customer in another, and a court fight in a third. None of it comes close to a $375 million hole in eighteen months, and the filing says so directly." },
+      { t: "table", label: "The viral card, checked against the filings",
+        head: ["The card says", "The filings say"],
+        rows: [
+          ["Getty filed for Chapter 11", "True. Seven US companies, Delaware, 21 October 2026, prepackaged"],
+          ["Mounting debt", "True. About $1.46bn of funded debt and $239m a year of debt service"],
+          ["Growing competition from AI-generated images", "Real, but small: pressure on microstock and iStock. Getty says it would not alone have forced the filing"],
+          ["(implied) Getty is finished", "No. It keeps operating, cuts $500m+ of debt and goes private under the Getty family and Koch"],
+          ["(missing)", "A merger the UK blocked, and $200m+ of judgments from a 2022 warrant dispute"]
+        ] },
+
+      { t: "h", text: "Why the AI version spreads" },
+      { t: "p", text: "Because it's a better story. \"AI killed the stock photo company\" fits on a card and confirms what everyone already suspects. \"Buyout debt, a UK competition ruling and a SPAC warrant dispute\" doesn't fit on anything. I understand why the card was written that way." },
+      { t: "p", text: "But it's the same mistake I keep writing about: reading AI into a number that something else produced. [AI writing 75% of Google's code](/blog/ai-writes-75-percent-of-the-code/) wasn't a headcount plan. [Barclays' developer cuts](/blog/more-code-same-output/) aren't backed by what AI agents actually ship. And Getty's bankruptcy isn't an AI casualty. It's what happens when a company with no slack takes three hits it didn't plan for." },
+
+      { t: "h", text: "What I'd take from it" },
+      { t: "list", items: [
+        "Check the debt before you blame the disruption. A 2.5% fall in revenue doesn't bankrupt a company earning $300 million a year. Debt service of $239 million does, the moment anything else goes wrong.",
+        "AI pressure shows up at the cheapest tier first. For Getty it was microstock and self-serve subscriptions, not enterprise customers. If you're judging AI risk to your own business, look at your lowest-priced customers before your biggest ones.",
+        "AI can be a customer and a competitor at the same time. In the same year it lost a court case to an AI company, Getty had a record year partly by licensing to them.",
+        "Don't build a plan that only works if a regulator says yes. Getty's balance sheet depended on a merger it didn't control.",
+        "Read the filing, not the card. Getty's disclosure statement is public, and the section on what led to the bankruptcy is short."
+      ] },
+      { t: "note", tone: "info", label: "If you contribute to Getty or buy from it",
+        text: "Getty says operations, contributor royalties and customer licences continue as normal during the case, and its non-US companies aren't part of it. The people who lose are the shareholders, whose shares are cancelled; the unsecured noteholders, who get about 63 cents on the dollar; and the warrant holders who won in court and now get nothing." },
+
+      { t: "links", label: "References", items: [
+        { label: "Disclosure statement for the prepackaged Chapter 11 plan (SEC, 21 Oct 2026)", href: "https://www.sec.gov/Archives/edgar/data/1898496/000121390026111193/ea030922501ex99-1.htm", note: "Getty's own account of the causes, the debt, the warrant cases, AI, and who gets what." },
+        { label: "Getty Images advances financial restructuring (press release, 21 Oct 2026)", href: "https://www.sec.gov/Archives/edgar/data/1898496/000121390026111193/ea030922501ex99-2.htm", note: "The filing announcement and Craig Peters' statement." },
+        { label: "Getty family and Koch commit up to $533m (press release, 12 Oct 2026)", href: "https://www.sec.gov/Archives/edgar/data/1898496/000121390026108700/ea030834301ex99-1.htm", note: "The restructuring support agreement." },
+        { label: "Getty Images fourth quarter and full year 2025 results (SEC)", href: "https://www.sec.gov/Archives/edgar/data/1898496/000162828026018164/gety-2025x12x31ex991.htm", note: "Record revenue, EBITDA, debt, and the Q4 licensing deals." },
+        { label: "Getty Images second quarter 2026 results (SEC)", href: "https://www.sec.gov/Archives/edgar/data/1898496/000162828026055270/gety-20260630xex991.htm", note: "Operating income vs interest, subscribers, the warrant payment." },
+        { label: "Alta Partners v. Getty Images Holdings (2d Cir., 15 Jan 2026)", href: "https://law.justia.com/cases/federal/appellate-courts/ca2/23-7876/23-7876-2026-01-15.html", note: "The appeal that upheld the warrant judgment." },
+        { label: "NYSE halts Getty Images trading after shares fall to 12 cents (PPC Land)", href: "https://ppc.land/nyse-halts-getty-images-trading-after-shares-fall-to-12-cents/", note: "The delisting, credit downgrades and merger timeline." },
+        { label: "Getty Images files for bankruptcy (IBTimes UK)", href: "https://www.ibtimes.co.uk/getty-images-bankruptcy-ai-competition-investor-litigation-1827335", note: "Merger savings estimate and an overview of the causes." },
+        { label: "Getty Images surges 145% after announcing OpenAI deal (Bloomberg Law)", href: "https://news.bloomberglaw.com/tech-and-telecom-law/getty-images-surges-145-after-announcing-openai-licensing-deal", note: "The June 2026 ChatGPT display deal." },
+        { label: "Stability AI defeats Getty Images copyright claims (Bird & Bird)", href: "https://cm.twobirds.com/en/insights/2025/uk/stability-ai-defeats-getty-images-copyright-claims-in-first-of-its-kind-dispute-before-the-high-cour", note: "The November 2025 UK judgment." },
+        { label: "Is GETY stock an exception among SPACs? (InvestorPlace, Aug 2022)", href: "https://investorplace.com/2022/08/gety-stock-an-exception-among-spac-stocks/", note: "The post-listing squeeze." },
+        { label: "Barclays is cutting developers for AI. Harvard found AI agents write 30% more code and ship no more of it.", href: "/blog/more-code-same-output/", note: "Related Field Notes: another AI headline checked against the data." }
+      ] }
+    ],
+    takeaways: [
+      "Getty Images filed a prepackaged Chapter 11 on 21 October 2026 and will go private under the Getty family and Koch, cutting more than $500 million of debt.",
+      "Its 2025 revenue was a 30-year record, $981.3 million, and its own filing says AI pressure would not alone have forced the bankruptcy.",
+      "Three non-operational shocks did: a Shutterstock merger the UK blocked, $200m+ of judgments from a 2022 SPAC warrant dispute, and $239 million a year of debt service.",
+      "AI is real pressure on microstock and self-serve subscribers, and also a paying customer through licensing and display deals.",
+      "Check the debt and the one-off bills before you blame the disruption."
+    ]
+  },
+  {
     slug: "more-code-same-output", cat: "Leadership", date: "Oct 2026", minutes: 10,
     tags: ["AI agents", "Engineering management", "Code review", "Productivity", "Layoffs", "Research"],
     title: "Barclays is cutting developers for AI. Harvard found AI agents write 30% more code and ship no more of it.",
