@@ -564,11 +564,11 @@ https://shezz77.com/go/linkedin-ai-job-search-what-it-reads/
 
 ---
 
-## Barclays is cutting developers for AI (DRAFT, not posted)
+## Barclays is cutting developers for AI (image post, posted Mon 26 Oct 2026 ~02:05 PKT, activity 7520229266907746306)
 
 Image: `social/linkedin-more-code.png`. First comment: `shezz77.com/go/more-code-same-output/`
 
-Blog: `/blog/more-code-same-output/` (not deployed yet). News-pegged: Barclays Q3 results, 22 Oct 2026. Study: Chen & Stratton (Harvard), "Artificial Intelligence in the Firm: Bottlenecks in Software Production", 718 firms, Jellyfish data. Weekday afternoon PKT, at least 48h clear of any other post; it overlaps the unposted "first rung" draft (both about dev jobs), so post one or the other this week.
+Blog: `/blog/more-code-same-output/` (deployed Mon 26 Oct 2026). News-pegged: Barclays Q3 results, 22 Oct 2026. Study: Chen & Stratton (Harvard), "Artificial Intelligence in the Firm: Bottlenecks in Software Production", 718 firms, Jellyfish data. Weekday afternoon PKT, at least 48h clear of any other post; it overlaps the unposted "first rung" draft (both about dev jobs), so post one or the other this week.
 
 Barclays is cutting 5,000 jobs, developers included, because "AI makes our people more productive."
 
@@ -601,3 +601,45 @@ What happened to review time on your team after agents arrived?
 The full breakdown: every number from the Harvard paper, the Amdahl arithmetic, why the bottleneck moved to review, and a copy-paste GitHub command that measures your own review time and rework before and after your agent rollout. Two animated charts.
 
 https://shezz77.com/go/more-code-same-output/
+
+---
+
+## Getty Images didn't go bankrupt because of AI (DRAFT, not posted)
+
+Image: the viral "Getty Images files for Chapter 11" card (by @adreesAI) that Shehzad shared, not a Field Notes card. Needs saving as a file first, e.g. `social/getty-viral-card.jpg`. First comment: `shezz77.com/go/getty-images-bankruptcy-not-ai/`
+
+Blog: `/blog/getty-images-bankruptcy-not-ai/` (deployed Mon 26 Oct 2026). News-pegged: prepackaged Chapter 11, Delaware, 21 Oct 2026. Every number from Getty's SEC filings (disclosure statement, Q4 2025 and Q2 2026 results, 12 and 21 Oct press releases) and the Second Circuit opinion. Post no earlier than ~Wed 28 Oct afternoon PKT, 48h after the Barclays post.
+
+You've probably seen this card. Getty Images filed for bankruptcy, beaten by AI-generated images.
+
+Getty's own court filing says otherwise.
+
+In 2025 Getty made $981 million in revenue. The best year in its 30-year history.
+
+Ten months later it filed Chapter 11. Here's what actually happened, from the filings:
+
+1. A merger the UK blocked.
+Getty agreed a $3.7bn merger with Shutterstock. The US cleared it. The UK regulator said only if Shutterstock sold its entire editorial business. Getty walked away in July, after $100m+ in fees.
+
+2. A lawsuit from a 2022 meme-stock week.
+Getty went public through a SPAC. The shares tripled in a squeeze, warrant holders tried to cash in, and Getty refused. The courts said Getty broke the contract. The bill: $200m+ in judgments and interest, with $275m more in claims not yet filed.
+
+3. Debt at 11% and 14%.
+$239m a year in debt payments, against about $307m of earnings. In Q2 2026, Getty earned $32m from operations and paid $57m in interest.
+
+So where's AI?
+It's real pressure on cheap stock photos: annual subscribers down 25%. But AI companies also pay Getty. Licensing deals helped make 2025 a record, and the shares jumped 145% the day OpenAI signed a deal.
+
+The filing says the AI pressure "would not alone have necessitated" bankruptcy.
+
+Getty isn't disappearing. It cuts $500m+ of debt and goes private under the Getty family and Koch. The shareholders get nothing.
+
+AI makes a better headline. Debt makes a better explanation. Before you blame AI for a collapse, check the debt.
+
+Which AI headline have you seen this month that the numbers didn't back up?
+
+**First comment** (keep the real text around the link, or LinkedIn hides it under "Most relevant"):
+
+Every number here is from Getty's own SEC filings and the court judgments: who gets what in the bankruptcy, the 2022 warrant dispute that cost $200m+, where AI actually shows up in the results, and two charts.
+
+https://shezz77.com/go/getty-images-bankruptcy-not-ai/
