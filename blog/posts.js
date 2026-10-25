@@ -1,5 +1,119 @@
 export const POSTS = [
   {
+    slug: "more-code-same-output", cat: "Leadership", date: "Oct 2026", minutes: 10,
+    tags: ["AI agents", "Engineering management", "Code review", "Productivity", "Layoffs", "Research"],
+    title: "Barclays is cutting developers for AI. Harvard found AI agents write 30% more code and ship no more of it.",
+    excerpt: "Barclays is cutting about 5,000 jobs, developers included, because \"AI makes our people more productive\". A Harvard study of 718 companies measured what actually happens when engineers get AI coding agents: 30% more code, 23% more pull requests, reviews 49% slower, and no measurable rise in finished work or change in headcount. The productivity is real. It's stuck in review, and the reviewers are the people you'd be cutting.",
+    blocks: [
+      { t: "p", text: "On 22 October Barclays said it will cut about 5,000 jobs, roughly 5% of its workforce. About 60% of the cuts fall in support functions, and the earnings presentation names developers among them. The finance director, Anna Cross, gave the reason in one line: the cuts come as \"AI makes our people more productive\" ([Business Insider](https://finance.yahoo.com/technology/ai/articles/barclays-cutting-5-000-jobs-083835453.html))." },
+      { t: "p", text: "Three weeks earlier, Anthropic announced that Barclays expects half of its developers to be using Claude Code by the end of 2026, and most of them some time in 2027 ([Anthropic](https://www.anthropic.com/news/barclays-scales-claude)). So the bank is reducing developer roles on the strength of AI productivity while, by its own timeline, most of its developers don't have the coding agent yet." },
+      { t: "p", text: "It isn't my job to audit a bank's cost plan. But the question that plan rests on now has a good answer. When a company gives its engineers AI coding agents, does it get more software, or the same software with fewer people? Two Harvard economists measured it across 718 companies. The answer is neither." },
+      { t: "quote", text: "AI agents made the code 30% bigger. They didn't make the companies any faster. The difference is sitting in the review queue." },
+
+      { t: "h", text: "What Harvard measured" },
+      { t: "p", text: "The paper is [Artificial Intelligence in the Firm: Bottlenecks in Software Production](https://fion.ac/jellyfish.pdf) by Fiona Chen and James Stratton. It uses data from Jellyfish, an engineering analytics platform: 725,938 workers at 718 firms, January 2021 to March 2026, about 300 million work events from GitHub, Jira, Google Calendar, HR records and usage logs for Copilot, Cursor and Claude Code." },
+      { t: "p", text: "Companies adopted AI tools at different times, so the authors compare each firm before and after adoption with firms that hadn't adopted yet. It's a job-market working paper, not yet peer reviewed, and Jellyfish checked it only for proprietary information, not for its conclusions. It's also the largest look I've seen inside companies, rather than inside open-source repos or lab experiments, and it follows the work all the way from commit to production." },
+      { t: "img", src: "/blog/img/mc-pass-through.svg", w: 1000, h: 560,
+        alt: "Three groups of horizontal bars on one linear scale, showing what changed per engineer per month after a company adopted AI coding agents. Writing, in amber: lines of code up 30 percent, commits up 20 percent, pull requests up 23 percent. Review, in red: days from pull request to merge up 49 percent, from 7.0 to 10.5 days; pull requests sent back for changes up 92 percent; review comments per pull request up 35 percent. Shipped, in black: Jira issues resolved up 3 percent, not significant, inside a dashed box marking the 12 percent above which the study rules out any effect; company headcount up 1 percent, no effect.",
+        caption: "Every bar is the paper's own estimate for AI agents. The two at the bottom are the ones on the board slide." },
+      { t: "table", label: "After a company adopted AI coding agents (per engineer, per month)",
+        head: ["Measure", "Before", "Effect of agents", "Change"],
+        rows: [
+          ["Lines of code added", "5,017", "+1,494", "+30%"],
+          ["Commits", "22.6", "+4.6", "+20%"],
+          ["Pull requests opened", "5.34", "+1.22", "+23%"],
+          ["Days from pull request to merge", "7.0", "+3.45", "+49%"],
+          ["Share of PRs sent back for changes", "13%", "+12 points", "nearly 2×"],
+          ["Review comments per PR", "1.66", "+0.58", "+35%"],
+          ["Share of staff doing code review", "29%", "+4 points", "+14%"],
+          ["Jira issues resolved", "3.67", "+0.12", "+3%, not significant"],
+          ["Company headcount", "—", "+1%", "no effect"]
+        ] },
+      { t: "p", text: "An issue in Jira counts as resolved when the code behind it reaches production, so it's the closest thing in the data to work a customer can use. The obvious objection is that agents might let engineers take on bigger issues, so the count stays flat while the work grows. The authors checked: a model trained to predict how long each issue would take found no change in issue size after adoption. Completed epics, the bigger features, didn't move either." },
+
+      { t: "h", text: "The 30% was never going to be 30%" },
+      { t: "p", text: "Writing code is one step in a longer job. Engineers in the study spent 42% of their time writing code by the activity data, and 30% when the authors surveyed a hundred engineers directly. The rest is planning, review, meetings, tests and everything else between an idea and production. Speed up one step and the steps you didn't touch set the limit. That's Amdahl's law, and I worked through it when Google said [AI writes 75% of its code](/blog/ai-writes-75-percent-of-the-code/)." },
+      { t: "code", label: "Amdahl's law, with the paper's numbers", lines: [
+        { text: "speed-up = 1 / ((1 − share) + share / 1.3)", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "share   the part of the week spent writing code", color: "#9A8B70" },
+        { text: "1.3     agents: 30% more code per engineer", color: "#9A8B70" },
+        { text: "", color: "#5E5344" },
+        { text: "# survey: 30% of the week is writing code", color: "#5E5344" },
+        { text: "1 / (0.70 + 0.30 / 1.3) = 1.07×", color: "#BF6B4E" },
+        { text: "# activity data: 42% of the week", color: "#5E5344" },
+        { text: "1 / (0.58 + 0.42 / 1.3) = 1.11×", color: "#BF6B4E" },
+        { text: "", color: "#5E5344" },
+        { text: "# measured: issues resolved +3%, above 12% ruled out", color: "#5E5344" }
+      ] },
+      { t: "p", text: "So even if nothing had gone wrong, 30% more code could only have made a team about 7 to 11% faster. That's the ceiling, and it assumes the extra code costs nothing to read. The measured gain is 3%, and the study rules out anything above 12%. The gap between 7–11% and 3% is what the extra code cost the rest of the team." },
+
+      { t: "h", text: "Where the extra code went" },
+      { t: "p", text: "It went into review. After adoption, the average pull request took 49% longer to merge, from 7.0 days to 10.5. The share of pull requests sent back for changes nearly doubled, from 13% to 25%, and each one drew 35% more review comments. Pull requests didn't get bigger, so this isn't reviewers wading through longer diffs. The same-sized change now needs more rounds before anyone will approve it." },
+      { t: "img", src: "/blog/img/mc-review-queue.svg", w: 1000, h: 470,
+        alt: "Two lanes showing the same pipeline: write, review, shipped. Before agents, work flows steadily from write to review, 13 percent of pull requests are sent back, review takes 7.0 days and engineers resolve 3.67 issues a month. After agents, the write stage produces about a third more work, but review is staffed by the same engineers, so pull requests pile up in front of it; 25 percent are sent back, review takes 10.5 days, and the flow out to shipped is unchanged at 3.79 issues a month, which is not a significant difference.",
+        caption: "The pipe got wider at one end. The narrow part didn't move." },
+      { t: "p", text: "One junior engineer quoted in the paper describes the whole result in a single project. Only one senior engineer could approve changes, and he had time to review that engineer's code about once a week. Then AI-written commits caused some outages, so a new rule required senior sign-off on AI-generated code, and the queue got longer still. If you've worked on a team with agents, you've probably seen some version of this." },
+      { t: "p", text: "AI reviewers haven't fixed it yet. By March 2026 nearly 80% of the firms had used an AI code review tool, but AI wrote only 23% of review comments, and only 11% of pull requests got any AI comment at all. Humans are still doing the review, and the bottleneck was still there after the AI tools arrived. It's the same shape I wrote about from Faros AI's telemetry in [the vibe coding side-effects leaflet](/blog/vibe-coding-side-effects/), now in a much larger sample, with output and headcount measured too." },
+
+      { t: "h", text: "Why cutting developers can make it slower" },
+      { t: "p", text: "Here's the part that matters for anyone with Barclays' slide. In most teams the people who write the code and the people who review it are the same people. When the firms in the study adopted agents, the share of staff writing code didn't change, and the share reviewing code went up by 14%. Companies didn't free up engineers. They pulled more of them into review." },
+      { t: "p", text: "So \"AI makes developers more productive, so we need fewer of them\" quietly assumes that writing code was the constraint. Once agents arrive, the data says the constraint is review. Cut engineers and you cut review capacity, the one thing that was already short. You keep the extra code and lose some of the people who check it." },
+      { t: "p", text: "The authors' model makes the trade explicit. Agents do two things. They make coding faster, which for the same output means fewer coding hours. They also change how often draft code is wrong, which means more review effort per change. The first lowers the number of engineers you need. The second raises it and moves them into review. Which effect wins depends on the team. Across 718 firms, the net effect on headcount was zero." },
+      { t: "list", items: [
+        "Company headcount: a precise zero. The estimate rules out a fall of more than 2.9%.",
+        "Engineers employed: a noisier zero, ruling out a fall of more than 13.8%.",
+        "Juniors and seniors: no significant difference for either. At these firms, adopting agents didn't change junior headcount, which fits what I found when I looked at [why junior hiring fell](/blog/we-stopped-hiring-juniors/).",
+        "Autocomplete-style assistants, for comparison: smaller gains in code, and no effect on review at all. The review problem comes with agents."
+      ] },
+      { t: "note", tone: "info", label: "To be fair to Barclays",
+        text: "A bank isn't a software company, and developers are one group among the support functions being cut. About 1,000 of the 5,000 roles were already gone earlier in the year, and the CEO himself played AI down, calling it the icing on the cake and crediting years of modernising core systems (Techstrong). The cuts were announced alongside a £500m share buyback (TechTimes), so cost has more than one motive here. The study has limits too: its data ends in March 2026, the effects are short-run, Jellyfish's customers are companies that already measure their engineering closely, and agents are improving fast. Barclays may have done this arithmetic and found the savings anyway. I'd just want to see it." },
+
+      { t: "h", text: "Check your own repo before anyone touches headcount" },
+      { t: "p", text: "The paper's advice to managers is short. Lines of code and commits don't measure what AI is worth, and the gains need investment downstream, in review. You can check whether your team matches the study in a few minutes. This uses the GitHub CLI and jq, run from inside the repo, and reports pull requests merged, the median days from opening to merge, and the share that were sent back for changes." },
+      { t: "code", label: "Copy this: review time and rework, from GitHub", lines: [
+        { text: "# run once for a quarter before your agent rollout, once for a quarter after", color: "#5E5344" },
+        { text: "gh pr list --state merged --search \"merged:2026-01-01..2026-03-31\" \\", color: "#E0A458" },
+        { text: "  --limit 500 --json createdAt,mergedAt,reviews | jq '{", color: "#E0A458" },
+        { text: "  prs: length,", color: "#9A8B70" },
+        { text: "  median_days_in_review: ([.[] | (.mergedAt | fromdate) - (.createdAt | fromdate)]", color: "#9A8B70" },
+        { text: "    | sort | .[length / 2 | floor] / 8640 | round / 10),", color: "#9A8B70" },
+        { text: "  pct_changes_requested: ((map(select(any(.reviews[]; .state == \"CHANGES_REQUESTED\")))", color: "#9A8B70" },
+        { text: "    | length) * 100 / length | round)", color: "#9A8B70" },
+        { text: "}'", color: "#E0A458" },
+        { text: "", color: "#5E5344" },
+        { text: "# { \"prs\": 118, \"median_days_in_review\": 1.5, \"pct_changes_requested\": 7 }", color: "#BF6B4E" }
+      ] },
+      { t: "p", text: "The sample output is from GitHub's own `cli/cli` repository for January to March 2026, so you can see what a healthy, fast-moving repo looks like. If your median days in review and your change-request rate went up after the rollout while your resolved issues didn't, you have the paper's result in your own repo. You also know where the capacity has to go. Raise `--limit` or split the date range for busy repos, because `gh` stops at the limit." },
+      { t: "list", items: [
+        "Count your approvers. If one senior engineer approves most pull requests on a repo, that person sets your throughput, and agents only make the queue in front of them longer.",
+        "Cap agent work in progress. No more open agent pull requests per reviewer than they can review in a day. Code nobody can review is inventory, not output.",
+        "Make review cheaper before you make writing faster: smaller pull requests, tests the reviewer can trust ([I grade AI-written tests with mutation testing](/blog/llm-tests-scored-by-mutation-testing/)), and an [AI reviewer scoped to the diff](/blog/ai-reviewer-in-ci-without-noise/) so its comments are worth reading.",
+        "Report issues resolved and time to production. Not lines, not commits, and not \"percent of code written by AI\".",
+        "If you do reduce headcount, cut where the work actually shrank, then watch review time every month. If it climbs, you cut the bottleneck."
+      ] },
+      { t: "p", text: "The productivity in this study is real. Thirty per cent more code is not nothing. It's sitting in a queue in front of the people who have to read it. If your plan has \"AI makes our engineers more productive\" on one slide and \"reduce engineering headcount\" on the next, add a slide between them: how long does a pull request wait for review, and who reviews it? In August I wrote about [the bottleneck moving to review](/blog/the-review-bottleneck/) from inside one team. Now there are 718 firms' worth of data saying the same thing." },
+
+      { t: "links", label: "References", items: [
+        { label: "Artificial Intelligence in the Firm: Bottlenecks in Software Production (Chen & Stratton)", href: "https://fion.ac/jellyfish.pdf", note: "Harvard job-market paper, current version 4 August 2026. Source for every study figure here." },
+        { label: "Barclays is cutting 5,000 jobs, including developers, in an AI push (Business Insider)", href: "https://finance.yahoo.com/technology/ai/articles/barclays-cutting-5-000-jobs-083835453.html", note: "The cuts, the 60% in support functions, and Anna Cross's quote." },
+        { label: "Barclays to cut 5,000 jobs in AI-driven cost-reduction push (Techstrong.ai)", href: "https://techstrong.ai/articles/barclays-to-cut-5000-jobs-in-ai-driven-cost-reduction-push/", note: "Workforce size, the 1,000 roles already cut, and the CEO's remarks on AI." },
+        { label: "Barclays cuts 5,000 jobs after its own AI research flagged developer roles (TechTimes)", href: "https://www.techtimes.com/articles/329430/20261023/barclays-cuts-5000-jobs-after-its-own-ai-research-flagged-developer-roles.htm", note: "Timeline and the £500m buyback." },
+        { label: "Barclays scales Claude across the bank (Anthropic)", href: "https://www.anthropic.com/news/barclays-scales-claude", note: "The Claude Code rollout: half of developers by end of 2026." },
+        { label: "AI writes 75% of Google's code. Do the arithmetic before you cut the team.", href: "/blog/ai-writes-75-percent-of-the-code/", note: "Related Field Notes: the Amdahl arithmetic in full." },
+        { label: "The bottleneck moved to review and nobody staffed for it", href: "/blog/the-review-bottleneck/", note: "Related Field Notes: the same problem, seen from one team." }
+      ] }
+    ],
+    takeaways: [
+      "Barclays is cutting about 5,000 jobs, developers included, on the grounds that AI makes its people more productive.",
+      "Across 718 firms, AI coding agents raised code output by 30% and pull requests by 23%, with no measurable rise in finished work and no change in headcount.",
+      "Amdahl's law capped the gain at 7–11% before anything went wrong, because engineers spend only 30–42% of their time writing code.",
+      "The extra code piled up in review: 49% longer to merge, nearly twice as many pull requests sent back, and 14% more staff pulled into reviewing.",
+      "The people who write code are usually the people who review it. Cut them and you cut the bottleneck, not the slack.",
+      "Measure review time and rework before and after your rollout before anyone touches headcount."
+    ]
+  },
+  {
     slug: "linkedin-ai-job-search-what-it-reads", cat: "AI", date: "Oct 2026", minutes: 11,
     tags: ["LinkedIn", "Job search", "Semantic search", "LLMs", "Careers", "Search design"],
     title: "LinkedIn deleted your job search filters. Here's what the new search reads instead.",

@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-label="Two lanes showing the same software pipeline: write, review, shipped. Before agents, work flows from write to review at a steady rate, 13 percent of pull requests are sent back for changes, review takes 7.0 days on average, and engineers resolve 3.67 issues a month. After agents, the write stage produces about a third more work, but the review stage is staffed by the same engineers, so pull requests pile up in a queue in front of it; 25 percent are sent back for changes, review takes 10.5 days, and the flow out to shipped is the same as before, 3.79 issues a month, which is not a significant change.">
+  <style>
+    .flow { animation: f1 3s linear infinite; }
+    .f2 { animation-name: f2; }
+    .f3 { animation-name: f3; }
+    @keyframes f1 { 0% { transform: translateX(0); opacity: 0; } 10%, 88% { opacity: 1; } 100% { transform: translateX(250px); opacity: 0; } }
+    @keyframes f2 { 0% { transform: translateX(0); opacity: 0; } 10%, 88% { opacity: 1; } 100% { transform: translateX(140px); opacity: 0; } }
+    @keyframes f3 { 0% { transform: translateX(0); opacity: 0; } 10%, 85% { opacity: 1; } 100% { transform: translateX(118px); opacity: 0; } }
+    .t1 { animation-delay: -1s; } .t2 { animation-delay: -2s; }
+    .u1 { animation-delay: -.75s; } .u2 { animation-delay: -1.5s; } .u3 { animation-delay: -2.25s; }
+    .q { opacity: 0; animation: 12s linear infinite; }
+    .q1 { animation-name: q1; } .q2 { animation-name: q2; } .q3 { animation-name: q3; } .q4 { animation-name: q4; }
+    .q5 { animation-name: q5; } .q6 { animation-name: q6; } .q7 { animation-name: q7; } .q8 { animation-name: q8; }
+    @keyframes q1 { 0%, 6% { opacity: 0; } 8%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q2 { 0%, 16% { opacity: 0; } 18%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q3 { 0%, 26% { opacity: 0; } 28%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q4 { 0%, 36% { opacity: 0; } 38%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q5 { 0%, 46% { opacity: 0; } 48%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q6 { 0%, 56% { opacity: 0; } 58%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q7 { 0%, 66% { opacity: 0; } 68%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes q8 { 0%, 76% { opacity: 0; } 78%, 94% { opacity: 1; } 100% { opacity: 0; } }
+    .still { opacity: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      .flow { display: none; }
+      .still { opacity: 1; }
+      .q { animation: none; opacity: 1; }
+    }
+  </style>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5A5449"/>
+    </marker>
+    <marker id="ahr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#BF3B24"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="470" fill="#FCFAF4"/>
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="30" y="38" fill="#BF3B24" font-size="13" letter-spacing="3">FASTER WRITING, SAME REVIEWERS</text>
+    <text x="30" y="62" fill="#8A8578" font-size="11.5">Averages from Chen &amp; Stratton (2026). Agents speed up writing. Review is still done by the same engineers.</text>
+
+    <!-- BEFORE -->
+    <text x="30" y="106" fill="#5A5449" font-size="11" letter-spacing="2">BEFORE AGENTS</text>
+    <path d="M520,128 C520,98 150,98 150,124" fill="none" stroke="#5A5449" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ah)"/>
+    <text x="335" y="102" fill="#5A5449" font-size="11" text-anchor="middle">13% of PRs sent back</text>
+
+    <rect x="30" y="128" width="170" height="54" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="4"/>
+    <text x="115" y="152" fill="#1B1712" font-size="13" text-anchor="middle" letter-spacing="2">WRITE</text>
+    <text x="115" y="170" fill="#8A8578" font-size="10.5" text-anchor="middle">engineers</text>
+
+    <rect x="470" y="128" width="170" height="54" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="4"/>
+    <text x="555" y="152" fill="#1B1712" font-size="13" text-anchor="middle" letter-spacing="2">REVIEW</text>
+    <text x="555" y="170" fill="#8A8578" font-size="10.5" text-anchor="middle">the same engineers</text>
+
+    <rect x="800" y="128" width="170" height="54" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="4"/>
+    <text x="885" y="152" fill="#1B1712" font-size="13" text-anchor="middle" letter-spacing="2">SHIPPED</text>
+    <text x="885" y="170" fill="#8A8578" font-size="10.5" text-anchor="middle">issues resolved</text>
+
+    <line x1="204" y1="155" x2="464" y2="155" stroke="#E4DBCB" stroke-width="2"/>
+    <line x1="644" y1="155" x2="794" y2="155" stroke="#E4DBCB" stroke-width="2"/>
+    <g fill="#E0A458">
+      <circle class="flow" cx="210" cy="155" r="6"/>
+      <circle class="flow t1" cx="210" cy="155" r="6"/>
+      <circle class="flow t2" cx="210" cy="155" r="6"/>
+      <circle class="still" cx="250" cy="155" r="6"/>
+      <circle class="still" cx="333" cy="155" r="6"/>
+      <circle class="still" cx="416" cy="155" r="6"/>
+    </g>
+    <g fill="#1B1712">
+      <circle class="flow f2" cx="650" cy="155" r="6"/>
+      <circle class="flow f2 t1" cx="650" cy="155" r="6"/>
+      <circle class="flow f2 t2" cx="650" cy="155" r="6"/>
+      <circle class="still" cx="672" cy="155" r="6"/>
+      <circle class="still" cx="719" cy="155" r="6"/>
+      <circle class="still" cx="766" cy="155" r="6"/>
+    </g>
+    <text x="555" y="204" fill="#5A5449" font-size="11.5" text-anchor="middle">7.0 days in review</text>
+    <text x="885" y="204" fill="#5A5449" font-size="11.5" text-anchor="middle">3.67 / engineer / month</text>
+
+    <line x1="30" y1="236" x2="970" y2="236" stroke="#D6CBB6" stroke-width="1.2"/>
+
+    <!-- AFTER -->
+    <text x="30" y="280" fill="#BF3B24" font-size="11" letter-spacing="2">AFTER AGENTS</text>
+    <path d="M520,302 C520,268 150,268 150,298" fill="none" stroke="#BF3B24" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ahr)"/>
+    <text x="335" y="272" fill="#BF3B24" font-size="11" text-anchor="middle">25% of PRs sent back</text>
+
+    <rect x="30" y="302" width="170" height="54" fill="#E0A458" stroke="#B07A2E" stroke-width="1.5" rx="4"/>
+    <text x="115" y="326" fill="#1B1712" font-size="13" text-anchor="middle" letter-spacing="2">WRITE</text>
+    <text x="115" y="344" fill="#1B1712" font-size="10.5" text-anchor="middle">+ agents · 30% more code</text>
+
+    <rect x="470" y="302" width="170" height="54" fill="#F5F1E8" stroke="#BF3B24" stroke-width="2" rx="4"/>
+    <text x="555" y="326" fill="#1B1712" font-size="13" text-anchor="middle" letter-spacing="2">REVIEW</text>
+    <text x="555" y="344" fill="#8A8578" font-size="10.5" text-anchor="middle">the same engineers</text>
+
+    <rect x="800" y="302" width="170" height="54" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="1.5" rx="4"/>
+    <text x="885" y="326" fill="#1B1712" font-size="13" text-anchor="middle" letter-spacing="2">SHIPPED</text>
+    <text x="885" y="344" fill="#8A8578" font-size="10.5" text-anchor="middle">issues resolved</text>
+
+    <line x1="204" y1="329" x2="330" y2="329" stroke="#E4DBCB" stroke-width="2"/>
+    <line x1="644" y1="329" x2="794" y2="329" stroke="#E4DBCB" stroke-width="2"/>
+    <g fill="#E0A458">
+      <circle class="flow f3" cx="210" cy="329" r="6"/>
+      <circle class="flow f3 u1" cx="210" cy="329" r="6"/>
+      <circle class="flow f3 u2" cx="210" cy="329" r="6"/>
+      <circle class="flow f3 u3" cx="210" cy="329" r="6"/>
+      <circle class="still" cx="226" cy="329" r="6"/>
+      <circle class="still" cx="258" cy="329" r="6"/>
+      <circle class="still" cx="290" cy="329" r="6"/>
+      <circle class="still" cx="322" cy="329" r="6"/>
+    </g>
+    <!-- the queue in front of review -->
+    <g fill="#BF3B24">
+      <rect class="q q1" x="446" y="317" width="12" height="11" rx="1.5"/>
+      <rect class="q q2" x="446" y="331" width="12" height="11" rx="1.5"/>
+      <rect class="q q3" x="430" y="317" width="12" height="11" rx="1.5"/>
+      <rect class="q q4" x="430" y="331" width="12" height="11" rx="1.5"/>
+      <rect class="q q5" x="414" y="317" width="12" height="11" rx="1.5"/>
+      <rect class="q q6" x="414" y="331" width="12" height="11" rx="1.5"/>
+      <rect class="q q7" x="398" y="317" width="12" height="11" rx="1.5"/>
+      <rect class="q q8" x="398" y="331" width="12" height="11" rx="1.5"/>
+    </g>
+    <text x="428" y="372" fill="#BF3B24" font-size="10.5" text-anchor="middle">waiting</text>
+    <g fill="#1B1712">
+      <circle class="flow f2" cx="650" cy="329" r="6"/>
+      <circle class="flow f2 t1" cx="650" cy="329" r="6"/>
+      <circle class="flow f2 t2" cx="650" cy="329" r="6"/>
+      <circle class="still" cx="672" cy="329" r="6"/>
+      <circle class="still" cx="719" cy="329" r="6"/>
+      <circle class="still" cx="766" cy="329" r="6"/>
+    </g>
+    <text x="555" y="378" fill="#BF3B24" font-size="11.5" text-anchor="middle">10.5 days in review</text>
+    <text x="885" y="378" fill="#5A5449" font-size="11.5" text-anchor="middle">3.79 (not significant)</text>
+
+    <text x="30" y="436" fill="#8A8578" font-size="11">Speeding up the writing made the queue longer, not the output bigger.</text>
+  </g>
+</svg>
