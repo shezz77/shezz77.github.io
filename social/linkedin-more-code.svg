@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#17130E"/>
+  <rect width="1200" height="12" fill="#BF3B24"/>
+
+  <g font-family="IBM Plex Mono, Menlo, monospace">
+    <text x="80" y="118" fill="#E8663C" font-size="26" letter-spacing="7">FIELD NOTES  ·  ENGINEERING LEADERSHIP</text>
+  </g>
+
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="100" letter-spacing="-3" fill="#F7F3EA">
+    <text x="80" y="262">AI AGENTS WROTE</text>
+    <text x="80" y="372">30% MORE CODE.</text>
+    <text x="80" y="482"><tspan fill="#E8663C">NO MORE SHIPPED.</tspan></text>
+  </g>
+
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="66" letter-spacing="-2" fill="#E0A458">
+    <text x="80" y="584">BARCLAYS IS CUTTING</text>
+    <text x="80" y="660">DEVELOPERS FOR AI.</text>
+  </g>
+
+  <rect x="80" y="716" width="1040" height="334" fill="#221C15" stroke="#3A332A" stroke-width="2" rx="6"/>
+  <circle cx="118" cy="758" r="8" fill="#BF3B24"/>
+  <circle cx="148" cy="758" r="8" fill="#E0A458"/>
+  <circle cx="178" cy="758" r="8" fill="#5A5449"/>
+  <text x="1090" y="766" fill="#5A5449" font-family="IBM Plex Mono, Menlo, monospace" font-size="22" text-anchor="end">harvard · 718 firms · 725,938 workers</text>
+  <line x1="80" y1="786" x2="1120" y2="786" stroke="#3A332A" stroke-width="2"/>
+
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="25">
+    <text x="118" y="840" fill="#9A8B70">lines of code</text>
+    <rect x="480" y="818" width="270" height="28" fill="#E0A458"/>
+    <text x="766" y="840" fill="#F7F3EA">+30%</text>
+
+    <text x="118" y="886" fill="#9A8B70">pull requests</text>
+    <rect x="480" y="864" width="207" height="28" fill="#E0A458"/>
+    <text x="703" y="886" fill="#F7F3EA">+23%</text>
+
+    <text x="118" y="932" fill="#9A8B70">time in review</text>
+    <rect x="480" y="910" width="441" height="28" fill="#E8663C"/>
+    <text x="937" y="932" fill="#F7F3EA">+49%</text>
+
+    <text x="118" y="978" fill="#9A8B70">shipped to prod</text>
+    <rect x="480" y="956" width="27" height="28" fill="#F7F3EA"/>
+    <text x="523" y="978" fill="#E8663C">+3%, not significant</text>
+
+    <text x="118" y="1024" fill="#9A8B70">headcount</text>
+    <rect x="480" y="1002" width="4" height="28" fill="#F7F3EA"/>
+    <text x="500" y="1024" fill="#F7F3EA">no change</text>
+  </g>
+  <line x1="480" y1="806" x2="480" y2="1036" stroke="#5A5449" stroke-width="2"/>
+
+  <line x1="80" y1="1092" x2="1120" y2="1092" stroke="#3A332A" stroke-width="2"/>
+  <g font-family="Archivo, Helvetica, sans-serif" font-weight="800" font-size="30">
+    <text x="80" y="1142" fill="#F7F3EA" letter-spacing="1">SHEHZAD ASLAM</text>
+  </g>
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="28">
+    <text x="1120" y="1142" fill="#9A8B70" text-anchor="end">shezz77.com</text>
+  </g>
+</svg>
