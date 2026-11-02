@@ -643,3 +643,40 @@ Which AI headline have you seen this month that the numbers didn't back up?
 Every number here is from Getty's own SEC filings and the court judgments: who gets what in the bankruptcy, the 2022 warrant dispute that cost $200m+, where AI actually shows up in the results, and two charts.
 
 https://shezz77.com/go/getty-images-bankruptcy-not-ai/
+
+---
+
+## Microsoft offered 60,000 an exit, expects under 3,000 to take it (image post, NOT POSTED YET)
+
+Image: `social/linkedin-msft-exit.png`. First comment: `shezz77.com/go/microsoft-60000-exit-offer/`
+
+Blog: `/blog/microsoft-60000-exit-offer/`. News-pegged: Voluntary Exit Offer, 26 Oct 2026; Q1 FY27 results 28 Oct. Sources: CNBC, Fortune (under-5% quote), CBS, Microsoft's 10-Ks and Q1 FY27 release.
+
+Microsoft offered 60,000 employees a way out. It expects fewer than 3,000 to take it.
+
+Every headline said "a quarter of Microsoft." A Microsoft spokesperson gave the number that matters: "we anticipate an under 5% uptake on the 60,000 employees that are eligible."
+
+5% of 60,000 is 3,000. That's 1.3% of the company.
+
+Put it next to Microsoft's other two rounds this year:
+— April retirement offer: 8,750 eligible, about 2,600 took it
+— July layoffs: 4,800, no choice involved
+— October exit offer: 60,000 eligible, under 3,000 expected
+
+Seven times as many people offered. About the same number expected to leave.
+
+And it isn't paying for AI. Even at $300k a head, 3,000 salaries are under 1% of the ~$170bn Microsoft says it'll spend on equipment in 2026. The package is standard severance, not a sweetener.
+
+The real story is in the annual reports. In 2023 Microsoft spent $28bn on equipment with 221,000 people. This year it spent $116bn with 223,000. That's $127k of equipment per employee, then $520k.
+
+Microsoft isn't firing a quarter of its staff. It has stopped growing its staff while its machines grow four times over. That's the shift, and it's quieter than the headline.
+
+60,000 is the size of the door. Read eligibility numbers as a ceiling, not a forecast.
+
+What headline number have you seen this month that turned out to be the eligibility list?
+
+**First comment** (keep the real text around the link, or LinkedIn hides it under "Most relevant"):
+
+The full breakdown: what the offer actually pays, who was left out (sales, marketing, data centres), the arithmetic against Microsoft's $170bn capex, and why a voluntary offer is a sorting tool. Two animated charts, every number sourced.
+
+https://shezz77.com/go/microsoft-60000-exit-offer/
