@@ -1,5 +1,90 @@
 export const POSTS = [
   {
+    slug: "microsoft-60000-exit-offer", cat: "Leadership", date: "Nov 2026", minutes: 10,
+    tags: ["Microsoft", "Layoffs", "AI capex", "Careers", "Fact check", "Leadership"],
+    title: "Microsoft offered 60,000 people a way out. It expects fewer than 3,000 to take it.",
+    excerpt: "Every headline said Microsoft is offering buyouts to a quarter of its workforce. Microsoft's own spokesperson says it expects under 5% of them to accept: fewer than 3,000 people, about what April's 8,750-person offer produced and fewer than July's layoffs. The 60,000 isn't a cut. It's a map of who Microsoft no longer needs to keep, drawn next to an equipment budget that has quadrupled while headcount stayed flat.",
+    blocks: [
+      { t: "p", text: "On 26 October Microsoft emailed a \"Voluntary Exit Offer\" to about 60,000 of its employees ([CNBC](https://www.cnbc.com/2026/10/26/microsoft-msft-voluntary-buyouts.html)). That's 27% of a 223,000-person company, and the headlines wrote themselves: a quarter of Microsoft, shown the door, so it can pay for AI." },
+      { t: "p", text: "Then a Microsoft spokesperson gave the number that matters, and almost nobody put it in the headline: \"we anticipate an under 5% uptake on the 60,000 employees that are eligible\" ([Fortune](https://fortune.com/2026/10/30/microsoft-voluntary-exit-offer-buyout-60000-employees/)). The CFO, Amy Hood, told investors she expects \"very few people\" to take it." },
+      { t: "p", text: "Five percent of 60,000 is 3,000. That's 1.3% of Microsoft. So I did what I keep doing with these stories: put the numbers on one scale and looked at what's left." },
+      { t: "quote", text: "60,000 is the size of the door. Microsoft expects fewer than 3,000 people to walk through it." },
+
+      { t: "h", text: "What Microsoft actually offered" },
+      { t: "p", text: "Strip out the framing and the offer is narrower than \"a quarter of the company\" suggests." },
+      { t: "table", label: "The Voluntary Exit Offer, as reported",
+        head: ["What", "Detail"],
+        rows: [
+          ["Who's eligible", "About 60,000 people at level 70 and below, which reaches vice president, in \"participating teams\""],
+          ["Where", "US, Canada, the UK and India"],
+          ["Who's left out", "Sales, marketing and data-centre roles, per Bloomberg; some engineering teams opted out"],
+          ["What it pays", "Microsoft's standard severance: base pay by tenure and level, continued stock vesting, healthcare for a set period, career help"],
+          ["Deadline", "Decide by early December, leave on 31 December"],
+          ["Expected uptake", "\"Under 5%\", says Microsoft. Fewer than 3,000 people"]
+        ] },
+      { t: "p", text: "Microsoft has also pushed back on the word buyout. Its spokesperson called it a standard severance offer, the same package a laid-off employee would get ([KIRO 7](https://www.kiro7.com/news/local/microsoft-offers-mass-buyouts-thousands-employees/K2A2ZZD4DJCHDCKRRAISG7VJCE/)). There's no sweetener. The only difference from a layoff is that you choose." },
+
+      { t: "h", text: "Put the numbers on one scale" },
+      { t: "p", text: "This isn't Microsoft's first round this year, and the earlier ones are the useful comparison. In April it ran its first-ever voluntary retirement programme, open to about 8,750 long-serving US employees. More than 30% took it, so roughly 2,600 people. In July it laid off about 4,800, with no choice involved ([CBS News](https://www.cbsnews.com/news/microsoft-buyouts-60000-workers-artificial-intelligence-layoffs/))." },
+      { t: "img", src: "/blog/img/msft-exit-funnel.svg", w: 1000, h: 500,
+        alt: "Horizontal bars counting people on one scale. Microsoft, 223,000; eligible for the October exit offer, about 60,000; expected to take it, under 3,000, a barely visible bar. Earlier in 2026: about 8,750 eligible for the April retirement offer, about 2,600 took it; 4,800 laid off in July.",
+        caption: "Seven times as many people offered. About the same number expected to leave." },
+      { t: "p", text: "An offer to 60,000 people is expected to move about as many as an offer to 8,750 did, and fewer than the July layoffs. The difference is the pitch: April's programme was aimed at people near retirement, who say yes a third of the time. October's has no age or tenure condition, and reaches all the way up to vice president, so most of the people getting it are mid-career, and Microsoft expects almost all of them to say no." },
+      { t: "p", text: "So the 60,000 isn't a forecast of anything. It's the eligibility list. Reporting it as \"Microsoft cuts a quarter of its staff\" is like reporting a sale's mailing list as its revenue." },
+
+      { t: "h", text: "It can't be about paying for AI" },
+      { t: "p", text: "The other half of the headline is that Microsoft is shedding people to fund data centres. The arithmetic doesn't allow it." },
+      { t: "p", text: "Microsoft doesn't publish pay per employee, so take a deliberately generous guess: $300,000 a year each, fully loaded. Three thousand people at that rate is $0.9 billion a year. Microsoft's spending on property and equipment, including finance leases, was $45.2 billion in the last quarter alone, and Hood says it'll be about $170 billion for calendar 2026 ([Q1 FY27 call](https://www.fool.com/earnings/call-transcripts/2026/10/29/microsoft-msft-q1-2027-earnings-call-transcript/)). Double my pay guess and the saving is still about 1% of a single year's equipment bill." },
+      { t: "p", text: "Nor does Microsoft need the money. It reported $92.3 billion of revenue for the quarter, up 19%, and $36.6 billion of net income, up 32% ([Microsoft results](https://www.sec.gov/Archives/edgar/data/0000789019/000119312526436122/msft-ex99_1.htm)). Even after the spending, its free cash flow was $18.6 billion for the quarter." },
+      { t: "p", text: "A few thousand salaries don't move a $170 billion budget. Whatever the offer is for, it isn't that." },
+
+      { t: "h", text: "The real story is the ratio" },
+      { t: "p", text: "Zoom out from this one offer and there's a much bigger number, and it's in Microsoft's annual reports, not in a memo." },
+      { t: "img", src: "/blog/img/msft-capex-per-employee.svg", w: 1000, h: 470,
+        alt: "Microsoft equipment spending and headcount by fiscal year. FY2023: 28.1 billion dollars, 221,000 people, 127,000 dollars per head. FY2024: 44.5 billion, 228,000, 195,000. FY2025: 64.6 billion, 228,000, 283,000. FY2026: 115.9 billion, 223,000, 520,000. Calendar 2026: about 170 billion guided.",
+        caption: "Equipment spend per employee went from $127,000 to $520,000 in three years." },
+      { t: "p", text: "In the year to June 2023 Microsoft spent $28.1 billion on property and equipment, with 221,000 employees. In the year to June 2026 it spent $115.9 billion, with 223,000. Spending rose 4.1 times. Headcount rose 1%. Per employee, Microsoft now buys about $520,000 of equipment a year, and three quarters of the latest quarter's spend went on short-lived assets, mostly CPUs and GPUs." },
+      { t: "p", text: "That's the shift the 60,000 headline is gesturing at, and it isn't a cut. Microsoft hasn't shrunk. It has stopped growing its workforce while its revenue and its machines keep growing. As one economist put it to Fortune, \"Microsoft's announcement is a clear indication they want fewer workers.\" Fewer than it would otherwise have hired, which is a different thing from firing a quarter of them, and in some ways a more lasting one." },
+
+      { t: "h", text: "So what is the offer for?" },
+      { t: "p", text: "My reading, from the shape of it rather than any statement: it's a sorting tool. Look at who's left out. Sales, marketing and the people who run data centres are where Microsoft is spending and selling, so they don't get the email. The offer reaches up to vice president, so it covers layers of management as well as individual contributors. And on the same earnings call Satya Nadella said that on GitHub \"agents now open more than 1/3 of all PRs on the platform\"." },
+      { t: "p", text: "A voluntary offer lets a company find out who already has one foot out of the door, at the price of a layoff it would have paid anyway, without picking names. The catch is that the people most likely to say yes are the ones with the best options elsewhere. That's always the risk with these programmes, and it may be one reason this one runs only in \"participating teams\"." },
+      { t: "p", text: "And there's a sequence worth noticing. This year Microsoft's voluntary round in April came before the involuntary one in July. I'm not predicting a repeat, and Microsoft hasn't mentioned layoffs. But if you work there and you're eligible, that's the history you're deciding against." },
+      { t: "note", tone: "info", label: "If you're one of the 60,000",
+        text: "The package is standard severance, so taking it gets you roughly what a layoff would, on your own timing and with the stock vesting and healthcare terms intact. Not taking it costs nothing today. The question is only whether you'd rather choose now or possibly not choose later, and that depends on your team, your vesting schedule and your options, not on the headline." },
+
+      { t: "h", text: "This is the third time in two weeks" },
+      { t: "p", text: "[Barclays](/blog/more-code-same-output/) said AI made its developers more productive while a 718-company study found AI agents ship no more code. [Getty Images](/blog/getty-images-bankruptcy-not-ai/) was said to be bankrupted by AI when its own filing says otherwise. Now Microsoft is said to be clearing out a quarter of its staff when its own estimate is 1.3%. Each time, the real number was in a filing or a quote, a few paragraphs down, and each time it was smaller and more interesting than the headline." },
+
+      { t: "h", text: "What I'd take from it" },
+      { t: "list", items: [
+        "Read an eligibility number as a ceiling, not a forecast. 60,000 offered and under 3,000 expected are both true, and only one of them is news.",
+        "Check the scale before you accept the motive. Three thousand salaries are under 1% of Microsoft's equipment budget. They aren't paying for the data centres.",
+        "Watch spend per employee, not headcount. Microsoft's went from $127,000 to $520,000 in three years while the workforce stayed flat. That's what \"AI is changing the workforce\" looks like in a filing.",
+        "Look at who's excluded. A company's exit offer tells you where it isn't investing; the list of teams left out tells you where it is.",
+        "If you run a team, remember who says yes to a voluntary exit: the people with the best options. Offer it by team, and know who you can't afford to lose before you send the email."
+      ] },
+
+      { t: "links", label: "References", items: [
+        { label: "Microsoft offers voluntary buyouts to 60,000 employees as AI leads to efficiency push (CNBC, 26 Oct 2026)", href: "https://www.cnbc.com/2026/10/26/microsoft-msft-voluntary-buyouts.html", note: "Eligibility, levels, countries, deadlines, the April programme's uptake, Amy Coleman's memo." },
+        { label: "Microsoft's 60,000-person buyout offer hints at a future with fewer workers and more equipment (Fortune, 30 Oct 2026)", href: "https://fortune.com/2026/10/30/microsoft-voluntary-exit-offer-buyout-60000-employees/", note: "The under-5% uptake estimate, Amy Hood's \"very few people\", headcount history and economists' views." },
+        { label: "Microsoft offers buyouts to 60,000 workers as it pours money into AI (CBS News, 26 Oct 2026)", href: "https://www.cbsnews.com/news/microsoft-buyouts-60000-workers-artificial-intelligence-layoffs/", note: "Exclusions per Bloomberg, headcount from filings, the July layoffs." },
+        { label: "Microsoft offers buyouts to roughly 60,000 employees (KIRO 7)", href: "https://www.kiro7.com/news/local/microsoft-offers-mass-buyouts-thousands-employees/K2A2ZZD4DJCHDCKRRAISG7VJCE/", note: "Microsoft's description of the package as standard severance." },
+        { label: "Microsoft fiscal year 2027 first quarter results (SEC, 28 Oct 2026)", href: "https://www.sec.gov/Archives/edgar/data/0000789019/000119312526436122/msft-ex99_1.htm", note: "Revenue, net income, cloud revenue, property and equipment." },
+        { label: "Microsoft Q1 2027 earnings call transcript (Motley Fool, 29 Oct 2026)", href: "https://www.fool.com/earnings/call-transcripts/2026/10/29/microsoft-msft-q1-2027-earnings-call-transcript/", note: "The $170bn calendar-2026 capex guide, short-lived assets, and Nadella on agents opening a third of GitHub PRs." },
+        { label: "AI writes 75% of Google's code. Do the arithmetic before you cut the team.", href: "/blog/ai-writes-75-percent-of-the-code/", note: "Related Field Notes: the same arithmetic applied to Google." },
+        { label: "18 months, or 5% in ten years? Microsoft's AI chief has now backed both.", href: "/blog/eighteen-months-or-five-percent/", note: "Related Field Notes: Microsoft's own forecasts for AI and white-collar work." }
+      ] }
+    ],
+    takeaways: [
+      "Microsoft offered a voluntary exit to about 60,000 people, 27% of its workforce, on 26 October 2026.",
+      "Its spokesperson expects under 5% to accept: fewer than 3,000 people, about 1.3% of the company, roughly what April's 8,750-person offer produced.",
+      "The package is standard severance, and three thousand salaries are under 1% of Microsoft's ~$170bn equipment budget for 2026.",
+      "The real shift is the ratio: equipment spend per employee went from $127,000 to $520,000 in three years while headcount stayed flat.",
+      "Read eligibility numbers as ceilings, check the scale before the motive, and watch who's excluded."
+    ]
+  },
+  {
     slug: "getty-images-bankruptcy-not-ai", cat: "AI", date: "Oct 2026", minutes: 11,
     tags: ["Getty Images", "Bankruptcy", "Generative AI", "Debt", "Fact check", "Business"],
     title: "Getty Images had its best year ever in 2025, then filed for bankruptcy. Its own filing says AI isn't why.",
