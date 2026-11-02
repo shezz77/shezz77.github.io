@@ -646,7 +646,7 @@ https://shezz77.com/go/getty-images-bankruptcy-not-ai/
 
 ---
 
-## Microsoft offered 60,000 an exit, expects under 3,000 to take it (image post, posted Tue 3 Nov 2026 ~00:20 PKT, activity 7523099489524510721)
+## Microsoft offered 60,000 an exit, expects under 3,000 to take it (image post, posted Tue 3 Nov 2026 ~00:10 PKT, activity 7523099489524510721)
 
 Image: `social/linkedin-msft-exit.png`. First comment: `shezz77.com/go/microsoft-60000-exit-offer/`
 
