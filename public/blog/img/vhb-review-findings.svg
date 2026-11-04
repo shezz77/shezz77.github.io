@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="530" viewBox="0 0 800 530" role="img" aria-labelledby="title desc">
+<title id="title">Review findings per pull request</title><desc id="desc">6.45 findings in the comparison group and 10.83 in AI-co-authored PRs. Zero-to-12 scale. Includes style, inferred authorship, observational sample.</desc>
+<style>
+text { font-family: Arial, Helvetica, sans-serif; }
+.mono { font-family: 'IBM Plex Mono', Menlo, monospace; letter-spacing: 2px; }
+.grow { transform-box: fill-box; transform-origin: left center; animation: grow 1.2s ease-out both; }
+.second { animation-delay: .25s; }
+.reveal { animation: reveal .8s ease-out both; }
+.r1 { animation-delay: .3s; } .r2 { animation-delay: .8s; } .r3 { animation-delay: 1.3s; } .r4 { animation-delay: 1.8s; } .r5 { animation-delay: 2.3s; }
+.packet { animation: travel 3.5s ease-out both; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes reveal { from { opacity: .15; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes travel { 0% { transform: translateX(-110px); opacity: 0; } 15% { opacity: 1; } 80%,100% { transform: translateX(0); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .grow,.reveal,.packet { animation: none; transform: none; opacity: 1; } }
+</style>
+<rect x="0" y="0" width="800" height="530" fill="#FCFAF4" /><rect x="0" y="0" width="800" height="7" fill="#BF3B24" />
+<text x="40" y="58" font-size="21" fill="#BF3B24" font-weight="700" class="mono">THE REVIEW BILL</text><text x="40" y="111" font-size="33" fill="#1B1712" font-weight="700" >Average findings per pull request</text><text x="40" y="150" font-size="21" fill="#5A5449" font-weight="400" >CodeRabbit · 470 open-source PRs · December 2025</text><text x="40" y="225" font-size="26" fill="#1B1712" font-weight="700" >Labelled human-only · n = 150</text><text x="760" y="225" font-size="38" fill="#365A49" font-weight="700" text-anchor="end">6.45</text><rect x="40" y="244" width="720" height="40" fill="#F5F1E8" /><rect x="40" y="244" width="387.0" height="40" fill="#365A49" class="grow"/><text x="40" y="355" font-size="26" fill="#1B1712" font-weight="700" >AI-co-authored · n = 320</text><text x="760" y="355" font-size="38" fill="#BF3B24" font-weight="700" text-anchor="end">10.83</text><rect x="40" y="374" width="720" height="40" fill="#F5F1E8" /><rect x="40" y="374" width="649.8000000000001" height="40" fill="#BF3B24" class="grow second"/><text x="40.0" y="451" font-size="19" fill="#5A5449" font-weight="400" text-anchor="middle">0</text><text x="220.0" y="451" font-size="19" fill="#5A5449" font-weight="400" text-anchor="middle">3</text><text x="400.0" y="451" font-size="19" fill="#5A5449" font-weight="400" text-anchor="middle">6</text><text x="580.0" y="451" font-size="19" fill="#5A5449" font-weight="400" text-anchor="middle">9</text><text x="760.0" y="451" font-size="19" fill="#5A5449" font-weight="400" text-anchor="middle">12</text><line x1="40" y1="425" x2="760" y2="425" stroke="#D6CBB6" /><text x="40" y="491" font-size="22" fill="#5A5449" font-weight="400" >Findings include style. They are not deployed defects.</text><text x="40" y="520" font-size="18" fill="#5A5449" font-weight="400" >Observational vendor study; authorship inferred; causation not established.</text>
+</svg>

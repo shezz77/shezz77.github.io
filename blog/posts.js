@@ -1,5 +1,130 @@
 export const POSTS = [
   {
+    slug: "vibe-coding-hidden-bill", cat: "AI", date: "Nov 2026", minutes: 14,
+    tags: ["Vibe coding", "Engineering leadership", "AI ROI", "Code review", "Security", "Research"],
+    title: "Vibe coding’s dirty secret: the demo is cheap. The cleanup isn’t.",
+    excerpt: "87% of developers say AI helps them ship faster. 72% still face the same or more workflow friction. The hidden bill lands in review, security, maintenance and work nobody budgeted for. Ten primary sources, five original visuals, and a practical plan for turning AI output into software a company can actually own.",
+    blocks: [
+      { t: "p", text: "The demo takes a Friday. The questions arrive on Monday. Can one customer see another customer’s records? What happens when a payment webhook arrives twice? Who understands the migration well enough to reverse it? The screen looked finished. The business had barely started asking what finished meant." },
+      { t: "p", text: "That is an illustrative scenario, not a reported incident. But the gap it describes is showing up in current research. In Atlassian’s October 2026 developer-experience findings, 87% of developers say AI helps them ship faster, while 72% report the same or more workflow friction. Both can be true ([Atlassian](https://www.atlassian.com/blog/development/developer-experience-report-2026))." },
+      { t: "quote", text: "A company can make code cheaper to produce while making software more expensive to own." },
+      { t: "img", src: "/blog/img/vhb-factory.svg", w: 1000, h: 620,
+        alt: "An illustrated software factory: a prompt feeds a fast code conveyor, then changes accumulate before a narrow verification gate. Beyond the gate are a customer, an owner and a rollback plan. The bottleneck represents a proposed mechanism, not measured company data.",
+        caption: "The bottleneck can move downstream. Conceptual illustration; the queue is not a measured dataset." },
+      { t: "p", text: "The useful R&D question is where the cost moves, who inherits it, and what a company can change before a prototype becomes a dependency. I reviewed ten primary sources: current surveys, an open-source PR analysis, controlled experiments, a security benchmark and production guidance. They point to a practical opportunity: make verification scale alongside generation." },
+
+      { t: "h", text: "First, define what we’re blaming" },
+      { t: "p", text: "I use vibe coding here for prompt-led development where people accept results without adequately reading or understanding the implementation. AI-assisted engineering can use the same tools while retaining specifications, tests, review and accountability. Simon Willison makes this distinction in [Vibe engineering](https://simonwillison.net/2025/Oct/7/vibe-engineering/)." },
+      { t: "note", tone: "info", label: "Research boundary · checked 4 November 2026",
+        text: "Most available studies measure AI-assisted development, not unreviewed vibe coding specifically. They reveal risks and bottlenecks relevant to companies adopting it; they do not establish a universal failure rate for vibe-coded products. Surveys describe respondents, vendor benchmarks test selected tasks, and observational PR comparisons cannot establish causation. The operating model below is my synthesis." },
+      { t: "img", src: "/blog/img/vhb-friction.svg", w: 800, h: 560,
+        alt: "Atlassian 2026 developer responses: 87 percent say AI helps ship faster; 72 percent report the same or more workflow friction. Bars start at zero on a 0 to 100 percent scale. The questions are separate and responses can overlap.",
+        caption: "Faster individual work and persistent friction coexist. These are separate survey questions, not slices of a whole." },
+
+      { t: "h", text: "Pain point 1: code arrives faster than decisions" },
+      { t: "p", text: "A reviewer still has to reconstruct intent, trace dependencies and ask whether the change belongs in the product. A larger diff increases that work even if its first draft was nearly free. When managers count generated changes as completed work, the queue becomes somebody else’s productivity problem." },
+      { t: "p", text: "CodeRabbit’s December 2025 analysis compared 320 AI-co-authored pull requests with 150 labelled human-only. It reported 10.83 findings per AI PR versus 6.45 in the comparison group. Findings include readability and formatting; they are not all bugs. Authorship was inferred, and this vendor study was observational. It is a signal to inspect review demand, not proof that every AI change is 1.7 times worse ([study and limitations](https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report))." },
+      { t: "img", src: "/blog/img/vhb-review-findings.svg", w: 800, h: 530,
+        alt: "CodeRabbit’s 470-PR observational sample: average findings per PR were 6.45 for the group labelled human-only and 10.83 for AI-co-authored PRs. Bars share a zero baseline and a 0 to 12 scale. Findings include style issues and are not production defects.",
+        caption: "10.83 ÷ 6.45 = 1.68. Review findings per PR, not incident rates; inferred authorship and different changes can confound the comparison." },
+      { t: "p", text: "DORA’s March 2026 analysis of its 2025 research also reports that greater AI adoption is associated with both higher delivery throughput and higher instability. That supports a more useful reading than a blanket slowdown claim: output can improve while reliability gets harder to manage. The association alone does not establish why ([DORA](https://dora.dev/insights/balancing-ai-tensions/))." },
+      { t: "p", text: "What I would change: limit work in progress at the review queue. Give an agent one bounded behavior change, with an acceptance case and a failure case. When review waiting time rises, finish and validate existing changes before starting more. Track the age of the oldest unreviewed change alongside the number created." },
+
+      { t: "h", text: "Pain point 2: a working screen can hide an open business" },
+      { t: "p", text: "A login page proves that a person can sign in. It does not prove that the person can access only the records they should. The expensive gaps often sit in permissions, secret handling, background jobs and external integrations, where a convincing demo gives little evidence." },
+      { t: "p", text: "The security evidence is improving, which matters. Veracode’s Fall 2026 update reports an aggregate security pass rate rising from 56% to 62%, with the best reported result at 73%. Those are results on selected coding tasks across four languages and four weakness categories, not percentages of safe applications. Veracode sells security tooling, and a benchmark cannot tell you your product’s breach probability ([Fall 2026 update](https://www.veracode.com/blog/fall-2026-genai-code-security))." },
+      { t: "p", text: "Production rules still need explicit verification. Supabase’s own guidance explains that its publishable key ships in the app and that database access must be constrained with Row Level Security. Hiding a button cannot supply that boundary ([production security checklist](https://supabase.com/docs/guides/security/production-checklist))." },
+      { t: "table", label: "Turn a demo claim into evidence before launch",
+        head: ["Demo claim", "Evidence I would require"],
+        rows: [
+          ["Users have private records", "Two-account tests: read, update and delete another user’s record must fail at the server or database boundary"],
+          ["Payments work", "Signed webhook verification; a repeated event produces one business effect"],
+          ["The agent can fix the database", "A disposable environment, limited credentials, a reviewed migration and a demonstrated recovery path"],
+          ["Secrets are hidden", "Inspect shipped assets and logs; keep privileged keys out of the browser; rotate any exposed credentials"],
+          ["Backups are enabled", "Restore a copy and verify the data and application behavior"]
+        ] },
+      { t: "p", text: "These are examples to adapt to the product, not a complete security audit. Give production access according to impact: generating a UI and changing live customer data should carry different permissions and review requirements." },
+
+      { t: "h", text: "Pain point 3: the model doesn’t know the promise you made" },
+      { t: "p", text: "Imagine an invoicing system where a customer’s historic tax rate must survive a later configuration change. A generic implementation might recalculate old invoices using today’s rate. The code can be readable, the tests can pass, and the business promise can still be broken because nobody supplied it. This is another hypothetical example." },
+      { t: "p", text: "The missing asset is context: business invariants, architectural boundaries and the reason an awkward-looking branch exists. If that knowledge stays in one person’s head, more generated code increases the amount that person must explain." },
+      { t: "p", text: "What I would change: put a short task contract beside the code. State the outcome, rules that must remain true, permitted modules, representative data, failure behavior and acceptance examples. Ask the implementer to identify missing information before generating a solution. Require a named owner who can explain the change and maintain it after the chat is gone." },
+      { t: "code", label: "A small contract for an AI-assisted change", lines: [
+        { text: "Outcome: retry a failed invoice delivery safely", color: "#E0A458" },
+        { text: "Invariant: retries never create a second invoice", color: "#E0A458" },
+        { text: "Boundary: delivery worker; no pricing/schema changes", color: "#9A8B70" },
+        { text: "Evidence: duplicate-event and timeout tests", color: "#9A8B70" },
+        { text: "Release: named owner, alert, rollback procedure", color: "#9A8B70" }
+      ] },
+
+      { t: "h", text: "Pain point 4: you still need people who can catch the mistake" },
+      { t: "p", text: "Anthropic’s January 2026 randomized experiment asked 52 mostly junior engineers to learn an unfamiliar Python library. The AI-assisted group averaged 50% on a follow-up quiz, compared with 67% without AI: a 17 percentage-point difference. The small completion-time improvement was not statistically significant. This was a short learning task, not proof of permanent skill loss. Its qualitative analysis also found stronger understanding among participants who actively sought explanations ([research](https://www.anthropic.com/research/AI-assistance-coding-skills))." },
+      { t: "p", text: "The management implication is a risk to investigate: a company can increase output while reducing the practice through which people learn to judge it. Assigning someone responsibility for AI review does not instantly give them the expertise to perform it." },
+      { t: "p", text: "What I would change: ask engineers to explain one failure path, reproduce one defect and defend one design decision during handover. Protect learning time for unfamiliar systems. Use AI explanations as a starting point, then check understanding against the implementation and real behavior. Senior staff should mentor the judgment, not silently absorb every cleanup task." },
+
+      { t: "h", text: "Pain point 5: the ROI spreadsheet ends too early" },
+      { t: "p", text: "There are two bad shortcuts: assume every generated line saves money, or assume every AI-assisted task wastes it. METR’s early-2025 controlled trial found 16 experienced open-source developers took 19% longer across 246 tasks in repositories they knew well ([paper](https://arxiv.org/abs/2507.09089)). Its February 2026 follow-up moved toward speedups, but selection effects made a clean updated estimate difficult. The old result is not a benchmark for today’s tools ([update](https://metr.org/blog/2026-02-24-uplift-update/))." },
+      { t: "p", text: "Measure your task mix and full delivery cycle. Include prompt iterations, review, rework, tooling, operations and incidents. Keep elapsed customer lead time separate from engineer hours: reducing one does not necessarily reduce the other." },
+      { t: "img", src: "/blog/img/vhb-cost.svg", w: 800, h: 650,
+        alt: "Hypothetical monthly capacity calculation, not research data. One hundred saved hours at 80 dollars equals 8,000 dollars. Sixty extra review and repair hours cost 4,800 dollars. Tools cost 1,000 dollars. The remainder is 2,200 dollars, before incidents and other costs.",
+        caption: "Illustrative inputs, not measured savings: $8,000 − $4,800 − $1,000 = $2,200. Capacity valued at an internal hourly rate is not automatically cash saved." },
+      { t: "p", text: "The example is deliberately ordinary. Ten engineers each save ten drafting hours. Sixty hours return as extra verification and repair; the tools cost $1,000. At an assumed $80 an hour, only $2,200 of the headline $8,000 remains. A production incident could erase it. Better verification could preserve more. Substitute your own measured inputs before making a hiring or budget decision." },
+      { t: "p", text: "A useful metric is cost per accepted change: the labor and tool cost of the whole delivery process divided by changes that meet agreed acceptance criteria. Pair it with escaped defects and customer outcomes so a team cannot improve the number by shipping tiny, low-value changes. Compare similar work and inspect the distribution, not just an average." },
+
+      { t: "h", text: "Draw the solution: make every change carry its evidence" },
+      { t: "p", text: "Here is the operating model I would test. Its purpose is to preserve useful generation speed while making the work safe to accept. It adds evidence at the points where a company takes on responsibility." },
+      { t: "img", src: "/blog/img/vhb-solution.svg", w: 800, h: 900,
+        alt: "A five-step proposed workflow: Specify the outcome and constraints; Generate a bounded change in a limited environment; Prove acceptance and abuse cases with tests, scans and review; Release with a named owner and recovery plan; Learn from incidents, rework and customer outcomes. Feedback returns to the next specification.",
+        caption: "A proposed operating model. Checks and approval depth should increase with the impact of the change." },
+      { t: "list", items: [
+        "Specify: write the behavior, the rules that must survive and examples of failure. Resolve missing business decisions before implementation.",
+        "Generate: use a small change and limited access. Explore with synthetic data; avoid granting broad production permissions to make a prototype convenient.",
+        "Prove: run acceptance tests, relevant security checks and a review by someone who understands the affected system. Tests generated from the same mistaken assumption need an independent challenge.",
+        "Release: record the owner, evidence, monitoring and rollback. For permissions, money or destructive data changes, require an appropriate specialist review.",
+        "Learn: feed real failures and repeated reviewer comments back into examples, constraints and reusable platform defaults. Remove checks that add cost without finding useful problems."
+      ] },
+      { t: "p", text: "For a disposable prototype, the evidence may be a quick manual check with fake data and a deletion date. For a customer-facing billing change, it may include idempotency tests, authorization tests, migration rehearsal and staged release. Choose the depth by consequence. A green build alone cannot establish all of those properties." },
+      { t: "p", text: "Stack Overflow’s 2026 survey describes a similar trust boundary: developers are more willing to rely on AI where they can validate answers and understand the area being changed. That is useful survey evidence for designing a workflow around checkable work, rather than assuming trust follows model capability ([2026 AI results](https://survey.stackoverflow.co/2026/ai))." },
+
+      { t: "h", text: "A 30-day experiment a company can actually run" },
+      { t: "table", label: "Proposed pilot; targets must be chosen against your own baseline",
+        head: ["When", "Action", "Evidence to keep"],
+        rows: [
+          ["Days 1–5", "Inventory AI-built tools, exposed data, deployment access and owners; baseline one team’s existing workflow", "Risk register; review waiting time; rework hours; accepted changes; escaped defects"],
+          ["Days 6–12", "Choose a low-risk task class; introduce a task contract, limited environment and small changes", "Before/after examples; the actual time spent prompting, reviewing and repairing"],
+          ["Days 13–20", "Add tests for the most costly failure paths; rehearse release and recovery", "A demonstrated failure caught before release; a working recovery procedure"],
+          ["Days 21–30", "Compare similar tasks; include tool cost and team workload; interview reviewers and users", "Decision to expand, revise or stop, with named follow-up owners"]
+        ] },
+      { t: "p", text: "Agree success and stop conditions before the pilot starts. For example: better accepted-change lead time without worse defect severity, unmanageable review queues or higher cost per useful outcome. Those are decision criteria, not universal numerical thresholds. A month may reveal process problems without providing enough releases to estimate rare incidents or prove causality." },
+
+      { t: "h", text: "The business opportunity hiding in the cleanup" },
+      { t: "p", text: "My commercial hypothesis is that some founders with working demos, and engineering leaders with growing review queues, would pay for a fixed-scope production-readiness assessment. The deliverable would be a prioritized risk register, tests for critical business rules, targeted repairs and a handover to an accountable owner. That is a hypothesis to validate through buyer interviews and paid pilots, not an established market-size claim." },
+      { t: "p", text: "I would validate that service before building another general-purpose AI scanner. Ask buyers where the last delay or failure occurred, what it cost them and what proof they need to launch. If the repeated pain is authorization, fix that workflow. If it is unclear requirements, another reviewer bot will not decide the product policy. Productize the evidence that repeatedly changes a release decision." },
+      { t: "quote", text: "The demo sells the possibility. The evidence makes it something a company can depend on." },
+      { t: "p", text: "That is where I would place the next investment: the path from generated output to an owned, verified change. Vibe coding made starting easier. Companies still have to make finishing mean something." },
+
+      { t: "links", label: "Primary sources and what they establish", items: [
+        { label: "Atlassian — State of Developer Experience 2026", href: "https://www.atlassian.com/teams/software-development/state-of-developer-experience-2026", note: "1,500+ practitioners; self-reported workflow experience. The accompanying October 20 analysis reports the 72% friction figure." },
+        { label: "CodeRabbit — State of AI vs Human Code Generation, 17 Dec 2025", href: "https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report", note: "470 PRs; vendor analysis, inferred authorship, findings rather than deployed defects." },
+        { label: "DORA — Balancing AI tensions, 10 Mar 2026", href: "https://dora.dev/insights/balancing-ai-tensions/", note: "Explains the 2025 association between adoption, throughput and instability." },
+        { label: "Veracode — Fall 2026 GenAI Code Security Update", href: "https://www.veracode.com/blog/fall-2026-genai-code-security", note: "Selected security-task benchmark; reported improvement does not establish application safety." },
+        { label: "METR — Early-2025 developer productivity trial", href: "https://arxiv.org/abs/2507.09089", note: "Randomized experiment in mature, familiar open-source repositories; narrow population and older tooling." },
+        { label: "METR — Experiment design update, 24 Feb 2026", href: "https://metr.org/blog/2026-02-24-uplift-update/", note: "Later estimates and the selection effects that obstruct clean measurement." },
+        { label: "Anthropic — AI assistance and coding skills, 29 Jan 2026", href: "https://www.anthropic.com/research/AI-assistance-coding-skills", note: "52-person learning experiment; short-term comprehension, not career-long skill loss." },
+        { label: "Stack Overflow — 2026 AI survey results", href: "https://survey.stackoverflow.co/2026/ai", note: "Trust and validation preferences among survey respondents." },
+        { label: "Supabase — Production security checklist", href: "https://supabase.com/docs/guides/security/production-checklist", note: "Official deployment guidance, including database access controls." },
+        { label: "Simon Willison — Vibe engineering, 7 Oct 2025", href: "https://simonwillison.net/2025/Oct/7/vibe-engineering/", note: "Practitioner definition and commentary, rather than a company-outcomes study." }
+      ] }
+    ],
+    takeaways: [
+      "Faster code generation can move work into review, security, coordination and maintenance. Measure the full delivery cycle.",
+      "Research on AI-assisted development does not establish a universal failure rate for unreviewed vibe coding.",
+      "Use bounded changes, explicit business rules, independent evidence, a named owner and a recovery plan.",
+      "Calculate cost per accepted change alongside defects and customer outcomes; generated lines and tool usage are weak substitutes.",
+      "Test the workflow in a measured pilot. Treat production-readiness services as a buyer hypothesis to validate."
+    ]
+  },
+  {
     slug: "microsoft-60000-exit-offer", cat: "Leadership", date: "Nov 2026", minutes: 10,
     tags: ["Microsoft", "Layoffs", "AI capex", "Careers", "Fact check", "Leadership"],
     title: "Microsoft offered 60,000 people a way out. It expects fewer than 3,000 to take it.",
