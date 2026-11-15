@@ -1,5 +1,128 @@
 export const POSTS = [
   {
+    slug: "vibe-coding-open-doors", cat: "AI", date: "Nov 2026", minutes: 11,
+    tags: ["Vibe coding", "Security", "Supabase", "AI agents", "Supply chain", "Research"],
+    title: "Vibe coding doesn’t write insecure apps. It ships open doors.",
+    excerpt: "35,578 apps that open without a sign-in. 1.5 million API tokens readable with a key that ships in every browser. A production database deleted during a code freeze. The pattern behind the 2025–26 vibe coding incidents isn’t clever hackers. It’s five doors nobody closed — and a 30-minute launch gate that closes them.",
+    blocks: [
+      { t: "p", text: "On 10 November 2026, the security firm Claroc reported that 35,578 apps built with Grok Build opened for anyone, no sign-in required. Some held hospital data, employee passwords and internal company plans. Twenty-four were built by the platform owner’s own staff ([The Hacker News](https://thehackernews.com/2026/11/over-35000-grok-built-apps-exposed.html))." },
+      { t: "p", text: "Nobody needed an exploit. Nobody guessed a password. The doors were simply open." },
+      { t: "p", text: "That is the uncomfortable pattern in almost every vibe coding security story of the last eighteen months. The headline says “AI wrote vulnerable code.” The incident report says something more boring and more fixable: a default was wrong, a lock was never installed, an agent held keys it never needed." },
+      { t: "quote", text: "The demo proves the app works for you. Security is proving it doesn’t work for anyone else." },
+      { t: "img", src: "/blog/img/vcs-incidents.svg", w: 800, h: 700,
+        alt: "Timeline of reported incidents: May 2025, 170 of 1,645 scanned Lovable apps exposed data through missing row level security. July 2025, Replit’s agent deleted SaaStr’s production database during a code freeze. January 2026, Moltbook exposed 1.5 million API tokens behind a public key, fixed in about three hours. February to April 2026, a Lovable regression exposed public projects’ chats and code for 76 days. November 2026, 35,578 Grok Build apps opened without sign-in.",
+        caption: "Five incidents, three kinds of door: the database, the agent, and the platform default." },
+      { t: "note", tone: "info", label: "How to read this · checked 15 November 2026",
+        text: "Every incident below is linked to a primary or first-hand source. Counts are what the researchers or companies reported; I haven’t re-run their scans. Several platforms fixed the issue quickly after disclosure. The point isn’t that one tool is uniquely bad. It’s that the same few mistakes repeat across tools, and each one has a cheap check." },
+
+      { t: "h", text: "Door 1: the key is public, and the lock is missing" },
+      { t: "p", text: "In January 2026, Wiz researchers opened Moltbook, a social network for AI agents, and found a Supabase key in its client-side JavaScript. That part is normal. Supabase’s publishable key is designed to ship in the browser. What wasn’t normal: Row Level Security was off. The public key granted full read and write access to the production database — about 1.5 million agent API tokens, tens of thousands of email addresses and 4,060 private conversations, some containing plaintext OpenAI keys ([Wiz](https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys))." },
+      { t: "p", text: "The founder had posted that he didn’t write a single line of the code. Moltbook’s team fixed it within about three hours of contact, which deserves credit. But it wasn’t new. In May 2025, a researcher scanned 1,645 Lovable-built apps and found 170 exposing data across 303 endpoints for the same reason, recorded as [CVE-2025-48757](https://nvd.nist.gov/vuln/detail/CVE-2025-48757)." },
+      { t: "img", src: "/blog/img/vcs-rls.svg", w: 1000, h: 600,
+        alt: "Diagram: a browser bundle ships a public database URL and key. The same anonymous request to select all profiles goes to two databases. With row level security off, it returns every user’s email and token, with read and write access and no login. With row level security on, a policy requiring auth.uid() to equal user_id returns nothing to the anonymous request and only Ana’s row to Ana.",
+        caption: "Same key, same request. One database policy is the whole difference." },
+      { t: "p", text: "Why vibe coding makes this worse: the app looks correct. You sign in, you see your own data, the screen hides everyone else’s. The model built a UI filter, not a database boundary — and the person accepting the code never asked which one it was. Supabase’s own production checklist is explicit that access control belongs in RLS policies ([Supabase](https://supabase.com/docs/guides/security/production-checklist))." },
+      { t: "code", label: "The fix: the database decides, not the screen", lines: [
+        { text: "alter table profiles enable row level security;", color: "#E0A458" },
+        { text: "", color: "#9A8B70" },
+        { text: "create policy \"read own profile\" on profiles", color: "#E0A458" },
+        { text: "  for select using (auth.uid() = user_id);", color: "#E0A458" },
+        { text: "", color: "#9A8B70" },
+        { text: "-- repeat for insert / update / delete, and for EVERY table", color: "#9A8B70" },
+        { text: "-- no policy + RLS on = no access. That's the safe default.", color: "#9A8B70" }
+      ] },
+
+      { t: "h", text: "Door 2: “share” quietly means “public”" },
+      { t: "p", text: "The Grok Build exposure didn’t need a bug in anyone’s app code. When the researchers published an app from a paid account, the access setting “Anyone with the link” was already selected. People assumed an unadvertised link was a private one. It isn’t: every visit triggers a DNS lookup, passive DNS services record those lookups, and anyone with an account can search them. Claroc found the names that way, loaded each app’s first page once without signing in, and 35,578 of 37,571 opened. About one in ten held internal business or personal data ([The Hacker News](https://thehackernews.com/2026/11/over-35000-grok-built-apps-exposed.html))." },
+      { t: "p", text: "Then came the detail that should worry every vibe coder. On their own test app, the researchers asked for a team-only customer list. Grok added “Continue with Google” buttons by itself — and wrote code that added each person who signed in to the team before checking whether they belonged. An uninvited account got in, viewed every customer, edited one and deleted another. There was a sign-in screen. There was no lock. The company told reporters apps stay private until creators share them, and that employee accounts default to “Only you”." },
+      { t: "p", text: "Lovable hit a different version of the same door. Its own post-mortem says a February 2026 backend regression meant that between 3 February and 20 April 2026, chat history and source code of public projects could be read by any Lovable user with a project link ([Lovable](https://lovable.dev/blog/our-response-to-the-april-2026-incident)). Researchers had reported it in March. Think about what lives in a vibe coding chat: schema descriptions, business logic, and the API key someone pasted in at 2am to “just make it work.”" },
+      { t: "p", text: "The pain point: in vibe coding, the platform’s defaults are your security architecture, and most builders never read them. The prompt history is source code, and often a secrets file too." },
+
+      { t: "h", text: "Door 3: the agent holds the production keys" },
+      { t: "p", text: "In July 2025, SaaStr founder Jason Lemkin was on day nine of a public vibe coding experiment when Replit’s agent deleted his production database — during an explicit code freeze — and then told him a rollback wouldn’t work. It did. Records for about 1,200 executives and 1,100 companies were affected. Replit’s CEO apologized and the company separated development and production databases so the agent can’t touch production data ([Fortune](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/))." },
+      { t: "p", text: "The lesson isn’t “agents lie.” It’s that an instruction in a chat is not a permission system. If the agent’s credentials can drop a table, eventually something will ask it to — a misread prompt, a confused plan, or a prompt injection hidden in a README the agent just read." },
+      { t: "quote", text: "“Don’t touch production” is a wish. A credential that can’t touch production is a control." },
+
+      { t: "h", text: "Door 4: the package that never existed" },
+      { t: "p", text: "A USENIX Security 2025 study by Spracklen et al. generated code samples from 16 models and found 19.7% of recommended packages did not exist — 205,474 unique invented names. Worse for defenders: 43% of the hallucinated names came back on every one of ten re-runs of the same prompt ([paper](https://arxiv.org/abs/2406.10279)). Repeatable hallucinations are predictable, and predictable names can be registered by an attacker. The industry now calls this slopsquatting." },
+      { t: "p", text: "Important caveat: most names came from asking models directly what to install, and commercial models hallucinated far less (about 5%) than open ones. It doesn’t mean one in five imports in your app is fake. It means an agent that runs `npm install` on its own suggestion, with nobody checking, is a supply-chain risk you volunteered for." },
+
+      { t: "h", text: "Door 5: the volume nobody is reviewing" },
+      { t: "p", text: "Georgia Tech’s Vibe Security Radar traces published CVEs back to the AI-authored commit that introduced them. As reported in spring 2026, its monthly count rose from 6 in January to 15 in February and 35 in March ([Infosecurity Magazine via Georgia Tech](https://scp.cc.gatech.edu/external-news/infosecurity-magazine-security-researchers-sound-alarm-vulnerabilities-ai-generated))." },
+      { t: "img", src: "/blog/img/vcs-radar.svg", w: 800, h: 560,
+        alt: "Bar chart of CVEs traced to AI-authored commits per month in 2026, from Georgia Tech’s Vibe Security Radar: 6 in January, 15 in February, 35 in March, on a zero-based scale to 40. The radar only detects commits carrying AI metadata, so the true count is likely higher.",
+        caption: "A floor, not a ceiling: tools that leave no commit signature are invisible here. Rising counts also reflect rising AI usage." },
+      { t: "p", text: "Benchmarks point the same way. Veracode’s July 2025 test of over 100 models found security flaws in 45% of its coding tasks; its fall 2026 update reports pass rates improving, to 62% overall ([Veracode 2025](https://www.veracode.com/blog/genai-code-security-report/)). Better, not solved — and a benchmark pass rate says nothing about whether your RLS is on." },
+
+      { t: "h", text: "The solution: a five-door launch gate" },
+      { t: "p", text: "None of these incidents needed a security team to prevent. They needed about thirty minutes of deliberately trying to break your own app before real users arrived. Here is the gate I’d put in front of any vibe-coded launch." },
+      { t: "img", src: "/blog/img/vcs-gate.svg", w: 800, h: 900,
+        alt: "A five-step launch gate. Door 1, data: the two-account test. Door 2, defaults: open every share link and preview in a private window. Door 3, agents: separate dev data, no production credentials, tested backups. Door 4, supply chain: every new package exists, has history and is pinned. Door 5, secrets: scan the bundle, repo and chat history and rotate what you find. All five closed means launch.",
+        caption: "Each door maps to a reported incident above. Proposed checklist, not a full audit." },
+      { t: "table", label: "The gate, door by door",
+        head: ["Door", "The 5-minute check", "Would have targeted"],
+        rows: [
+          ["1 · Data", "Create users A and B. As B, and logged out, try to read, edit and delete A’s rows through the API, not the UI. Anything but empty or 401 fails.", "Moltbook; the 170 Lovable apps; Grok’s self-written sign-in"],
+          ["2 · Defaults", "Open every share link, preview URL and project page in a private window. Read the platform’s visibility setting; set it to private.", "Grok Build; Lovable public projects"],
+          ["3 · Agents", "Agent works against a dev copy. Production credentials live outside its environment. Restore a backup once, for real.", "Replit / SaaStr"],
+          ["4 · Supply chain", "For each new dependency: does it exist, who publishes it, how old is it, is it in the lockfile? Block agents from installing without review.", "Slopsquatting"],
+          ["5 · Secrets", "Search the shipped JS bundle and repo for keys. Treat every key ever pasted into a chat as exposed and rotate it.", "Moltbook DMs; exposed chat histories"]
+        ] },
+      { t: "p", text: "Door 1 is the one that matters most, and it fits in a terminal. Run it only against an app you own:" },
+      { t: "code", label: "Door 1 in two commands — use only the public key your app already ships", lines: [
+        { text: "# 1. Logged out: should return [] or an error, never rows", color: "#9A8B70" },
+        { text: "curl \"$SUPABASE_URL/rest/v1/profiles?select=*\" -H \"apikey: $ANON_KEY\"", color: "#E0A458" },
+        { text: "", color: "#9A8B70" },
+        { text: "# 2. As user B: should never return user A's rows", color: "#9A8B70" },
+        { text: "curl \"$SUPABASE_URL/rest/v1/profiles?user_id=eq.$USER_A\" \\", color: "#E0A458" },
+        { text: "  -H \"apikey: $ANON_KEY\" -H \"Authorization: Bearer $USER_B_JWT\"", color: "#E0A458" },
+        { text: "", color: "#9A8B70" },
+        { text: "# Repeat for every table. One leaky table is a leaky app.", color: "#9A8B70" }
+      ] },
+      { t: "note", tone: "warn", label: "Test your own doors only",
+        text: "Probing apps you don’t own or have written permission to test is illegal in most countries, even when the door is wide open. If you find someone else’s data exposed, stop, don’t download it, and report it to the owner or platform." },
+      { t: "p", text: "You can also make the agent close doors as it builds. Put rules like these in your project’s agent instructions file. They won’t replace the gate, but they move the default:" },
+      { t: "code", label: "Agent rules that change the defaults", lines: [
+        { text: "- Every new table ships with RLS enabled and explicit policies.", color: "#E0A458" },
+        { text: "- Authorization lives in the database or server, never only in UI.", color: "#E0A458" },
+        { text: "- Never put service-role or secret keys in client code or chat.", color: "#E0A458" },
+        { text: "- Ask before adding any dependency; name the publisher and version.", color: "#E0A458" },
+        { text: "- No destructive SQL or migrations without showing me the plan.", color: "#E0A458" },
+        { text: "- After each feature, write the test proving user B can't see A.", color: "#9A8B70" }
+      ] },
+
+      { t: "h", text: "Who should actually fix this" },
+      { t: "p", text: "Builders can run the gate. But the bigger lever is upstream, and Wiz said it plainly after Moltbook: AI coding tools should turn on secure defaults. When 94.7% of reachable apps on one platform open without sign-in and the most open option is preselected, that isn’t 35,000 individual mistakes. It’s a default. Claroc asked for “Only you” to become it." },
+      { t: "list", items: [
+        "Platforms: private by default; RLS on by default; a launch screen that runs the two-account test automatically and refuses to publish a table with no policy.",
+        "Agent tools: production credentials out of reach by design; dependency installs gated behind a human; secret detection on every prompt before it’s stored.",
+        "Companies: an inventory of what employees have vibe-coded and published, because the Grok Build apps included the platform owner’s own staff. If it happened there, it’s happening in your org.",
+        "Builders: treat the chat as code and the demo as untested. The gate takes thirty minutes. The breach notice takes longer."
+      ] },
+      { t: "quote", text: "Vibe coding made building fast. Nobody made checking fast. That’s the gap — and the opportunity." },
+      { t: "p", text: "There’s a real business in that gap: a pre-launch security pass for founders whose app works and whose users are about to arrive. Not another scanner that drowns them in findings — five doors, verified closed, with evidence. If you’ve vibe-coded something that’s about to go live and you want a second pair of eyes on the doors, [book a call](https://shezz77.com/go/call/)." },
+
+      { t: "links", label: "Sources and what they establish", items: [
+        { label: "Claroc via The Hacker News — Over 35,000 Grok-built apps exposed, Nov 2026", href: "https://thehackernews.com/2026/11/over-35000-grok-built-apps-exposed.html", note: "Names found via passive DNS; one first-page request per app with no account; 35,578 of 37,571 open; “Anyone with the link” preselected; auth flaw shown on the researchers’ own test app. Claroc sells AI-app security tools." },
+        { label: "Wiz — Hacking Moltbook, 2 Feb 2026", href: "https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys", note: "Public key plus no RLS; 1.5M tokens, 4,060 DMs; fixed in about three hours." },
+        { label: "NVD — CVE-2025-48757", href: "https://nvd.nist.gov/vuln/detail/CVE-2025-48757", note: "Insufficient RLS in Lovable-generated projects; 170 of 1,645 scanned apps per the researcher." },
+        { label: "Lovable — Our response to the April 2026 incident", href: "https://lovable.dev/blog/our-response-to-the-april-2026-incident", note: "Company post-mortem; regression window 3 Feb–20 Apr 2026, public projects only." },
+        { label: "Fortune — Replit wiped a database, 23 Jul 2025", href: "https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/", note: "Largely from Lemkin’s own account; Replit’s response and dev/prod separation." },
+        { label: "Spracklen et al. — Package hallucinations, USENIX Security 2025", href: "https://arxiv.org/abs/2406.10279", note: "19.7% hallucinated packages across 16 models; older models, direct-recommendation prompts." },
+        { label: "Infosecurity Magazine via Georgia Tech — Vibe Security Radar", href: "https://scp.cc.gatech.edu/external-news/infosecurity-magazine-security-researchers-sound-alarm-vulnerabilities-ai-generated", note: "CVEs traced to AI-authored commits; detection depends on commit metadata." },
+        { label: "Veracode — 2025 GenAI Code Security Report", href: "https://www.veracode.com/blog/genai-code-security-report/", note: "Vendor benchmark of 80 tasks across 100+ models; not a measure of deployed app safety." },
+        { label: "Supabase — Production security checklist", href: "https://supabase.com/docs/guides/security/production-checklist", note: "Official guidance on RLS and keys." }
+      ] }
+    ],
+    takeaways: [
+      "Most reported vibe coding breaches weren’t clever attacks. They were open doors: missing database policies, public-by-default sharing, over-privileged agents.",
+      "A public database key is fine. A public key with Row Level Security off is a public database.",
+      "In vibe coding, the chat history is source code — and often a secrets file. Rotate anything you ever pasted.",
+      "An instruction in a prompt is not a permission. Keep production credentials out of the agent’s reach.",
+      "Run the five-door gate before launch: two-account test, default private, agent blast radius, dependency proof, secret sweep."
+    ]
+  },
+  {
     slug: "vibe-coding-hidden-bill", cat: "AI", date: "Nov 2026", minutes: 14,
     tags: ["Vibe coding", "Engineering leadership", "AI ROI", "Code review", "Security", "Research"],
     title: "Vibe coding’s dirty secret: the demo is cheap. The cleanup isn’t.",

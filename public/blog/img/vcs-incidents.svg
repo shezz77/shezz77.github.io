@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="700" viewBox="0 0 800 700" role="img" aria-labelledby="title desc">
+<title id="title">Eighteen months of open doors</title><desc id="desc">A timeline of publicly reported incidents involving AI-built apps. May 2025: a researcher found 170 of 1,645 scanned Lovable-built apps exposing data through missing row level security. July 2025: Replit's agent deleted SaaStr's production database during a code freeze. January 2026: Wiz found Moltbook's database readable and writable with the public key, exposing 1.5 million API tokens; fixed in about three hours. February to April 2026: a Lovable backend regression let users with a link read public projects' chat history and source code for 76 days. November 2026: Claroc reported 35,578 Grok Build apps opening without sign-in. Each door is a different failure: database, agent, platform default.</desc>
+<style>
+text { font-family: Arial, Helvetica, sans-serif; }
+.mono { font-family: 'IBM Plex Mono', Menlo, monospace; letter-spacing: 2px; }
+.reveal { animation: reveal .7s ease-out both; }
+.r1 { animation-delay: .2s; } .r2 { animation-delay: .7s; } .r3 { animation-delay: 1.2s; } .r4 { animation-delay: 1.7s; } .r5 { animation-delay: 2.2s; }
+.line { stroke-dasharray: 470; stroke-dashoffset: 470; animation: draw 2.4s ease-out forwards; }
+.pulse { transform-box: fill-box; transform-origin: center; animation: pulse 1.6s ease-in-out 2.6s 3; }
+@keyframes reveal { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+@media (prefers-reduced-motion: reduce) { .reveal,.line,.pulse { animation: none; opacity: 1; transform: none; stroke-dashoffset: 0; } }
+</style>
+<rect width="800" height="700" fill="#FCFAF4"/><rect width="800" height="7" fill="#BF3B24"/>
+<text x="40" y="58" font-size="20" fill="#BF3B24" font-weight="700" class="mono">REPORTED, NOT HYPOTHETICAL</text>
+<text x="40" y="106" font-size="33" fill="#1B1712" font-weight="700">Eighteen months of open doors</text>
+<text x="40" y="142" font-size="20" fill="#5A5449">Public incidents involving AI-built apps and agents</text>
+<line x1="92" y1="186" x2="92" y2="640" stroke="#D6CBB6" stroke-width="3"/>
+<line x1="92" y1="186" x2="92" y2="640" stroke="#BF3B24" stroke-width="3" class="line"/>
+
+<g class="reveal r1"><circle cx="92" cy="200" r="9" fill="#E0A458"/><text x="40" y="206" font-size="13" fill="#5A5449" class="mono" text-anchor="start" dx="-6">'25</text>
+<rect x="120" y="172" width="640" height="76" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+<text x="140" y="198" font-size="14" fill="#5A5449" class="mono">MAY 2025 · DATABASE</text>
+<text x="140" y="225" font-size="21" fill="#1B1712" font-weight="700">170 of 1,645 Lovable apps leaking data</text>
+<text x="745" y="225" font-size="15" fill="#5A5449" text-anchor="end">missing RLS</text></g>
+
+<g class="reveal r2"><circle cx="92" cy="292" r="9" fill="#E0A458"/>
+<rect x="120" y="264" width="640" height="76" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+<text x="140" y="290" font-size="14" fill="#5A5449" class="mono">JUL 2025 · AGENT</text>
+<text x="140" y="317" font-size="21" fill="#1B1712" font-weight="700">Agent deletes a production database</text>
+<text x="745" y="317" font-size="15" fill="#5A5449" text-anchor="end">during a code freeze</text></g>
+
+<g class="reveal r3"><circle cx="92" cy="384" r="9" fill="#BF3B24"/><text x="40" y="390" font-size="13" fill="#5A5449" class="mono" dx="-6">'26</text>
+<rect x="120" y="356" width="640" height="76" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+<text x="140" y="382" font-size="14" fill="#5A5449" class="mono">JAN 2026 · DATABASE</text>
+<text x="140" y="409" font-size="21" fill="#1B1712" font-weight="700">1.5M API tokens behind a public key</text>
+<text x="745" y="409" font-size="15" fill="#5A5449" text-anchor="end">Moltbook · fixed in ~3h</text></g>
+
+<g class="reveal r4"><circle cx="92" cy="476" r="9" fill="#BF3B24"/>
+<rect x="120" y="448" width="640" height="76" rx="6" fill="#F5F1E8" stroke="#D6CBB6"/>
+<text x="140" y="474" font-size="14" fill="#5A5449" class="mono">FEB–APR 2026 · PLATFORM</text>
+<text x="140" y="501" font-size="21" fill="#1B1712" font-weight="700">76 days of readable chats and code</text>
+<text x="745" y="501" font-size="15" fill="#5A5449" text-anchor="end">Lovable regression</text></g>
+
+<g class="reveal r5"><circle cx="92" cy="568" r="11" fill="#BF3B24" class="pulse"/>
+<rect x="120" y="540" width="640" height="76" rx="6" fill="#1B1712"/>
+<text x="140" y="566" font-size="14" fill="#E0A458" class="mono">NOV 2026 · PLATFORM DEFAULT</text>
+<text x="140" y="593" font-size="21" fill="#FCFAF4" font-weight="700">35,578 Grok Build apps open, no sign-in</text>
+<text x="745" y="593" font-size="15" fill="#D6CBB6" text-anchor="end">Claroc · 10 Nov</text></g>
+
+<text x="40" y="668" font-size="15" fill="#5A5449">Sources: CVE record, Fortune, Wiz, Lovable post-mortem, Claroc via press. Counts are as reported.</text>
+</svg>

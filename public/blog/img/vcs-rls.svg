@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">The key is meant to be public. The lock is not optional.</title><desc id="desc">Diagram of a browser app that ships a public database key. The same anonymous request, select all from profiles, travels to the database twice. With row level security off, the database returns every user's row, including emails and tokens. With row level security on, a policy checks that the row's user id equals the signed-in user, so the anonymous request returns nothing and a signed-in user gets only their own row. The public key identifies the app; the policy decides what it may read.</desc>
+<style>
+text { font-family: Arial, Helvetica, sans-serif; }
+.mono { font-family: 'IBM Plex Mono', Menlo, monospace; }
+.cap { font-family: 'IBM Plex Mono', Menlo, monospace; letter-spacing: 2px; }
+.pk { animation: go 2.2s ease-in-out .3s both; }
+.pk2 { animation-delay: 1.4s; }
+.out { animation: fade .6s ease-out both; }
+.o1 { animation-delay: 2.4s; } .o2 { animation-delay: 3.5s; }
+@keyframes go { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateX(400px); opacity: 0; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .pk { animation: none; opacity: 0; } .out { animation: none; opacity: 1; } }
+</style>
+<rect width="1000" height="600" fill="#FCFAF4"/><rect width="1000" height="7" fill="#BF3B24"/>
+<text x="40" y="56" font-size="18" fill="#BF3B24" font-weight="700" class="cap">PAIN POINT 1 · THE MOST COMMON OPEN DOOR</text>
+<text x="40" y="100" font-size="31" fill="#1B1712" font-weight="700">The key is meant to be public. The lock is not optional.</text>
+
+<!-- browser -->
+<rect x="40" y="140" width="250" height="400" rx="10" fill="#F5F1E8" stroke="#D6CBB6" stroke-width="2"/>
+<rect x="40" y="140" width="250" height="34" rx="10" fill="#D6CBB6"/>
+<circle cx="60" cy="157" r="5" fill="#BF3B24"/><circle cx="76" cy="157" r="5" fill="#E0A458"/><circle cx="92" cy="157" r="5" fill="#FCFAF4"/>
+<text x="60" y="210" font-size="15" fill="#5A5449" class="cap">BROWSER BUNDLE</text>
+<text x="60" y="244" font-size="14" fill="#1B1712" class="mono">const url = "…supabase.co"</text>
+<text x="60" y="268" font-size="14" fill="#1B1712" class="mono">const key = "eyJhbGci…"</text>
+<rect x="56" y="282" width="218" height="2" fill="#E0A458"/>
+<text x="60" y="314" font-size="15" fill="#5A5449">Anyone can open DevTools</text>
+<text x="60" y="336" font-size="15" fill="#5A5449">and copy this. That is fine</text>
+<text x="60" y="358" font-size="15" fill="#5A5449">by design.</text>
+<text x="60" y="420" font-size="14" fill="#1B1712" class="mono">GET /rest/v1/profiles</text>
+<text x="60" y="442" font-size="14" fill="#1B1712" class="mono">    ?select=*</text>
+<text x="60" y="480" font-size="15" fill="#5A5449">No login. Same request,</text>
+<text x="60" y="502" font-size="15" fill="#5A5449">two databases →</text>
+
+<!-- lanes -->
+<line x1="300" y1="240" x2="700" y2="240" stroke="#D6CBB6" stroke-width="2" stroke-dasharray="6 6"/>
+<line x1="300" y1="440" x2="700" y2="440" stroke="#D6CBB6" stroke-width="2" stroke-dasharray="6 6"/>
+<g class="pk"><rect x="296" y="226" width="64" height="28" rx="14" fill="#1B1712"/><text x="328" y="245" font-size="13" fill="#FCFAF4" class="mono" text-anchor="middle">anon</text></g>
+<g class="pk pk2"><rect x="296" y="426" width="64" height="28" rx="14" fill="#1B1712"/><text x="328" y="445" font-size="13" fill="#FCFAF4" class="mono" text-anchor="middle">anon</text></g>
+<text x="500" y="226" font-size="14" fill="#5A5449" text-anchor="middle" class="cap">RLS OFF</text>
+<text x="500" y="426" font-size="14" fill="#5A5449" text-anchor="middle" class="cap">RLS ON</text>
+
+<!-- db off -->
+<rect x="710" y="150" width="250" height="180" rx="10" fill="#FCFAF4" stroke="#BF3B24" stroke-width="3"/>
+<text x="730" y="182" font-size="15" fill="#BF3B24" font-weight="700" class="cap">EVERY ROW</text>
+<g class="out o1">
+<text x="730" y="214" font-size="14" fill="#1B1712" class="mono">ana@…   tok_9f…</text>
+<text x="730" y="238" font-size="14" fill="#1B1712" class="mono">bilal@… tok_2c…</text>
+<text x="730" y="262" font-size="14" fill="#1B1712" class="mono">chen@…  tok_71…</text>
+<text x="730" y="286" font-size="14" fill="#1B1712" class="mono">…every user</text>
+<text x="730" y="314" font-size="14" fill="#BF3B24" font-weight="700">read + write, no login</text></g>
+
+<!-- db on -->
+<rect x="710" y="350" width="250" height="190" rx="10" fill="#F5F1E8" stroke="#365A49" stroke-width="3"/>
+<text x="730" y="382" font-size="15" fill="#365A49" font-weight="700" class="cap">POLICY FIRST</text>
+<text x="730" y="410" font-size="13" fill="#1B1712" class="mono">using (auth.uid()</text>
+<text x="730" y="430" font-size="13" fill="#1B1712" class="mono">       = user_id)</text>
+<g class="out o2">
+<text x="730" y="468" font-size="15" fill="#1B1712" class="mono">anon     → [ ]</text>
+<text x="730" y="494" font-size="15" fill="#1B1712" class="mono">ana      → ana only</text>
+<text x="730" y="522" font-size="14" fill="#365A49" font-weight="700">the screen can't leak it</text></g>
+
+<text x="40" y="578" font-size="15" fill="#5A5449">The public key identifies the app. Only the database policy decides what a request may read or change.</text>
+</svg>
