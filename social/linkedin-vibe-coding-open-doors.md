@@ -41,8 +41,10 @@ https://shezz77.com/go/vibe-coding-open-doors/
 
 ## Image
 
-Not yet made. Per the LinkedIn distribution memory, a native image post outperforms a link card. Make a 1200×1200 card from `public/blog/img/vcs-gate.svg` or the 35,578 hook before posting.
+`linkedin-vibe-coding-open-doors.png` (1200×1200, rendered from the `.svg` with headless Chrome and real Archivo / IBM Plex Mono).
+
+Alt text: 35,578 apps. Open to anyone. No sign-in. Nobody hacked them. The doors were open. Five doors, all open: database with public key and RLS off; share link with "anyone" preselected; AI agent holding production keys; packages, 19.7% of which did not exist; secrets pasted into the chat.
 
 ## Publication
 
-Not published.
+Article deployed to Hostinger and CDN purged on 15 November 2026; live HTML and SVGs matched the build byte-for-byte. LinkedIn post not yet published.
