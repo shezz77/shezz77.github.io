@@ -36,8 +36,9 @@ Have you ever opened your own app's share link in a private window? 👀
 
 ## First comment
 
-The five doors, the incidents behind them, and the 30-minute launch gate (with copy-paste commands and agent rules):
-https://shezz77.com/go/vibe-coding-open-doors/
+The full write-up covers each of the five doors with the incident behind it (Grok Build, Moltbook, Lovable, Replit, slopsquatting), every source linked, and the 30-minute launch gate with copy-paste test commands and agent rules you can drop into your project.
+
+Read it here: https://shezz77.com/go/vibe-coding-open-doors/
 
 ## Image
 
@@ -47,4 +48,8 @@ Alt text: 35,578 apps. Open to anyone. No sign-in. Nobody hacked them. The doors
 
 ## Publication
 
-Article deployed to Hostinger and CDN purged on 15 November 2026; live HTML and SVGs matched the build byte-for-byte. LinkedIn post not yet published.
+Article deployed to Hostinger and CDN purged on 15 November 2026; live HTML and SVGs matched the build byte-for-byte. Published on LinkedIn on Sun 15 November 2026, ~09:45 PKT, with the card and alt text.
+
+Post: https://www.linkedin.com/feed/update/urn:li:share:7527600700692774912/
+
+First comment (two paragraphs, text + `/go/` link) rendered in the default view after a reload.
