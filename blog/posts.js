@@ -1,5 +1,1414 @@
 export const POSTS = [
   {
+    "slug": "anthropic-ai-bill-beats-payroll",
+    "cat": "AI",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Anthropic",
+      "AI economics",
+      "IPO",
+      "Engineering productivity",
+      "Fact check"
+    ],
+    "title": "Anthropic's AI bill is now bigger than its payroll. Read the small print first.",
+    "excerpt": "Anthropic's IPO filing says the list-price value of the Claude usage inside the company passed its monthly payroll in April 2026, and that Claude wrote more than 90% of its code contributions by September. Both numbers are real. Neither means what your CFO will think it means.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "Anthropic's IPO filing contains a sentence that will end up in a lot of board decks: in April 2026, the list-price value of Anthropic's internal Claude usage first exceeded its monthly personnel expenses, excluding stock compensation ([Yahoo Finance](https://finance.yahoo.com/technology/ai/articles/anthropic-ai-usage-surpassed-payroll-174152790.html))."
+      },
+      {
+        "t": "p",
+        "text": "Read fast, that says a software company now spends more on AI than on people. Read slowly, it says something narrower and, for anyone running an engineering team, more useful."
+      },
+      {
+        "t": "quote",
+        "text": "The company that sells the AI didn't swap its engineers for tokens. The AI bill arrived on top of payroll."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-anthropic-ai-bill-beats-payroll.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: Anthropic's AI bill now beats its payroll. It's in the IPO filing. Read the small print. AI usage passed payroll in April 2026; over 90% of code by Claude in September 2026; 45 times the 2024 daily output per engineer; list price, not cost; verified by nobody outside, yet.",
+        "caption": "The numbers from the filing, and the caveats that travel with them."
+      },
+      {
+        "t": "h",
+        "text": "What the filing says"
+      },
+      {
+        "t": "table",
+        "label": "Internal AI figures from Anthropic's IPO filing, as reported",
+        "head": [
+          "Claim",
+          "Detail"
+        ],
+        "rows": [
+          [
+            "AI usage vs payroll",
+            "In April 2026 the list-price value of internal Claude usage first exceeded monthly personnel expense, excluding stock compensation"
+          ],
+          [
+            "Share of code",
+            "Claude wrote more than 90% of contributions to Anthropic's codebase in September 2026"
+          ],
+          [
+            "Output per engineer",
+            "Average daily code contributions per engineer in Q3 2026 were more than 45 times the 2024 daily average"
+          ],
+          [
+            "Growth",
+            "Internal usage value grew more than 250 times between January and September 2026"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "Anthropic's engineering blog adds a matching picture from inside: merges went from about 2,500 a day in May 2026 to more than 30,000 a day by September, and the team had to build its own version control and review tools to cope ([Anthropic](https://www.anthropic.com/engineering/redesigning-source-control)). Their line that coding \"is no longer the bottleneck\" is the most honest part of the whole story."
+      },
+      {
+        "t": "h",
+        "text": "Three things the headline leaves out"
+      },
+      {
+        "t": "p",
+        "text": "It's list price, not cost. Anthropic values its own usage at what it charges customers, not at what the compute costs it to run. A company that owns the model and the inference fleet is not paying retail. Yahoo's report says so in plain words, and it's the first caveat that disappears when the number gets repeated."
+      },
+      {
+        "t": "p",
+        "text": "Contributions are not shipped value. 45 times more code contributions per engineer is 45 times more to review, test, merge and run. Anthropic's own source-control post is about exactly that cost: when generation is nearly free, review and infrastructure become the work."
+      },
+      {
+        "t": "p",
+        "text": "Nobody outside has checked the 90%. It's a company statistic in a filing. That doesn't make it false, but no independent verification of it was identified, and how you count a \"contribution\" decides most of the answer."
+      },
+      {
+        "t": "h",
+        "text": "Why it still matters"
+      },
+      {
+        "t": "p",
+        "text": "Strip out the spin in both directions and one fact stands: the AI company with the cheapest possible access to its own models kept its engineers and added a large AI bill on top. If the tool could replace the team, the people with the best view of the tool would have been the first to do it."
+      },
+      {
+        "t": "p",
+        "text": "For everyone else, the useful question is not \"can AI spend exceed payroll?\" but \"what did we ship for it?\" That's the same question I asked in [Vibe coding's hidden bill](/blog/vibe-coding-hidden-bill/): measure cost per accepted change, not tokens per developer."
+      },
+      {
+        "t": "note",
+        "tone": "info",
+        "label": "Checked 16 November 2026",
+        "text": "Figures are as reported from Anthropic's IPO filing by Yahoo Finance (9 November 2026) and from Anthropic's own engineering post. I haven't read the full S-1; revenue and profit figures circulating alongside it are left out because I couldn't open the primary report."
+      },
+      {
+        "t": "h",
+        "text": "What I'd take from it"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Treat \"AI usage passed payroll\" as list-price value, not cash cost. The owner of the model pays far less than you will.",
+          "More contributions means more review. Plan the review and infrastructure budget before you celebrate the output number.",
+          "The company best placed to replace engineers with AI did not. Use that as a sanity check on any plan that does.",
+          "Ask what an AI bill bought in shipped, accepted changes, not how big it is."
+        ]
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "Anthropic's AI usage surpassed payroll, IPO filing shows (Yahoo Finance, 9 Nov 2026)",
+            "href": "https://finance.yahoo.com/technology/ai/articles/anthropic-ai-usage-surpassed-payroll-174152790.html",
+            "note": "The April 2026 crossover, the list-price caveat, 90% of contributions, 45x per engineer."
+          },
+          {
+            "label": "Redesigning source control (Anthropic Engineering, Oct 2026)",
+            "href": "https://www.anthropic.com/engineering/redesigning-source-control",
+            "note": "Merges from ~2,500 to 30,000+ a day; coding no longer the bottleneck."
+          },
+          {
+            "label": "Vibe coding's hidden bill",
+            "href": "/blog/vibe-coding-hidden-bill/",
+            "note": "Related Field Notes: cost per accepted change."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "Anthropic's filing says internal Claude usage passed monthly payroll in April 2026, at list price, excluding stock compensation.",
+      "It also says Claude wrote over 90% of code contributions in September 2026, which no one outside has verified.",
+      "List price is not cost, and contributions are not shipped value.",
+      "Anthropic kept its engineers; the AI bill came on top. Measure what the bill ships."
+    ]
+  },
+  {
+    "slug": "aws-emulator-no-human-review",
+    "cat": "AI",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "AWS",
+      "AI agents",
+      "Code review",
+      "Testing",
+      "Engineering practice"
+    ],
+    "title": "AWS shipped code no human wrote or reviewed. The review didn't disappear. It moved.",
+    "excerpt": "AWS says thousands of autonomous agents wrote every line of its new AWS Emulator and that its team hasn't reviewed any of the code. The interesting part is the paragraph after that: tens of thousands of fidelity tests, each checked against real AWS, and a gate no change can skip.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "On 11 November 2026, AWS published a sentence that will be quoted in every AI argument for the next month: \"Our team hasn't written or reviewed any of the code\" ([About Amazon](https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator))."
+      },
+      {
+        "t": "p",
+        "text": "The project is AWS Emulator, a local emulator of AWS APIs. AWS says it was written entirely by autonomous agents. Most people stop reading there and pick a side. The useful part is how AWS made that safe enough to ship."
+      },
+      {
+        "t": "quote",
+        "text": "No human review is not the lesson. No merge without a gate is."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-aws-emulator-no-human-review.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: AWS shipped code no human reviewed. Agents wrote all of it. Tests did the review. Written by thousands of AI agents; human review: none, says AWS; 438 API models; tens of thousands of fidelity tests; each test checked against real AWS.",
+        "caption": "What AWS says it built, and what replaced the reviewer."
+      },
+      {
+        "t": "h",
+        "text": "How the review was moved, not removed"
+      },
+      {
+        "t": "table",
+        "label": "The safety net AWS describes",
+        "head": [
+          "Piece",
+          "What it does"
+        ],
+        "rows": [
+          [
+            "API models",
+            "The repository starts from the 438 published AWS API models"
+          ],
+          [
+            "Fidelity tests",
+            "\"Tens of thousands\" of tests across AWS, written by agents from the public API models"
+          ],
+          [
+            "Ground truth",
+            "Each test is verified against real AWS before it's submitted"
+          ],
+          [
+            "Merge gate",
+            "Every change must compile, meet coding standards, be secure and not reduce fidelity to real AWS"
+          ],
+          [
+            "Failure path",
+            "A change that fails the gate goes back to the agent for rework"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "So the humans didn't skip the hard part. They wrote the definition of correct, built the machine that checks it, and let the agents iterate against it until it passed."
+      },
+      {
+        "t": "h",
+        "text": "Why this works for an emulator"
+      },
+      {
+        "t": "p",
+        "text": "An emulator has something most software doesn't: a perfect answer key. For any request, the right response is whatever real AWS returns. Every test can be checked against reality, automatically, as many times as you like."
+      },
+      {
+        "t": "p",
+        "text": "Your billing rules don't have an answer key. Your permissions model doesn't either. Nor does \"is this screen confusing\" or \"should a refund cancel the subscription\". In those places, the correct answer lives in someone's head or in a contract, and an agent can pass every test you wrote while still being wrong about the one you didn't."
+      },
+      {
+        "t": "p",
+        "text": "That's the same reason I score AI-written tests with [mutation testing](/blog/llm-tests-scored-by-mutation-testing/) rather than coverage: a test suite is only a reviewer if it can fail."
+      },
+      {
+        "t": "h",
+        "text": "What to copy, and what not to"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Copy the gate. Nothing merges unless it compiles, passes the standards checks, passes security scans and keeps the behaviour suite green, whoever wrote it.",
+          "Copy the ground truth. Wherever you have a reference implementation, a recorded production trace or a spec with examples, test against it automatically.",
+          "Don't copy \"no human review\" into code whose correctness depends on business judgement. There, review is how the judgement gets in.",
+          "Expect the review effort to move, not vanish. AWS spent it on the test harness. You'll spend it somewhere too."
+        ]
+      },
+      {
+        "t": "note",
+        "tone": "info",
+        "label": "Checked 16 November 2026",
+        "text": "Quotes and figures are from AWS's own post of 11 November 2026. Details such as the language and licence came from secondary digests and are left out."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "How autonomous AI agents built AWS Emulator (About Amazon, 11 Nov 2026)",
+            "href": "https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator",
+            "note": "The no-review quote, 438 API models, fidelity tests verified against real AWS, the merge gate."
+          },
+          {
+            "label": "LLM-written tests, scored by mutation testing",
+            "href": "/blog/llm-tests-scored-by-mutation-testing/",
+            "note": "Related Field Notes: making tests able to fail."
+          },
+          {
+            "label": "The review bottleneck",
+            "href": "/blog/the-review-bottleneck/",
+            "note": "Related Field Notes: where the work goes when generation is cheap."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "AWS says autonomous agents wrote all of AWS Emulator and its team reviewed none of it.",
+      "Review was replaced by tens of thousands of fidelity tests checked against real AWS, plus a merge gate.",
+      "That works because an emulator has an answer key. Most business logic doesn't.",
+      "Copy the gate and the ground truth; keep human review where correctness is a judgement call."
+    ]
+  },
+  {
+    "slug": "apple-cuts-engineers-ai-budget",
+    "cat": "Leadership",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Apple",
+      "AI costs",
+      "Token budgets",
+      "Engineering management",
+      "Uber",
+      "Revolut"
+    ],
+    "title": "Apple just cut its engineers' AI budget. 2026 is the year the AI coding bill arrived.",
+    "excerpt": "Apple reportedly cut some engineers' daily AI cap from $300 to $200. Uber's president says the company blew through its 2026 AI budget by March. Revolut moved 2,000 engineers to self-hosted models and says inference got about 90% cheaper. Flat-rate AI coding was a subsidy; here's what metered AI coding asks of a team lead.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "Bloomberg reported on 4 November that Apple lowered the daily AI spending cap for some of its engineers from $300 to $200 ([Bloomberg](https://www.bloomberg.com/news/articles/2026-11-04/apple-cuts-internal-ai-usage-budgets-in-move-to-reduce-spending), as summarised by [Stork](https://www.stork.ai/newsletter/2026-11-08-apple-capped-engineers-at-a-200-daily-ai-budget))."
+      },
+      {
+        "t": "p",
+        "text": "On its own, that's a footnote. Next to the rest of 2026, it's a pattern."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-apple-cuts-engineers-ai-budget.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: Apple cut its engineers' AI budget. $300 a day became $200. The AI bill has arrived. Apple: $300 to $200 a day, reported; Uber: 2026 budget gone by March; Revolut: self-hosts, about 90% cheaper; DoorDash: token limit, then justify; EY survey: 82% of executives worried.",
+        "caption": "Five companies, one direction."
+      },
+      {
+        "t": "h",
+        "text": "The AI spend hangover, in five data points"
+      },
+      {
+        "t": "table",
+        "label": "What companies have said about AI coding costs in 2026",
+        "head": [
+          "Who",
+          "What happened",
+          "Source"
+        ],
+        "rows": [
+          [
+            "Apple",
+            "Daily AI cap for some engineers cut from $300 to $200 (reported)",
+            "Bloomberg via Stork, Nov 2026"
+          ],
+          [
+            "Uber",
+            "\"We had blown through our AI budget for 2026 and it was the middle of March\"; 25% of commits via Claude Code last quarter",
+            "Pragmatic Engineer, Jun 2026"
+          ],
+          [
+            "DoorDash",
+            "Developers above a monthly token limit must justify it and plan to use less",
+            "Pragmatic Engineer, Jun 2026"
+          ],
+          [
+            "Revolut",
+            "~2,000 engineers moved to self-hosted GLM; about 90% lower inference cost; engineers had been spending \"$1,000 a month, $10,000 a month with not so much ROI\"",
+            "The Register, Nov 2026"
+          ],
+          [
+            "US executives",
+            "82% of 534 senior leaders concerned about token costs; only 64% monitor usage with budget guardrails",
+            "EY, Jul 2026"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "The Uber quote came from its president, Andrew McDonald, relaying what the CTO told him, on the Rapid Response podcast in May ([Pragmatic Engineer](https://blog.pragmaticengineer.com/the-pulse-a-trend-of-trying-to-cut-back-on-ai-spend-within-eng-departments)). The Revolut numbers came from its ops and infrastructure lead at AI Engineer in New York ([The Register](https://www.theregister.com/a/5307345)). The EY survey is of executives, not engineers ([EY](https://www.ey.com/en_us/newsroom/2026/07/ey-survey-c-suites-pivot-from-ai-adoption-to-unlocking-value-as-escalating-token-costs-trigger-fiscal-scrutiny))."
+      },
+      {
+        "t": "h",
+        "text": "$200 a day is not small"
+      },
+      {
+        "t": "p",
+        "text": "Even after the cut, $200 a day is about $50,000 a year per engineer if it's used every working day (my arithmetic, assuming roughly 250 working days). For many teams outside Silicon Valley that's a second salary. Nobody is cutting a line item that size because it's too small to matter."
+      },
+      {
+        "t": "quote",
+        "text": "Flat-rate AI coding was a subsidy. Metered AI coding is a budget line, and budget lines get questions."
+      },
+      {
+        "t": "h",
+        "text": "The three questions that are coming"
+      },
+      {
+        "t": "list",
+        "items": [
+          "What did we ship for it? Not tokens, not prompts, not lines generated. Accepted changes that reached users.",
+          "Which work needs the expensive model? Revolut's answer was a router: cheap self-hosted models by default, frontier models when the task earns it.",
+          "Who is watching spend per accepted change? Spend per developer rewards whoever uses the least AI. Spend per accepted change rewards whoever uses it well."
+        ]
+      },
+      {
+        "t": "p",
+        "text": "If you lead a team and can't answer the third one yet, start there. It's the metric I argued for in [Vibe coding's hidden bill](/blog/vibe-coding-hidden-bill/), and it's the one that survives a budget review."
+      },
+      {
+        "t": "note",
+        "tone": "warn",
+        "label": "Source quality",
+        "text": "The Apple figures come from Bloomberg's paywalled report as summarised by a newsletter; I couldn't read the original. The other figures come from the pages linked above, which I opened on 16 November 2026."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "Apple cuts internal AI usage budgets (Bloomberg, 4 Nov 2026)",
+            "href": "https://www.bloomberg.com/news/articles/2026-11-04/apple-cuts-internal-ai-usage-budgets-in-move-to-reduce-spending",
+            "note": "Original report, paywalled."
+          },
+          {
+            "label": "Apple capped engineers at a $200 daily AI budget (Stork newsletter, 8 Nov 2026)",
+            "href": "https://www.stork.ai/newsletter/2026-11-08-apple-capped-engineers-at-a-200-daily-ai-budget",
+            "note": "The $300 to $200 figure, attributed to Bloomberg."
+          },
+          {
+            "label": "A trend of trying to cut back on AI spend (Pragmatic Engineer, 11 Jun 2026)",
+            "href": "https://blog.pragmaticengineer.com/the-pulse-a-trend-of-trying-to-cut-back-on-ai-spend-within-eng-departments",
+            "note": "Uber's budget quote, DoorDash and other caps."
+          },
+          {
+            "label": "Revolut self-hosts GLM for AI coding (The Register, 3 Nov 2026)",
+            "href": "https://www.theregister.com/a/5307345",
+            "note": "$0.30 per million tokens, ~90% savings, 2,000 engineers."
+          },
+          {
+            "label": "EY survey: token costs trigger fiscal scrutiny (EY, 28 Jul 2026)",
+            "href": "https://www.ey.com/en_us/newsroom/2026/07/ey-survey-c-suites-pivot-from-ai-adoption-to-unlocking-value-as-escalating-token-costs-trigger-fiscal-scrutiny",
+            "note": "82% concerned, 64% monitoring with guardrails."
+          },
+          {
+            "label": "Vibe coding's hidden bill",
+            "href": "/blog/vibe-coding-hidden-bill/",
+            "note": "Related Field Notes."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "Apple reportedly cut some engineers' daily AI cap from $300 to $200.",
+      "Uber blew through its 2026 AI budget by March; Revolut self-hosts and says it cut inference costs about 90%.",
+      "$200 a day is still about $50,000 a year per engineer.",
+      "Measure spend per accepted change, and route work to the cheapest model that can do it."
+    ]
+  },
+  {
+    "slug": "claude-code-dont-ask-again-leak",
+    "cat": "AI",
+    "date": "Nov 2026",
+    "minutes": 8,
+    "tags": [
+      "Claude Code",
+      "Secrets",
+      "Vibe coding",
+      "AI agents",
+      "Security",
+      "GitHub"
+    ],
+    "title": "\"Yes, and don't ask again\" put passwords into 1,122 public GitHub files",
+    "excerpt": "Approve a command in Claude Code with \"don't ask again\" and the whole command, password included, is saved to a settings file in your project. Then it gets committed. Researchers found 1,122 of those files on public GitHub. Here's the five-minute check and the habits that stop it.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "Coding agents ask before running a command. Click \"Yes, and don't ask again\" and Claude Code remembers your answer by writing an allow rule into `.claude/settings.local.json` in your project, so it never has to ask twice."
+      },
+      {
+        "t": "p",
+        "text": "It writes the whole command. If you typed a database password, an API key or a token into that command, it's now in the file. And unless the file is ignored, it gets committed with everything else."
+      },
+      {
+        "t": "p",
+        "text": "Researchers at Apiiro went looking on public GitHub. The Hacker News thread about their write-up is titled \"Claude Code's 'Don't Ask Again' exposes passwords in 1,122 public GitHub files\" ([Hacker News](https://news.ycombinator.com/item?id=50407882), linking [Apiiro](https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again))."
+      },
+      {
+        "t": "quote",
+        "text": "Nobody wrote insecure code. A convenience feature quietly turned a chat into a credential store."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-claude-code-dont-ask-again-leak.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: \"Don't ask again\" leaked passwords. 1,122 public files. One click each. File: .claude/settings.local.json; holds every command you approved; 5% allow any shell command; 43% allow python or node freely; fix: gitignore it, rotate keys.",
+        "caption": "One click, one committed file."
+      },
+      {
+        "t": "h",
+        "text": "Two problems in one file"
+      },
+      {
+        "t": "p",
+        "text": "The leaked secrets are the obvious problem. The quieter one is what the allow list says about the agent. As quoted in the thread, \"5% allow any shell command outright, and another 43% have interpreter rules like Bash(python:*) or Bash(node:*)\". An interpreter rule is effectively any command: anything the agent wants to do can be written as a Python or Node one-liner."
+      },
+      {
+        "t": "p",
+        "text": "So the file is two things at once: a list of credentials and a list of everything your agent may do without asking you. Both belong to you, not to your repository."
+      },
+      {
+        "t": "p",
+        "text": "The Claude Code team responded in the same thread. Boris Cherny: \"Historically Claude Code has not done secret scrubbing,\" adding that the team is looking at what it can do. He also argued that auto mode, which decides per action instead of keeping a growing allow list, is \"significantly safer than manual approval in practice\"."
+      },
+      {
+        "t": "h",
+        "text": "It isn't just one tool"
+      },
+      {
+        "t": "p",
+        "text": "GitGuardian's 2026 secrets report found that commits made with Claude Code assistance leaked secrets at 3.2%, against a 1.5% baseline, and counted 24,008 unique secrets in MCP configuration files, 2,117 of them still valid ([GitGuardian](https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/)). Agent configuration has become a place where keys collect, and most secret-scanning habits were built before it existed."
+      },
+      {
+        "t": "h",
+        "text": "Five minutes, today"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Search your repositories for `.claude/settings.local.json`. On GitHub, code search with `path:.claude/settings.local.json` inside your organisation finds them.",
+          "Add `.claude/settings.local.json` to `.gitignore` in every project and in your global gitignore.",
+          "Read the file. Remove interpreter wildcards such as `Bash(python:*)` and anything you wouldn't approve again today.",
+          "Rotate every key or password you find in it. Deleting the file doesn't remove it from git history or from anyone who cloned it.",
+          "Stop putting secrets inside commands. Use environment variables or a secrets manager, so the approved command contains a variable name, not a value."
+        ]
+      },
+      {
+        "t": "note",
+        "tone": "tip",
+        "label": "Also check",
+        "text": "Run a secret scanner as a pre-commit hook so the next one is caught before it's pushed, and add MCP config files to its scan paths. GitGuardian's numbers suggest that's where the next leak is."
+      },
+      {
+        "t": "p",
+        "text": "This is the fifth door from [Vibe coding ships open doors](/blog/vibe-coding-open-doors/): the secret you pasted into the chat. It just found a new way out."
+      },
+      {
+        "t": "note",
+        "tone": "info",
+        "label": "Checked 16 November 2026",
+        "text": "Apiiro's own page blocked automated reading, so the 1,122 figure is from the thread title and the percentages are as quoted by a commenter from the article. Cherny's quotes are from his replies in the thread. GitGuardian figures are from its report."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files (Hacker News)",
+            "href": "https://news.ycombinator.com/item?id=50407882",
+            "note": "Thread title, quoted percentages, Boris Cherny's replies."
+          },
+          {
+            "label": "Coding agents leaking secrets on GitHub (Apiiro)",
+            "href": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+            "note": "The original research."
+          },
+          {
+            "label": "The State of Secrets Sprawl 2026 (GitGuardian, 17 Mar 2026)",
+            "href": "https://blog.gitguardian.com/the-state-of-secrets-sprawl-2026/",
+            "note": "3.2% vs 1.5% leak rate; 24,008 secrets in MCP configs."
+          },
+          {
+            "label": "Vibe coding doesn't write insecure apps. It ships open doors.",
+            "href": "/blog/vibe-coding-open-doors/",
+            "note": "Related Field Notes: the five doors."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "\"Don't ask again\" saves the full approved command, secrets included, to .claude/settings.local.json.",
+      "Researchers found 1,122 such files on public GitHub.",
+      "Many allow lists permit any shell or interpreter command, so the file is also a map of your agent's power.",
+      "Gitignore the file, rotate what's in it, and keep secrets out of commands."
+    ]
+  },
+  {
+    "slug": "layoffs-that-blamed-ai",
+    "cat": "Leadership",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Layoffs",
+      "AI",
+      "Careers",
+      "Fact check",
+      "Canva"
+    ],
+    "title": "392 tech layoffs in 2026. Only 32 said AI cut their staff needs.",
+    "excerpt": "One researcher checked every 2026 tech layoff on layoffs.fyi against what the company actually said. Of the 258 with a stated reason, 12.4% said AI reduces their need for staff, and 61.6% gave a reason with no AI link at all. In October it was 3 of 31. \"AI did it\" is a story companies choose to tell.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "\"AI took the jobs\" is the default caption for any tech layoff in 2026. Ryan Doser decided to check it. He took the 392 tech layoff events on layoffs.fyi from 1 January to 4 November 2026, at 346 companies, and coded each against the reason the company itself gave ([Doser](https://ryandoser.com/research/ai-layoffs-2026/))."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-layoffs-that-blamed-ai.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: 392 layoffs. Only 32 blamed AI. What 2026's tech cuts actually said. Events checked: 392, January to November 2026; gave a reason: 258; AI cuts staff: 32, 12.4%; no AI link: 159, 61.6%; October: 3 of 31.",
+        "caption": "What the companies said, not what the headlines said."
+      },
+      {
+        "t": "h",
+        "text": "What the companies actually said"
+      },
+      {
+        "t": "table",
+        "label": "Stated reasons for 2026 tech layoffs (258 events with a company reason)",
+        "head": [
+          "Reason",
+          "Events",
+          "Share"
+        ],
+        "rows": [
+          [
+            "AI cuts, or will cut, our staff needs",
+            "32",
+            "12.4%"
+          ],
+          [
+            "Refocusing the company on AI",
+            "50",
+            "19.4%"
+          ],
+          [
+            "AI hurt our business",
+            "9",
+            "3.5%"
+          ],
+          [
+            "A reason with no AI link",
+            "159",
+            "61.6%"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "Another 134 events had no company reason in the source he read. And of the 119 layoffs that layoffs.fyi tags as AI-related, only 27 came with a company claim that AI cuts staff needs. The tag is applied when \"the company or the press\" makes the link, and the press makes it a lot more often than the companies do."
+      },
+      {
+        "t": "h",
+        "text": "The trend is going the other way"
+      },
+      {
+        "t": "p",
+        "text": "The AI-attributed share peaked in May 2026, at 27 of 49 events. By October it was 3 of 31. Challenger's count of AI-cited US job cuts for October was also the lowest of the year."
+      },
+      {
+        "t": "p",
+        "text": "And one detail that says a lot: of the companies that said AI cut their staff needs, 10 of the 11 with a readable public job board were advertising marketing roles on 5 November."
+      },
+      {
+        "t": "quote",
+        "text": "\"AI did it\" sounds like strategy. \"We over-hired and growth slowed\" sounds like a mistake."
+      },
+      {
+        "t": "h",
+        "text": "A live example"
+      },
+      {
+        "t": "p",
+        "text": "Canva announced a restructure affecting 1,271 people, about 22% of its staff, on 3 November. Melanie Perkins called it \"without doubt the hardest moment in our thirteen-year history\". Reports point to a growth forecast cut from 30% to 20%; Canva did not cite AI as the reason ([IBTimes](https://www.ibtimes.co.uk/canva-restructures-1271-employees-growth-slows-1830341)). Watch how often it gets filed under AI anyway."
+      },
+      {
+        "t": "h",
+        "text": "The caveats, honestly"
+      },
+      {
+        "t": "list",
+        "items": [
+          "It's one researcher, and the reasons were coded with AI assistance (coder agreement 93.9%).",
+          "An announcement shows what a company chose to say, not what caused the cut. Some companies will under-claim AI to avoid backlash.",
+          "The author teaches marketers to use AI and sells Claude Code products, and says so."
+        ]
+      },
+      {
+        "t": "p",
+        "text": "None of that rescues the headline. If AI were the main driver of 2026's cuts, more than one in eight companies would be willing to say so."
+      },
+      {
+        "t": "h",
+        "text": "Two questions for the next headline"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Did the company say it, or did the press?",
+          "Is the company still hiring for the role it says AI replaced?"
+        ]
+      },
+      {
+        "t": "p",
+        "text": "It's the same pattern as [Microsoft's 60,000 exit offer](/blog/microsoft-60000-exit-offer/) and [Getty Images' bankruptcy](/blog/getty-images-bankruptcy-not-ai/): the real number is in the company's own words, and it's smaller and more interesting than the caption."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "AI layoffs in 2026: what companies actually said (Ryan Doser, 5 Nov 2026)",
+            "href": "https://ryandoser.com/research/ai-layoffs-2026/",
+            "note": "All counts, the monthly trend, the hiring check and the method caveats."
+          },
+          {
+            "label": "Canva restructures 1,271 employees as growth slows (IBTimes, Nov 2026)",
+            "href": "https://www.ibtimes.co.uk/canva-restructures-1271-employees-growth-slows-1830341",
+            "note": "1,271 affected, 22%, no AI reason given."
+          },
+          {
+            "label": "Microsoft offered 60,000 people a way out",
+            "href": "/blog/microsoft-60000-exit-offer/",
+            "note": "Related Field Notes."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "Of 258 2026 tech layoffs with a stated reason, 32 (12.4%) said AI cuts their staff needs; 159 (61.6%) gave no AI link.",
+      "The AI-attributed share fell from 27 of 49 in May to 3 of 31 in October.",
+      "10 of 11 companies that blamed AI were still hiring marketers.",
+      "Ask who made the AI claim, and whether the company is still hiring for the role."
+    ]
+  },
+  {
+    "slug": "fake-claude-code-cursor-store",
+    "cat": "AI",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Cursor",
+      "Supply chain",
+      "IDE extensions",
+      "Security",
+      "Claude Code"
+    ],
+    "title": "A fake \"Claude Code\" sat in Cursor's extension store for 11 hours",
+    "excerpt": "On 29 October a malicious extension published under Anthropic's name ran on load in Cursor and tried to plant an SSH backdoor on up to 5,000 developers' machines. Cursor shut its whole marketplace to audit it. Your editor is now the most privileged thing on your laptop; here's how to treat it that way.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "For about eleven hours on 29 October 2026, Cursor's extension marketplace offered a \"Claude Code\" extension, version 2.1.313, that Anthropic didn't make ([BleepingComputer](https://www.bleepingcomputer.com/news/security/malicious-claude-code-extension-on-cursor-planted-ssh-backdoors/))."
+      },
+      {
+        "t": "p",
+        "text": "It didn't need a click. It ran a malicious loader when it loaded and tried to install a persistent SSH backdoor, including an attacker-controlled SSH key."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-fake-claude-code-cursor-store.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: A fake Claude Code sat in Cursor's store. Live for 11 hours. Up to 5,000 devs. When: 29 Oct 2026, 2:27am to 1:35pm PT; version 2.1.313; payload: SSH backdoor on load; check for SSH key svc-telemetry; how it got in: still unexplained.",
+        "caption": "Eleven hours, one fake publisher name."
+      },
+      {
+        "t": "h",
+        "text": "What happened"
+      },
+      {
+        "t": "table",
+        "label": "The incident, as reported",
+        "head": [
+          "What",
+          "Detail"
+        ],
+        "rows": [
+          [
+            "When",
+            "29 October 2026, about 2:27 a.m. to 1:35 p.m. Pacific"
+          ],
+          [
+            "What",
+            "A malicious build named Claude Code, version 2.1.313, published under Anthropic's name"
+          ],
+          [
+            "Payload",
+            "A loader that tried to install a persistent SSH backdoor"
+          ],
+          [
+            "Exposure",
+            "Up to 5,000 developers"
+          ],
+          [
+            "Indicator",
+            "An SSH key named \"svc-telemetry\""
+          ],
+          [
+            "Response",
+            "Cursor removed it, shut its entire marketplace to audit other extensions, rotated access keys and helped take the attacker's server offline"
+          ],
+          [
+            "Open question",
+            "How the attacker published under Anthropic's name hasn't been explained"
+          ]
+        ]
+      },
+      {
+        "t": "h",
+        "text": "It's the second time this year"
+      },
+      {
+        "t": "p",
+        "text": "In May, a trojanized version of the Nx Console VS Code extension, with more than 2.2 million installs, was live for about eleven minutes. It harvested GitHub, npm, AWS, Vault, Kubernetes and 1Password secrets, and it specifically read `~/.claude/settings.json` ([StepSecurity](https://stepsecurity.io/blog/nx-console-vs-code-extension-compromised)). Attackers have noticed that a developer's editor and AI tools sit on top of every key they own."
+      },
+      {
+        "t": "p",
+        "text": "I wrote about the earlier version of this, [malware that asked your AI CLI to do the stealing](/blog/malware-that-asked-your-ai-cli/). The direction is the same: the developer laptop is the target, and the AI tooling is the way in."
+      },
+      {
+        "t": "quote",
+        "text": "We tell developers to check every package the AI suggests, then let the editor auto-update a dozen extensions in the background."
+      },
+      {
+        "t": "h",
+        "text": "Treat your editor like production"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Check `~/.ssh/authorized_keys` for a key named `svc-telemetry`, and for any key you don't recognise.",
+          "Turn off automatic updates for extensions, or at least for the ones that touch your terminal and credentials.",
+          "Install AI tools from the vendor's own site or documented marketplace link, not from a search result.",
+          "Remove extensions you haven't used in a month. Each one runs with your permissions.",
+          "After any suspected compromise, rotate AI and MCP keys along with cloud and git credentials. Agent config files are credential stores now."
+        ]
+      },
+      {
+        "t": "note",
+        "tone": "info",
+        "label": "Checked 16 November 2026",
+        "text": "Incident details are from BleepingComputer's report of 30 October 2026, which quotes Cursor's notice. Nx Console details are from StepSecurity's analysis."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "Malicious Claude Code extension on Cursor planted SSH backdoors (BleepingComputer, 30 Oct 2026)",
+            "href": "https://www.bleepingcomputer.com/news/security/malicious-claude-code-extension-on-cursor-planted-ssh-backdoors/",
+            "note": "Timeline, version, exposure estimate, indicator, Cursor's response."
+          },
+          {
+            "label": "Nx Console VS Code extension compromised (StepSecurity, May 2026)",
+            "href": "https://stepsecurity.io/blog/nx-console-vs-code-extension-compromised",
+            "note": "2.2M-install extension, ~11 minutes live, read Claude settings."
+          },
+          {
+            "label": "The malware that asked your AI CLI to do the stealing",
+            "href": "/blog/malware-that-asked-your-ai-cli/",
+            "note": "Related Field Notes."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "A fake Claude Code extension was live in Cursor's marketplace for about 11 hours on 29 October 2026.",
+      "It ran on load and tried to plant an SSH backdoor; up to 5,000 developers were exposed.",
+      "Check authorized_keys for svc-telemetry, turn off extension auto-update, and prune extensions.",
+      "Agent and MCP configs are credential stores: rotate them after any compromise."
+    ]
+  },
+  {
+    "slug": "agent-deleted-database-nine-seconds",
+    "cat": "AI",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "AI agents",
+      "Cursor",
+      "DevOps",
+      "Backups",
+      "Least privilege",
+      "Vibe coding"
+    ],
+    "title": "An AI agent deleted production and the backups in 9 seconds. A prompt is not a permission.",
+    "excerpt": "A Cursor agent working in staging used an over-scoped Railway token to delete a volume, taking PocketOS's production database and its volume-level backups with it in a single API call. Its explanation: \"I guessed.\" The fix isn't a better prompt. It's three checks on credentials and backups.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "PocketOS makes software for car rental operators. In April 2026, its founder, Jeremy Crane, said a Cursor agent running Claude Opus 4.6 \"deleted our production database and all volume-level backups in a single API call\" to Railway, the company's hosting provider. It took 9 seconds ([Decrypt](https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says))."
+      },
+      {
+        "t": "p",
+        "text": "The agent was on a routine task in staging. It hit a credential mismatch and decided to fix it by deleting a storage volume. The volume was production's. The backups lived on the same volume."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-agent-deleted-database-nine-seconds.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: 9 seconds. Database and backups gone. One API call. One over-powered token. Agent: Cursor, on a staging task; action: deleted a Railway volume; took with it production and volume backups; its words: I guessed; fix: scope tokens, move backups.",
+        "caption": "One call, one token, no undo."
+      },
+      {
+        "t": "h",
+        "text": "\"I guessed\""
+      },
+      {
+        "t": "p",
+        "text": "According to Crane's screenshots, the agent explained itself: \"I guessed that deleting a staging volume via the API would be scoped to staging only.\" Its instructions had included, in capitals, an order never to guess."
+      },
+      {
+        "t": "p",
+        "text": "Railway's founder, Jake Cooper, says the data was recovered \"30 minutes after I connected with Jer\", blamed a support lapse for the earlier delay, and described a \"rogue customer AI\" using a fully permissioned token against a legacy endpoint without delayed delete, since patched. Crane says significant gaps remain and the latest backup he could restore was three months old. Both accounts agree on the part that matters."
+      },
+      {
+        "t": "quote",
+        "text": "A prompt is a request. A permission is a fact."
+      },
+      {
+        "t": "h",
+        "text": "What actually failed"
+      },
+      {
+        "t": "list",
+        "items": [
+          "A token that could delete production was within the agent's reach while it worked on staging.",
+          "The backups sat inside the blast radius of that same token.",
+          "The safety control was a sentence in a prompt, and the agent decided the sentence didn't apply."
+        ]
+      },
+      {
+        "t": "p",
+        "text": "None of this is new. It's the third door in [Vibe coding ships open doors](/blog/vibe-coding-open-doors/), and the same shape as Replit's agent deleting SaaStr's database during a code freeze in 2025. Agents just reach the gap faster than a person would, and they don't hesitate."
+      },
+      {
+        "t": "h",
+        "text": "Three checks for this week"
+      },
+      {
+        "t": "table",
+        "label": "Close the gap before the agent finds it",
+        "head": [
+          "Check",
+          "Pass when"
+        ],
+        "rows": [
+          [
+            "Credential scope",
+            "No credential the agent can read is able to delete or modify production. Tokens are scoped to one environment"
+          ],
+          [
+            "Backup isolation",
+            "Backups are stored outside the reach of the credentials that can touch the data, ideally in another account"
+          ],
+          [
+            "Restore drill",
+            "You have restored from a backup in the last quarter and know how long it takes"
+          ]
+        ]
+      },
+      {
+        "t": "note",
+        "tone": "tip",
+        "label": "If you run agents against infrastructure",
+        "text": "Prefer providers and APIs with delayed or soft delete, require a human approval step for destructive operations, and give the agent a separate project with throwaway data. An untested backup is a hope, not a plan."
+      },
+      {
+        "t": "note",
+        "tone": "info",
+        "label": "Checked 16 November 2026",
+        "text": "This is the founder's account and Railway's response as reported by Decrypt on 28 April 2026; it hasn't been independently verified."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "AI agent deletes startup's database in 9 seconds, founder says (Decrypt, 28 Apr 2026)",
+            "href": "https://decrypt.co/365897/ai-agent-deletes-startup-database-9-seconds-founder-says",
+            "note": "Crane's account, the agent's quotes, Railway's response."
+          },
+          {
+            "label": "AI Incident Database entry 1469",
+            "href": "https://incidentdatabase.ai/cite/1469",
+            "note": "Incident record."
+          },
+          {
+            "label": "Vibe coding doesn't write insecure apps. It ships open doors.",
+            "href": "/blog/vibe-coding-open-doors/",
+            "note": "Related Field Notes: door 3, the agent holds production keys."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "A Cursor agent on a staging task deleted PocketOS's production database and volume backups in one API call.",
+      "Its explanation was that it guessed the deletion would be scoped to staging.",
+      "The root causes were an over-scoped token and backups in the same blast radius.",
+      "Scope credentials per environment, isolate backups, and practise restores."
+    ]
+  },
+  {
+    "slug": "juniors-not-fired-not-hired",
+    "cat": "Leadership",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Junior developers",
+      "Hiring",
+      "Careers",
+      "SignalFire",
+      "Stanford",
+      "Engineering leadership"
+    ],
+    "title": "Nobody fired the junior developers. They just stopped hiring them.",
+    "excerpt": "SignalFire puts entry-level hiring at big tech down about 65% since 2019, while engineering hiring overall is down only 11%. Stanford's payroll data shows 22 to 25 year olds in AI-exposed jobs 19% below their peers, mostly through fewer hires. The door closed on the first rung, and that's a 2030 problem for every team.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "The story of AI and junior developers is usually told as layoffs. The data tells a quieter story: nobody was let go. They just never got the offer."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-juniors-not-fired-not-hired.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: Nobody fired the juniors. Nobody hired. Entry-level hiring, down 65% at big tech. Big tech: entry-level down 65% versus 2019; startups: entry-level down 76% versus 2019; all engineers: down 11% at big tech; age 22 to 25: 19% below peers, Stanford; how: fewer hires, not more exits.",
+        "caption": "Two datasets, one shape."
+      },
+      {
+        "t": "h",
+        "text": "Two datasets, same story"
+      },
+      {
+        "t": "table",
+        "label": "Entry-level hiring, 2026",
+        "head": [
+          "Source",
+          "Finding"
+        ],
+        "rows": [
+          [
+            "SignalFire, vs 2019",
+            "Entry-level hiring down roughly 65% at the big tech companies"
+          ],
+          [
+            "SignalFire, vs 2019",
+            "Entry-level hiring down about 76% at early-stage startups"
+          ],
+          [
+            "SignalFire, vs 2019",
+            "Engineering hiring overall down only 11% at big tech, and up 7% at early-stage startups"
+          ],
+          [
+            "Stanford, ADP payroll to June 2026",
+            "Employment of 22 to 25 year olds in AI-exposed jobs is 19% below where it would be had it kept pace with less-exposed peers"
+          ],
+          [
+            "Stanford",
+            "No comparable gap for experienced workers; the effect works \"primarily through reduced hiring of young workers rather than increased separations\""
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "SignalFire's numbers are from its [State of Talent report](https://www.signalfire.com/blog/signalfire-state-of-talent-report-2026) of 22 June 2026. Stanford's are from the August 2026 update of Brynjolfsson, Chandar and Chen's \"Canaries\" paper ([PDF](https://digitaleconomy.stanford.edu/app/uploads/2026/08/Canaries_August2026.pdf)). The Stanford shortfall was 15% a year earlier; it's growing."
+      },
+      {
+        "t": "quote",
+        "text": "The door didn't close on engineers. It closed on the first rung."
+      },
+      {
+        "t": "h",
+        "text": "Every sensible decision adds up to a bad one"
+      },
+      {
+        "t": "p",
+        "text": "Each company is making a reasonable call: a senior engineer with an AI assistant can do what used to take a senior and a junior. Hire the senior, skip the junior, ship faster this quarter."
+      },
+      {
+        "t": "p",
+        "text": "Add those calls up across an industry and you get a missing generation. Seniors aren't found, they're made: years of small tasks, code review, on-call, and being wrong somewhere safe. Those are exactly the tasks we now hand to an agent. I wrote about what that costs a team in [We stopped hiring juniors](/blog/we-stopped-hiring-juniors/)."
+      },
+      {
+        "t": "h",
+        "text": "The caveats"
+      },
+      {
+        "t": "list",
+        "items": [
+          "2019 was a hiring boom, so it's a flattering baseline for a decline.",
+          "Stanford's authors call the result descriptive, not causal, and it shrinks when they control for education.",
+          "The 19% covers all AI-exposed occupations, not software developers alone."
+        ]
+      },
+      {
+        "t": "p",
+        "text": "Even with all three, the direction is consistent across two very different datasets: payroll records and hiring data."
+      },
+      {
+        "t": "h",
+        "text": "If you lead a team"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Ask \"where will our seniors come from in 2030?\" before you ask \"do we need juniors?\"",
+          "Keep some small, real tasks for people, not agents, and review them properly. That's the apprenticeship.",
+          "Hire juniors for judgement under supervision: reviewing AI output, explaining failures, writing tests that can fail.",
+          "Pair juniors with agents rather than replacing them with agents. The person who learns to check the machine is the senior you'll need."
+        ]
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "SignalFire State of Talent Report 2026 (22 Jun 2026)",
+            "href": "https://www.signalfire.com/blog/signalfire-state-of-talent-report-2026",
+            "note": "Entry-level hiring -65% at big tech, -76% at early-stage startups; engineering -11%."
+          },
+          {
+            "label": "Canaries in the Coal Mine, August 2026 update (Stanford Digital Economy Lab)",
+            "href": "https://digitaleconomy.stanford.edu/app/uploads/2026/08/Canaries_August2026.pdf",
+            "note": "19% shortfall for 22–25 year olds in AI-exposed jobs; reduced hiring, not separations."
+          },
+          {
+            "label": "We stopped hiring juniors",
+            "href": "/blog/we-stopped-hiring-juniors/",
+            "note": "Related Field Notes."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "Entry-level hiring is down about 65% at big tech and 76% at early-stage startups versus 2019; engineering overall is down 11% at big tech.",
+      "Stanford finds young workers in AI-exposed jobs 19% below their peers, driven by fewer hires.",
+      "The first rung is disappearing, which means fewer seniors later.",
+      "Keep real tasks for juniors and hire them to check the machine."
+    ]
+  },
+  {
+    "slug": "ai-code-review-takes-5x-longer",
+    "cat": "Leadership",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Code review",
+      "Developer productivity",
+      "Faros",
+      "AI coding",
+      "Engineering metrics"
+    ],
+    "title": "AI made writing code cheap. Reviewing it now takes 5x longer.",
+    "excerpt": "Two years of telemetry on 22,000 developers: with high AI adoption, tasks completed rose 33.7%, but pull requests grew 51%, median review time went 5x, incidents per PR 3x and bugs per developer rose 54%. The queue moved to the reviewer's desk. Four changes to make before buying more AI seats.",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "Faros's 2026 engineering report compares low and high AI adoption inside the same organisations, using two years of telemetry from about 22,000 developers across 4,000 teams ([Faros](https://www.faros.ai/research/ai-acceleration-whiplash))."
+      },
+      {
+        "t": "p",
+        "text": "The good news is real: tasks completed rose 33.7%. The rest of the report is the bill."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-ai-code-review-takes-5x-longer.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: AI made code cheap. Review took 5x longer. 22,000 developers, two years of data. Tasks done: up 33.7%; PR size: up 51%; median review: 5x; incidents per PR: 3x, up 242.7%; bugs per developer: up 54%.",
+        "caption": "Faster at one step, slower everywhere after it."
+      },
+      {
+        "t": "h",
+        "text": "The numbers"
+      },
+      {
+        "t": "table",
+        "label": "Low vs high AI adoption, same organisations (Faros 2026)",
+        "head": [
+          "Measure",
+          "Change"
+        ],
+        "rows": [
+          [
+            "Tasks completed",
+            "+33.7%"
+          ],
+          [
+            "Pull request size",
+            "+51%"
+          ],
+          [
+            "Median time in review",
+            "5x (+441.5% in the full report)"
+          ],
+          [
+            "PRs merged with no review at all",
+            "31.3% more"
+          ],
+          [
+            "Incidents per pull request",
+            "3x (+242.7%)"
+          ],
+          [
+            "Bugs per developer",
+            "+54%"
+          ],
+          [
+            "Code churn",
+            "10x (+861%)"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "The full PDF also reports deployments per week down 11.7%, though only about a tenth of the dataset measures it ([report PDF](https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf))."
+      },
+      {
+        "t": "quote",
+        "text": "We made one step of the pipeline ten times faster and left every other step the same size."
+      },
+      {
+        "t": "h",
+        "text": "Why review is where it breaks"
+      },
+      {
+        "t": "p",
+        "text": "Writing code got cheap. Understanding it didn't. A reviewer facing a 900-line AI-generated pull request does what any tired human does: skims it and approves. Faros's count of unreviewed merges is that behaviour, measured."
+      },
+      {
+        "t": "p",
+        "text": "This matches what I found in [More code, same output](/blog/more-code-same-output/), where a 718-company study saw 30% more code, 49% more review time and no significant rise in what shipped, and what I argued in [The review bottleneck](/blog/the-review-bottleneck/)."
+      },
+      {
+        "t": "h",
+        "text": "Caveats"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Faros sells engineering analytics, so it has a reason to find interesting patterns in telemetry.",
+          "The comparison is correlational. Teams that adopt AI heavily may differ in other ways.",
+          "Some measures cover only part of the dataset."
+        ]
+      },
+      {
+        "t": "h",
+        "text": "What I'd change before buying more AI seats"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Cap pull request size. Small changes get real reviews; giant ones get rubber stamps.",
+          "Make the author explain the change in their own words in the PR description. If they can't, it isn't ready.",
+          "Count unreviewed merges every week. That number should worry you more than velocity pleases you.",
+          "Measure accepted changes and incidents per change, not lines or PRs generated."
+        ]
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "The Acceleration Whiplash: AI Engineering Report 2026 (Faros)",
+            "href": "https://www.faros.ai/research/ai-acceleration-whiplash",
+            "note": "Headline figures: 22K developers, 5x review, 3x incidents, +54% bugs, +33.7% tasks."
+          },
+          {
+            "label": "Full report PDF (Faros)",
+            "href": "https://pages.faros.ai/hubfs/AI_Engineering_Report_2026_The_Acceleration_Whiplash_Faros.pdf",
+            "note": "+441.5% median review time, 31.3% more unreviewed merges, deployments -11.7%."
+          },
+          {
+            "label": "AI agents wrote 30% more code. No more shipped.",
+            "href": "/blog/more-code-same-output/",
+            "note": "Related Field Notes."
+          },
+          {
+            "label": "The review bottleneck",
+            "href": "/blog/the-review-bottleneck/",
+            "note": "Related Field Notes."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "With high AI adoption, tasks completed rose 33.7% but median review time went 5x.",
+      "PRs got 51% bigger, incidents per PR tripled and bugs per developer rose 54%.",
+      "31.3% more PRs merged with no review at all.",
+      "Cap PR size, require authors to explain changes, and count unreviewed merges."
+    ]
+  },
+  {
+    "slug": "meta-muse-chat-titles-in-dns",
+    "cat": "AI",
+    "date": "Nov 2026",
+    "minutes": 7,
+    "tags": [
+      "Meta",
+      "Privacy",
+      "Share links",
+      "DNS",
+      "AI agents",
+      "Security"
+    ],
+    "title": "Meta put your private AI chat's title in the web address. One DNS query found 6,800 of them.",
+    "excerpt": "Meta's Muse agent gave each shared conversation its own subdomain, built from the chat's title plus a random ID. Subdomains leak into passive-DNS records, so researchers listed more than 6,800 shares with one query and Meta paused sharing. \"An ID only works as a secret while it stays secret, and a hostname is not a secret.\"",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "Muse is Meta's personal AI agent. It fills in forms, books appointments, makes purchases and creates documents, and it needs access to most of a user's accounts to do it. People tell it a lot."
+      },
+      {
+        "t": "p",
+        "text": "When a user shared a Muse conversation, the share page got its own subdomain under `cf.metaaiusercontent.com`. Meta built that subdomain from the conversation's title plus a random ID ([PPC Land](https://ppc.land/meta-halts-muse-share-links-after-6-800-turn-up-in-public-dns-records/))."
+      },
+      {
+        "t": "img",
+        "src": "/blog/img/card-meta-muse-chat-titles-in-dns.png",
+        "w": 1200,
+        "h": 1200,
+        "alt": "Card: Meta put your chat title in the URL. 6,800 shares found with one DNS query. Product: Muse, Meta's AI agent; mistake: chat title in the hostname; found by one passive-DNS query; count: more than 6,800 shares; Meta paused sharing, 20 Oct.",
+        "caption": "The random ID was the lock. The hostname was the leak."
+      },
+      {
+        "t": "h",
+        "text": "Why the random ID didn't help"
+      },
+      {
+        "t": "p",
+        "text": "The random ID was meant to make each link unguessable. But a hostname isn't private the way a URL path is. With HTTPS, the path is encrypted in transit; the hostname has to be looked up in DNS, and those lookups are collected by passive-DNS services that security companies query and sell."
+      },
+      {
+        "t": "p",
+        "text": "So researchers at Claroc ran a single query against a commercial passive-DNS service and got back more than 6,800 share hostnames, each one a shared conversation, titles included. They opened only a few hundred. Their summary is the best one-line security lesson of the year:"
+      },
+      {
+        "t": "quote",
+        "text": "An ID only works as a secret while it stays secret, and a hostname is not a secret."
+      },
+      {
+        "t": "h",
+        "text": "Timeline"
+      },
+      {
+        "t": "table",
+        "label": "Muse share links, 2026",
+        "head": [
+          "Date",
+          "Event"
+        ],
+        "rows": [
+          [
+            "8 Sep",
+            "Muse launches in the US"
+          ],
+          [
+            "7–8 Oct",
+            "Claroc collects hostnames and checks a sample of pages"
+          ],
+          [
+            "8 Oct",
+            "Claroc reports to Meta's bug bounty, per its CTO (Ars Technica's account dates the report later)"
+          ],
+          [
+            "18 Oct",
+            "Claroc's post is dated"
+          ],
+          [
+            "20 Oct",
+            "Ars Technica publishes; Meta pauses sharing \"while we review this report\""
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "Reports differ on when sharing came back; some say it was restored with new URLs on 22 October, while PPC Land described the pause as ongoing. It's the same research team that found the [35,578 open Grok Build apps](/blog/vibe-coding-open-doors/), and the same failure class: \"share\" quietly meaning \"public to anyone who can find it\"."
+      },
+      {
+        "t": "h",
+        "text": "Check your own share links"
+      },
+      {
+        "t": "list",
+        "items": [
+          "Open every share link in a private window with no login. If it opens, the link is the only lock, and links leak.",
+          "Keep user content out of hostnames: titles, usernames, project and company names. Put random tokens in the path, not the subdomain.",
+          "Make links revocable and expiring, and show users what they've shared.",
+          "For anything sensitive, require sign-in plus an explicit allow list instead of an unguessable URL."
+        ]
+      },
+      {
+        "t": "note",
+        "tone": "info",
+        "label": "Checked 16 November 2026",
+        "text": "Details are from PPC Land's account of Claroc's research and Ars Technica's report, with the Claroc quote as published there. I haven't read Claroc's own post."
+      },
+      {
+        "t": "links",
+        "label": "References",
+        "items": [
+          {
+            "label": "Meta halts Muse share links after 6,800 turn up in public DNS records (PPC Land, Oct 2026)",
+            "href": "https://ppc.land/meta-halts-muse-share-links-after-6-800-turn-up-in-public-dns-records/",
+            "note": "Mechanism, count, timeline, Meta's statement, Claroc's quote."
+          },
+          {
+            "label": "New Meta AI tool exposed thousands of private conversations online (The Star, 27 Oct 2026)",
+            "href": "https://www.thestar.com.my/tech/tech-news/2026/10/27/new-meta-ai-tool-exposed-thousands-of-private-conversations-online",
+            "note": "Wider coverage."
+          },
+          {
+            "label": "Vibe coding doesn't write insecure apps. It ships open doors.",
+            "href": "/blog/vibe-coding-open-doors/",
+            "note": "Related Field Notes: door 2, \"share\" means public."
+          }
+        ]
+      }
+    ],
+    "takeaways": [
+      "Meta's Muse built share-page subdomains from chat titles plus a random ID.",
+      "Passive-DNS records exposed more than 6,800 shares to a single query; Meta paused sharing on 20 October.",
+      "Hostnames are not secrets. Keep user content and tokens out of them.",
+      "Test share links in a private window, and make them revocable and expiring."
+    ]
+  },
+  {
     slug: "vibe-coding-open-doors", cat: "AI", date: "Nov 2026", minutes: 11,
     tags: ["Vibe coding", "Security", "Supabase", "AI agents", "Supply chain", "Research"],
     title: "Vibe coding doesn’t write insecure apps. It ships open doors.",
