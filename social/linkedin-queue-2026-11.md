@@ -390,3 +390,7 @@ Each post has a matching Field Notes article, deployed to shezz77.com on 16 Nov 
 | 08 | /blog/juniors-not-fired-not-hired/ | https://shezz77.com/go/juniors-not-fired-not-hired/ |
 | 09 | /blog/ai-code-review-takes-5x-longer/ | https://shezz77.com/go/ai-code-review-takes-5x-longer/ |
 | 10 | /blog/meta-muse-chat-titles-in-dns/ | https://shezz77.com/go/meta-muse-chat-titles-in-dns/ |
+
+## First comments (automated)
+
+Ten one-time Claude scheduled tasks, `linkedin-comment-01` to `-10`, run at 14:20 PKT on each post's day (saved in Auto mode). Each one finds the post on the recent-activity page, skips it if the `/go/` comment already exists, and adds a two-paragraph comment (a sentence about the article, then the `/go/` link) from the post's own page, then checks it shows in the default comment view. They need the Claude app open and Chrome running with the extension connected; a task that misses its time runs the next time the app opens.
