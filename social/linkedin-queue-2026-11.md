@@ -373,3 +373,20 @@ Sources: PPC Land on Claroc's research and Ars Technica's report, Oct 2026 (http
 All ten were scheduled in LinkedIn on Mon 16 Nov 2026 (~08:15–09:00 PKT) from the composer's clock icon, each with its card and alt text, at 14:00 PKT on the dates above. LinkedIn's "Scheduled (10)" list showed all ten in order afterwards.
 
 No first comments: these posts carry no article link, and LinkedIn cannot schedule a comment.
+
+## Matching blog articles
+
+Each post has a matching Field Notes article, deployed to shezz77.com on 16 Nov 2026 (live HTML matched the build byte for byte after the cache purge). Use these `/go/` links in a first comment once each post is live:
+
+| # | Article | First-comment link |
+|---|---|---|
+| 01 | /blog/anthropic-ai-bill-beats-payroll/ | https://shezz77.com/go/anthropic-ai-bill-beats-payroll/ |
+| 02 | /blog/aws-emulator-no-human-review/ | https://shezz77.com/go/aws-emulator-no-human-review/ |
+| 03 | /blog/apple-cuts-engineers-ai-budget/ | https://shezz77.com/go/apple-cuts-engineers-ai-budget/ |
+| 04 | /blog/claude-code-dont-ask-again-leak/ | https://shezz77.com/go/claude-code-dont-ask-again-leak/ |
+| 05 | /blog/layoffs-that-blamed-ai/ | https://shezz77.com/go/layoffs-that-blamed-ai/ |
+| 06 | /blog/fake-claude-code-cursor-store/ | https://shezz77.com/go/fake-claude-code-cursor-store/ |
+| 07 | /blog/agent-deleted-database-nine-seconds/ | https://shezz77.com/go/agent-deleted-database-nine-seconds/ |
+| 08 | /blog/juniors-not-fired-not-hired/ | https://shezz77.com/go/juniors-not-fired-not-hired/ |
+| 09 | /blog/ai-code-review-takes-5x-longer/ | https://shezz77.com/go/ai-code-review-takes-5x-longer/ |
+| 10 | /blog/meta-muse-chat-titles-in-dns/ | https://shezz77.com/go/meta-muse-chat-titles-in-dns/ |
