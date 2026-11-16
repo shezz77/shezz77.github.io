@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+<rect width="1200" height="1200" fill="#17130E"/><rect width="1200" height="12" fill="#BF3B24"/>
+<text x="80" y="118" fill="#E8663C" font-size="26" letter-spacing="7" font-family="IBM Plex Mono, Menlo, monospace">FIELD NOTES  ·  SECURITY</text>
+<g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="100" letter-spacing="-3" fill="#F7F3EA">
+<text x="80" y="262">&quot;DON&#x27;T ASK</text><text x="80" y="372">AGAIN&quot; LEAKED</text><text x="80" y="482" fill="#E8663C">PASSWORDS.</text></g>
+<g font-family="Archivo, Helvetica, sans-serif" font-weight="900" font-size="66" letter-spacing="-2" fill="#E0A458">
+<text x="80" y="584">1,122 PUBLIC FILES.</text><text x="80" y="660">ONE CLICK EACH.</text></g>
+<rect x="80" y="716" width="1040" height="334" fill="#221C15" stroke="#3A332A" stroke-width="2" rx="6"/>
+<circle cx="118" cy="758" r="8" fill="#BF3B24"/><circle cx="148" cy="758" r="8" fill="#E0A458"/><circle cx="178" cy="758" r="8" fill="#5A5449"/>
+<text x="1090" y="766" fill="#5A5449" font-family="IBM Plex Mono, Menlo, monospace" font-size="22" text-anchor="end">claude code · public github</text>
+<line x1="80" y1="786" x2="1120" y2="786" stroke="#3A332A" stroke-width="2"/>
+<g font-family="IBM Plex Mono, Menlo, monospace" font-size="25">
+<text x="118" y="840" fill="#9A8B70">file</text><text x="420" y="840" fill="#F7F3EA">.claude/settings.local.json</text>
+<text x="118" y="886" fill="#9A8B70">holds</text><text x="420" y="886" fill="#F7F3EA">every command you approved</text>
+<text x="118" y="932" fill="#9A8B70">5%</text><text x="420" y="932" fill="#F7F3EA">allow any shell command</text>
+<text x="118" y="978" fill="#9A8B70">43%</text><text x="420" y="978" fill="#F7F3EA">allow python or node freely</text>
+<text x="118" y="1024" fill="#9A8B70">fix</text><text x="420" y="1024" fill="#E8663C">gitignore it, rotate keys</text>
+</g>
+<line x1="396" y1="806" x2="396" y2="1036" stroke="#5A5449" stroke-width="2"/>
+<line x1="80" y1="1092" x2="1120" y2="1092" stroke="#3A332A" stroke-width="2"/>
+<text x="80" y="1142" fill="#F7F3EA" letter-spacing="1" font-family="Archivo, Helvetica, sans-serif" font-weight="800" font-size="30">SHEHZAD ASLAM</text>
+<text x="1120" y="1142" fill="#9A8B70" text-anchor="end" font-family="IBM Plex Mono, Menlo, monospace" font-size="28">shezz77.com</text>
+</svg>
