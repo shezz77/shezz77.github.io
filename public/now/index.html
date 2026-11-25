@@ -52,21 +52,73 @@
   h2 { font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 8px; }
   .sub { color: var(--muted); max-width: 60ch; margin: 0 0 28px; }
 
-  .tl { position: relative; list-style: none; margin: 0; padding: 0 0 0 34px; }
-  .tl::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
-  .tl::after { content: ""; position: absolute; left: 9px; top: 6px; width: 2px; height: var(--fill, 0%); max-height: calc(100% - 12px); background: var(--rust); transition: height 0.25s linear; }
-  .tl li { position: relative; padding: 0 0 34px; }
-  .tl li::before { content: ""; position: absolute; left: -34px; top: 5px; width: 20px; height: 20px; border-radius: 50%; background: var(--paper); border: 2px solid var(--rust); z-index: 1; transition: background 0.3s, transform 0.3s; }
-  .tl li.on::before { background: var(--rust); transform: scale(1.08); }
-  .tl li.inc::before { border-color: var(--amber); }
-  .tl li.inc.on::before { background: var(--amber); }
-  .when { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
-  .tag { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--card); }
-  .tag.hot { border-color: var(--amber); color: #8A5A12; }
-  .tl h3 { font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin: 8px 0 6px; }
-  .tl p { margin: 0; max-width: 66ch; color: #3A342B; }
-  .tl p + p { margin-top: 6px; }
-  .tl .out { color: var(--ink); font-weight: 500; }
+  /* ---------- Quest map: the timeline as game levels ---------- */
+  .hud { position: sticky; top: 10px; z-index: 6; display: flex; align-items: center; gap: 14px; max-width: 540px; margin: 0 0 30px; padding: 10px 18px; border: 1px solid var(--line); border-radius: 999px; background: rgba(251,248,241,.93); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 6px 18px rgba(27,23,18,.06); transition: border-color .3s, box-shadow .3s; }
+  .hud .mono { white-space: nowrap; }
+  .hud b { display: inline-block; font-family: Archivo, sans-serif; font-weight: 800; font-size: 15px; color: var(--ink); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+  .hud-bar { flex: 1; min-width: 60px; height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+  .hud-bar i { display: block; height: 100%; width: var(--p, 100%); border-radius: inherit; background: linear-gradient(90deg, var(--rust), var(--amber)); transition: width .35s cubic-bezier(.2,.8,.2,1); }
+  .hud.done { border-color: var(--rust); box-shadow: 0 6px 22px rgba(191,59,36,.18); }
+
+  .map { position: relative; }
+  .map::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 40px; border-left: 3px dotted var(--line); }
+  .map.play::before { display: none; }
+  .map > svg { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; display: none; }
+  .map.play > svg { display: block; }
+  .track { fill: none; stroke: var(--line); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1 10; }
+  .trail { fill: none; stroke: var(--rust); stroke-width: 4; stroke-linecap: round; }
+  .me { display: none; position: absolute; left: 0; top: 0; z-index: 4; pointer-events: none; transform: translate(var(--x, 0), var(--y, 0)); }
+  .map.play .me { display: block; }
+  .me i { display: block; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--ink); border: 3px solid var(--paper); box-shadow: 0 0 0 3px var(--rust); }
+  .me span { position: absolute; left: 14px; top: -10px; font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+
+  .levels { list-style: none; margin: 0; padding: 0; }
+  .lv { position: relative; padding: 0 0 52px; }
+  .lv + .lv { margin-top: -110px; }
+  .node { position: absolute; top: 14px; left: calc(50% - 86px); z-index: 3; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--rust); color: #FCEFE6; font-family: Archivo, sans-serif; font-weight: 800; font-size: 17px; box-shadow: 0 0 0 5px var(--paper), 0 0 0 7px var(--rust); transition: background .3s, color .3s, box-shadow .3s; }
+  .lv:nth-child(even) .node { left: calc(50% + 42px); }
+  .lv-card { position: relative; width: calc(50% - 112px); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px 20px; transition: opacity .5s ease, transform .65s cubic-bezier(.2,.8,.2,1), filter .5s ease, border-color .2s, box-shadow .2s; }
+  .lv:nth-child(even) .lv-card { margin-left: auto; }
+  .lv-card:hover { border-color: var(--ink); box-shadow: 0 10px 24px rgba(27,23,18,.08); }
+  .lvtag { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--rust); }
+  .when { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-top: 6px; }
+  .tag { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--paper); }
+  .lv h3 { font-family: Archivo, sans-serif; font-weight: 700; font-size: 21px; line-height: 1.2; letter-spacing: -0.01em; margin: 10px 0 6px; }
+  .lv p { margin: 0; color: #3A342B; font-size: 16px; }
+  .loot { display: flex; gap: 10px; align-items: baseline; margin-top: 12px !important; padding-top: 12px; border-top: 1px dashed var(--line); color: var(--ink) !important; font-weight: 500; }
+  .loot .mono { color: var(--rust); font-size: 11px; flex: none; }
+
+  /* Boss level: the incident. Its HP is the 800-second query, beaten on the next level. */
+  .lv.boss .node { background: var(--amber); color: var(--ink); box-shadow: 0 0 0 5px var(--paper), 0 0 0 7px var(--amber); }
+  .lv.boss .lv-card { background: var(--ink); border-color: var(--ink); }
+  .lv.boss .lvtag { color: var(--amber); }
+  .lv.boss h3 { color: var(--paper); }
+  .lv.boss p { color: #CFC6B4; }
+  .lv.boss .tag { background: transparent; border-color: #5A5244; color: #CFC6B4; }
+  .boss-hp { margin-top: 14px; }
+  .boss-hp .row { display: flex; justify-content: space-between; gap: 10px; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #CFC6B4; margin-bottom: 6px; }
+  .hp { height: 10px; border-radius: 99px; background: #3A342B; overflow: hidden; }
+  .hp i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--amber), var(--rust)); transition: width 1.4s cubic-bezier(.6,0,.3,1); }
+  .map.play:not(.boss-down) .hp i { width: 100%; }
+
+  .stamp { position: absolute; top: 14px; right: 16px; font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--ok); border: 2px solid var(--ok); border-radius: 6px; padding: 3px 8px; transform: rotate(-7deg); background: var(--card); white-space: nowrap; }
+
+  /* Level 8: not unlocked yet. */
+  .lv.next { padding-bottom: 8px; }
+  .lv.next .node { background: var(--paper); color: var(--muted); box-shadow: 0 0 0 5px var(--paper), 0 0 0 7px var(--line); border: 2px dashed var(--muted); }
+  .lv.next .node svg { width: 18px; height: 18px; }
+  .lv.next .lv-card { background: transparent; border-style: dashed; }
+  .lv.next .lvtag { color: var(--muted); }
+  .lv.next .go { display: inline-block; margin-top: 12px; font-weight: 600; }
+
+  /* Locked levels, only when the script is running the map. */
+  .map.play .lv:not(.up):not(.next) .node { background: var(--card); color: var(--muted); box-shadow: 0 0 0 5px var(--paper), 0 0 0 7px var(--line); }
+  .map.play .lv:not(.up):not(.next) .lv-card { opacity: .38; filter: grayscale(.7); transform: translateX(-22px); }
+  .map.play .lv:nth-child(even):not(.up):not(.next) .lv-card { transform: translateX(22px); }
+  .map.play .lv:not(.up) .stamp { opacity: 0; }
+
+  .spark { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: var(--amber); pointer-events: none; }
+  .ring { position: absolute; inset: -7px; border-radius: 50%; border: 2px solid var(--rust); pointer-events: none; }
 
   .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
@@ -90,6 +142,34 @@
     .js .rv.on { opacity: 1; transform: none; }
     .dot { animation: beat 1.8s ease-out infinite; }
     @keyframes beat { 0% { box-shadow: 0 0 0 0 rgba(47,125,79,.55); } 100% { box-shadow: 0 0 0 12px rgba(47,125,79,0); } }
+
+    .me i { animation: bob 1.6s ease-in-out infinite; }
+    @keyframes bob { 50% { transform: translateY(-3px); } }
+    .map.play .lv.up .node { animation: pop .55s cubic-bezier(.3,1.7,.5,1); }
+    @keyframes pop { 0% { transform: scale(.6); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+    .spark { animation: fly .7s cubic-bezier(.2,.8,.3,1) forwards; }
+    @keyframes fly { 0% { transform: rotate(var(--a)) translateY(0) scale(1); opacity: 1; } 100% { transform: rotate(var(--a)) translateY(-40px) scale(.3); opacity: 0; } }
+    .ring { animation: ring .6s ease-out forwards; }
+    @keyframes ring { 0% { transform: scale(.8); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+    .map.play .lv.boss.up .lv-card { animation: shake .5s .15s cubic-bezier(.36,.07,.19,.97); }
+    @keyframes shake { 20%, 60% { transform: translateX(-6px) rotate(-.4deg); } 40%, 80% { transform: translateX(6px) rotate(.4deg); } }
+    .map.play .lv.up .stamp { animation: slam .45s .35s cubic-bezier(.2,1.6,.4,1) both; }
+    @keyframes slam { 0% { transform: rotate(-7deg) scale(2.4); opacity: 0; } 100% { transform: rotate(-7deg) scale(1); opacity: 1; } }
+    .map.play .lv.next.near .node { animation: glow 1.6s ease-in-out infinite; }
+    @keyframes glow { 50% { box-shadow: 0 0 0 5px var(--paper), 0 0 0 7px var(--rust), 0 0 22px 8px rgba(191,59,36,.35); } }
+    .hud b.bump { animation: bump .4s cubic-bezier(.3,1.7,.5,1); }
+    @keyframes bump { 50% { transform: scale(1.45); color: var(--rust); } }
+    .hud.done .hud-bar i { background-size: 200% 100%; background-image: linear-gradient(90deg, var(--rust), var(--amber), var(--rust)); animation: shine 2.4s linear infinite; }
+    @keyframes shine { to { background-position: -200% 0; } }
+  }
+  @media (max-width: 820px) {
+    .map::before { left: 21px; }
+    .lv + .lv { margin-top: 0; }
+    .node, .lv:nth-child(even) .node { left: 0; }
+    .lv-card, .lv:nth-child(even) .lv-card { width: auto; margin-left: 66px; }
+    .map.play .lv:not(.up):not(.next) .lv-card, .map.play .lv:nth-child(even):not(.up):not(.next) .lv-card { transform: translateX(16px); }
+    .hud { padding: 9px 14px; gap: 10px; }
+    .stamp { position: static; display: inline-block; margin-top: 12px; }
   }
   @media (max-width: 820px) {
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -127,49 +207,101 @@
   </header>
 
   <section>
-    <span class="mono">Timeline</span>
-    <h2>The last three weeks, in order</h2>
-    <p class="sub">Newest first. Each entry is something that reached staging or production.</p>
+    <span class="mono">Quest log</span>
+    <h2>Three weeks, seven levels</h2>
+    <p class="sub">Oldest first. Each level is something that reached staging or production. Scroll to play through it.</p>
 
-    <ol class="tl" id="tl">
-      <li class="rv">
-        <div class="when"><span class="mono">24 Nov 2026</span><span class="tag">Production</span><span class="tag">Database</span></div>
-        <h3>Fixed the root cause of an outage with zero downtime</h3>
-        <p>Added the missing composite index to the busiest table online, with no lock and no maintenance window, then merged guard rails so the same query shape cannot reach production again.</p>
-        <p class="out">Four production releases went out the same day, each with a rollback path.</p>
-      </li>
-      <li class="rv inc">
-        <div class="when"><span class="mono">23 Nov 2026</span><span class="tag hot">Incident</span></div>
-        <h3>Diagnosed a production slowdown to one query pattern</h3>
-        <p>Reads that normally take milliseconds were running for more than 800 seconds and holding the database at its I/O ceiling. I traced it to history scans from one dashboard, mitigated it the same day, and wrote up the cause and the fix.</p>
-      </li>
-      <li class="rv">
-        <div class="when"><span class="mono">23 Nov 2026</span><span class="tag">Production</span><span class="tag">Real-time</span></div>
-        <h3>Stood up a production video-calling service</h3>
-        <p>Deployed a selective-forwarding (SFU) media service on AWS ECS with fixed media ports, separate from the main API, and verified calls and screen sharing end to end.</p>
-      </li>
-      <li class="rv">
-        <div class="when"><span class="mono">22–23 Nov 2026</span><span class="tag">Desktop</span><span class="tag">Rollout</span></div>
-        <h3>Put the rebuilt desktop app in front of a pilot group</h3>
-        <p>Shipped signed pre-release builds for macOS (Apple Silicon and Intel) and Windows (installer and MSI), released them to a pilot team on production, and supported those users directly while watching the telemetry.</p>
-      </li>
-      <li class="rv">
-        <div class="when"><span class="mono">20–22 Nov 2026</span><span class="tag">Security</span></div>
-        <h3>Ran a security hardening sprint from scan to production</h3>
-        <p>Security headers and a report-only Content Security Policy on the production web app, an HTTPS-only API, DNSSEC signing with keys held in a managed KMS, DMARC monitoring on the mail domain, and a runtime upgrade to Node 22 on staging.</p>
-      </li>
-      <li class="rv">
-        <div class="when"><span class="mono">21 Nov 2026</span><span class="tag">Production</span><span class="tag">Release engineering</span></div>
-        <h3>Released the new web and API generation overnight</h3>
-        <p>A written runbook, a database snapshot, and a named rollback target before the first command. The release ran in the customer's quiet hours and nobody noticed, which is the point.</p>
-      </li>
-      <li class="rv">
-        <div class="when"><span class="mono">10 Nov 2026</span><span class="tag">Desktop</span><span class="tag">Platform</span></div>
-        <h3>Moved the desktop client from Electron 25 to Electron 45</h3>
-        <p>Twenty major versions in one planned upgrade: a new security model (narrowed entitlements, encrypted local captures, a strict CSP), silent auto-updates, and a tracking pipeline rebuilt so that it does not lose data when the app restarts.</p>
-        <p class="out">I also designed a bridge release so that the installed base moves to the new generation without anyone reinstalling.</p>
-      </li>
-    </ol>
+    <div class="hud" id="hud" aria-hidden="true">
+      <span class="mono" id="hud-lv">Level <b id="hud-n">7</b> of 7</span>
+      <div class="hud-bar"><i id="hud-fill"></i></div>
+      <span class="mono" id="hud-date">24 Nov</span>
+    </div>
+
+    <div class="map" id="map">
+      <svg aria-hidden="true"><path class="track" /><path class="trail" /></svg>
+      <div class="me" aria-hidden="true"><i></i><span>You</span></div>
+      <ol class="levels">
+        <li class="lv" data-date="10 Nov">
+          <div class="node">1</div>
+          <article class="lv-card">
+            <span class="lvtag">Level 1 · 10 Nov 2026</span>
+            <div class="when"><span class="tag">Desktop</span><span class="tag">Platform</span></div>
+            <h3>Moved the desktop client from Electron 25 to Electron 45</h3>
+            <p>Twenty major versions in one planned upgrade: a new security model (narrowed entitlements, encrypted local captures, a strict CSP), silent auto-updates, and a tracking pipeline rebuilt so that it does not lose data when the app restarts.</p>
+            <p class="loot"><span class="mono">Loot</span><span>A bridge release I designed, so the installed base moves to the new generation without anyone reinstalling.</span></p>
+          </article>
+        </li>
+        <li class="lv" data-date="20 Nov">
+          <div class="node">2</div>
+          <article class="lv-card">
+            <span class="lvtag">Level 2 · 20–22 Nov 2026</span>
+            <div class="when"><span class="tag">Security</span></div>
+            <h3>Ran a security hardening sprint from scan to production</h3>
+            <p>Security headers and a report-only Content Security Policy on the production web app, an HTTPS-only API, DNSSEC signing with keys held in a managed KMS, DMARC monitoring on the mail domain, and a runtime upgrade to Node 22 on staging.</p>
+          </article>
+        </li>
+        <li class="lv" data-date="21 Nov">
+          <div class="node">3</div>
+          <article class="lv-card">
+            <span class="lvtag">Level 3 · 21 Nov 2026</span>
+            <div class="when"><span class="tag">Production</span><span class="tag">Release engineering</span></div>
+            <h3>Released the new web and API generation overnight</h3>
+            <p>A written runbook, a database snapshot, and a named rollback target before the first command. The release ran in the customer's quiet hours and nobody noticed, which is the point.</p>
+          </article>
+        </li>
+        <li class="lv" data-date="22 Nov">
+          <div class="node">4</div>
+          <article class="lv-card">
+            <span class="lvtag">Level 4 · 22–23 Nov 2026</span>
+            <div class="when"><span class="tag">Desktop</span><span class="tag">Rollout</span></div>
+            <h3>Put the rebuilt desktop app in front of a pilot group</h3>
+            <p>Shipped signed pre-release builds for macOS (Apple Silicon and Intel) and Windows (installer and MSI), released them to a pilot team on production, and supported those users directly while watching the telemetry.</p>
+          </article>
+        </li>
+        <li class="lv" data-date="23 Nov">
+          <div class="node">5</div>
+          <article class="lv-card">
+            <span class="lvtag">Level 5 · 23 Nov 2026</span>
+            <div class="when"><span class="tag">Production</span><span class="tag">Real-time</span></div>
+            <h3>Stood up a production video-calling service</h3>
+            <p>Deployed a selective-forwarding (SFU) media service on AWS ECS with fixed media ports, separate from the main API, and verified calls and screen sharing end to end.</p>
+          </article>
+        </li>
+        <li class="lv boss" data-date="23 Nov">
+          <div class="node">6</div>
+          <article class="lv-card">
+            <span class="lvtag">Boss level · 23 Nov 2026</span>
+            <div class="when"><span class="tag">Incident</span><span class="tag">Production</span></div>
+            <h3>Diagnosed a production slowdown to one query pattern</h3>
+            <p>Reads that normally take milliseconds were running for more than 800 seconds and holding the database at its I/O ceiling. I traced it to history scans from one dashboard, mitigated it the same day, and wrote up the cause and the fix.</p>
+            <div class="boss-hp" aria-hidden="true">
+              <div class="row"><span>Boss: 800 s+ query</span><span id="hp-label">Beaten on level 7</span></div>
+              <div class="hp"><i></i></div>
+            </div>
+          </article>
+        </li>
+        <li class="lv" data-date="24 Nov">
+          <div class="node">7</div>
+          <article class="lv-card">
+            <span class="stamp">Level cleared</span>
+            <span class="lvtag">Level 7 · 24 Nov 2026</span>
+            <div class="when"><span class="tag">Production</span><span class="tag">Database</span></div>
+            <h3>Fixed the root cause with zero downtime</h3>
+            <p>Added the missing composite index to the busiest table online, with no lock and no maintenance window, then merged guard rails so the same query shape cannot reach production again.</p>
+            <p class="loot"><span class="mono">Loot</span><span>Four production releases the same day, each with a rollback path.</span></p>
+          </article>
+        </li>
+        <li class="lv next">
+          <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg></div>
+          <article class="lv-card">
+            <span class="lvtag">Level 8 · Locked</span>
+            <h3>Your team?</h3>
+            <p>The next level is a principal engineer or engineering manager role on a product that matters. If that's what you're hiring for, I'd like to hear about it.</p>
+            <a class="go" href="/#contact">Unlock it →</a>
+          </article>
+        </li>
+      </ol>
+    </div>
   </section>
 
   <section>
@@ -236,17 +368,110 @@
     });
   }, {rootMargin: '0px 0px -8% 0px'});
   document.querySelectorAll('.rv').forEach(function (el) { seen.observe(el); });
-  // The rust line follows your reading position down the timeline.
-  var tl = document.getElementById('tl');
-  function fill() {
-    var r = tl.getBoundingClientRect(), mid = window.innerHeight * 0.6;
-    tl.style.setProperty('--fill', Math.max(0, Math.min(100, 100 * (mid - r.top) / r.height)) + '%');
-  }
-  window.addEventListener('scroll', fill, {passive: true});
-  window.addEventListener('resize', fill);
-  fill();
   // If nothing was revealed (an embedded or printed view), show everything.
   setTimeout(function () { if (!document.querySelector('.rv.on')) document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('on'); }); }, 1500);
+})();
+
+// Quest map. Without this script (or with reduced motion) every level shows as
+// cleared and the dotted line stands in for the path.
+(function () {
+  var map = document.getElementById('map');
+  if (!map || !document.createElementNS) return;
+  var calm = !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var svg = map.querySelector('svg'), track = svg.querySelector('.track'), trail = svg.querySelector('.trail');
+  if (!trail.getTotalLength) return;
+  var me = map.querySelector('.me'), hud = document.getElementById('hud'), hudN = document.getElementById('hud-n');
+  var hudLv = document.getElementById('hud-lv'), hudDate = document.getElementById('hud-date'), hudFill = document.getElementById('hud-fill');
+  var hpLabel = document.getElementById('hp-label');
+  var lvs = [].slice.call(map.querySelectorAll('.lv'));
+  var levels = lvs.filter(function (li) { return !li.classList.contains('next'); });
+  var pts = [], len = 0, table = [], ready = false, shown = -1, ticking = false;
+
+  function build() {
+    pts = lvs.map(function (li) {
+      var n = li.querySelector('.node');
+      return { x: li.offsetLeft + n.offsetLeft + n.offsetWidth / 2, y: li.offsetTop + n.offsetTop + n.offsetHeight / 2 };
+    });
+    var d = 'M' + pts[0].x + ' 0 L' + pts[0].x + ' ' + pts[0].y;
+    for (var i = 1; i < pts.length; i++) {
+      var a = pts[i - 1], b = pts[i], h = (b.y - a.y) / 2;
+      d += ' C' + a.x + ' ' + (a.y + h) + ' ' + b.x + ' ' + (b.y - h) + ' ' + b.x + ' ' + b.y;
+    }
+    svg.setAttribute('width', map.offsetWidth);
+    svg.setAttribute('height', map.offsetHeight);
+    track.setAttribute('d', d);
+    trail.setAttribute('d', d);
+    len = trail.getTotalLength();
+    trail.style.strokeDasharray = len + ' ' + len;
+    table = [];
+    for (var s = 0; s <= 240; s++) { var L = len * s / 240; table.push({ L: L, y: trail.getPointAtLength(L).y }); }
+    update();
+  }
+
+  // Distance along the path that matches a given height on the map.
+  function lengthAt(y) {
+    if (y <= table[0].y) return 0;
+    for (var i = 1; i < table.length; i++) {
+      if (table[i].y >= y) {
+        var a = table[i - 1], b = table[i], k = b.y === a.y ? 1 : (y - a.y) / (b.y - a.y);
+        return a.L + k * (b.L - a.L);
+      }
+    }
+    return len;
+  }
+
+  function burst(li) {
+    var node = li.querySelector('.node');
+    var ring = document.createElement('span'); ring.className = 'ring'; node.appendChild(ring);
+    for (var i = 0; i < 10; i++) {
+      var sp = document.createElement('span'); sp.className = 'spark';
+      sp.style.setProperty('--a', (i * 36) + 'deg');
+      if (i % 2) sp.style.background = 'var(--rust)';
+      node.appendChild(sp);
+    }
+    setTimeout(function () { node.querySelectorAll('.spark, .ring').forEach(function (el) { el.remove(); }); }, 800);
+  }
+
+  function update() {
+    ticking = false;
+    var line = calm ? Infinity : window.innerHeight * 0.62 - map.getBoundingClientRect().top;
+    var L = calm ? len : lengthAt(line);
+    trail.style.strokeDashoffset = len - L;
+    var p = trail.getPointAtLength(L);
+    me.style.setProperty('--x', p.x + 'px');
+    me.style.setProperty('--y', p.y + 'px');
+    var n = 0;
+    lvs.forEach(function (li, i) {
+      var reached = pts[i].y <= line + 1;
+      if (li.classList.contains('next')) { li.classList.toggle('near', reached); return; }
+      if (reached) n++;
+      if (reached && !li.classList.contains('up')) { li.classList.add('up'); if (ready && !calm) burst(li); }
+      else if (!reached) li.classList.remove('up');
+    });
+    var bossDown = levels[levels.length - 1].classList.contains('up');
+    map.classList.toggle('boss-down', bossDown);
+    hpLabel.textContent = bossDown ? 'Defeated on level 7' : 'HP 100%';
+    if (n !== shown) {
+      var total = levels.length;
+      hudN.textContent = n;
+      if (ready && !calm) { hudN.classList.remove('bump'); void hudN.offsetWidth; hudN.classList.add('bump'); }
+      hudDate.textContent = n ? levels[n - 1].getAttribute('data-date') : 'Start';
+      hudFill.style.setProperty('--p', (100 * n / total) + '%');
+      hud.classList.toggle('done', n === total);
+      hudLv.firstChild.textContent = n === total ? 'Quest complete · ' : 'Level ';
+      shown = n;
+    }
+  }
+
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+
+  map.classList.add('play');
+  build();
+  requestAnimationFrame(function () { ready = true; });
+  if (!calm) window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', build);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+  if ('ResizeObserver' in window) new ResizeObserver(function () { build(); }).observe(map);
 })();
 </script>
 </body>
