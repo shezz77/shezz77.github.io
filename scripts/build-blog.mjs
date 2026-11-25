@@ -412,6 +412,7 @@ ${items}
 function sitemap() {
   const urls = [
     { loc: `${SITE}/`, priority: '1.0', changefreq: 'monthly' },
+    { loc: `${SITE}/now/`, priority: '0.9', changefreq: 'weekly' },
     { loc: urlFor(null), priority: '0.9', changefreq: 'weekly' },
     ...POSTS.map((p) => ({
       loc: urlFor(p.slug),

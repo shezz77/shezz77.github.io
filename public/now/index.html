@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Now · Shehzad Aslam</title>
+<meta name="description" content="What Shehzad Aslam is shipping right now: a dated timeline of releases, platform work and incident response from his current engineering-manager role." />
+<link rel="canonical" href="https://shezz77.com/now/" />
+<meta property="og:title" content="Now · what Shehzad Aslam is shipping" />
+<meta property="og:description" content="A dated timeline of releases, platform work and incident response. Updated 25 November 2026." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://shezz77.com/now/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root { --paper: #F5F1E8; --card: #FBF8F1; --ink: #1B1712; --muted: #6B6355; --line: #DCD4C2; --rust: #BF3B24; --rust-deep: #8F2A18; --amber: #D9922E; --ok: #2F7D4F; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: var(--rust); text-decoration: none; }
+  a:hover { color: var(--rust-deep); }
+  ::selection { background: var(--rust); color: #FCEFE6; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+  nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+  nav .brand { font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -0.01em; }
+  nav .links { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: center; font-weight: 500; font-size: 15px; }
+  nav .links a { color: var(--ink); }
+  nav .links a:hover { color: var(--rust); }
+  nav .cta { background: var(--ink); color: var(--paper) !important; padding: 8px 14px; border-radius: 999px; }
+  nav .cta:hover { background: var(--rust); }
+
+  header.hero { padding: 72px 0 40px; }
+  .live { display: inline-flex; align-items: center; gap: 10px; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(47,125,79,.5); }
+  h1 { font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(40px, 7vw, 76px); line-height: 0.98; letter-spacing: -0.03em; margin: 18px 0 22px; max-width: 14ch; }
+  h1 em { font-style: normal; color: var(--rust); }
+  .lede { max-width: 62ch; font-size: 19px; color: #3A342B; margin: 0; }
+  .lede b { font-weight: 600; color: var(--ink); }
+
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 14px; background: var(--card); margin: 36px 0 8px; overflow: hidden; }
+  .stat { padding: 22px 22px 20px; border-left: 1px solid var(--line); }
+  .stat:first-child { border-left: 0; }
+  .stat b { display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(30px, 4.4vw, 46px); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat span { display: block; margin-top: 8px; color: var(--muted); font-size: 14.5px; }
+  .fine { color: var(--muted); font-size: 14px; margin: 10px 2px 0; }
+
+  section { padding: 56px 0 8px; }
+  h2 { font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(26px, 3.6vw, 38px); letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 8px; }
+  .sub { color: var(--muted); max-width: 60ch; margin: 0 0 28px; }
+
+  .tl { position: relative; list-style: none; margin: 0; padding: 0 0 0 34px; }
+  .tl::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .tl::after { content: ""; position: absolute; left: 9px; top: 6px; width: 2px; height: var(--fill, 0%); max-height: calc(100% - 12px); background: var(--rust); transition: height 0.25s linear; }
+  .tl li { position: relative; padding: 0 0 34px; }
+  .tl li::before { content: ""; position: absolute; left: -34px; top: 5px; width: 20px; height: 20px; border-radius: 50%; background: var(--paper); border: 2px solid var(--rust); z-index: 1; transition: background 0.3s, transform 0.3s; }
+  .tl li.on::before { background: var(--rust); transform: scale(1.08); }
+  .tl li.inc::before { border-color: var(--amber); }
+  .tl li.inc.on::before { background: var(--amber); }
+  .when { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+  .tag { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--card); }
+  .tag.hot { border-color: var(--amber); color: #8A5A12; }
+  .tl h3 { font-family: Archivo, sans-serif; font-weight: 700; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; margin: 8px 0 6px; }
+  .tl p { margin: 0; max-width: 66ch; color: #3A342B; }
+  .tl p + p { margin-top: 6px; }
+  .tl .out { color: var(--ink); font-weight: 500; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
+  .card:hover { transform: translateY(-3px); border-color: var(--ink); box-shadow: 0 10px 24px rgba(27,23,18,.08); }
+  .card h3 { font-family: Archivo, sans-serif; font-weight: 700; font-size: 19px; margin: 8px 0 6px; }
+  .card p { margin: 0; color: #3A342B; font-size: 15.5px; }
+
+  .close { margin: 56px 0 0; padding: 40px; border-radius: 18px; background: var(--ink); color: var(--paper); display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
+  .close h2 { margin: 0 0 6px; color: var(--paper); }
+  .close p { margin: 0; color: #CFC6B4; max-width: 46ch; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; background: var(--rust); color: #FCEFE6; transition: transform 0.15s, background 0.15s; }
+  .btn:hover { background: #D5482F; color: #fff; transform: translateY(-1px); }
+  .btn.ghost { background: transparent; border: 1px solid #5A5244; color: var(--paper); }
+  .btn.ghost:hover { border-color: var(--paper); background: transparent; }
+  footer { padding: 28px 0 48px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+
+  .rv { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .js .rv { opacity: 0; transform: translateY(16px); transition: opacity 0.6s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+    .js .rv.on { opacity: 1; transform: none; }
+    .dot { animation: beat 1.8s ease-out infinite; }
+    @keyframes beat { 0% { box-shadow: 0 0 0 0 rgba(47,125,79,.55); } 100% { box-shadow: 0 0 0 12px rgba(47,125,79,0); } }
+  }
+  @media (max-width: 820px) {
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .cards { grid-template-columns: minmax(0, 1fr); }
+    .close { padding: 28px; }
+  }
+  @media (max-width: 520px) { .wrap { padding: 0 20px; } header.hero { padding-top: 48px; } nav .links a:not(.cta) { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="/">Shehzad Aslam</a>
+    <div class="links">
+      <a href="/#work">Work</a>
+      <a href="/blog/">Field Notes</a>
+      <a class="cta" href="/#contact">Get in touch</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="mono live"><span class="dot"></span>Now · updated 25 November 2026</span>
+    <h1>What I'm <em>shipping</em> this month</h1>
+    <p class="lede">I'm an Engineering Manager who still ships. In my current role I own one B2B SaaS product end to end: an Electron desktop client, a React web app, and Node.js services on AWS. This page is the recent record, <b>dated and specific</b>, with the product and customer names left out.</p>
+
+    <div class="stats rv">
+      <div class="stat"><b data-n="225">225</b><span>commits landed in 14 days</span></div>
+      <div class="stat"><b data-n="36">36</b><span>pull requests merged</span></div>
+      <div class="stat"><b data-n="7">7</b><span>production releases</span></div>
+      <div class="stat"><b data-n="20">20</b><span>major Electron versions crossed in one upgrade</span></div>
+    </div>
+    <p class="fine">12 to 25 November 2026. Much of the code is written with AI agents under my direction and review; every release decision is mine.</p>
+  </header>
+
+  <section>
+    <span class="mono">Timeline</span>
+    <h2>The last three weeks, in order</h2>
+    <p class="sub">Newest first. Each entry is something that reached staging or production.</p>
+
+    <ol class="tl" id="tl">
+      <li class="rv">
+        <div class="when"><span class="mono">24 Nov 2026</span><span class="tag">Production</span><span class="tag">Database</span></div>
+        <h3>Fixed the root cause of an outage with zero downtime</h3>
+        <p>Added the missing composite index to the busiest table online, with no lock and no maintenance window, then merged guard rails so the same query shape cannot reach production again.</p>
+        <p class="out">Four production releases went out the same day, each with a rollback path.</p>
+      </li>
+      <li class="rv inc">
+        <div class="when"><span class="mono">23 Nov 2026</span><span class="tag hot">Incident</span></div>
+        <h3>Diagnosed a production slowdown to one query pattern</h3>
+        <p>Reads that normally take milliseconds were running for more than 800 seconds and holding the database at its I/O ceiling. I traced it to history scans from one dashboard, mitigated it the same day, and wrote up the cause and the fix.</p>
+      </li>
+      <li class="rv">
+        <div class="when"><span class="mono">23 Nov 2026</span><span class="tag">Production</span><span class="tag">Real-time</span></div>
+        <h3>Stood up a production video-calling service</h3>
+        <p>Deployed a selective-forwarding (SFU) media service on AWS ECS with fixed media ports, separate from the main API, and verified calls and screen sharing end to end.</p>
+      </li>
+      <li class="rv">
+        <div class="when"><span class="mono">22–23 Nov 2026</span><span class="tag">Desktop</span><span class="tag">Rollout</span></div>
+        <h3>Put the rebuilt desktop app in front of a pilot group</h3>
+        <p>Shipped signed pre-release builds for macOS (Apple Silicon and Intel) and Windows (installer and MSI), released them to a pilot team on production, and supported those users directly while watching the telemetry.</p>
+      </li>
+      <li class="rv">
+        <div class="when"><span class="mono">20–22 Nov 2026</span><span class="tag">Security</span></div>
+        <h3>Ran a security hardening sprint from scan to production</h3>
+        <p>Security headers and a report-only Content Security Policy on the production web app, an HTTPS-only API, DNSSEC signing with keys held in a managed KMS, DMARC monitoring on the mail domain, and a runtime upgrade to Node 22 on staging.</p>
+      </li>
+      <li class="rv">
+        <div class="when"><span class="mono">21 Nov 2026</span><span class="tag">Production</span><span class="tag">Release engineering</span></div>
+        <h3>Released the new web and API generation overnight</h3>
+        <p>A written runbook, a database snapshot, and a named rollback target before the first command. The release ran in the customer's quiet hours and nobody noticed, which is the point.</p>
+      </li>
+      <li class="rv">
+        <div class="when"><span class="mono">10 Nov 2026</span><span class="tag">Desktop</span><span class="tag">Platform</span></div>
+        <h3>Moved the desktop client from Electron 25 to Electron 45</h3>
+        <p>Twenty major versions in one planned upgrade: a new security model (narrowed entitlements, encrypted local captures, a strict CSP), silent auto-updates, and a tracking pipeline rebuilt so that it does not lose data when the app restarts.</p>
+        <p class="out">I also designed a bridge release so that the installed base moves to the new generation without anyone reinstalling.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <span class="mono">Also this quarter</span>
+    <h2>Smaller things that changed how the team works</h2>
+    <p class="sub">Not every result is a release.</p>
+    <div class="cards">
+      <div class="card rv"><span class="mono">AI integration</span><h3>An analytics connector for AI assistants</h3><p>A read-only MCP server over product data, with access scoped per workspace and query definitions that match the product's own reports, so answers agree with what customers see.</p></div>
+      <div class="card rv"><span class="mono">Product</span><h3>A guided in-app tour</h3><p>A custom product tour in the web app, built on a small anchor contract so that new screens can join it without touching the tour engine.</p></div>
+      <div class="card rv"><span class="mono">Leadership</span><h3>Review, unblock, release</h3><p>I review and merge teammates' pull requests daily, own the release train across four deployables, and answer pilot users myself when something breaks.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="mono">How I work</span>
+    <h2>An agent-first engineering workflow, measured</h2>
+    <p class="sub">I run AI coding agents the way I would run a team: written briefs, reviews, runbooks, and a human decision before anything reaches production.</p>
+    <div class="stats rv">
+      <div class="stat"><b data-n="19">19</b><span>agent sessions on the busiest day</span></div>
+      <div class="stat"><b data-n="16423">16,423</b><span>agent replies in 14 days</span></div>
+      <div class="stat"><b data-n="13.6" data-d="1" data-s="M">13.6M</b><span>output tokens generated</span></div>
+      <div class="stat"><b data-n="98" data-s="%">98%</b><span>of input served from cache</span></div>
+    </div>
+    <p class="fine">Counted from my own session logs, 12 to 25 November 2026. I write about what works and what does not in <a href="/blog/">Field Notes</a>.</p>
+  </section>
+
+  <div class="close rv">
+    <div>
+      <h2>Hiring for a principal or EM role?</h2>
+      <p>I'm happy to walk through any entry on this page in detail, including the parts that went wrong.</p>
+    </div>
+    <div class="btns">
+      <a class="btn" href="/#contact">Start a conversation</a>
+      <a class="btn ghost" href="/Shehzad_Aslam_Software_Architect_Resume.pdf">Résumé (PDF)</a>
+    </div>
+  </div>
+
+  <footer><span>© 2026 Shehzad Aslam</span><span><a href="/">Home</a> · <a href="/blog/">Field Notes</a></span></footer>
+</div>
+
+<script>
+(function () {
+  var calm = !window.matchMedia || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (calm || !('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  var fmt = function (n, d) { return n.toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d}); };
+  function count(el) {
+    var to = parseFloat(el.getAttribute('data-n')), d = parseInt(el.getAttribute('data-d') || '0', 10), s = el.getAttribute('data-s') || '', t0 = null;
+    function step(t) {
+      if (t0 === null) t0 = t;
+      var k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(to * e, d) + s;
+      if (k < 1) requestAnimationFrame(step); else el.textContent = fmt(to, d) + s;
+    }
+    requestAnimationFrame(step);
+  }
+  var seen = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      seen.unobserve(entry.target);
+      entry.target.style.transitionDelay = Math.min(i, 5) * 70 + 'ms';
+      entry.target.classList.add('on');
+      entry.target.querySelectorAll('[data-n]').forEach(count);
+    });
+  }, {rootMargin: '0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(function (el) { seen.observe(el); });
+  // The rust line follows your reading position down the timeline.
+  var tl = document.getElementById('tl');
+  function fill() {
+    var r = tl.getBoundingClientRect(), mid = window.innerHeight * 0.6;
+    tl.style.setProperty('--fill', Math.max(0, Math.min(100, 100 * (mid - r.top) / r.height)) + '%');
+  }
+  window.addEventListener('scroll', fill, {passive: true});
+  window.addEventListener('resize', fill);
+  fill();
+  // If nothing was revealed (an embedded or printed view), show everything.
+  setTimeout(function () { if (!document.querySelector('.rv.on')) document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('on'); }); }, 1500);
+})();
+</script>
+</body>
+</html>
