@@ -31,6 +31,9 @@ export default function Navbar() {
         <a href="#scope" className={linkClass('scope')}>
           Scope it
         </a>
+        <a href="/now/" className="nav__link nav__link--page">
+          Now
+        </a>
         <a href="/blog/" className="nav__link nav__link--page">
           Blog
         </a>
